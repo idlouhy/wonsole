@@ -137,7 +137,7 @@ CREATE TABLE `changes` (
   `branch` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `changesets_changeset_id` (`changeset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +146,7 @@ CREATE TABLE `changes` (
 
 LOCK TABLES `changes` WRITE;
 /*!40000 ALTER TABLE `changes` DISABLE KEYS */;
+INSERT INTO `changes` VALUES (1,1,'A','README.md',NULL,NULL,NULL,NULL),(2,2,'A','backup/redmine.sql',NULL,NULL,NULL,NULL),(3,3,'M','backup/redmine.sql',NULL,NULL,NULL,NULL),(4,4,'M','backup/redmine.sql',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `changes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,6 +171,7 @@ CREATE TABLE `changeset_parents` (
 
 LOCK TABLES `changeset_parents` WRITE;
 /*!40000 ALTER TABLE `changeset_parents` DISABLE KEYS */;
+INSERT INTO `changeset_parents` VALUES (2,1),(3,2),(4,3);
 /*!40000 ALTER TABLE `changeset_parents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +198,7 @@ CREATE TABLE `changesets` (
   KEY `index_changesets_on_repository_id` (`repository_id`),
   KEY `index_changesets_on_committed_on` (`committed_on`),
   KEY `changesets_repos_scmid` (`repository_id`,`scmid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,6 +207,7 @@ CREATE TABLE `changesets` (
 
 LOCK TABLES `changesets` WRITE;
 /*!40000 ALTER TABLE `changesets` DISABLE KEYS */;
+INSERT INTO `changesets` VALUES (1,3,'8b1dcc55039a2742d1411f76dd7bdcf1d32af03b','idlouhy <idlouhy@gmail.com>','2012-09-04 01:35:03','Initial commit','2012-09-04','8b1dcc55039a2742d1411f76dd7bdcf1d32af03b',4),(2,3,'ac06e0bdf83876312b7e11b717d4e22b94b8ea6e','root <root@netlight.dlouho.net>','2012-09-04 15:45:34','database backup','2012-09-04','ac06e0bdf83876312b7e11b717d4e22b94b8ea6e',8),(3,3,'2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3','Database <idlouhy@gmail.com>','2012-09-04 16:24:55','Database backup.','2012-09-04','2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3',4),(4,3,'4fe8ccf807991f695d29c0a8e8a1f630151dfff0','Database <idlouhy@gmail.com>','2012-09-04 23:21:01','Database backup.','2012-09-04','4fe8ccf807991f695d29c0a8e8a1f630151dfff0',4);
 /*!40000 ALTER TABLE `changesets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -987,7 +990,7 @@ CREATE TABLE `repositories` (
   `is_default` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_repositories_on_project_id` (`project_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -996,6 +999,7 @@ CREATE TABLE `repositories` (
 
 LOCK TABLES `repositories` WRITE;
 /*!40000 ALTER TABLE `repositories` DISABLE KEYS */;
+INSERT INTO `repositories` VALUES (3,1,'/root/ntnu-netlight-project/.git','','','/root/ntnu-netlight-project/.git','Repository::Git','',NULL,'--- \nextra_report_last_commit: \"0\"\ndb_consistent: \n  ordering: 1\nheads: \n- 4fe8ccf807991f695d29c0a8e8a1f630151dfff0\n','github',1);
 /*!40000 ALTER TABLE `repositories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1495,4 +1499,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-09-04 23:21:01
+-- Dump completed on 2012-09-05  0:00:01
