@@ -137,7 +137,7 @@ CREATE TABLE `changes` (
   `branch` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `changesets_changeset_id` (`changeset_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `changes` (
 
 LOCK TABLES `changes` WRITE;
 /*!40000 ALTER TABLE `changes` DISABLE KEYS */;
-INSERT INTO `changes` VALUES (1,1,'A','README.md',NULL,NULL,NULL,NULL),(2,2,'A','backup/redmine.sql',NULL,NULL,NULL,NULL),(3,3,'M','backup/redmine.sql',NULL,NULL,NULL,NULL),(4,4,'M','backup/redmine.sql',NULL,NULL,NULL,NULL);
+INSERT INTO `changes` VALUES (1,1,'A','README.md',NULL,NULL,NULL,NULL),(2,2,'A','backup/redmine.sql',NULL,NULL,NULL,NULL),(3,3,'M','backup/redmine.sql',NULL,NULL,NULL,NULL),(4,4,'M','backup/redmine.sql',NULL,NULL,NULL,NULL),(5,5,'M','backup/redmine.sql',NULL,NULL,NULL,NULL),(6,6,'A','report/src/report.pdf',NULL,NULL,NULL,NULL),(7,6,'A','report/src/report.tex',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `changes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `changeset_parents` (
 
 LOCK TABLES `changeset_parents` WRITE;
 /*!40000 ALTER TABLE `changeset_parents` DISABLE KEYS */;
-INSERT INTO `changeset_parents` VALUES (2,1),(3,2),(4,3);
+INSERT INTO `changeset_parents` VALUES (2,1),(3,2),(4,3),(5,4),(6,5);
 /*!40000 ALTER TABLE `changeset_parents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ CREATE TABLE `changesets` (
   KEY `index_changesets_on_repository_id` (`repository_id`),
   KEY `index_changesets_on_committed_on` (`committed_on`),
   KEY `changesets_repos_scmid` (`repository_id`,`scmid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE `changesets` (
 
 LOCK TABLES `changesets` WRITE;
 /*!40000 ALTER TABLE `changesets` DISABLE KEYS */;
-INSERT INTO `changesets` VALUES (1,3,'8b1dcc55039a2742d1411f76dd7bdcf1d32af03b','idlouhy <idlouhy@gmail.com>','2012-09-04 01:35:03','Initial commit','2012-09-04','8b1dcc55039a2742d1411f76dd7bdcf1d32af03b',4),(2,3,'ac06e0bdf83876312b7e11b717d4e22b94b8ea6e','root <root@netlight.dlouho.net>','2012-09-04 15:45:34','database backup','2012-09-04','ac06e0bdf83876312b7e11b717d4e22b94b8ea6e',8),(3,3,'2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3','Database <idlouhy@gmail.com>','2012-09-04 16:24:55','Database backup.','2012-09-04','2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3',4),(4,3,'4fe8ccf807991f695d29c0a8e8a1f630151dfff0','Database <idlouhy@gmail.com>','2012-09-04 23:21:01','Database backup.','2012-09-04','4fe8ccf807991f695d29c0a8e8a1f630151dfff0',4);
+INSERT INTO `changesets` VALUES (1,3,'8b1dcc55039a2742d1411f76dd7bdcf1d32af03b','idlouhy <idlouhy@gmail.com>','2012-09-04 01:35:03','Initial commit','2012-09-04','8b1dcc55039a2742d1411f76dd7bdcf1d32af03b',4),(2,3,'ac06e0bdf83876312b7e11b717d4e22b94b8ea6e','root <root@netlight.dlouho.net>','2012-09-04 15:45:34','database backup','2012-09-04','ac06e0bdf83876312b7e11b717d4e22b94b8ea6e',8),(3,3,'2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3','Database <idlouhy@gmail.com>','2012-09-04 16:24:55','Database backup.','2012-09-04','2cb9e62f1cf810f28c5ce04e9fce15f818ccf5f3',4),(4,3,'4fe8ccf807991f695d29c0a8e8a1f630151dfff0','Database <idlouhy@gmail.com>','2012-09-04 23:21:01','Database backup.','2012-09-04','4fe8ccf807991f695d29c0a8e8a1f630151dfff0',4),(5,3,'bde3ab07ac4479363840bcf9d567d530d5e96e14','Database <idlouhy@gmail.com>','2012-09-05 00:00:01','Database backup.','2012-09-05','bde3ab07ac4479363840bcf9d567d530d5e96e14',4),(6,3,'fa135421d6f2ae41b3975d4ad88ed127b42ed359','idlouhy <idlouhy@gmail.com>','2012-09-05 00:21:24','template file for the record in latex, pdf included','2012-09-05','fa135421d6f2ae41b3975d4ad88ed127b42ed359',4);
 /*!40000 ALTER TABLE `changesets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -999,7 +999,7 @@ CREATE TABLE `repositories` (
 
 LOCK TABLES `repositories` WRITE;
 /*!40000 ALTER TABLE `repositories` DISABLE KEYS */;
-INSERT INTO `repositories` VALUES (3,1,'/root/ntnu-netlight-project/.git','','','/root/ntnu-netlight-project/.git','Repository::Git','',NULL,'--- \nextra_report_last_commit: \"0\"\ndb_consistent: \n  ordering: 1\nheads: \n- 4fe8ccf807991f695d29c0a8e8a1f630151dfff0\n','github',1);
+INSERT INTO `repositories` VALUES (3,1,'/root/ntnu-netlight-project/.git','','','/root/ntnu-netlight-project/.git','Repository::Git','',NULL,'--- \nextra_report_last_commit: \"0\"\ndb_consistent: \n  ordering: 1\nheads: \n- fa135421d6f2ae41b3975d4ad88ed127b42ed359\n','github',1);
 /*!40000 ALTER TABLE `repositories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1499,4 +1499,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-09-05  0:00:01
+-- Dump completed on 2012-09-05 12:00:01
