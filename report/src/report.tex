@@ -9,6 +9,28 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=false,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
 \usepackage[cm]{fullpage}
 
 \begin{document}
@@ -18,10 +40,20 @@
 \date{\today}
 \maketitle
 
-\includegraphics{logo-ntnu.pdf}
+
 
 \begin{abstract}
-abstract
+
+Imagine the old minimachine systems where the end user works in a domain specific application in a black-and-green terminal. She is super efficient, jumping between windows with short cuts and everything is "in her fingers".
+ 
+This is then replaced with a web-frontend and a mouse. Everything is "wrong", the design makes the usage patterns locked and she gets "mouse sickness" from point-clicking every command.
+ 
+The task is to modify a web-application and add a scripting-console where the end-user can enter commands into a DSL - similar to the older interface. When commands are run, the results are shown both in the console and the web-interface. The use can still use the mouse and navigate as usual.
+ 
+The target is a simple proof-of-concept in order to research any changes to the API, the potential of the method as well as evaluate the usability of scripting languages/DSL and API.
+
+\includegraphics{image/logo-ntnu.pdf}
+
 \end{abstract}
 
 \setcounter{tocdepth}{4}
@@ -37,12 +69,8 @@ abstract
 %\paragraph{paragraph}
 %\subparagraph{subparagraph}
 
-\chapter{Abstract}
 
-\chapter{Intro}
-\section{General information about NTNU and Netlight}
-\section{General information about project}
-\section{Contact information on team members}
+\input{chapter/introduction}
 
 \clearpage
 
@@ -57,7 +85,7 @@ abstract
   Code Master & Overall responsible for code management and structure. Managing branches in Git repository. & Oddvar  \\ \hline
   GUI Designer & Is responsible for the layout and design of graphical user interfaces. & Oddvar \\ \hline
   Test Manager & Is responsible for testing including unit tests, integration tests and usability tests. & Øystein \\ \hline
-  Report Manager & Is responsible for delegating and overseeing work on the project report. & Øystein \\ \hline
+  Report Manager & Is responsible for delegating and overseeing work on the project report. & Martin \\ \hline
   Customer Representative & Participates in regular meetings to discuss the progress, project status and future tasks. Represents the customer. & Peder Kongelf \\ \hline
   Customer Technical Advisor & May be consulted about technical aspects of the project. & Stig Lau \\ \hline
   Advisor & Serves as a one-man steering committee for the project. & Meng Zhu \\ \hline
