@@ -1,0 +1,56 @@
+\section{Software Testing}
+
+\subsection{Testing Methods}
+The purpose of software testing is to uncover software bugs in the system and to document that the system meet the requirements and functionality that was agreed upon for the system. Testing can be implemented at any stage in the development process, traditionally it is performed after the requirements have been defined and the implementation is completed. In agile development processes however, the testing is an ongoing process. The chosen development methodology will in most cases govern the type of testing implemented in a given project.
+
+Software testing methods are traditionally divided into white- and black- box testing. They differ mainly in how the test engineer derives test cases.
+
+\subsubsection{White- Box Testing}
+White- box testing focus on the internal structures of a system. It uses this internal perspective to derive test cases. White- box testing is usually done at unit level, testing specific parts or components of the code. 
+
+\subsubsection{Black- Box Testing}
+Black- box testing handles the software as a black- box, meaning it observes the functionality the system exhibits and not the specifics on how it is implemented. The tester only needs to be aware of what the program is supposed to do, he doesn't need to know the specifics on how the functionality is implemented in the code. Black- box testing checks to see if the functionality of the program is according to the agreed upon requirements, both functional and nonfunctional. 
+
+\subsubsection{Test Driven Development}
+The principle behind TDD is to develop the code incrementally, along with test for that increment. You don’t move on until the code passes its test. The tests are to be written before you actually implement the new functionality. The process helps programmers clarify their ideas of what a code segment is actually supposed to do. The process is often used in agile development methods.
+Benefits from TDD include: 
+\begin{itemize}
+
+\item Code coverage, every code segment should be covered at least one test.
+
+\item Regression testing, check to see if changes in the code have not introduced new bugs.
+
+\item Simplified debugging, when a test fails it should be obvious where the problem lies, no need for a debug tool.
+
+\item System documentation, the tests themselves act as a form of documentation that describe what the code should be doing.
+
+\end{itemize}
+
+
+
+
+
+
+\subsubsection{Automated Tests}
+Automated offers the ability to automatically do regression tests, i.e. testing to uncover if any new code has broken a test that previously passed. If we opt for manual testing regression testing will be very time consuming as every test done so far has to be done over again. With an automated testing framework this job will be a lot easier as you can run a great number of tests in a matter of seconds. Most development languages offers libraries for automated testing.
+
+
+\subsection{Testing Levels}
+Testing can be done at many different levels and in different stages in the development process. Following is the most common partitioning of testing levels and a description on each of them.
+
+\subsubsection{Unit Testing}
+Unit testing aims to check specific components, such as methods and objects. Typically you will be testing objects, and you should provide test coverage of all the features of that object. Its important to choose effective unit test cases, that reflect normal operation and they should show that the specific component works. Abnormal inputs should also be included to check if these are processed correctly.
+
+\subsubsection{Component Testing}
+Tests bigger components of the system, and their interfaces(communication with other components). Made up of several interacting objects. Component testing is mainly a tool to check if component interfaces behaves according to its specification.
+
+\subsubsection{System Testing}
+In a given development project there may be several reusable components that have been developed separately and COTS systems, that has to be integrated with newly developed components. The complete system composing of the different parts is tested at this level. Components developed by different team members or groups may also be integrated and tested at this stage.
+
+\subsubsection{Release Testing}
+Release testing is the process of testing a particular release of the system that is intended for use outside of the development team. Often a separate team that has not been involved in the development perform this testing. These kind of tests should focus on finding bugs in the complete system. The objective is to prove to the customer that the product is good enough. This kind of testing could either be based on the requirements of the system or on user scenarios.
+
+\subsubsection{User Testing}
+This is a stage in the testing process in which users or customers provide feedback and advice. This could be an informal process where end- users experiment with a new system too see if they like it and that it conforms to their specific needs. Testing on end- users is essential for achieving success in a software process as replicating the exact working environment the system will be used in is difficult to achieve during development. The end users can help provide feedback on how specific functionality will work in an actual work environment.
+
+Another form of user testing involves the customer and its called acceptance testing. Its a process where the customer formally tests a system to decide whether or not it should be accepted, where acceptance implies that payment for the system should be made. Acceptance testing is performed after the release testing phase.
