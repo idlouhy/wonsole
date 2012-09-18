@@ -13,6 +13,55 @@
 
 \section{Development language and technologies}
 
+
+\subsection{Client-side web application technologies}
+Our main focus will be on the client part of the application, since this is the experimental part of our system, and it is this part that is visible to the user through the web browser. It is therefore important to choose a suitable technology for this.
+
+\subsubsection{Adobe Flash}
+
+\includegraphics[scale=0.225]{image/flash-logo.png}
+
+A multimedia platform currently owned by Adobe. Is currently the industry standard for multimedia web applications. It excels at animation and 2D games, but its strong points are not likely to be useful in our project. A separate JavaScript is required to perform communication with a server and the development tools are costly.
+
+\subsubsection{Microsoft Silverlight}
+
+\includegraphics[scale=0.2]{image/silverlight-logo.jpg}
+
+A rich media application framework developed by Microsoft. Useful for multimedia applications, but likely not beneficial for our project.
+
+\subsubsection{Java Applets}
+
+\includegraphics[scale=0.17]{image/java-logo.jpg}
+
+A technology that allows a Java AWT/Swing application to be displayed in a browser, backed by a Java Virtual Machine. Has excellent performance compared to other popular client side browser technologies. A signed applet can also communicate with a server using traditional sockets. It is possible to embed a scripting engine(for instance JavaScript). However, development effort may prove to become excessively heavy.
+
+\subsubsection{JavaScript}
+
+\includegraphics[scale=0.2]{image/javascript-logo.png}
+
+JavaScript is a scripting language supported by all popular web browsers. Has extensive frameworks built around it and allows for rapid development. It is also possible to let the user write commands using JavaScript directly.
+
+\subsubsection{Conclusion}
+As a team, we have extensive experience with Java, and less with the other technologies. However, we all have at least some experience with JavaScript, and we believe that it is the better choice for this project: The DSL can be implemented by allowing the user to perform operations on the JavaScript objects using (a subset of) the JavaScript language itself. There are also excellent tools for transfer and storage of JavaScript objects. Furthermore, communication between JavaScript and HTML elements is easily achieved.
+
+\subsubsection{JavaScript Related technologies}
+
+\textbf{jQuery}\\*
+A JavaScript library that simplifies how to use JavaScript to interact with the webpage, notably selection of Document Object Model elements.\\*
+\\*
+\textbf{MooTools}\\*
+A JavaScript framework that, notably, enhances the Document Object Model and JavaScript's object oriented programming model.\\
+\\*
+\textbf{Dojo}\\*
+A JavaScript toolkit offering asynchronous communication, a packaging system and systems for data storage. Intended to ease rapid JavaScript web development.\\*
+\\*
+\textbf{HTML5}\\*
+A revision of the HTML standard currently still in development. Notably, it supplies support for multimedia and more advanced user interface elements. Is commonly used in conjunction with JavaScript.\\*
+\\*
+\textbf{CSS}\\*
+Cascading Style Sheets, used to specify a consistent look and feel to a series of HTML documents.\\*
+
+
 \subsection{Synchronization Technologies}
 We will be adding a library for bi-directional real time communications between the server and the client, to easily detect changes in the objects on both sides and to replicate these changes to the other side lightning fast. This functionality will ensure data consistency between the client and server side. To make these updates fast and to avoid extra work in creating this functionality ourselves, we will employ an external library to get the work done.
 
