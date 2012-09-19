@@ -1,6 +1,6 @@
 <html>
   <body>
-    <form action="mongodb.php">
+    <form action="index.php">
       <textarea></textarea>
       <input type="submit" />
     </form>
