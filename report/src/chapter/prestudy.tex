@@ -4,9 +4,79 @@
 
 \section{Constraints}
 \subsection{Time}
-\subsection{x}
+The project must be completed within a timeframe of 13.6 weeks. The guideline is 24.3 work hours per person, per week. 
+\subsection{Knowledge about the problem}
+Our problem is not well-explored and the customer cannot give us exact requirements. Thus, this is as much a research project as it is a software development project.
 
 \section{Feasibility study}
+
+\section{Similar solutions}
+
+\subsection{Counter-Strike}
+
+\begin{wrapfigure}{r}{.275\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .25\textwidth]{image/counterstrike.png}
+\end{wrapfigure}
+
+This game features a console that offers a wide variety of commands, including:
+- Changing the game options
+- Altering the game world
+- Player actions and cheats
+- Multiplayer communication and administration
+
+In a game, this functionality eases development and debugging, as well as increasing the moddability and long-term value for players. Similar consoles also exist in other games, such as Carmageddon TDR 2000.
+
+\subsection{Blender}
+
+\begin{wrapfigure}{r}{.275\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .25\textwidth]{image/blender.png}
+\end{wrapfigure}
+
+This 3D modelling software features a Python console with access to the model data, animation data, etc. It can be used to perform operations that are not directly supported in the user interface. It is also common to extend the program using custom Python scripts. 
+
+Similar solutions also exist in other creative tools, including a Python console in GIMP and Nyquist prompt in Audacity.
+
+\subsection{Firefox}
+
+\begin{wrapfigure}{r}{.275\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .25\textwidth]{image/firefox.png}
+\end{wrapfigure}
+
+This web browser features a Web Console where it is possible to execute JavaScript commands with access to the objects on the current page. This is useful for web development and debugging. Similar features also exist in a few other browsers, such as Google Chrome.
+
+\subsection{try.mongodb.org}
+
+\begin{wrapfigure}{r}{.275\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .25\textwidth]{image/mongodb.png}
+\end{wrapfigure}
+
+This database website features a console where the user can execute commands on a dummy database. It is an educational tool for people who don't want to invest too much time in it. Comparable consoles also exist to allow the user to execute arbitrary queries in database administration tools such as PHPMyAdmin.
+
+\subsection{web-console.org}
+
+\begin{wrapfigure}{r}{.275\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .25\textwidth]{image/webconsole.png}
+\end{wrapfigure}
+
+This project provides shell access to a server through the browser window over HTTP.
+
+It supports real time communication, and is intended to be used for server administration purposes.
+
+\subsection{Conclusion}
+
+This is by no means an exhaustive list, but it serves to illustrate that consoles are still applicable for purposes including software development, debugging, learning, extendability and where there is a high demand for flexibility.
+
+
 
 \section{Version control}
 \subsection{git}
@@ -19,25 +89,43 @@ Our main focus will be on the client part of the application, since this is the 
 
 \subsubsection{Adobe Flash}
 
-\includegraphics[scale=0.225]{image/flash-logo.png}
+\begin{wrapfigure}{r}{.15\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .10\textwidth]{image/flash-logo.png}
+\end{wrapfigure}
+
 
 A multimedia platform currently owned by Adobe. Is currently the industry standard for multimedia web applications. It excels at animation and 2D games, but its strong points are not likely to be useful in our project. A separate JavaScript is required to perform communication with a server and the development tools are costly.
 
 \subsubsection{Microsoft Silverlight}
 
-\includegraphics[scale=0.2]{image/silverlight-logo.jpg}
+\begin{wrapfigure}{r}{.15\textwidth}
+\vspace{-47pt}
+\centering
+\includegraphics[width=.10\textwidth]{image/silverlight-logo.jpg}
+\end{wrapfigure}
 
 A rich media application framework developed by Microsoft. Useful for multimedia applications, but likely not beneficial for our project.
 
 \subsubsection{Java Applets}
 
-\includegraphics[scale=0.17]{image/java-logo.jpg}
+\begin{wrapfigure}{r}{.15\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width=.14\textwidth]{image/java-logo.jpg}
+\end{wrapfigure}
 
 A technology that allows a Java AWT/Swing application to be displayed in a browser, backed by a Java Virtual Machine. Has excellent performance compared to other popular client side browser technologies. A signed applet can also communicate with a server using traditional sockets. It is possible to embed a scripting engine(for instance JavaScript). However, development effort may prove to become excessively heavy.
 
 \subsubsection{JavaScript}
 
-\includegraphics[scale=0.2]{image/javascript-logo.png}
+\begin{wrapfigure}{r}{.15\textwidth}
+\vspace{-20pt}
+\centering
+\includegraphics[width=.14\textwidth]{image/javascript-logo.png}
+\end{wrapfigure}
+
 
 JavaScript is a scripting language supported by all popular web browsers. Has extensive frameworks built around it and allows for rapid development. It is also possible to let the user write commands using JavaScript directly.
 
@@ -67,17 +155,28 @@ We will be adding a library for bi-directional real time communications between 
 
 \subsubsection{Pusher}
 
-\includegraphics{image/pusher-logo.jpg}
+\begin{wrapfigure}{r}{.2\textwidth}
+\centering
+\includegraphics[width=.19\textwidth]{image/pusher-logo.jpg}
+\end{wrapfigure}
 
 Pusher is a cloud based system which offers a hosted API. It relies on the use of HTML5 WebSockets, which provides bi-directional communication over a TCP channel. It is a widely used solution which is well documented, and it support for a lot of libraries for both the server and client side. The web-site offers tutorials and extensive documentation on the most popular libraries. 
 
-\includegraphics[scale=0.5]{image/pusher-explained.png}
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/pusher-explained.png}
+\caption{Pusher Explained}
+\end{figure}
+
 
 Pusher creates channels that can be both listened and published to. If multiple devices are connected to the same channel, they will receive any messages sent to the channel almost simultaneously. Pusher offers a free account(an account is needed to use the system) which offers all the basic functionality we need, with up to 20 connections and 3 million messages per month
 
 \subsubsection{PubNub}
 
-\includegraphics[scale=0.4]{image/pubnub-logo.png}
+\begin{wrapfigure}{r}{.2\textwidth}
+\centering
+\includegraphics[width=.19\textwidth]{image/pubnub-logo.png}
+\end{wrapfigure}
 
 Like Pusher, PubNub is a push service hosted in the cloud. It is written entirely in C, which gives it extremely fast performance and enables it to push over 1 million messages a second. It offers great documentation and support for the most popular libraries on both the client and server side and its in widespread use.
 
@@ -116,9 +215,14 @@ Agile methods, as opposed to the predictive methods, are designed to plan for ch
 
 The CHAOS Manifesto is a survey published by the Standish Group each year and it measures the success of IT- projects. It divides the projects into 3 groups; Success, meaning it completed on time and budget, with all features and functions as specified. Challenged, meaning it  completed, but was over cost, over time, and/or lacking all of the features and functions that were originally specified. Failed, meaning the project was abandoned or cancelled at some point and thus became a total loss.
 
-\includegraphics[scale=0.3]{image/Agile-Waterfall.jpeg}
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/Agile-Waterfall.jpeg}
+\caption{Waterfall vs. Agile}
+\label{figure:devchart}
+\end{figure}
 
-As the figure illustrates, agile methods although not perfect by any means, more often result in products that are successful(the method used for measuring the success of a project is to some degree debated, but the results serves a purpose nevertheless).
+As the Figure~\ref{figure:devchart} illustrates, agile methods although not perfect by any means, more often result in products that are successful(the method used for measuring the success of a project is to some degree debated, but the results serves a purpose nevertheless).
 
 \subsection{Agile Methods}
 There exists a lot agile methods for software development, and although all of them follow the basic principles of agile development, they differ in a lot of areas. Following is a detailed description of three different agile methods.
@@ -126,7 +230,13 @@ There exists a lot agile methods for software development, and although all of t
 \subsubsection{Scrum}
 Scrum is an iterative, incremental software development model with several short sprints - complete small sets of tasks each sprint.
 
-\includegraphics[scale=0.3]{image/Scrum_process.png}
+\begin{figure}
+\centering
+\includegraphics[width=4in]{image/Scrum_process.png}
+\caption{Scrum Process}
+\label{figure:devchart}
+\end{figure}
+
 
 The Roles: 
 \begin{itemize}
