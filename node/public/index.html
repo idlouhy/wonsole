@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wonsole</title>
+  </head>
+  <body>
+    <div pub-key="pub-a47de1d5-fb27-49e6-877e-ce4198efee32" sub-key="sub-5d0d7b0c-06fe-11e2-897a-b30c99bcb2fd" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+
+    <script>
+      $("#books").text("")
+      $(function() { $("#books").accordion(); });
+   
+      jQuery.getJSON("/api/books/", function(data) {
+        $.each(data, function(key, book) {
+          $("#books").text($("#books").html()+"BOOK "+book.title+" | ")
+        });
+      });
+
+ 
+      PUBNUB.subscribe({
+        channel: "books",
+        restore: false,
+        callback: function(message) {
+	  $("#books").text($("#books").html()+"MESSAGE "+message+" | ")
+        },
+        disconnect : function() {
+            alert("Pubnub disconnected")
+        },
+        reconnect  : function() {
+            alert("Pubnub reconnected")
+        },
+        connect    : function() {
+            PUBNUB.publish({
+                channel : "books",
+                message : "client connected"
+            })
+        }
+    })
+ 
+    </script>
+    <div id="books" />
+  </body>
+</html>
