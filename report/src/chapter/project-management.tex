@@ -1,10 +1,20 @@
 \chapter{Project management}
-\section{Project plan}
-\subsection{Sponsor/customer}
-\subsection{Background}
-\subsection{Gantt diagram}
-\section{Team structure}
-\subsection{Roles}
+
+\section{Project name}
+Project name is important project identificator. It should summarize main project goal or functionality. In real project, is often a trademark, or reflects the name of the company.
+
+In this section, we will describe the process of choosing a name for the project. First of all, we made a list of words, that we can use in the project name. These words describe project funcionality or goal.
+
+Words that can be used in project name: master, console, web, text, keyboard
+
+We used the list of words and brainstorming session on a meeting for compiling a list of project name candidates:
+
+Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI
+
+After discussion we chose the name \emph{Wonsole}. Project name can be sometimes little confusing, so we added the subtitle: \emph{The new web console for power users.}
+
+\section{Team roles}
+Team roles describe responsibility in team.
 \begin{tabularx}{\textwidth}{ | l | X | l | }
   \hline
   \textbf{Role} & \textbf{Description} & \textbf{Assignee} \\ 
@@ -42,9 +52,140 @@
   Time Keeper & Responsible for making sure that everybody is logging their work, and logging team activities. & Oddvar \\ 
   \hline
 \end{tabularx}
+
+\section{Communication}
+\subsection{Communication rules}
+To prevent misunderstanding in communication and
+
+\begin{tabularx}{\textwidth}{ | l | X | }
+  \hline
+  meeting & scheduled at least 48 hours before, confirmation within 24 hours before meeting required \\ \hline
+  documents for the meeting & 24 hours before \\ \hline
+  email communication & contact person directly, google groups is just internal \\ \hline
+  response from the team & within 8 hours \\ \hline
+  response from customer & within 24 hours \\ \hline
+  \hline
+\end{tabularx}
+
+
+
+
+\section{Meetings}
+\section{Lectures}
+\section{Issues}
+
+
+\section{Project plan}
+\subsection{Sponsor/customer}
+\subsection{Background}
+\subsection{Gantt diagram}
+\section{Team structure}
+\subsection{Roles}
  
 \section{Risks}
 \section{Architecture}
 \section{Scrum}
 \section{Quality Assurance}
+
+\section{Domain choosing}
+Domain ideas:
+project management tool (ehm. redmine)
+warehouse
+airport / travel agency
+cash registers (not interesting)
+bank
+school information system (boring)
+time management system (aka calendar)
+facebook console (unreal)
+mail interface (gmail is too good, not useful)
+photo gallery (limited)
+music library (limited)
+physician system (treatments, prescriptions, add person)
+tax form (boring)
+Building management (boring)
+Library
+
+(ehm. redmine) 
+warehouse 1
+1
+bank 3 3
+(aka calendar) 2
+(treatments, prescriptions, add person) 1
+Library 2 2 3
+
+Ivo	Martin	Oddvar	Oystein	Total
+project management tool	3		2		5
+warehouse			1		1
+airport / travel agency		1			1
+bank		3		3	6
+time management system	2				2
+physician system	1			1	2
+Library		2	3	2	7
+
+
+
+
+Top3:
+library
+authors, books(location, state), book management, employees, user management, order new books, 
+
+bank
+accounts, transfer money, deposits, loans, customer management, employees
+
+project management
+projects, issues, work done on issues, workers, sprints, reports, 
+
+interesting	simple to understand	complex enough	ease workflow	existence of power user	total
+library	2	3	1	2	Y	8
+bank	2	3	2	2	Y	9
+project management	1	2	3	2	Y	8
+
+
+
+project management
++ usefulness
++ field of study
+- boring
+
+library
++ libraries in campus, employees
+- simple
+
+bank
+- unknown ground
+
+
+library	project management	bank
+martin	3	2	1
+oddvar	3	2	1
+ivo	2	3	1
+oystein	3	1	2
+total	11	8	5
+
+
+
+Criteria:
+Interesting and simple enough for test subjects to understand. something they meet in everyday life
+Complicated enough to demonstrate the problem.
+Console has to be useful in the domain, ease the workflow
+Object oriented design
+Existence of power user, that will use the console
+
+Customer ideas:
+car models
+finn.no
+health sector
+human resources (people, how they are related, symptoms, how much money and what they own - advanced domain graph). 
+contact lists (peder)
+
+
+write these things to the report
+
+
+Future:
+batch operations
+undo the commands
+save command for object attribute editing
+what about object operations?
+transaction support
 
