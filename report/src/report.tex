@@ -35,12 +35,11 @@
     urlcolor=cyan           % color of external links
 }
 
-%\usepackage[cm]{fullpage}
 \usepackage{fullpage}
 
 \begin{document}
 
-%title page
+%TITLE
 \thispagestyle{empty}
 \begin{center}
 	\vspace{\stretch{0.7}}
@@ -54,8 +53,8 @@
 {\large \today \\Team: Ivo Dlouhy, Martin Havig, Øystein Heimark, Oddvar Hungnes}
 \newpage
 
+%ABSTRACT
 \begin{abstract}
-
 Imagine the old minimachine systems where the end user works in a domain specific application in a black-and-green terminal. She is super efficient, jumping between windows with short cuts and everything is "in her fingers".
  
 This is then replaced with a web-frontend and a mouse. Everything is "wrong", the design makes the usage patterns locked and she gets "mouse sickness" from point-clicking every command.
@@ -63,36 +62,23 @@ This is then replaced with a web-frontend and a mouse. Everything is "wrong", th
 The task is to modify a web-application and add a scripting-console where the end-user can enter commands into a DSL - similar to the older interface. When commands are run, the results are shown both in the console and the web-interface. The use can still use the mouse and navigate as usual.
  
 The target is a simple proof-of-concept in order to research any changes to the API, the potential of the method as well as evaluate the usability of scripting languages/DSL and API.
-
-
-
 \end{abstract}
 
-\setcounter{tocdepth}{4}
+% LISTS
+\setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
 \listoffigures
 \listoftables
 
-
+%CHAPTERS
 \input{chapter/introduction}
 \input{chapter/prestudy}
 \input{chapter/project-management}
-\input{chapter/testPlan}
+\input{chapter/requirements}
+\input{chapter/test-plan}
 \input{chapter/design}
-
-
-\chapter{Sprints}
-\section{Design}
-\section{Planning}
-\section{Duration}
-\section{Goals}
-\section{Testing}
-
-\chapter{Testing}
-
-\chapter{Conclusion}
-
-\chapter{Evaluation}
+\input{chapter/sprint}
+\input{chapter/conclusion}
 
 \end{document}
