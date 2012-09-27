@@ -1,8 +1,6 @@
-﻿var PUBNUB, channel, here_now_test, history_test, nodeunit, presence_test, publish_dummy, publish_test, pubnub, run_dummy_subscribe, subscribe_test, time_test, uuid_test;
+﻿var pubnub, channel, here_now_test, history_test, nodeunit, presence_test, publish_dummy, publish_test, pubnub, run_dummy_subscribe, subscribe_test, time_test, uuid_test;
 
-PUBNUB = require('../pubnub');
-
-nodeunit = require('nodeunit');
+pubnub = require('../pubnub');
 
 channel = 'unit-test-pubnub-nodejs';
 
