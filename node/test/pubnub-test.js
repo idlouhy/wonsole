@@ -3,8 +3,8 @@
 var channel = 'unit-test-pubnub-nodejs';
 
 var pubnub = PUBNUB.init({
-    publish_key: 'demo',
-    subscribe_key: 'demo'
+    publish_key: "pub-a47de1d5-fb27-49e6-877e-ce4198efee32",
+    subscribe_key: "sub-5d0d7b0c-06fe-11e2-897a-b30c99bcb2fd"
 });
 
 var publish_dummy = function (channel, callback) {
@@ -37,14 +37,6 @@ exports['time_test'] = function (test) {
     });
 };
 
-exports['uuid_test'] = function (test) {
-    test.expect(1);
-    return pubnub.uuid(function (uuid) {
-        test.ok(uuid);
-        test.done();
-    });
-};
-
 exports['history_test'] = function (test) {
     test.expect(2);
     return pubnub.history({
@@ -60,7 +52,7 @@ exports['history_test'] = function (test) {
 
 exports['subscribe_test'] = function (test) {
     var test_channel;
-    test_channel = 'channel-' + PUBNUB.unique();
+    test_channel = channel;
     test.expect(2);
     return pubnub.subscribe({
         channel: test_channel,
@@ -70,64 +62,6 @@ exports['subscribe_test'] = function (test) {
         callback: function (message) {
             test.ok(message);
             test.ok(message.test === "test");
-            test.done();
-            return { stop: true };
-        }
-    });
-};
-
-exports['run_dummy_subscribe'] = function (channel) {
-    var pubnub = PUBNUB.init({
-        publish_key: 'demo',
-        subscribe_key: 'demo'
-    });
-    return pubnub.subscribe({
-        channel: channel,
-        connect: function () {
-            return { stop: true };
-        },
-        callback: function () {
-            return { stop: true };
-        }
-    });
-};
-
-exports['presence_test'] = function (test) {
-    var test_channel;
-    test_channel = 'channel-' + PUBNUB.unique();
-    test.expect(3);
-    return pubnub.presence({
-        channel: test_channel,
-        connect: function () {
-            run_dummy_subscribe(test_channel);
-        },
-        callback: function (message) {
-            test.ok(message);
-            test.ok(message.action === "join");
-            test.ok(message.occupancy === 1);
-            test.done();
-            return { stop: true };
-        }
-    });
-};
-
-exports['here_now_test'] = function (test) {
-    var test_channel;
-    test_channel = 'channel-' + PUBNUB.unique();
-    test.expect(2);
-    return pubnub.subscribe({
-        channel: test_channel,
-        connect: function () {
-            pubnub.here_now({
-                channel: test_channel,
-                callback: function (message) {
-                    test.ok(message);
-                    test.ok(message.occupancy === 1);
-                    publish_dummy(test_channel);
-                }
-            });
-        },
-        callback: function (message) {
             test.done();
             return { stop: true };
         }
