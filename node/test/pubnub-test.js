@@ -1,17 +1,13 @@
-﻿var pubnub, channel, here_now_test, history_test, nodeunit, presence_test, publish_dummy, publish_test, pubnub, run_dummy_subscribe, subscribe_test, time_test, uuid_test;
+﻿var PUBNUB = require('pubnub');
 
-var application_root = __dirname;
+var channel = 'unit-test-pubnub-nodejs';
 
-pubnub = require('pubnub');
-
-channel = 'unit-test-pubnub-nodejs';
-
-pubnub = PUBNUB.init({
+var pubnub = PUBNUB.init({
     publish_key: 'demo',
     subscribe_key: 'demo'
 });
 
-publish_dummy = function (channel, callback) {
+var publish_dummy = function (channel, callback) {
     if (callback === null) {
         callback = function () { };
     }
@@ -24,7 +20,7 @@ publish_dummy = function (channel, callback) {
     });
 };
 
-publish_test = function (test) {
+exports['publish_test'] = function (test) {
     test.expect(2);
     return publish_dummy(channel, function (response) {
         test.ok(response[0] === 1);
@@ -33,7 +29,7 @@ publish_test = function (test) {
     });
 };
 
-time_test = function (test) {
+exports['time_test'] = function (test) {
     test.expect(1);
     return pubnub.time(function (time) {
         test.ok(time);
@@ -41,7 +37,7 @@ time_test = function (test) {
     });
 };
 
-uuid_test = function (test) {
+exports['uuid_test'] = function (test) {
     test.expect(1);
     return pubnub.uuid(function (uuid) {
         test.ok(uuid);
@@ -49,7 +45,7 @@ uuid_test = function (test) {
     });
 };
 
-history_test = function (test) {
+exports['history_test'] = function (test) {
     test.expect(2);
     return pubnub.history({
         limit: 1,
@@ -62,7 +58,7 @@ history_test = function (test) {
     });
 };
 
-subscribe_test = function (test) {
+exports['subscribe_test'] = function (test) {
     var test_channel;
     test_channel = 'channel-' + PUBNUB.unique();
     test.expect(2);
@@ -80,7 +76,7 @@ subscribe_test = function (test) {
     });
 };
 
-run_dummy_subscribe = function (channel) {
+exports['run_dummy_subscribe'] = function (channel) {
     var pubnub = PUBNUB.init({
         publish_key: 'demo',
         subscribe_key: 'demo'
@@ -96,7 +92,7 @@ run_dummy_subscribe = function (channel) {
     });
 };
 
-presence_test = function (test) {
+exports['presence_test'] = function (test) {
     var test_channel;
     test_channel = 'channel-' + PUBNUB.unique();
     test.expect(3);
@@ -115,7 +111,7 @@ presence_test = function (test) {
     });
 };
 
-here_now_test = function (test) {
+exports['here_now_test'] = function (test) {
     var test_channel;
     test_channel = 'channel-' + PUBNUB.unique();
     test.expect(2);
@@ -136,14 +132,4 @@ here_now_test = function (test) {
             return { stop: true };
         }
     });
-};
-
-module.exports = {
-    "Publish Test": publish_test,
-    "History Test": history_test,
-    "Time Test": time_test,
-    "UUID Test": uuid_test,
-    "Subscribe Test": subscribe_test,
-    "Presence Test": presence_test,
-    "Here Now Test": here_now_test
 };
