@@ -35,10 +35,13 @@ var Book =
 
 var BookModel = mongoose.model('Book', Book);
 
+
+//REST api
 app.get('/api', function (req, res) {
   res.send('REST api running');
 });
 
+//List all the books
 app.get('/api/books', function (req, res) {
   return BookModel.find(function (err, books) {
     if (!err) {
@@ -53,6 +56,66 @@ app.get('/api/books', function (req, res) {
     message : 'loaded list of books'
   });
 
+});
+
+//Add a single book
+app.post('/api/books', function (req, res){
+  var book;
+  console.log("POST: ");
+  console.log(req.body);
+  book = new BookModel({
+    id: req.body.id,
+    title: req.body.title
+  });
+  book.save(function (err) {
+    if (!err) {
+      return console.log("created");
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(book);
+});
+
+//Get single book
+app.get('/api/books/:id', function (req, res) {
+    return BookModel.findById(req.params.id, function (err, book) {
+        if (!err) {
+            return res.send(book);
+        } else {
+            return console.log(err);
+        }
+    });
+});
+
+//Update a book by id
+app.put('/api/books/:id', function (req, res){
+  return BookModel.findById(req.params.id, function (err, book) {
+    book.id = req.body.id;
+    book.title = req.body.title;
+    return book.save(function (err) {
+      if (!err) {
+        console.log("updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(book);
+    });
+  });
+});
+
+//Delete book
+app.delete('/api/books/:id', function (req, res){
+  return BookModel.findById(req.params.id, function (err, book) {
+    return book.remove(function (err) {
+      if (!err) {
+        console.log("removed");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
 });
 
 app.listen(4000);
