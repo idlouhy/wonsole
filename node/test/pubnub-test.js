@@ -1,6 +1,8 @@
 ﻿var pubnub, channel, here_now_test, history_test, nodeunit, presence_test, publish_dummy, publish_test, pubnub, run_dummy_subscribe, subscribe_test, time_test, uuid_test;
 
-pubnub = require('../pubnub');
+var application_root = __dirname;
+
+pubnub = require('pubnub');
 
 channel = 'unit-test-pubnub-nodejs';
 
