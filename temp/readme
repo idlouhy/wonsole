@@ -1,0 +1,18 @@
+a simple setup of how the system could look like
+
+css:
+    the stylesheet
+
+lib:
+    the external libraries
+    backbone is quite nice for views and such
+    jquery and jquery mobile lets us get a nice look easily
+    require helps deviding the system
+    text lets us mock up templates in html read into js
+
+src:
+    the files
+    made a simple setup, with a backend qhich talks with the backend and delivers informatio to the rest of the system
+
+test:
+    for testing
