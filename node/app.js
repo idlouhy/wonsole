@@ -37,6 +37,12 @@ var BookModel = mongoose.model('Book', Book);
 
 
 //REST api
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.get('/api', function (req, res) {
   res.send('REST api running');
 });
