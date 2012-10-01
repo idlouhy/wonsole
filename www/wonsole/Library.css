@@ -1,0 +1,234 @@
+/*HEADLINE*/
+h1 
+{
+color:#648888;
+font-size: 72pt;
+}
+
+
+/*HTML*/
+html { 
+    height: 100%;
+    margin: 0;
+    padding: 0;     
+    font-family: "Times New Roman","Serif"
+}
+
+
+/*BODY*/
+body { 
+    background: white; 
+    color: black; 
+    height: 100%;
+    margin: 0px; 
+    padding: 0; 
+}
+h3 + h2 + h1 { 
+    margin-top: 0px; 
+    margin-bottom: 0px;
+}
+h3 + h2 + div { 
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+}
+form { 
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+}
+
+/*TITLEBAR*/
+.titlebar {
+    background-image:url("titlebar.png");
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    width:100%;
+    height:60px;
+    color:#dbdbdb;
+}
+/*LOGO*/
+.logo {
+    background-image:url("logo.png");
+    background-repeat:no-repeat;
+    width:100%;
+    height:60px;
+    padding:0px; 
+    margin:0px; 
+}
+/*WEB UI CONTAINER(with background)*/
+.webUI {
+    background:white;
+    background-image:url("background-checkers.png");
+    background-repeat:repeat-x;
+    background-position:0px 17px;
+    position:relative;
+    overflow: visible;
+    width:100%;
+    min-height:100%;
+}
+/*WEB CONTENT*/
+.webContent {
+    padding-left: 12px;  
+}
+/*BOTTOM BAR*/
+.bottombar {
+    background:black;
+    background-image:url("bottombar.png");
+    background-repeat:repeat-x;
+    
+    color:#381018;    
+    
+    padding:0px; 
+    margin:0px; 
+    width:100%;
+    height:48px;
+
+    position: absolute; 
+    bottom: 0;
+}
+/*PREVENTS WRAPPING INLINE-BLOCK DIVS*/
+.noWrapContainer {
+    background:black;
+    width:100%;
+    height:17px;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+/*SELECTED TAB*/
+.selectedTab {
+    background:black;
+    background-image:url("selectedTab.png");
+    background-repeat:no-repeat;    
+    color:black;
+    padding:0px; 
+    margin:0px; 
+    width:130px;
+    height:17px;
+    padding-left: 4px; 
+    display: inline-block;
+    color:black;
+    font-weight:bold;
+}
+.selectedTab:hover {
+    color:blue;
+}
+/*DESELECTED TAB*/
+.deselectedTab {
+    background:black;
+    background-image:url("deselectedTab.png");
+    background-repeat:no-repeat;    
+    color:black;
+    padding:0px; 
+    margin:0px; 
+    width:130px;
+    height:17px;
+    padding-left: 4px; 
+    display: inline-block;
+    color:gray;
+    font-weight:bold;
+}
+.deselectedTab:hover {
+    color:blue;
+}
+
+/*Table style*/
+.libraryTable {
+	font-size:14px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+	border-style: solid;
+
+}
+td {
+    padding-left:8px;
+    padding-right:8px;
+    padding-top:2px;
+    padding-bottom:2px;
+
+}
+
+/*Head table row*/
+.headRow {
+    background:#51151f;
+    color:white;
+}
+/*Even table row*/
+.evenRow {
+    background:white;
+}
+/*Odd table row*/
+.oddRow {
+    background:gray;
+}
+
+/*INVISIBLE BOX FOR PUSHING THE BOTTOM BAR*/
+.bottombox {
+    width:100%;
+    height:64px;
+}
+
+/*OUTPUT TEXT FIELD*/
+#output {
+    width: 100%; 
+    border: none; 
+    padding: 0; 
+    white-space: normal; 
+    word-wrap: break-word;
+} /* Preserve line breaks, but wrap too if browser supports it */
+
+
+/*INPUT TEXT FIELD*/
+#input { 
+    width: 100%;
+    height: 25%;
+    border: none; 
+    padding: 0; 
+    white-space: normal; 
+    word-wrap: break-word;
+    overflow:visible;
+}
+
+/*CONSOLE COLORS*/
+.input { color: lime; font: inherit; font-weight: bold; margin-top: .5em; background: black; resize: none; }
+.normalOutput { color: green; background: black; }
+.print { color: green; background: black; }
+.error { color: red; background: black; }
+.propList { color: brown; background: black; }
+.message { color: green; background: black; }
+.tabcomplete { color: purple; background: black; }
+
+/*LEFT div*/
+.splitterLeft {
+    float:left;
+    width:33%;
+    height:100%;
+    overflow: auto;
+}
+
+/*RIGHT div*/
+.splitterRight {
+    background: black;
+    color: white; 
+    font-family: "Consolas","Monospace";
+    width:66%;
+    height:100%;
+    overflow-x: hidden; 
+    overflow-y: scroll; 
+}
+/*SPLITPANE BORDER(MIDDLE)*/
+.drag {
+    background: black;
+    background-image:url("grabber.png");
+    background-repeat:repeat-y;
+    width:1%;
+    height:100%;
+    float:left;
+    cursor:col-resize;
+}
+
+/*NEW LINE BETWEEN FLOATING divS*/
+.newLine {
+    clear:both;
+}
