@@ -120,7 +120,7 @@ app.delete('/api/books/:id', function (req, res){
     return book.remove(function (err) {
       if (!err) {
         console.log("removed");
-        return res.send('');
+        return res.send(book);
       } else {
         console.log(err);
       }
