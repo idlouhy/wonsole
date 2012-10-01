@@ -117,14 +117,19 @@ app.put('/api/books/:id', function (req, res){
 //Delete book
 app.delete('/api/books/:id', function (req, res){
   return BookModel.findById(req.params.id, function (err, book) {
-    return book.remove(function (err) {
-      if (!err) {
-        console.log("removed");
-        return res.send(book);
-      } else {
-        console.log(err);
-      }
-    });
+    if(book != null){
+      return book.remove(function (err) {
+        if (!err) {
+          console.log("removed");
+          return res.send(book);
+        } else {
+          console.log(err);
+        }
+      });
+    }
+    else {
+	return res.send("The book does not exist in this database");
+    }
   });
 });
 
