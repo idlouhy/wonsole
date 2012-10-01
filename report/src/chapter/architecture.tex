@@ -1,0 +1,121 @@
+\section{Architecture}
+The system is to be described in this chapter. This includes the main parts of the system, the architectural drivers, how they are connected together, and their collaboration. 
+
+The architecture will be described through the 4+1 view model. The party members, or the stakeholders of the system, will have different concerns, so the 4+1 view model will help us describe the system for each of them, and make sure that all expectations are accounted for.  
+
+
+\subsection{Architectural drivers}
+The architectural drivers defines the project and its scope. 
+\begin{itemize}{labelitemi}{$\bullet$}
+\item Improving the efficiency of the chosen system - The existing system is to improved efficiency vise, so power users will be able to use less time on more tasks. 
+\item Proving the concept - Showing that a system can become more efficient through the use of a console. 
+\item Modifiability - The system will be constructed for a test concept as a prototype, so further development and maintainability should be made easy for outsiders. It should also be possible to edit the system structure under the process of making it without starting from scratch. 
+\item Reach goal from the customer - The customer has a thought of how the system is to look like after we have done our part, we must satisfy these goals and not stray too far from the red thread.  
+\end{itemize}
+
+
+\subsection{Stakeholders}
+The stakeholders and their concerns when it comes to the system.
+
+\begin{itemize}
+    \item Developer
+    \begin{itemize}
+        \item Solve the problem and deliver a system the customer will be satisfied with.
+        \item Learn new technologies
+        \item Get experience with project management
+        \end{itemize}
+    \item Advisor
+    \item Customer
+    \begin{itemize}
+        \item Gets a working system, which satisfies the customers wants
+        \item Get a usable report on the concept, which satisfies the customers wants
+    \end{itemize}
+    \item End user
+    \begin{itemize}
+        \item Improve efficiency
+        \item Easy to use after some training
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsection{4+1 view model}
+The 4+1 view model. Here the views will be described, and how they will look in our architecture. 
+
+\subsubsection{Logical View}
+Describes the functionality in the system from the end users perspective.The end users will mainly be power users, wanting to perform object editing tasks efficiently. This view will be described through class, communication and sequence diagram.
+
+The class diagram gives an overview of the class structure of system, and how they collaborate
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/classdiagram.png}
+\caption{Class diagram}
+\end{figure}
+
+\subsubsection{Development View}
+Describes the system from the programmer's perspective. This will be described through how the different component parts are separated. Component and package diagrams will show this.
+
+These components form a three layered structure, and communicate with each other through the neighboring layer
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/componentdiagram.png}
+\caption{Component diagram}
+\end{figure}
+
+\subsubsection{Process View}
+Describes the dynamic aspect of the system, and explains how the different parts of the system will communicate at runtime. This is described with a activity diagram.
+
+The user will ask for an object from the backend, this will be delivered to the client through the communication channel as a json object, the client will interpret this and the user can then edit it through the console, and send it back to the backend.
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/activitydiagram.png}
+\caption{Activity diagram}
+\end{figure}
+
+\subsubsection{Process View}
+Describes the system from the system engineer's perspective. And explains the physical connections between the software components. Described through a deployment diagram. 
+With the console the user can fetch the wanted objects from the backend service.
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{image/deploymentdiagram.png}
+\caption{Deployment diagram}
+\end{figure}
+
+%\subsubsection{Scenarios}
+%Describes the system through a set of use cases/scenarios. These use cases/scenarios describes how the objects and processes work together.
+
+
+\subsection{Tactics}
+The architectural tactics are used to describe how different qualities of the system are achieved. 
+
+\subsubsection{Modifiability}
+Anticipate changes:
+
+Probable changes should be anticipated, and accounted for, so extending the system with new functionality should be possible. This is important since we are dealing with a prototype/proof of concept system. So the customer might change the direction we are going in through out the project, this will lead to changes, and the architecture should be able to bend after these new inputs. 
+
+This can be handled with a well defined functionality map, so that the expected system functionalities are accounted for when the system is constructed. 
+
+
+\subsection{Architectural patterns}
+The patterns can help solve different kinds of problems with know solutions on new problems.
+
+Multi-tier
+
+The architecture of the system will be of the multi-tier kind. This means that the presentation, application processing and data management functions will be separated logically. The application (console) will translate the task of the end user, and 
+
+The console - Translate the task of the end user.
+The logical tier - Will receive the translated task from the console, and fetch information from the data storage specified by the console, and set it back to the user.
+The data storage - The last tier, and it will contain the information from the library.
+
+figure of the 3 tiers. 
+
+MVC
+
+The client gui and console communication. Since the action made in the console should be reflected in the gui and vice versa, is it natural to use a model-view-controller pattern. The information in the model will then be separated from the view (the display) and the controller which performs an update on the model. 
+
+
+\subsection{Rationale}

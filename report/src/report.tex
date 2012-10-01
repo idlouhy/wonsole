@@ -11,6 +11,8 @@
 \usepackage{booktabs}
 \usepackage{wrapfig}
 
+\fontfamily{ptm}\selectfont
+
 \usepackage{hyperref}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
@@ -33,19 +35,26 @@
     urlcolor=cyan           % color of external links
 }
 
-\usepackage[cm]{fullpage}
+\usepackage{fullpage}
 
 \begin{document}
 
-\title{Customer Driven Project - Netlight}
-\author{Ivo Dlouhy, Martin Havig, Øystein Heimark, Oddvar Hungnes}
-\date{\today}
-\maketitle
+%TITLE
+\thispagestyle{empty}
+\begin{center}
+	\vspace{\stretch{0.7}}
+	{\Huge Wonsole} \\
+	{\LARGE The new web console for power users} \\ 
+	\vspace{\stretch{0.3}}
+	\includegraphics[width=2.5in]{image/logo-ntnu.pdf} \\
+	\includegraphics[width=2.5in]{image/logo-netlight.png}
+\end{center}
+{\Large \textsc{Customer Driven Project}} \\
+{\large \today \\Team: Ivo Dlouhy, Martin Havig, Øystein Heimark, Oddvar Hungnes}
+\newpage
 
-
-
+%ABSTRACT
 \begin{abstract}
-
 Imagine the old minimachine systems where the end user works in a domain specific application in a black-and-green terminal. She is super efficient, jumping between windows with short cuts and everything is "in her fingers".
  
 This is then replaced with a web-frontend and a mouse. Everything is "wrong", the design makes the usage patterns locked and she gets "mouse sickness" from point-clicking every command.
@@ -53,99 +62,23 @@ This is then replaced with a web-frontend and a mouse. Everything is "wrong", th
 The task is to modify a web-application and add a scripting-console where the end-user can enter commands into a DSL - similar to the older interface. When commands are run, the results are shown both in the console and the web-interface. The use can still use the mouse and navigate as usual.
  
 The target is a simple proof-of-concept in order to research any changes to the API, the potential of the method as well as evaluate the usability of scripting languages/DSL and API.
-
-\includegraphics{image/logo-ntnu.pdf}
-
 \end{abstract}
 
-\setcounter{tocdepth}{4}
+% LISTS
+\setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
 \listoffigures
+\listoftables
 
-
-%\chapter{chapter}
-%\section{section}
-%\subsection{subsection}
-%\subsubsection{subsubsection}
-%\paragraph{paragraph}
-%\subparagraph{subparagraph}
-
-
+%CHAPTERS
 \input{chapter/introduction}
-
-\clearpage
-
-\begin{tabularx}{\textwidth}{ | l | X | l | }
-  \hline
-  \textbf{Role} & \textbf{Description} & \textbf{Assignee} \\ \hline
-  Team leader & Is responsible for administrative tasks and makes the final decisions. & Ivo \\ \hline
-  Scrum Master & Shields the development team from external distractions and enforces the Scrum scheme.  & Ivo \\ \hline
-  Customer Contact & Handles communication with the customer. The customer should contact this person regarding general requests, questions and reminders. & Ivo (backup Martin) \\ \hline
-  Advisor Contact & Handles communication with the advisor. The advisor should contact this person regarding general requests, questions and reminders.  & Ivo (backup Martin) \\ \hline
-  System Architect & Is responsible for the system architecture including distinctions and relations between subsystems and general code design choices. & Martin \\ \hline
-  Code Master & Overall responsible for code management and structure. Managing branches in Git repository. & Oddvar  \\ \hline
-  GUI Designer & Is responsible for the layout and design of graphical user interfaces. & Oddvar \\ \hline
-  Test Manager & Is responsible for testing including unit tests, integration tests and usability tests. & Øystein \\ \hline
-  Report Manager & Is responsible for delegating and overseeing work on the project report. & Martin \\ \hline
-  Customer Representative & Participates in regular meetings to discuss the progress, project status and future tasks. Represents the customer. & Peder Kongelf \\ \hline
-  Customer Technical Advisor & May be consulted about technical aspects of the project. & Stig Lau \\ \hline
-  Advisor & Serves as a one-man steering committee for the project. & Meng Zhu \\ \hline
-  Meeting Secretary & Is responsible for making sure notes get written and sent after each meeting with the advisor and customer. & Oddvar \\ \hline
-  Quality Assurance Manager &  & Øystein \\ \hline
-  Weekly Report Writer & Is responsible for finalizing the weekly report(s) for the advisor and customer, and getting these delivered for approval. Also responsible for meeting agendas and their delivery. & Øystein \\ \hline
-  Time Keeper & Responsible for making sure that everybody is logging their work, and logging team activities. & Oddvar \\ \hline
-\end{tabularx}
-
-
-\section{Goals}
-\section{Planned effort}
-\section{Schedule of results(Milestones, deliverables, sprint deadlines, etc)}
-
-
-\chapter{Project management}
-\section{Project plan}
-\subsection{Sponsor/customer}
-\subsection{Background}
-\subsection{Gantt diagram}
-\section{Team structure}
-\subsection{Roles}
-\section{Risks}
-\section{Architecture}
-\section{Scrum}
-\section{Quality Assurance}
-
-
-
+\input{chapter/project-management}
 \input{chapter/prestudy}
-\clearpage
-
-
-\chapter{Requirements}
-\section{Usecases/user stories}
-\subsection{Planning}
-\section{Sequence Diagrams}
-\section{Prioritization}
-\section{Functional Requirements}
-\section{Nonfunctional Requirements}
-
-\include{chapter/testPlan}
-
-\chapter{Overall System Design}
-\section{Database}
-\section{GUI}
-
-\chapter{Sprints}
-\section{Design}
-\section{Planning}
-\section{Duration}
-\section{Goals}
-\section{Testing}
-
-\chapter{Testing}
-
-\chapter{Conclusion}
-
-\chapter{Evaluation}
+\input{chapter/requirements}
+\input{chapter/test-plan}
+\input{chapter/design}
+\input{chapter/sprint}
+\input{chapter/conclusion}
 
 \end{document}
