@@ -17,9 +17,19 @@ var application_root = __dirname,
 
 mongoose.connect('mongodb://localhost/books');
 
+//CORS middleware
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
+
 app.configure(function () {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(allowCrossDomain);
   app.use(app.router);
   app.use(express.static(path.join(application_root, "public")));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -37,12 +47,6 @@ var BookModel = mongoose.model('Book', Book);
 
 
 //REST api
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
-
 app.get('/api', function (req, res) {
   res.send('REST api running');
 });
