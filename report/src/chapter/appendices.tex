@@ -11,7 +11,7 @@
 \hline \\ [-2.0ex]
  Description     & Storing objects in a database                                               \\ 
  Tester          & Øystein Heimark                  \\ 
- Preconditions   & There needs to be a server up and running with a database available \\ 
+ Preconditions   & There needs to be a server running with a connection to a database available \\ 
  Feature         & Test the ability to store objects permanently on the server from the client  \vspace{3pt}                     \\ 
 \hline \\ [-1.5ex]
  Execution steps & \pbox{13cm}{1. Call the appropriate method for storing a new object with a given set of attributes from the client. \\ 2. List the content of the database and observe if the new object is indeed stored with its correct attributes. } \vspace{3pt} \\
@@ -32,7 +32,7 @@
 \hline \\ [-2.0ex]
  Description     & Retrieving objects from the database \\ 
  Tester          & Øystein Heimark                  \\ 
- Preconditions   & There needs to be a server up and running with a database available \\ 
+ Preconditions   & There needs to be a server running with a connection to a database available \\ 
  Feature         & Test the clients ability to retrieve objects from the server   \vspace{3pt}                     \\ 
 \hline \\ [-1.5ex]
  Execution steps & \pbox{13cm}{1. Call the appropriate method for retrieving an object. \\ 2. Observe the response from the server. } \vspace{3pt} \\
@@ -74,7 +74,7 @@
  Description     & Alerting clients that there has been added a book to the central database on the server \\ 
  Tester          & Øystein Heimark                  \\ 
  Preconditions   & TID03(Table~\ref{table:testcasetid03}), (TID to adding a book) must have passed. The server must be running \\ 
- Feature         &The ability to alert multiple clients that a new book is added to the system real- time   \vspace{3pt}                     \\ 
+ Feature         &The ability to alert multiple clients that a new book is added to the system real- time \vspace{3pt}                     \\ 
 \hline \\ [-1.5ex]
  Execution steps & \pbox{13cm}{1. Open the application with multiple clients. \\ 2. Add a new book from one of the clients. \\ 3. Observe the output on all the clients} \vspace{3pt} \\
 \hline \\ [-1.5ex]
