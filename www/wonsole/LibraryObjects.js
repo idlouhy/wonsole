@@ -163,3 +163,6 @@ function Book(name, author) {
     LIBRARY.list.push(this);
     return LIBRARY.generateHTML();
 }
+Book.prototype.toString = function(){
+    return "[object Book <"+this.id+", "+this.name+", "+this.author+">]"
+}
