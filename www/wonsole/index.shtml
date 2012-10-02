@@ -6,6 +6,8 @@
 <link rel = "stylesheet" type="text/css" href="Library.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
+<script src="jquery.js"></script>
+<script src="jquery.blockUI.js"></script>
 <script src="LibraryObjects.js"></script>
 <script src="persist-js/persist-min.js"></script>
 <script type="text/javascript">
@@ -16,12 +18,12 @@
 </script>
 
 <!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
-<script type="text/javascript" src="chrome://extensiondev/content/rdfhistory.js"></script>
-<script type="text/javascript" src="chrome://extensiondev/content/chromeShellExtras.js"></script>
+<!-- <script type="text/javascript" src="chrome://extensiondev/content/rdfhistory.js"></script> -->
+<!-- <script type="text/javascript" src="chrome://extensiondev/content/chromeShellExtras.js"></script> -->
 
 </head>
 
-<body onload="init(); InitDragDrop();">
+<body onload="init(); InitDragDrop(); initLibrary();">
 
 <!-- Left part of split pane containing the web UI -->
 <div id = "splitterLeft" class = "splitterLeft">
@@ -47,7 +49,7 @@ Name:<br/>
 <input type="text" id="BOOKNAME"></textarea> <br/>
 Author:<br/>
 <input type="text" id="BOOKAUTHOR"></textarea> <br/>
-<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value)'>Add book</button>
+<button onclick='new Book(null, document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value)'>Add book</button>
 
 <!-- Box that pushes the bottombar down -->
 <div class = "bottombox"></div>
