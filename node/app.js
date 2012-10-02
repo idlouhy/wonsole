@@ -20,8 +20,8 @@ mongoose.connect('mongodb://localhost/books');
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,HEAD,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Authorization');
 
     next();
 }
@@ -51,6 +51,7 @@ var BookModel = mongoose.model('Book', Book);
 app.get('/api', function (req, res) {
   res.send('REST api running');
 });
+
 
 //List all the books
 app.get('/api/books', function (req, res) {
@@ -133,6 +134,11 @@ app.delete('/api/books/:id', function (req, res){
 	return res.send("The book does not exist in this database");
     }
   });
+});
+
+
+app.options('/api/books/:id', function (req, res){
+  return res.send('');
 });
 
 app.listen(4000);
