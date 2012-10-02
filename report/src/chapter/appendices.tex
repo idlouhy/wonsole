@@ -1,0 +1,129 @@
+\chapter{Appendices}
+\section{Test Cases}
+\subsection{Sprint 1}
+
+\begin{table}
+\caption{Test Case TID01}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Storing objects in a database                                               \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & There needs to be a server up and running with a database available \\ 
+ Feature         & Test the ability to store objects permanently on the server from the client  \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Call the appropriate method for storing a new object with a given set of attributes from the client. \\ 2. List the content of the database and observe if the new object is indeed stored with its correct attributes. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The object is stored in the database with the correct attributes                                          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid01}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID02}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Retrieving objects from the database \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & There needs to be a server up and running with a database available \\ 
+ Feature         & Test the clients ability to retrieve objects from the server   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Call the appropriate method for retrieving an object. \\ 2. Observe the response from the server. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The object is successfully retrieved from the server with the correct attributes          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid02}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID03}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Sending real- time messages from server to client \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & There needs to be a server able to send messages up and running, and a client ready to receive \\ 
+ Feature         & Test the ability to send real- time messages from server to client   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Send a message from the server with the associated method. \\ 2. Observe the output on the client side. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The message will be received by the client and displayed within one second from when the message is sent from the server.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid03}
+\end{table}
+
+\begin{table}
+\caption{Test Case TID04}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Alerting clients that there has been added a book to the central database on the server \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & TID03(Table~\ref{table:testcasetid03}), (TID to adding a book) must have passed. The server must be running \\ 
+ Feature         &The ability to alert multiple clients that a new book is added to the system real- time   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open the application with multiple clients. \\ 2. Add a new book from one of the clients. \\ 3. Observe the output on all the clients} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & All the clients will be alerted within one second that a new book has been added, and the list of books in the client will be updated.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid04}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID05}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Adding a new book to the system with the graphical web- application \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & The server with the REST api must be running \\ 
+ Feature         & The ability to add new books to the system from a client with the graphical web- application   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open the application with a web client \\ 2. Add a new book from the web- application on the client. \\ 3. List the books currently on the system and observe if the new book is added.} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The new book is added to the system and the list of books with the attributes stated in the creation of the book.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid05}
+\end{table}
+
+
+
+\begin{table}
+\caption{Test Case TID06}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     & Adding a new book to the system with the console \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & The server with the REST api must be running \\ 
+ Feature         & The ability to add new books to the system from a client with the console.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open the application with a web client \\ 2. Add a new book from the console on the client. \\ 3. Observe the list of the books currently on the system and observe if the new book is in this list.} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The new book is added to the system and the list of books with the attributes stated in the creation of the book.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid05}
+\end{table}
+
