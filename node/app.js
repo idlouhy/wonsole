@@ -19,9 +19,9 @@ mongoose.connect('mongodb://localhost/books');
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,HEAD,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Authorization');
 
     next();
 }
@@ -39,8 +39,9 @@ var Schema = mongoose.Schema;
 
 var Book =
   new Schema({
-    id: { type: Number, required: true },
-    title: { type: String, required: true }
+//    id: { type: Number, required: true },
+    title: { type: String, required: true },
+    author: { type: String, required: false }
 });
 
 var BookModel = mongoose.model('Book', Book);
@@ -51,11 +52,13 @@ app.get('/api', function (req, res) {
   res.send('REST api running');
 });
 
+
 //List all the books
 app.get('/api/books', function (req, res) {
+
   return BookModel.find(function (err, books) {
     if (!err) {
-      return res.send(books);
+      return res.json(books);
     } else {
       return console.log(err);
     }
@@ -74,8 +77,8 @@ app.post('/api/books', function (req, res){
   console.log("POST: ");
   console.log(req.body);
   book = new BookModel({
-    id: req.body.id,
-    title: req.body.title
+    title: req.body.title,
+    author: req.body.author
   });
   book.save(function (err) {
     if (!err) {
@@ -101,8 +104,8 @@ app.get('/api/books/:id', function (req, res) {
 //Update a book by id
 app.put('/api/books/:id', function (req, res){
   return BookModel.findById(req.params.id, function (err, book) {
-    book.id = req.body.id;
     book.title = req.body.title;
+    book.author = req.body.author;
     return book.save(function (err) {
       if (!err) {
         console.log("updated");
@@ -121,7 +124,7 @@ app.delete('/api/books/:id', function (req, res){
       return book.remove(function (err) {
         if (!err) {
           console.log("removed");
-          return res.send(book);
+          return res.send('');
         } else {
           console.log(err);
         }
@@ -131,6 +134,11 @@ app.delete('/api/books/:id', function (req, res){
 	return res.send("The book does not exist in this database");
     }
   });
+});
+
+
+app.options('/api/books/:id', function (req, res){
+  return res.send('');
 });
 
 app.listen(4000);
