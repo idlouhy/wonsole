@@ -20,15 +20,15 @@ function init() {
         if (ok && val!=null)
             histPos = val;
     });
+}
 
-    //Save persistent data when leaving the page.
-    window.onbeforeunload = function() {
-        dataStore.set("commandHistoryLength", histList.length);
-        for(var i = 0; i<histList.length; i++) {
-            dataStore.set("commandHistory"+i, histList[i]);
-        }
-        dataStore.set("commandHistoryPosition", histPos);
-    };
+//Save persistent data when leaving the page.
+function beforeShellUnload() {
+    dataStore.set("commandHistoryLength", histList.length);
+    for(var i = 0; i<histList.length; i++) {
+        dataStore.set("commandHistory"+i, histList[i]);
+    }
+    dataStore.set("commandHistoryPosition", histPos);
 }
 
 

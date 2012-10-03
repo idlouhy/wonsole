@@ -15,6 +15,11 @@
 <!--#include virtual="SplitPane.js" --> 
 <!--#include virtual="Shell.js" --> 
 
+window.onbeforeunload = function() {
+    beforeShellUnload();
+    beforeSplitPaneUnload();
+}
+
 </script>
 
 <!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
