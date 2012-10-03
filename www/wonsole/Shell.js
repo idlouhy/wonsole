@@ -29,8 +29,6 @@ function init() {
         }
         dataStore.set("commandHistoryPosition", histPos);
     };
-    //Generate HTML from objects(temp?)
-    LIBRARY.generateHTML();
 }
 
 
@@ -208,7 +206,7 @@ load : function load(url)
 
 clear : function clear()
 {
-  var CHILDREN_TO_PRESERVE = 3;
+  var CHILDREN_TO_PRESERVE = 13;
   while (_out.childNodes[CHILDREN_TO_PRESERVE]) 
     _out.removeChild(_out.childNodes[CHILDREN_TO_PRESERVE]);
 },
@@ -242,6 +240,11 @@ props : function props(e, onePerLine)
 
   if (e === undefined) {
     println("props called with undefined argument", "error");
+    return;
+  }
+  
+  if (typeof e == "function") {
+    println("props cannot be called with function", "error");
     return;
   }
 

@@ -4,16 +4,16 @@ function Library() {
     this.list   = new Array();
     this.selectAll = false;
     
-    /*Should be set to the number of books to be deleted before calling the private removeBookAtIndex function.*/
+    /*Should be set to the number of books to be removed before calling the private removeBookAtIndex function.*/
     var removeCount = 0;
     
-    this.deleteSelected = deleteSelected ;
-    /**Delete all books that are selected in the visible list, will update the web UI.*/
-    function deleteSelected () {
+    this.removeSelected = removeSelected ;
+    /**remove all books that are selected in the visible list, will update the web UI.*/
+    function removeSelected () {
         $.blockUI();
         if(removeCount!=0)
             alert("removeCount must be 0 here!");
-        for(c=0; c<self.list.length; c++) {
+        for(var c = 0; c<self.list.length; c++) {
             if(self.list[c].select) {
                 removeCount ++;
             }
@@ -26,15 +26,59 @@ function Library() {
         }
         self.selectAll = false;
     }
+    this.listBooks = listBooks;
+    /*List all books in console*/
+    function listBooks() {
+        for(var i = 0; i<self.list.length; i++)
+            println(self.list[i]);
+        return "OK";
+    }
+    
+    this.removeBookByID = removeBookByID;
+    /*remove a book with the given ID*/
+    function removeBookByID(_id) {
+        for(var i = 0; i<self.list.length; i++) {
+            if(self.list[i].id == _id) {
+                $.blockUI();
+                removeCount = 1;
+                var removedBook = self.list[i];
+                removeBookAtIndex(i);
+                return "Removed: " + removedBook ;
+            }
+        }
+        return "No such book";
+    }
 
     this.selectAllToggle = selectAllToggle;
     /**Toggle select all books currently in the visible list. Will update the web UI.*/
     function selectAllToggle() {
         self.selectAll = !self.selectAll;
-        for(c=0; c<self.list.length; c++) {
+        for(var c = 0; c<self.list.length; c++) {
             self.list[c].select = self.selectAll;
         }
         self.generateHTML();
+    }
+    
+    this.query = query;
+    function query() {
+        var result = new Array();
+        
+        for(var c = 0; c<self.list.length; c++) {
+            var success = true;
+            for(var d = 0; d<arguments.length && success; d+=2) {
+                if(typeof arguments[d+1] == "string") {
+                    if(self.list[c][arguments[d]].search(arguments[d+1]) == -1)
+                        success = false;
+                }
+                else {
+                    if(self.list[c][arguments[d]] != arguments[d+1])
+                        success = false;
+                }
+            }
+            if(success)
+                result.push(self.list[c]);
+        }
+        return result;
     }
     
     this.generateHTML = generateHTML;
@@ -50,7 +94,7 @@ function Library() {
         
         row = document.createElement('tr');
         cell = document.createElement('td');
-        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIBRARY.selectAllToggle();'"+(self.selectAll?"checked":"")+">";
+        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIB.selectAllToggle();'"+(self.selectAll?"checked":"")+">";
         row.appendChild(cell);
         cell = document.createElement('td');
         cell.innerHTML = "ID";
@@ -87,18 +131,18 @@ function Library() {
     }
     
     /*Private function to remove a book. Does not lock the UI by itself.
-     *removeCount should be set to the total number of books to be deleted in this batch, before this is called.
-     *When this has been called removeCount times and the books have been deleted, the UI is unblocked and the UI is updated.*/
+     *removeCount should be set to the total number of books to be removed in this batch, before this is called.
+     *When this has been called removeCount times and the books have been removed, the UI is unblocked and the UI is updated.*/
     var removeBookAtIndex = function(index) {
-        /*Remove book from local storage immediately. If this is ever changed, delete button loop must also be changed!*/
-        var deletedBook = self.list[index];
+        /*Remove book from local storage immediately. If this is ever changed, remove button loop must also be changed!*/
+        var removedBook = self.list[index];
         self.list.splice(index,1);
         $.ajax({
             type: "DELETE",
-            url: "http://netlight.dlouho.net:9004/api/books/"+deletedBook.id,
+            url: "http://netlight.dlouho.net:9004/api/books/"+removedBook.id,
             success: function(response) {
                removeCount--;
-               /*Check if all books that should be deleted have been deleted now.*/
+               /*Check if all books that should be removed have been removed now.*/
                if(removeCount==0) {
                    self.generateHTML();
                    $.unblockUI();
@@ -114,21 +158,21 @@ function Library() {
         $.blockUI();
         $.getJSON("http://netlight.dlouho.net:9004/api/books" ,function (data) {
             for(var i = 0; i<data.length; i++)
-                new Book(data[i]._id,data[i].title,data[i].author);
+                new Book(data[i].title,data[i].author,data[i]._id);
             generateHTML();
             $.unblockUI();
         });
     }
 }
-var LIBRARY = new Library();
+var LIB = new Library();
 function initLibrary() {
-    LIBRARY.retrieveObjects();
+    LIB.retrieveObjects();
     }
 
 /**Book object containing information about a single book and add it to the list of Books. 
   *If id is null, the object will be sent to the server, and the id will be returned. This will block the UI and then update it.
   *id should be null when using this from the console or web UI.*/
-function Book(id, title, author) {
+function Book(title, author, id) {
     var self    = this;
     this.title   = title;  
     this.author = author;
@@ -151,7 +195,7 @@ function Book(id, title, author) {
             },
             dataType: "json"
         });
-        LIBRARY.generateHTML();
+        LIB.generateHTML();
     }
     
     this.changeAuthor = changeAuthor;
@@ -180,6 +224,12 @@ function Book(id, title, author) {
         self.select = !self.select;
         if(self.checkbox!=null && self.checkbox.checked!=self.select)
             self.checkbox.checked = self.select;
+    }
+    
+    this.remove = remove;
+    /*Remove this book from the system. Will update database and UI.*/
+    function remove() {
+        LIB.removeBookByID(self.id);
     }
 
     this.generateHTML = generateHTML;
@@ -225,7 +275,7 @@ function Book(id, title, author) {
     }
     
     /*Add the book to the list*/
-    LIBRARY.list.push(this);
+    LIB.list.push(this);
     
     /*Send the book to the server and retrieve id if none was supplied.*/
     if(id==null) {
@@ -237,7 +287,7 @@ function Book(id, title, author) {
             success: function(response){
                 //Add book to local storage
                 self.id = response._id;
-                LIBRARY.generateHTML();
+                LIB.generateHTML();
                 $.unblockUI();
             },
             dataType: "json"
