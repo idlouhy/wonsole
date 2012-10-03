@@ -1,5 +1,5 @@
 /*http://luke.breuer.com/tutorial/javascript-drag-and-drop-tutorial.aspx*/
-
+var splitPaneStore = new Persist.Store("splitPanePosition"); //A persistent data store used to preserve split pane position across page changes/refreshes
 
 var _startX = 0; // mouse starting positions 
 var _startY = 0; 
@@ -9,6 +9,7 @@ var _dragElement; // needs to be passed from OnMouseDown to OnMouseMove
 var _oldZIndex = 0; // we temporarily increase the z-index during drag 
 
 var winW = 1;
+var splitPanePercentage = 50;
 
 function InitDragDrop() { 
     document.onmousedown = OnMouseDown; 
@@ -25,6 +26,19 @@ function InitDragDrop() {
     if (window.innerWidth && window.innerHeight) {
         winW = window.innerWidth;
     }
+    
+    splitPaneStore.get("splitPanePosition", function(ok, val) {
+        if (ok && val!=null)
+            splitPanePercentage = val;
+    });
+    
+    document.getElementById("splitterLeft").style.width = splitPanePercentage+"%";
+    document.getElementById("splitterRight").style.width = 99-splitPanePercentage+"%";/*The last percent is for the divider bar thing.*/
+}
+
+//Save persistent data when leaving the page.
+function beforeSplitPaneUnload() {
+    splitPaneStore.set("splitPanePosition", splitPanePercentage);
 }
 
 function OnMouseDown(e)
@@ -79,12 +93,12 @@ function OnMouseMove(e)
     if (e == null) 
         var e = window.event; 
 
-    var percentage = 100*(e.clientX)/winW;
-    if(percentage < 0 ) percentage = 0;
-    if(percentage > 99) percentage = 99;
+    splitPanePercentage = 100*(e.clientX)/winW;
+    if(splitPanePercentage< 0 ) splitPanePercentage= 0;
+    if(splitPanePercentage> 99) splitPanePercentage= 99;
     // Resize the left and right divs.
-    document.getElementById("splitterLeft").style.width = percentage +"%";
-    document.getElementById("splitterRight").style.width = 99-percentage +"%";/*The last percent is for the divider bar thing.*/
+    document.getElementById("splitterLeft").style.width = splitPanePercentage+"%";
+    document.getElementById("splitterRight").style.width = 99-splitPanePercentage+"%";/*The last percent is for the divider bar thing.*/
 }
 
 function OnMouseUp(e)

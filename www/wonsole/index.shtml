@@ -15,6 +15,11 @@
 <!--#include virtual="SplitPane.js" --> 
 <!--#include virtual="Shell.js" --> 
 
+window.onbeforeunload = function() {
+    beforeShellUnload();
+    beforeSplitPaneUnload();
+}
+
 </script>
 
 <!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
@@ -42,14 +47,14 @@
 <div class = "webContent">
 
 <h3>Books:</h3>
-<button onclick='LIBRARY.deleteSelected();'>Delete</button>
+<button onclick='LIB.removeSelected();'>remove</button>
 <div id = "BOOKTABLE"></div><br/>
 <h3>Add a book:</h3>
 Name:<br/>
 <input type="text" id="BOOKNAME"></textarea> <br/>
 Author:<br/>
 <input type="text" id="BOOKAUTHOR"></textarea> <br/>
-<button onclick='new Book(null, document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value)'>Add book</button>
+<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value)'>Add book</button>
 
 <!-- Box that pushes the bottombar down -->
 <div class = "bottombox"></div>
