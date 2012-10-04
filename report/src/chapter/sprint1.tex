@@ -2,11 +2,14 @@
 \section{Planning}
 We started the sprint with a sprint planning meeting September 24th. The plan for this sprint is to implement a basic implementation of the system, so that we have something to show the customer at the end of the sprint. We chose user stories from the backlog that would enable us to this, a client and server offering only the most basic operations. 
 
+\subsection{Duration}
+This sprint started on September 24th and will last for two weeks. A customer demo will be held at October 04th to show of what we have achieved during the sprint and to ensure that the customer agrees with the implementation.
+
 \subsection{Sprint Goal}
 The goal for the first sprint is to get a basic version of the library application working. This includes creating a basic GUI with both the graphical web- application and the console side by side, creating a server capable of storing objects and establish communication between the server and client through a basic REST api. The user should be able to use both the web- application and the console to add a new book to the system and to list the books currently in the system. In addition we decided to implement the real- time messaging from the server to the clients to verify that the solution we chose in the pre- study would be up to the task.
 
 \subsection{User stories}
-In this sprint we picked the following user stories from the backlog: A1, A2, A3, G3, U1 and U5. 
+The user stories we chose to implement in this sprint with their estimated workload is listed in Table~\ref{sp1usrstories}.
 
 \begin{table}
 \caption{Sprint 1 User Stories}
@@ -17,54 +20,133 @@ In this sprint we picked the following user stories from the backlog: A1, A2, A3
  User Story	& Short Description		&Est.		&Act.	                               \\ 
 \hline \\ [-2.0ex]
  \bf{A1}     &\bf{Store objects in database}		&\bf{40}		&                                               \\ 
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+		  &Design							&8			&		\\
+		  &Implementation					&20			&		\\
+		  &Testing						&8			&		\\
+		  &Documentation					&4			&		\\
 
- \bf{A2}     &\bf{Send real- time messages} 		&\bf{25}		&                  \\ 
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+ \bf{A2}     &\bf{Send real- time messages} 		&\bf{30}		&                  \\ 
+		  &Design							&6			&		\\
+		  &Implementation					&15			&		\\
+		  &Testing						&6			&		\\
+		  &Documentation					&3			&		\\
 
  \bf{A3}     &\bf{Access to domain specific object} 		&\bf{35}		&		     \\ 
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+		  &Design							&15			&		\\
+		  &Implementation					&12			&		\\
+		  &Testing						&4		&		\\
+		  &Documentation					&4			&		\\
 
  \bf{G3}     &\bf{Graphical web- application and console}		&\bf{45}		&		     \\ 
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+		  &Design							&15			&		\\
+		  &Implementation					&20			&		\\
+		  &Testing						&4			&		\\
+		  &Documentation					&6			&		\\
 
- \bf{U1}	   &\bf{Add a new book}		&\bf{30}		&		     \\
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+ \bf{D1}	   &\bf{Add a new book}		&\bf{25}		&		     \\
+		  &Design							&5			&		\\
+		  &Implementation					&12			&		\\
+		  &Testing						&6			&		\\
+		  &Documentation					&2			&		\\
 
- \bf{U5}	   &\bf{List all the books in the system}		&\bf{25}		&		     \\
-		  &Design							&			&		\\
-		  &Implementation							&			&		\\
-		  &Testing						&			&		\\
-		  &Documentation						&			&		\\
+ \bf{D5}	   &\bf{List all the books in the system}		&\bf{25}		&		     \\
+		  &Design							&5			&		\\
+		  &Implementation					&12			&		\\
+		  &Testing						&6			&		\\
+		  &Documentation					&2			&		\\
 \hline 
 		  &\bf{Total:}			&\bf{200}		&		\\
 \hline
 \end{tabular}
-\label{table:testcasetid01}
+\label{table:sp1usrstories}
 \end{table}
 
 
+\begin{table}
+\caption{Sprint 1 Test Results}
+\centering
+\begin{tabular}{ l p{13cm} }
 
+\hline 
+Item			&Description		\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID01}			\\
+Description	&Storing objects in a database on the central server	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID02}			\\
+Description	&Retrieving objects from the database on the central server	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID03}			\\
+Description	&Sending real- time messages from server to client	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID04}			\\
+Description	&Alerting clients that there has been added a book to the central database on the server	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID05}			\\
+Description	&Verifying that domain specific objects are available through the console	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID06}			\\
+Description	&Verifying that there is aconsole and a graphical interface present on each page\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID07}			\\
+Description	&Adding a new book to the system with the graphical web- application	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID08}			\\
+Description	&Adding a new book to the system with the console	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID09}			\\
+Description	&Listing all the books currently in the system using the graphical web- application	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID10}			\\
+Description	&Listing all the books currently in the system using the console	\\
+Tester		&Øystein Heimark	\\
+Date			&03/10 - 2012	\\
+Result		&				\\
+\hline
+\end{tabular}
+\label{table:sp1testresults}
+\end{table}
 
 
 \section{Design}
-\section{Duration}
-\section{Goals}
+\section{Implementation}
 \section{Testing}
 \section{Customer Feedback}
 \section{Evaluation}

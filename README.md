@@ -1,2 +1,0 @@
-ntnu-netlight-project
-=====================

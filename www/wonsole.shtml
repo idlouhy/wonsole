@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Wonsole: Sprint1 Demo</title>
+		<link rel = "stylesheet" type="text/css" href="css/wonsole.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<div pub-key="pub-a47de1d5-fb27-49e6-877e-ce4198efee32" sub-key="sub-5d0d7b0c-06fe-11e2-897a-b30c99bcb2fd" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+		
+		<script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+
+		<script src="http://malsup.github.com/jquery.blockUI.js"></script>
+		
+		<script src="js/persist-js/persist-min.js"></script>
+	
+		<script src="js/SplitPane.js"></script>
+		<script src="js/Shell.js"></script>
+		<script src="js/Pubnub.js"></script>
+		
+		<script src="js/LibraryObjects.js"></script>
+
+		<script type="text/javascript">
+			<!--#include virtual="js/SplitPane.js" -->
+			<!--#include virtual="js/Shell.js" -->
+
+			window.onbeforeunload = function() {
+			beforeShellUnload();
+			beforeSplitPaneUnload();
+			}
+
+		</script>
+
+		<!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
+		<!-- <script type="text/javascript" src="chrome://extensiondev/content/rdfhistory.js"></script> -->
+		<!-- <script type="text/javascript" src="chrome://extensiondev/content/chromeShellExtras.js"></script> -->
+
+	</head>
+
+	<body onload="init(); InitDragDrop(); initLibrary(); initPubnub(); ">
+
+		<!-- Left part of split pane containing the web UI -->
+		<div id = "splitterLeft" class = "splitterLeft">
+			<!-- Container for the web UI, making sure the height is minimum the window height -->
+			<div class = "webUI">
+
+				<!-- Logo at top in web UI -->
+				<div class = "titlebar">
+					<div class = "logo">
+					</div>
+				</div>
+				<!-- Tab selector -->
+<!--
+	
+				<div class = "noWrapContainer">					
+					<a href="#"><div class = "selectedTab">Books</div></a>
+					<a href="#"><div class = "deselectedTab">Users</div></a>
+				</div>
+-->
+				<!-- Page contents -->
+				<div class = "webContent">
+
+					<h3>Books:</h3>
+					<button onclick='LIB.removeSelected();'>
+						remove
+					</button>
+					<div id = "BOOKTABLE"></div>
+					<br/>
+					<h3>Add a book:</h3>
+					Name:
+					<br/>
+					<input type="text" id="BOOKNAME">
+					</textarea>
+					<br/>
+					Author:
+					<br/>
+					<input type="text" id="BOOKAUTHOR">
+					</textarea>
+					<br/>
+					<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value)'>
+						Add book
+					</button>
+
+					<!-- Box that pushes the bottombar down -->
+					<div class = "bottombox"></div>
+
+					<!-- End webContent -->
+				</div>
+
+				<!-- Bottombar in web UI -->
+				<div class = "bottombar">
+					<div id="pubnubIndicator" class="pubnubIndicator" >PN</div>
+				</div>
+
+				<!-- end "webUI" -->
+			</div>
+			<!-- end "splitterLeft" -->
+		</div>
+
+		<!-- Splitpane grabber -->
+		<div class = "drag"></div>
+
+		<!-- Right part of splitpane containing console -->
+		<div id = "splitterRight" class = "splitterRight" onclick="keepFocusInTextbox(event)">
+
+			<!--<h3>JavaScript Shell 1.4:</h3>-->
+			<div id="output">
+				Property autocompletion: Tab, Multiline input: Shift+Enter, Input history: (Ctrl+) Up/Down, <a accesskey="M" href="javascript:go('scope(Math); mathHelp();');" title="Accesskey: M">Math</a>, <a accesskey="H" href="http://www.squarefree.com/shell/?ignoreReferrerFrom=shell1.4"  title="Accesskey: H">help</a>, ans, print(string), <a accesskey="P" href="javascript:go('props(ans)')" title="Accesskey: P">props(object)</a>, <a accesskey="B" href="javascript:go('blink(ans)')" title="Accesskey: B">blink(node)</a>, <a accesskey="C" href="javascript:go('clear()')" title="Accesskey: C">clear()</a>, <a accesskey="D" href="javascript:go('deleteHistory()')" title="Accesskey: D">deleteHistory()</a>, load(scriptURL), scope(object)
+			</div>
+			<textarea id="input" class="input" onkeydown="inputKeydown(event)"></textarea>			
+			
+
+ <!-- End splitterRight -->
+		</div>
+
+
+	</body>
+</html>
