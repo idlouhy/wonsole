@@ -150,11 +150,13 @@ function Library() {
             },
             dataType: "text"
         });
+        pubnubRefresh();
     }
 
     this.retrieveObjects = retrieveObjects;
     /*This function retrieves all objects from the server and updates the web UI. Will lock the UI until objects have been received.*/
     function retrieveObjects() {
+    	self.list = [];
         $.blockUI();
         $.getJSON("http://netlight.dlouho.net:9004/api/books" ,function (data) {
             for(var i = 0; i<data.length; i++)
@@ -195,7 +197,9 @@ function Book(title, author, id) {
             },
             dataType: "json"
         });
+        pubnubRefresh();
         LIB.generateHTML();
+        
     }
     
     this.changeAuthor = changeAuthor;
@@ -230,6 +234,7 @@ function Book(title, author, id) {
     /*Remove this book from the system. Will update database and UI.*/
     function remove() {
         LIB.removeBookByID(self.id);
+        pubnubRefresh();
     }
 
     this.generateHTML = generateHTML;
@@ -292,6 +297,7 @@ function Book(title, author, id) {
             },
             dataType: "json"
         });
+        pubnubRefresh();
     }
 }
 Book.prototype.toString = function(){
