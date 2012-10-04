@@ -61,6 +61,205 @@ The user stories we chose to implement in this sprint with their estimated workl
 \label{table:sp1usrstories}
 \end{table}
 
+\section{Design}
+
+
+\section{Implementation}
+
+\subsection{RESTful API}
+We decided to expose the contents of the database on the central server to the clients through a RESTful API that is served over HTTP. REST is an abbreviation for REpresentational State Transfer, and it basically allows you to get information and perform action equipped only with URLs and standard HTTP methods like GET and POST. The point of REST is having one standard interface for any service. Instead of exposing an interface which has methods, you only expose 4 methods; create, update, read and delete.  You use the URL to describe what object you are performing the action on.
+
+Below each resource is explained in detail, in addition example code with jQuery(JavaScript) will be supplied.
+
+\subsubsection{Base URL}
+The base URL for REST API is: http://netlight.dlouho.net:9004/api/
+
+\subsubsection{Get a list of all books}
+Description: Returns a list of all the books currently stored in the system 		\\
+\newline
+Resource URL: http://netlight.dlouho.net:9004/api/books	\\
+HTTP Methods: GET		\\
+Response format: json	\\
+Parameters: None		\\
+\newline
+Request Example:		\\
+GET			http://netlight.dlouho.net:9004/api/books 	\\
+\newline
+Response:
+\begin{verbatim}
+[
+    {
+        "_id": "506b6445b107d7567a000001",
+        "author": "An author",
+        "title": "Book1"
+    },
+    {
+        "_id": "506c91a1b107d7567a000004",
+        "author": "Another author",
+        "title": "Book2"
+    }
+]
+\end{verbatim}
+Example call in jQuery:
+\begin{verbatim}
+$.get(‘http://netlight.dlouho.net:9004/api/books’, function(response){
+	//Callback function
+});
+\end{verbatim}
+
+\subsubsection{Add a book to the database}
+Description: Adds a book to the database with the supplied parameters. The created book object with a text identifier is returned as a repsonse. 		\\
+\newline
+Resource URL: http://netlight.dlouho.net:9004/api/books	\\
+HTTP Methods: POST		\\
+Response format: json	\\
+Parameters: None		\\
+\newline
+Data:
+\begin{itemize}
+
+\item title(required): The title of the book that is to be added. Example values: "Title", "A Book".
+
+\item author(required):The author of the book that is to be added. Example values: "Author", "Another Author".
+
+\end{itemize}
+Request Example:		\\
+POST		http://netlight.dlouho.net:9004/api/books	\\
+POST Data	title="Title", author="Author"
+\newline
+Response:
+\begin{verbatim}
+[
+    {
+        "_id": "506b6445b107d7567a000001",
+        "author": "Author",
+        "title": "Title"
+    }
+]
+\end{verbatim}
+Example call in jQuery:
+\begin{verbatim}
+$.ajax({
+  type: 'POST',
+  url: ‘http://netlight.dlouho.net:9004/api/books’,
+  data: { author:”Author”, title: “Title”},
+  success: function(response){
+  	//Add book to local storage
+  },
+  dataType: ‘json’
+});
+\end{verbatim}
+
+\subsubsection{Get a single book by id}
+Description: Returns a single book, specieifed by the id parameter		\\
+\newline
+Resource URL: http://netlight.dlouho.net:9004/api/books/:id	\\
+HTTP Methods: GET		\\
+Response format: json	\\
+\newline
+Parameters: 
+\begin{itemize}
+
+\item id(required): This is a text identifier which is used to identify the book in the database. This is created by the database on insertion, and returned to the user. Example value: "506b6445b107d7567a000001"
+
+\end{itemize}
+Request Example:		\\
+GET		http://netlight.dlouho.net:9004/api/books/506b6445b107d7567a000001	\\
+\newline
+Response:
+\begin{verbatim}
+[
+    {
+        "_id": "506b6445b107d7567a000001",
+        "author": "Author",
+        "title": "Title"
+     }
+]
+\end{verbatim}
+Example call in jQuery:
+\begin{verbatim}
+$.get(‘http://netlight.dlouho.net:9004/api/books/506b6445b107d7567a000001’, function(response){
+	//Callback function
+});
+\end{verbatim}
+
+
+\subsubsection{Update a single book by id}
+Description: Updates a book with the new values, specified by the supplied id parameter. Returns the updated book object.	\\
+\newline
+Resource URL: http://netlight.dlouho.net:9004/api/books/:id	\\
+HTTP Methods: PUT		\\
+Response format: json	\\
+Data format: json		\\
+Parameters: 			\\
+\begin{itemize}
+
+\item id(required): This is a text identifier which is used to identify the book in the database. This is created by the database on insertion, and returned to the user. Example value: "506b6445b107d7567a000001"
+
+\end{itemize}
+Data:
+\begin{itemize}
+
+\item title(required): The title of the book that is to be added. Example values: "Title", "A Book".
+
+\item author(required):The author of the book that is to be added. Example values: "Author", "Another Author".
+
+\end{itemize}
+Request Example:		\\
+PUT 		http://netlight.dlouho.net:9004/api/books/506b6445b107d7567a000001	\\
+PUT Data: title="NewTitle", author="NewAuthor"
+\newline
+Response:
+\begin{verbatim}
+[
+    {
+        "_id": "506b6445b107d7567a000001",
+        "author": "NewAuthor",
+        "title": "NewTitle"
+     }
+]
+\end{verbatim}
+Example call in jQuery:
+\begin{verbatim}
+$.ajax({
+  type: 'PUT',
+  url: ‘http://netlight.dlouho.net:9004/api/books/506b6445b107d7567a000001’,
+  data: { author:”NewAuthor”, title: “NewTitle”},
+  success: function(response){
+  	//Change book attributes in local storage
+  },
+  dataType: ‘json’
+});
+\end{verbatim}
+
+\subsubsection{Delete a book by id}
+Description: Deletes a book, specified by the supplied id parameter.	\\
+\newline
+Resource URL: http://netlight.dlouho.net:9004/api/books/:id 	\\
+HTTP Methods: DELETE		\\
+Parameters: 			
+\begin{itemize}
+
+\item id(required): This is a text identifier which is used to identify the book in the database. This is created by the database on insertion, and returned to the user. Example value: "506b6445b107d7567a000001"
+
+\end{itemize}
+Request Example:		\\
+DELETE	http://netlight.dlouho.net:9004/api/books/506b6445b107d7567a000001	\\
+\newline
+Example call in jQuery:
+\begin{verbatim}
+$.ajax({
+  type: 'DELETE',
+  url: ‘http://netlight.dlouho.net:9004/api/books/5069868335f41ce71a000001’, 
+  success: function(response){
+  
+  },
+  dataType: ’json’
+});
+\end{verbatim}
+
+
+\section{Testing}
 
 \begin{table}
 \caption{Sprint 1 Test Results}
@@ -144,9 +343,7 @@ Result		&				\\
 \label{table:sp1testresults}
 \end{table}
 
-
-\section{Design}
-\section{Implementation}
-\section{Testing}
 \section{Customer Feedback}
+
+
 \section{Evaluation}
