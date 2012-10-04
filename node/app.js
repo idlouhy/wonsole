@@ -40,7 +40,7 @@ var Schema = mongoose.Schema;
 var Book =
   new Schema({
 //    id: { type: Number, required: true },
-    title: { type: String, required: true },
+    title: { type: String, required: false },
     author: { type: String, required: false }
 });
 
