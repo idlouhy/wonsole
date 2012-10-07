@@ -926,3 +926,579 @@ CREATE TABLE `projects_trackers` (
   KEY `projects_trackers_project_id` (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projects_trackers`
+--
+
+LOCK TABLES `projects_trackers` WRITE;
+/*!40000 ALTER TABLE `projects_trackers` DISABLE KEYS */;
+INSERT INTO `projects_trackers` VALUES (1,1),(1,2),(1,3);
+/*!40000 ALTER TABLE `projects_trackers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `queries`
+--
+
+DROP TABLE IF EXISTS `queries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `queries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `filters` text,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `is_public` tinyint(1) NOT NULL DEFAULT '0',
+  `column_names` text,
+  `sort_criteria` text,
+  `group_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_queries_on_project_id` (`project_id`),
+  KEY `index_queries_on_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `queries`
+--
+
+LOCK TABLES `queries` WRITE;
+/*!40000 ALTER TABLE `queries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `queries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `repositories`
+--
+
+DROP TABLE IF EXISTS `repositories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `repositories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL DEFAULT '0',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `login` varchar(60) DEFAULT '',
+  `password` varchar(255) DEFAULT '',
+  `root_url` varchar(255) DEFAULT '',
+  `type` varchar(255) DEFAULT NULL,
+  `path_encoding` varchar(64) DEFAULT NULL,
+  `log_encoding` varchar(64) DEFAULT NULL,
+  `extra_info` text,
+  `identifier` varchar(255) DEFAULT NULL,
+  `is_default` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `index_repositories_on_project_id` (`project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `repositories`
+--
+
+LOCK TABLES `repositories` WRITE;
+/*!40000 ALTER TABLE `repositories` DISABLE KEYS */;
+INSERT INTO `repositories` VALUES (3,1,'/root/ntnu-netlight-project/.git','','','/root/ntnu-netlight-project/.git','Repository::Git','',NULL,'--- \nheads: \n- d2138233bf0d309b27260bc59f820c981c6ab997\ndb_consistent: \n  ordering: 1\nextra_report_last_commit: \"0\"\n','github',1);
+/*!40000 ALTER TABLE `repositories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL DEFAULT '',
+  `position` int(11) DEFAULT '1',
+  `assignable` tinyint(1) DEFAULT '1',
+  `builtin` int(11) NOT NULL DEFAULT '0',
+  `permissions` text,
+  `issues_visibility` varchar(30) NOT NULL DEFAULT 'default',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Non member',1,1,1,'--- \n- :view_issues\n- :add_issues\n- :add_issue_notes\n- :save_queries\n- :view_gantt\n- :view_calendar\n- :view_time_entries\n- :comment_news\n- :view_documents\n- :view_wiki_pages\n- :view_wiki_edits\n- :add_messages\n- :view_files\n- :browse_repository\n- :view_changesets\n','default'),(2,'Anonymous',2,1,2,'--- \n- :view_issues\n- :view_gantt\n- :view_calendar\n- :view_time_entries\n- :view_documents\n- :view_wiki_pages\n- :view_wiki_edits\n- :view_files\n- :browse_repository\n- :view_changesets\n','default'),(3,'Manager',3,1,0,'--- \n- :add_project\n- :edit_project\n- :select_project_modules\n- :manage_members\n- :manage_versions\n- :add_subprojects\n- :manage_categories\n- :view_issues\n- :add_issues\n- :edit_issues\n- :manage_issue_relations\n- :manage_subtasks\n- :set_issues_private\n- :set_own_issues_private\n- :add_issue_notes\n- :edit_issue_notes\n- :edit_own_issue_notes\n- :move_issues\n- :delete_issues\n- :manage_public_queries\n- :save_queries\n- :view_issue_watchers\n- :add_issue_watchers\n- :delete_issue_watchers\n- :log_time\n- :view_time_entries\n- :edit_time_entries\n- :edit_own_time_entries\n- :manage_project_activities\n- :manage_news\n- :comment_news\n- :manage_documents\n- :view_documents\n- :manage_files\n- :view_files\n- :manage_wiki\n- :rename_wiki_pages\n- :delete_wiki_pages\n- :view_wiki_pages\n- :export_wiki_pages\n- :view_wiki_edits\n- :edit_wiki_pages\n- :delete_wiki_pages_attachments\n- :protect_wiki_pages\n- :manage_repository\n- :browse_repository\n- :view_changesets\n- :commit_access\n- :manage_related_issues\n- :manage_boards\n- :add_messages\n- :edit_messages\n- :edit_own_messages\n- :delete_messages\n- :delete_own_messages\n- :view_calendar\n- :view_gantt\n','all'),(4,'Developer',4,1,0,'--- \n- :manage_versions\n- :add_messages\n- :edit_own_messages\n- :view_calendar\n- :view_documents\n- :manage_files\n- :view_files\n- :view_gantt\n- :manage_categories\n- :view_issues\n- :add_issues\n- :edit_issues\n- :manage_issue_relations\n- :manage_subtasks\n- :add_issue_notes\n- :save_queries\n- :comment_news\n- :browse_repository\n- :view_changesets\n- :commit_access\n- :manage_related_issues\n- :sprints\n- :sprints_tasks\n- :burndown_charts\n- :log_time\n- :view_time_entries\n- :delete_wiki_pages\n- :view_wiki_pages\n- :view_wiki_edits\n- :edit_wiki_pages\n','default'),(5,'Reporter',5,1,0,'--- \n- :view_issues\n- :add_issues\n- :add_issue_notes\n- :save_queries\n- :view_gantt\n- :view_calendar\n- :log_time\n- :view_time_entries\n- :comment_news\n- :view_documents\n- :view_wiki_pages\n- :view_wiki_edits\n- :add_messages\n- :edit_own_messages\n- :view_files\n- :browse_repository\n- :view_changesets\n','default');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+DROP TABLE IF EXISTS `schema_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schema_migrations`
+--
+
+LOCK TABLES `schema_migrations` WRITE;
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+INSERT INTO `schema_migrations` VALUES ('1'),('1-AgileDwarf'),('10'),('100'),('101'),('102'),('103'),('104'),('105'),('106'),('107'),('108'),('11'),('12'),('13'),('14'),('15'),('16'),('17'),('18'),('19'),('2'),('2-AgileDwarf'),('20'),('20090214190337'),('20090312172426'),('20090312194159'),('20090318181151'),('20090323224724'),('20090401221305'),('20090401231134'),('20090403001910'),('20090406161854'),('20090425161243'),('20090503121501'),('20090503121505'),('20090503121510'),('20090614091200'),('20090704172350'),('20090704172355'),('20090704172358'),('20091010093521'),('20091017212227'),('20091017212457'),('20091017212644'),('20091017212938'),('20091017213027'),('20091017213113'),('20091017213151'),('20091017213228'),('20091017213257'),('20091017213332'),('20091017213444'),('20091017213536'),('20091017213642'),('20091017213716'),('20091017213757'),('20091017213835'),('20091017213910'),('20091017214015'),('20091017214107'),('20091017214136'),('20091017214236'),('20091017214308'),('20091017214336'),('20091017214406'),('20091017214440'),('20091017214519'),('20091017214611'),('20091017214644'),('20091017214720'),('20091017214750'),('20091025163651'),('20091108092559'),('20091114105931'),('20091123212029'),('20091205124427'),('20091220183509'),('20091220183727'),('20091220184736'),('20091225164732'),('20091227112908'),('20100129193402'),('20100129193813'),('20100221100219'),('20100313132032'),('20100313171051'),('20100705164950'),('20100819172912'),('20101104182107'),('20101107130441'),('20101114115114'),('20101114115359'),('20110220160626'),('20110223180944'),('20110223180953'),('20110224000000'),('20110226120112'),('20110226120132'),('20110227125750'),('20110228000000'),('20110228000100'),('20110401192910'),('20110408103312'),('20110412065600'),('20110511000000'),('20110902000000'),('20111201201315'),('20120115143024'),('20120115143100'),('20120115143126'),('20120127174243'),('20120205111326'),('20120223110929'),('20120301153455'),('20120422150750'),('21'),('22'),('23'),('24'),('25'),('26'),('27'),('28'),('29'),('3'),('30'),('31'),('32'),('33'),('34'),('35'),('36'),('37'),('38'),('39'),('4'),('40'),('41'),('42'),('43'),('44'),('45'),('46'),('47'),('48'),('49'),('5'),('50'),('51'),('52'),('53'),('54'),('55'),('56'),('57'),('58'),('59'),('6'),('60'),('61'),('62'),('63'),('64'),('65'),('66'),('67'),('68'),('69'),('7'),('70'),('71'),('72'),('73'),('74'),('75'),('76'),('77'),('78'),('79'),('8'),('80'),('81'),('82'),('83'),('84'),('85'),('86'),('87'),('88'),('89'),('9'),('90'),('91'),('92'),('93'),('94'),('95'),('96'),('97'),('98'),('99');
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `value` text,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_settings_on_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `settings`
+--
+
+LOCK TABLES `settings` WRITE;
+/*!40000 ALTER TABLE `settings` DISABLE KEYS */;
+INSERT INTO `settings` VALUES (1,'plugin_AgileDwarf','--- !map:ActiveSupport::HashWithIndifferentAccess \nstclosed: \"1\"\nstcolumn5: \"2\"\nstcolumn4: \"1\"\nstcolumn3: \"3\"\nstcolumn2: \"2\"\nstcolumn1: \"1\"\nstcolumncount: \"2\"\nactivity: \"8\"\ntracker: \"1\"\n','2012-09-04 01:42:45'),(2,'default_projects_public','1','2012-09-04 17:09:52'),(3,'sequential_project_identifiers','0','2012-09-04 17:09:52'),(4,'default_projects_modules','--- \n- issue_tracking\n- time_tracking\n- news\n- documents\n- files\n- wiki\n- repository\n- boards\n- calendar\n- gantt\n- scrum\n','2012-09-04 17:09:52'),(5,'autofetch_changesets','1','2012-09-10 13:15:55'),(6,'commit_fix_done_ratio','100','2012-09-10 13:15:55'),(7,'commit_logtime_enabled','0','2012-09-10 13:15:55'),(8,'commit_ref_keywords','refs,references,IssueID','2012-09-10 13:15:55'),(9,'enabled_scm','--- \n- Git\n','2012-09-10 13:15:56'),(10,'commit_cross_project_ref','0','2012-09-10 13:15:56'),(11,'commit_fix_status_id','0','2012-09-10 13:15:56'),(12,'repository_log_display_limit','100','2012-09-10 13:15:56'),(13,'sys_api_enabled','0','2012-09-10 13:15:56'),(14,'commit_fix_keywords','fixes,closes','2012-09-10 13:15:56');
+/*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `time_entries`
+--
+
+DROP TABLE IF EXISTS `time_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `time_entries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `issue_id` int(11) DEFAULT NULL,
+  `hours` float NOT NULL,
+  `comments` varchar(255) DEFAULT NULL,
+  `activity_id` int(11) NOT NULL,
+  `spent_on` date NOT NULL,
+  `tyear` int(11) NOT NULL,
+  `tmonth` int(11) NOT NULL,
+  `tweek` int(11) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_on` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `time_entries_project_id` (`project_id`),
+  KEY `time_entries_issue_id` (`issue_id`),
+  KEY `index_time_entries_on_activity_id` (`activity_id`),
+  KEY `index_time_entries_on_user_id` (`user_id`),
+  KEY `index_time_entries_on_created_on` (`created_on`)
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `time_entries`
+--
+
+LOCK TABLES `time_entries` WRITE;
+/*!40000 ALTER TABLE `time_entries` DISABLE KEYS */;
+INSERT INTO `time_entries` VALUES (2,1,4,32,2,'Copy tasks from spreadsheet to issue tracking system.',8,'2012-09-04',2012,9,36,'2012-09-04 14:04:46','2012-09-04 14:04:46'),(3,1,5,32,2,'',8,'2012-09-04',2012,9,36,'2012-09-04 14:06:18','2012-09-04 14:06:18'),(4,1,5,35,1,'Introduction for the project',13,'2012-09-04',2012,9,36,'2012-09-04 14:11:50','2012-09-04 14:11:50'),(5,1,5,35,4,'Guest lecture from Bekk on Scrum, Testing and Git',13,'2012-09-04',2012,9,36,'2012-09-04 14:12:28','2012-09-04 14:12:28'),(6,1,6,19,3,'Initial Risk Assessment and Countermeasures',10,'2012-08-28',2012,8,35,'2012-09-04 14:13:06','2012-09-04 14:13:06'),(7,1,5,28,0.5,'',10,'2012-08-21',2012,8,34,'2012-09-04 14:19:35','2012-09-04 14:19:35'),(8,1,5,29,0.5,'',10,'2012-08-28',2012,8,35,'2012-09-04 14:23:39','2012-09-04 14:23:39'),(9,1,5,9,0.7,'',10,'2012-08-21',2012,8,34,'2012-09-04 14:24:39','2012-09-04 14:24:39'),(10,1,5,20,0.5,'',10,'2012-09-04',2012,9,36,'2012-09-04 14:25:15','2012-09-04 14:25:15'),(11,1,5,22,0.5,'',10,'2012-09-04',2012,9,36,'2012-09-04 14:25:48','2012-09-04 14:25:48'),(12,1,5,40,2,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:14:45','2012-09-04 15:14:45'),(13,1,6,40,2,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:15:44','2012-09-04 15:15:44'),(14,1,7,21,1,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:18:35','2012-09-04 15:18:35'),(15,1,7,23,1,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:18:59','2012-09-04 15:18:59'),(16,1,7,18,0.5,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:19:45','2012-09-04 15:19:45'),(17,1,7,17,0.7,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:20:16','2012-09-04 15:20:16'),(18,1,7,16,0.5,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:21:10','2012-09-04 15:21:10'),(19,1,7,26,0.5,'',10,'2012-09-04',2012,9,36,'2012-09-04 15:21:38','2012-09-04 15:21:38'),(20,1,8,34,13,'First customer meeting.',12,'2012-08-21',2012,8,34,'2012-09-04 15:27:39','2012-09-04 15:27:39'),(21,1,8,34,8,'First advisor meeting, incl. notes.',12,'2012-08-22',2012,8,34,'2012-09-04 15:29:10','2012-09-04 15:29:10'),(22,1,8,43,9,'',12,'2012-08-27',2012,8,35,'2012-09-04 15:59:04','2012-09-04 15:59:04'),(26,1,8,46,5.25,'',12,'2012-09-04',2012,9,36,'2012-09-04 16:13:47','2012-09-04 16:13:47'),(27,1,8,45,6,'',12,'2012-08-30',2012,8,35,'2012-09-04 16:15:57','2012-09-04 16:15:57'),(28,1,8,44,2,'',12,'2012-08-30',2012,8,35,'2012-09-04 16:18:00','2012-09-04 16:18:00'),(29,1,8,42,7,'',12,'2012-08-22',2012,8,34,'2012-09-04 16:19:06','2012-09-04 16:19:06'),(30,1,8,41,13,'',12,'2012-08-21',2012,8,34,'2012-09-04 16:19:50','2012-09-04 16:19:50'),(31,1,8,47,15,'',10,'2012-09-03',2012,9,36,'2012-09-04 16:23:35','2012-09-04 16:23:35'),(32,1,6,48,2,'Import of previous activities on Redmine',10,'2012-09-04',2012,9,36,'2012-09-04 17:04:49','2012-09-04 17:04:49'),(33,1,4,31,8,'Redmine instalation and configuration',14,'2012-09-02',2012,9,35,'2012-09-04 23:12:08','2012-09-04 23:12:08'),(34,1,4,31,1,'MongoDB instalation',14,'2012-09-04',2012,9,36,'2012-09-04 23:12:21','2012-09-04 23:12:21'),(35,1,5,24,2,'',10,'2012-09-05',2012,9,36,'2012-09-05 12:47:27','2012-09-05 12:47:27'),(36,1,5,10,4,'',10,'2012-09-05',2012,9,36,'2012-09-05 12:47:50','2012-09-05 12:47:50'),(37,1,5,50,1.5,'',10,'2012-09-05',2012,9,36,'2012-09-05 13:33:07','2012-09-05 13:33:07'),(38,1,4,31,2.5,'Redmine configuration',14,'2012-09-04',2012,9,36,'2012-09-05 13:55:27','2012-09-05 13:55:27'),(39,1,4,31,1,'Redmine connect github and autoupdate',14,'2012-09-04',2012,9,36,'2012-09-05 13:55:55','2012-09-05 13:55:55'),(40,1,4,31,2,'Report latex autobuild',14,'2012-09-04',2012,9,36,'2012-09-05 13:56:11','2012-09-05 13:58:19'),(41,1,4,27,2,'Raw template created and uploaded to github.',10,'2012-09-05',2012,9,36,'2012-09-05 14:00:12','2012-09-05 14:00:12'),(42,1,5,50,1,'',10,'2012-09-05',2012,9,36,'2012-09-05 14:46:30','2012-09-05 14:46:30'),(43,1,8,49,4,'Everyone attended',12,'2012-09-06',2012,9,36,'2012-09-06 17:26:57','2012-09-06 17:26:57'),(44,1,4,50,1.5,'Revised and sent the report and agenda.',14,'2012-09-06',2012,9,36,'2012-09-06 17:43:52','2012-09-06 17:43:52'),(45,1,5,33,2,'',10,'2012-09-07',2012,9,36,'2012-09-07 13:19:47','2012-09-07 13:19:47'),(46,1,5,25,2,'',10,'2012-09-07',2012,9,36,'2012-09-07 13:20:21','2012-09-07 13:20:21'),(47,1,5,33,2,'',10,'2012-09-07',2012,9,36,'2012-09-07 14:41:33','2012-09-07 14:41:33'),(48,1,8,53,4,'Everyone attended',12,'2012-09-07',2012,9,36,'2012-09-09 17:08:01','2012-09-09 17:08:01'),(49,1,5,38,2,'',10,'2012-09-05',2012,9,36,'2012-09-09 17:08:31','2012-09-09 17:08:31'),(50,1,7,38,0.3,'',10,'2012-09-09',2012,9,36,'2012-09-09 17:09:18','2012-09-09 17:09:18'),(51,1,8,54,4,'Collective effort',14,'2012-09-09',2012,9,36,'2012-09-09 17:12:11','2012-09-09 17:12:11'),(53,1,4,37,2,'Agenda and questions.',14,'2012-09-09',2012,9,36,'2012-09-09 17:13:31','2012-09-09 17:13:31'),(54,1,6,48,0.5,'',14,'2012-09-09',2012,9,36,'2012-09-09 17:46:49','2012-09-09 17:46:49'),(55,1,5,33,1,'',10,'2012-09-10',2012,9,37,'2012-09-10 13:51:53','2012-09-10 13:51:53'),(56,1,8,60,11,'Discussed domain and name',12,'2012-09-10',2012,9,37,'2012-09-10 18:13:15','2012-09-10 18:13:15'),(57,1,5,62,4,'',10,'2012-09-11',2012,9,37,'2012-09-11 16:06:16','2012-09-11 16:06:16'),(58,1,4,31,1,NULL,8,'2012-09-11',2012,9,37,'2012-09-11 18:03:38','2012-09-11 18:03:38'),(59,1,4,32,1,NULL,8,'2012-09-11',2012,9,37,'2012-09-11 18:03:42','2012-09-11 18:03:42'),(60,1,4,30,4,NULL,8,'2012-09-11',2012,9,37,'2012-09-11 18:03:54','2012-09-11 18:03:54'),(61,1,4,27,1,NULL,8,'2012-09-11',2012,9,37,'2012-09-11 18:04:03','2012-09-11 18:04:03'),(62,1,4,11,0.75,'wrote redmine description and way we use it',10,'2012-09-11',2012,9,37,'2012-09-11 18:24:31','2012-09-11 18:24:31'),(63,1,4,13,0.5,'Done.',10,'2012-09-11',2012,9,37,'2012-09-11 18:39:14','2012-09-11 18:39:14'),(64,1,4,12,0.2,'We wont be using Google Code. We use Github + Redmine instead. Scheduled project for deletion and wrote info to Google Group.',10,'2012-09-11',2012,9,37,'2012-09-11 18:40:16','2012-09-11 18:40:16'),(65,1,4,15,0.6,'Wrote description.',10,'2012-09-11',2012,9,37,'2012-09-11 19:45:50','2012-09-11 19:45:50'),(66,1,5,62,1,'',10,'2012-09-11',2012,9,37,'2012-09-11 19:49:12','2012-09-11 19:49:12'),(67,1,4,27,1.5,'Bare latex template for report created. Automatic build and upload current version to web each 10 minutes. TODO Make title page nicer.',10,'2012-09-11',2012,9,37,'2012-09-11 19:52:22','2012-09-11 19:52:22'),(68,1,4,32,0.5,'issue management - closing, creating, assigning',11,'2012-09-11',2012,9,37,'2012-09-11 20:15:46','2012-09-11 20:15:46'),(69,1,4,65,1,'Create interactive/hyperlink table of contents and footnotes.',10,'2012-09-11',2012,9,37,'2012-09-11 20:43:03','2012-09-11 20:43:03'),(70,1,7,66,2,'',10,'2012-09-12',2012,9,37,'2012-09-12 13:33:47','2012-09-12 13:33:47'),(71,1,5,62,0.5,'',10,'2012-09-12',2012,9,37,'2012-09-12 13:58:07','2012-09-12 13:58:07'),(72,1,5,69,2,'',10,'2012-09-12',2012,9,37,'2012-09-12 14:02:19','2012-09-12 14:02:19'),(73,1,4,69,0.5,'Checked and corrected details.',14,'2012-09-12',2012,9,37,'2012-09-12 15:14:23','2012-09-12 15:14:23'),(74,1,4,70,0.6,'Revised and sent the weekly report and agenda.',14,'2012-09-12',2012,9,37,'2012-09-12 15:17:36','2012-09-12 15:17:36'),(75,1,7,66,2,'',10,'2012-09-12',2012,9,37,'2012-09-12 21:52:34','2012-09-12 21:52:34'),(76,1,5,73,2,'',10,'2012-09-13',2012,9,37,'2012-09-13 15:35:13','2012-09-13 15:35:13'),(77,1,8,71,3,'Compiled the meeting notes and send them to advisor.',12,'2012-09-13',2012,9,37,'2012-09-13 16:25:49','2012-09-13 16:25:49'),(78,1,8,68,3,'',12,'2012-09-13',2012,9,37,'2012-09-13 16:26:12','2012-09-13 16:26:12'),(79,1,4,95,2,'',10,'2012-09-13',2012,9,37,'2012-09-13 17:04:14','2012-09-13 17:04:14'),(80,1,5,73,2,'',10,'2012-09-13',2012,9,37,'2012-09-13 18:26:53','2012-09-13 18:26:53'),(81,1,6,123,1,'Investigation of SignalR',14,'2012-09-13',2012,9,37,'2012-09-13 21:09:05','2012-09-13 21:09:05'),(82,1,5,73,2.5,'',10,'2012-09-14',2012,9,37,'2012-09-14 13:49:46','2012-09-14 13:49:46'),(83,1,4,75,3,NULL,8,'2012-09-17',2012,9,38,'2012-09-17 17:49:12','2012-09-17 17:49:12'),(84,1,4,75,0.5,'',10,'2012-09-17',2012,9,38,'2012-09-17 18:11:17','2012-09-17 18:11:17'),(85,1,5,74,1,'',10,'2012-09-17',2012,9,38,'2012-09-17 22:04:56','2012-09-17 22:04:56'),(86,1,5,129,1,'',10,'2012-09-17',2012,9,38,'2012-09-17 23:00:56','2012-09-17 23:00:56'),(87,1,5,61,1,'',10,'2012-09-17',2012,9,38,'2012-09-18 00:13:03','2012-09-18 00:13:03'),(88,1,8,127,8,'',13,'2012-09-18',2012,9,38,'2012-09-18 00:16:30','2012-09-18 00:16:30'),(89,1,6,130,4,'',10,'2012-09-18',2012,9,38,'2012-09-18 20:16:54','2012-09-18 20:16:54'),(90,1,8,131,4,'All four team members attended.',12,'2012-09-18',2012,9,38,'2012-09-18 20:18:30','2012-09-18 20:18:30'),(91,1,5,133,2,'',10,'2012-09-18',2012,9,38,'2012-09-18 23:50:32','2012-09-18 23:50:32'),(92,1,5,134,1,'',10,'2012-09-18',2012,9,38,'2012-09-18 23:51:16','2012-09-18 23:51:16'),(93,1,5,135,1,'',10,'2012-09-19',2012,9,38,'2012-09-19 13:12:26','2012-09-19 13:12:26'),(94,1,5,135,0.25,'Added to LaTex report',10,'2012-09-19',2012,9,38,'2012-09-19 13:23:22','2012-09-19 13:23:22'),(95,1,4,32,1.5,'issue management - lectures, project plan',11,'2012-09-19',2012,9,38,'2012-09-19 13:59:46','2012-09-19 13:59:46'),(96,1,4,31,3.5,'node.js experiments and instalation',14,'2012-09-19',2012,9,38,'2012-09-19 14:01:09','2012-09-19 14:01:09'),(97,1,5,136,2,'',10,'2012-09-19',2012,9,38,'2012-09-19 14:32:25','2012-09-19 14:32:25'),(98,1,5,74,2,'',10,'2012-09-20',2012,9,38,'2012-09-20 12:15:40','2012-09-20 12:15:40'),(99,1,4,137,0.5,'Checked and corrected details. Sent.',10,'2012-09-20',2012,9,38,'2012-09-20 13:41:53','2012-09-20 13:41:53'),(100,1,5,139,2,'',10,'2012-09-20',2012,9,38,'2012-09-20 13:44:45','2012-09-20 13:44:45'),(101,1,8,138,4,'',12,'2012-09-20',2012,9,38,'2012-09-20 13:45:03','2012-09-20 13:45:03'),(102,1,4,140,0.3,'',10,'2012-09-20',2012,9,38,'2012-09-20 13:46:46','2012-09-20 13:46:46'),(103,1,4,80,1.5,'',14,'2012-09-20',2012,9,38,'2012-09-20 13:48:05','2012-09-20 13:48:05'),(104,1,4,82,0.6,'Checked and corrected details. Sent.',10,'2012-09-20',2012,9,38,'2012-09-20 13:48:35','2012-09-20 13:48:35'),(105,1,5,81,0.5,'',10,'2012-09-20',2012,9,38,'2012-09-20 13:52:02','2012-09-20 13:52:02'),(106,1,4,142,1,'Created Docs file and added structure.',12,'2012-09-20',2012,9,38,'2012-09-20 13:52:35','2012-09-20 13:52:35'),(107,1,4,143,0.5,'Contacted a person, who is in Trondheim.',14,'2012-09-20',2012,9,38,'2012-09-20 13:53:55','2012-09-20 13:53:55'),(108,1,7,144,4,'',10,'2012-09-20',2012,9,38,'2012-09-20 14:06:10','2012-09-20 14:06:10'),(109,1,7,144,1,'',10,'2012-09-20',2012,9,38,'2012-09-20 14:06:27','2012-09-20 14:06:27'),(110,1,5,65,1,'',10,'2012-09-20',2012,9,38,'2012-09-20 15:35:49','2012-09-20 15:35:49'),(111,1,7,144,7,'',10,'2012-09-21',2012,9,38,'2012-09-21 00:49:16','2012-09-21 00:49:16'),(112,1,8,145,6,'Helt presentation, discussed and wrote short summary.',10,'2012-09-21',2012,9,38,'2012-09-21 15:41:40','2012-09-21 15:41:40'),(113,1,6,146,4,'done, imported to latex document',10,'2012-09-21',2012,9,38,'2012-09-21 16:45:54','2012-09-21 16:45:54'),(114,1,7,144,3,'',10,'2012-09-24',2012,9,39,'2012-09-24 00:50:49','2012-09-24 00:50:49'),(115,1,8,147,12,'Everyone attended',13,'2012-09-24',2012,9,39,'2012-09-24 17:44:46','2012-09-24 17:44:46'),(116,1,5,74,2,'Added the timeline of the testing process',10,'2012-09-25',2012,9,39,'2012-09-25 11:47:42','2012-09-25 11:47:42'),(117,1,7,4,1.5,'',10,'2012-09-25',2012,9,39,'2012-09-25 16:10:14','2012-09-25 16:10:14'),(118,1,8,83,6,'We had to wait for the customer and than meeting was held.',12,'2012-09-26',2012,9,39,'2012-09-26 10:12:23','2012-09-26 10:12:23'),(119,1,8,84,2,'',10,'2012-09-26',2012,9,39,'2012-09-26 10:13:19','2012-09-26 10:13:19'),(120,1,4,84,1,'revised and sent',10,'2012-09-26',2012,9,39,'2012-09-26 10:14:12','2012-09-26 10:14:12'),(121,1,4,128,1,'found and reserved a room',12,'2012-09-26',2012,9,39,'2012-09-26 10:14:42','2012-09-26 10:14:42'),(122,1,4,150,3.5,'wrote a document user stories v2',12,'2012-09-26',2012,9,39,'2012-09-26 10:16:54','2012-09-26 10:16:54'),(123,1,7,144,1,'',10,'2012-09-26',2012,9,39,'2012-09-26 10:17:06','2012-09-26 10:17:06'),(124,1,4,148,3.5,'set up new rules, explained to customer and setup email forwarding',10,'2012-09-26',2012,9,39,'2012-09-26 10:20:26','2012-09-26 10:20:26'),(125,1,4,65,2,'made new title page with logos',10,'2012-09-26',2012,9,39,'2012-09-26 10:21:34','2012-09-26 10:21:34'),(126,1,8,152,16,'12-14, 17-19:00',10,'2012-09-26',2012,9,39,'2012-09-26 10:24:02','2012-09-26 10:24:02'),(127,1,4,155,8,'Done risk, user stories, communication rules, quality assurance',10,'2012-09-26',2012,9,39,'2012-09-26 10:26:40','2012-09-26 10:26:40'),(128,1,4,155,2,'minor changes and bug fixing',10,'2012-09-26',2012,9,39,'2012-09-26 10:26:58','2012-09-26 10:26:58'),(129,1,4,155,2,'created separate files for chapters and cleaned the document',10,'2012-09-24',2012,9,39,'2012-09-26 10:28:53','2012-09-26 10:28:53'),(130,1,5,32,0.5,'Added all the user stories and created the first sprint',10,'2012-09-26',2012,9,39,'2012-09-26 10:49:36','2012-09-26 10:49:36'),(131,1,4,179,0.5,'imported domain specific ones',11,'2012-09-26',2012,9,39,'2012-09-26 10:49:56','2012-09-26 10:49:56'),(132,1,5,154,2,'Created account on pubnub.com, and researched how it would be implemented',10,'2012-09-25',2012,9,39,'2012-09-26 10:51:14','2012-09-26 10:51:29'),(133,1,5,154,1,'Implementation',10,'2012-09-26',2012,9,39,'2012-09-26 10:51:46','2012-09-26 10:51:46'),(134,1,4,183,1,'installed',10,'2012-09-26',2012,9,39,'2012-09-26 10:55:20','2012-09-26 10:55:20'),(135,1,4,183,1,'teste - proof of concept - see pubnub-cli.js on github',10,'2012-09-26',2012,9,39,'2012-09-26 10:55:42','2012-09-26 10:55:42'),(136,1,4,180,2,'installed and tested',14,'2012-09-26',2012,9,39,'2012-09-26 10:56:42','2012-09-26 10:56:42'),(137,1,4,181,2,'installed and tested',14,'2012-09-26',2012,9,39,'2012-09-26 10:57:19','2012-09-26 10:57:19'),(138,1,4,182,2,'installed and tested',14,'2012-09-26',2012,9,39,'2012-09-26 10:57:42','2012-09-26 10:57:42'),(139,1,4,153,6.5,'created app.js and public/index.html for demonstration',9,'2012-09-26',2012,9,39,'2012-09-26 11:01:15','2012-09-26 11:01:15'),(140,1,5,153,3,'Added the ability to add, delete, update and get info on specific books',9,'2012-09-27',2012,9,39,'2012-09-27 12:55:11','2012-10-02 18:34:31'),(141,1,5,185,1,'',9,'2012-09-27',2012,9,39,'2012-09-27 12:56:39','2012-10-02 18:34:15'),(142,1,6,157,3,'',10,'2012-09-27',2012,9,39,'2012-09-28 01:30:35','2012-09-28 01:30:35'),(143,1,6,157,3,'',10,'2012-09-27',2012,9,39,'2012-09-28 01:30:48','2012-09-28 01:30:48'),(144,1,6,157,3,'',10,'2012-09-26',2012,9,39,'2012-09-28 01:30:57','2012-09-28 01:30:57'),(145,1,6,159,1,'',10,'2012-09-26',2012,9,39,'2012-09-28 01:32:51','2012-09-28 01:32:51'),(146,1,6,160,1,'',10,'2012-09-26',2012,9,39,'2012-09-28 01:33:02','2012-09-28 01:33:02'),(147,1,5,186,1,'',10,'2012-09-28',2012,9,39,'2012-09-28 10:55:53','2012-09-28 10:55:53'),(148,1,5,153,1,'',9,'2012-09-28',2012,9,39,'2012-09-28 10:57:21','2012-10-02 18:33:54'),(149,1,6,174,3,'Made the command history persistent across refreshes, page changes and entire sessions',9,'2012-09-29',2012,9,39,'2012-09-29 21:45:12','2012-09-29 21:45:12'),(150,1,5,153,1,'',10,'2012-10-02',2012,10,40,'2012-10-02 16:56:46','2012-10-02 16:56:46'),(151,1,5,153,3,'Made jQuery ajax example code, added cross origin possibility to the server',9,'2012-10-01',2012,10,40,'2012-10-02 16:57:51','2012-10-02 18:33:31'),(152,1,5,189,1,'',10,'2012-10-02',2012,10,40,'2012-10-02 16:59:43','2012-10-02 16:59:43'),(153,1,5,65,2,'Added separate chapters for each sprint, added appendices chapter, added test cases',10,'2012-10-02',2012,10,40,'2012-10-02 17:01:07','2012-10-02 17:01:07'),(154,1,6,157,1,'',8,'2012-09-30',2012,9,39,'2012-10-02 18:00:16','2012-10-02 18:00:16'),(155,1,6,157,1,'',9,'2012-10-01',2012,10,40,'2012-10-02 18:00:33','2012-10-02 18:00:33'),(156,1,6,165,1,'',10,'2012-10-01',2012,10,40,'2012-10-02 18:00:54','2012-10-02 18:00:54'),(157,1,6,160,1,'',10,'2012-10-01',2012,10,40,'2012-10-02 18:01:17','2012-10-02 18:01:17'),(158,1,6,162,1,'',10,'2012-10-01',2012,10,40,'2012-10-02 18:01:33','2012-10-02 18:01:33'),(159,1,6,166,1,'',8,'2012-09-30',2012,9,39,'2012-10-02 18:02:07','2012-10-02 18:02:07'),(160,1,6,166,3,'',9,'2012-10-01',2012,10,40,'2012-10-02 18:02:20','2012-10-02 18:02:20'),(161,1,6,161,2,'',8,'2012-10-02',2012,10,40,'2012-10-02 18:03:24','2012-10-02 18:03:24'),(162,1,5,190,2,'Added the plan, goal, and backlog sections',10,'2012-10-02',2012,10,40,'2012-10-02 18:33:04','2012-10-02 18:33:04'),(163,1,6,161,4.5,'Implemented initial networking on client side',9,'2012-10-02',2012,10,40,'2012-10-02 23:31:21','2012-10-02 23:31:21'),(164,1,4,188,0.8,'went through use cases and added a few',10,'2012-10-03',2012,10,40,'2012-10-03 11:21:59','2012-10-03 11:21:59'),(165,1,8,191,12,'discussed progress in the sprint and important questions about UI adn library implementation',10,'2012-10-02',2012,10,40,'2012-10-03 11:28:56','2012-10-03 11:28:56'),(166,1,4,153,2,'made nodeunit working, and created a dump a log on the webpage',11,'2012-10-01',2012,10,40,'2012-10-03 11:34:26','2012-10-03 11:34:26'),(167,1,4,32,3,'communication with customer, advisor, setup forwarding of the mails',10,'2012-10-01',2012,10,40,'2012-10-03 11:37:16','2012-10-03 11:37:16'),(168,1,5,190,2,'Added test cases and finished the work estimation table',10,'2012-10-03',2012,10,40,'2012-10-03 11:44:40','2012-10-03 11:44:40'),(170,1,7,156,5,'',10,'2012-10-03',2012,10,40,'2012-10-03 13:15:38','2012-10-03 13:15:38'),(171,1,4,153,3,'fixing errors on server - accepting cross server scripting, OPTION method (because of ajax)',9,'2012-10-02',2012,10,40,'2012-10-03 13:19:50','2012-10-03 13:19:50'),(172,1,4,153,2.2,'changing the schema for application - adding author ',10,'2012-10-02',2012,10,40,'2012-10-03 13:20:47','2012-10-03 13:28:59'),(173,1,4,31,2,'fixed git automatic update, added www root',11,'2012-10-02',2012,10,40,'2012-10-03 13:22:29','2012-10-03 13:28:32'),(174,1,4,31,2,'trying to fix burndown chart in redmine',9,'2012-10-03',2012,10,40,'2012-10-03 13:22:55','2012-10-03 13:22:55'),(175,1,5,192,1.5,'',12,'2012-10-03',2012,10,40,'2012-10-03 14:30:19','2012-10-03 14:30:59'),(176,1,5,193,1,'',10,'2012-10-03',2012,10,40,'2012-10-03 14:33:31','2012-10-03 14:33:31'),(177,1,4,194,1.2,'Check report, wrote agenda, sent to advisor.',11,'2012-10-03',2012,10,40,'2012-10-03 14:46:27','2012-10-03 14:46:27'),(178,1,6,157,0.5,'persistent splitpane',9,'2012-10-03',2012,10,40,'2012-10-03 23:43:46','2012-10-03 23:43:46'),(179,1,6,160,1,'more convenient methods for deletion',9,'2012-10-03',2012,10,40,'2012-10-03 23:45:52','2012-10-03 23:45:52'),(180,1,6,163,1,'Added a method to filter the list of books using regex on book variables',9,'2012-10-03',2012,10,40,'2012-10-03 23:48:02','2012-10-03 23:48:02'),(181,1,6,170,0.5,'Research on displaying variable and method names in object functions; little progress as of this moment',8,'2012-10-03',2012,10,40,'2012-10-03 23:50:28','2012-10-03 23:50:28'),(182,1,5,195,2.5,'',10,'2012-10-04',2012,10,40,'2012-10-04 14:10:32','2012-10-04 14:10:32'),(183,1,5,193,1,'',10,'2012-10-04',2012,10,40,'2012-10-04 14:33:56','2012-10-04 14:33:56'),(184,1,5,190,2,'Added estimation and actual time used on the different user stories. Also came up with some reasons why it turned out like this',10,'2012-10-04',2012,10,40,'2012-10-04 16:38:26','2012-10-04 16:38:26');
+/*!40000 ALTER TABLE `time_entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tokens`
+--
+
+DROP TABLE IF EXISTS `tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `action` varchar(30) NOT NULL DEFAULT '',
+  `value` varchar(40) NOT NULL DEFAULT '',
+  `created_on` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_tokens_on_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tokens`
+--
+
+LOCK TABLES `tokens` WRITE;
+/*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
+INSERT INTO `tokens` VALUES (1,1,'feeds','d4a38c55c4012d2be04fb1eac29608665b04afd8','2012-09-04 01:22:32'),(2,4,'feeds','d05ee466b50ecfe5ae36718b4210641c33f655e6','2012-09-04 01:49:55'),(3,5,'feeds','cab941677861336cc1b4b8590be22297ac93aea5','2012-09-04 12:57:24'),(4,6,'feeds','ae2c867438fd8f59efff0ed4ac7184373703c731','2012-09-04 13:00:39'),(5,7,'feeds','692225db9569d972638e6ce7b2af9aa77725a6f4','2012-09-04 13:32:20'),(6,8,'feeds','bca7fc67a697711eafdb82353980319c2fccef1c','2012-09-04 16:13:03');
+/*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trackers`
+--
+
+DROP TABLE IF EXISTS `trackers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `trackers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL DEFAULT '',
+  `is_in_chlog` tinyint(1) NOT NULL DEFAULT '0',
+  `position` int(11) DEFAULT '1',
+  `is_in_roadmap` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trackers`
+--
+
+LOCK TABLES `trackers` WRITE;
+/*!40000 ALTER TABLE `trackers` DISABLE KEYS */;
+INSERT INTO `trackers` VALUES (1,'Bug',1,1,0),(2,'Feature',1,2,1),(3,'Support',0,3,0);
+/*!40000 ALTER TABLE `trackers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_preferences`
+--
+
+DROP TABLE IF EXISTS `user_preferences`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_preferences` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `others` text,
+  `hide_mail` tinyint(1) DEFAULT '0',
+  `time_zone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_user_preferences_on_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_preferences`
+--
+
+LOCK TABLES `user_preferences` WRITE;
+/*!40000 ALTER TABLE `user_preferences` DISABLE KEYS */;
+INSERT INTO `user_preferences` VALUES (1,2,'--- {}\n\n',0,NULL),(2,1,'--- {}\n\n',0,NULL),(3,4,'--- \n:gantt_zoom: 2\n:no_self_notified: false\n:warn_on_leaving_unsaved: \"1\"\n:diff_type: inline\n:comments_sorting: asc\n:gantt_months: 5\n',0,'Prague'),(4,5,'--- \n:gantt_zoom: 3\n:no_self_notified: false\n:warn_on_leaving_unsaved: \"1\"\n:comments_sorting: asc\n:gantt_months: 3\n',0,'Paris'),(5,6,'--- \n:gantt_months: 6\n:no_self_notified: false\n:comments_sorting: asc\n:warn_on_leaving_unsaved: \"1\"\n:gantt_zoom: 2\n',0,''),(6,7,'--- \n:no_self_notified: false\n:comments_sorting: asc\n:warn_on_leaving_unsaved: \"1\"\n',0,''),(7,8,'--- \n:gantt_months: 6\n:no_self_notified: false\n:gantt_zoom: 2\n:comments_sorting: asc\n:warn_on_leaving_unsaved: \"1\"\n',0,'');
+/*!40000 ALTER TABLE `user_preferences` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(255) NOT NULL DEFAULT '',
+  `hashed_password` varchar(40) NOT NULL DEFAULT '',
+  `firstname` varchar(30) NOT NULL DEFAULT '',
+  `lastname` varchar(30) NOT NULL DEFAULT '',
+  `mail` varchar(60) NOT NULL DEFAULT '',
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '1',
+  `last_login_on` datetime DEFAULT NULL,
+  `language` varchar(5) DEFAULT '',
+  `auth_source_id` int(11) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `identity_url` varchar(255) DEFAULT NULL,
+  `mail_notification` varchar(255) NOT NULL DEFAULT '',
+  `salt` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_users_on_id_and_type` (`id`,`type`),
+  KEY `index_users_on_auth_source_id` (`auth_source_id`),
+  KEY `index_users_on_type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `versions`
+--
+
+DROP TABLE IF EXISTS `versions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `versions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) DEFAULT '',
+  `effective_date` date DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  `wiki_page_title` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT 'open',
+  `sharing` varchar(255) NOT NULL DEFAULT 'none',
+  `ir_start_date` date DEFAULT NULL,
+  `ir_end_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `versions_project_id` (`project_id`),
+  KEY `index_versions_on_sharing` (`sharing`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `versions`
+--
+
+LOCK TABLES `versions` WRITE;
+/*!40000 ALTER TABLE `versions` DISABLE KEYS */;
+INSERT INTO `versions` VALUES (1,1,'Sprint 1','Sprint 1','2012-10-07','2012-09-26 10:13:47','2012-10-03 12:06:29','','open','none','2012-09-24','2012-10-07');
+/*!40000 ALTER TABLE `versions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `watchers`
+--
+
+DROP TABLE IF EXISTS `watchers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `watchers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `watchable_type` varchar(255) NOT NULL DEFAULT '',
+  `watchable_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `watchers_user_id_type` (`user_id`,`watchable_type`),
+  KEY `index_watchers_on_user_id` (`user_id`),
+  KEY `index_watchers_on_watchable_id_and_watchable_type` (`watchable_id`,`watchable_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `watchers`
+--
+
+LOCK TABLES `watchers` WRITE;
+/*!40000 ALTER TABLE `watchers` DISABLE KEYS */;
+INSERT INTO `watchers` VALUES (1,'Issue',5,4),(2,'Issue',5,7),(3,'Issue',5,6),(4,'Issue',5,5),(5,'Issue',6,4),(6,'Issue',6,7),(7,'Issue',6,6),(8,'Issue',6,5),(9,'Issue',51,4),(10,'Issue',51,5),(11,'Issue',64,4),(12,'Issue',64,7),(13,'Issue',64,6),(14,'Issue',64,5),(15,'Issue',153,4),(16,'Issue',153,7),(17,'Issue',153,6),(18,'Issue',153,8),(19,'Issue',153,5),(20,'Issue',154,4),(21,'Issue',154,7),(22,'Issue',154,6),(23,'Issue',154,8),(24,'Issue',154,5),(25,'Issue',156,4),(26,'Issue',156,7),(27,'Issue',156,6),(28,'Issue',156,5),(29,'Issue',157,4),(30,'Issue',157,7),(31,'Issue',157,6),(32,'Issue',157,5);
+/*!40000 ALTER TABLE `watchers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wiki_content_versions`
+--
+
+DROP TABLE IF EXISTS `wiki_content_versions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_content_versions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wiki_content_id` int(11) NOT NULL,
+  `page_id` int(11) NOT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `data` longblob,
+  `compression` varchar(6) DEFAULT '',
+  `comments` varchar(255) DEFAULT '',
+  `updated_on` datetime NOT NULL,
+  `version` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `wiki_content_versions_wcid` (`wiki_content_id`),
+  KEY `index_wiki_content_versions_on_updated_on` (`updated_on`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wiki_content_versions`
+--
+
+LOCK TABLES `wiki_content_versions` WRITE;
+/*!40000 ALTER TABLE `wiki_content_versions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiki_content_versions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wiki_contents`
+--
+
+DROP TABLE IF EXISTS `wiki_contents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_contents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `page_id` int(11) NOT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `text` longtext,
+  `comments` varchar(255) DEFAULT '',
+  `updated_on` datetime NOT NULL,
+  `version` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `wiki_contents_page_id` (`page_id`),
+  KEY `index_wiki_contents_on_author_id` (`author_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wiki_contents`
+--
+
+LOCK TABLES `wiki_contents` WRITE;
+/*!40000 ALTER TABLE `wiki_contents` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiki_contents` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wiki_pages`
+--
+
+DROP TABLE IF EXISTS `wiki_pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wiki_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `protected` tinyint(1) NOT NULL DEFAULT '0',
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `wiki_pages_wiki_id_title` (`wiki_id`,`title`),
+  KEY `index_wiki_pages_on_wiki_id` (`wiki_id`),
+  KEY `index_wiki_pages_on_parent_id` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wiki_pages`
+--
+
+LOCK TABLES `wiki_pages` WRITE;
+/*!40000 ALTER TABLE `wiki_pages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiki_pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wiki_redirects`
+--
+
+DROP TABLE IF EXISTS `wiki_redirects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wiki_redirects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wiki_id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `redirects_to` varchar(255) DEFAULT NULL,
+  `created_on` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `wiki_redirects_wiki_id_title` (`wiki_id`,`title`),
+  KEY `index_wiki_redirects_on_wiki_id` (`wiki_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wiki_redirects`
+--
+
+LOCK TABLES `wiki_redirects` WRITE;
+/*!40000 ALTER TABLE `wiki_redirects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiki_redirects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wikis`
+--
+
+DROP TABLE IF EXISTS `wikis`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wikis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `start_page` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `wikis_project_id` (`project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wikis`
+--
+
+LOCK TABLES `wikis` WRITE;
+/*!40000 ALTER TABLE `wikis` DISABLE KEYS */;
+INSERT INTO `wikis` VALUES (1,1,'Wiki',1);
+/*!40000 ALTER TABLE `wikis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workflows`
+--
+
+DROP TABLE IF EXISTS `workflows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workflows` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tracker_id` int(11) NOT NULL DEFAULT '0',
+  `old_status_id` int(11) NOT NULL DEFAULT '0',
+  `new_status_id` int(11) NOT NULL DEFAULT '0',
+  `role_id` int(11) NOT NULL DEFAULT '0',
+  `assignee` tinyint(1) NOT NULL DEFAULT '0',
+  `author` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `wkfs_role_tracker_old_status` (`role_id`,`tracker_id`,`old_status_id`),
+  KEY `index_workflows_on_old_status_id` (`old_status_id`),
+  KEY `index_workflows_on_role_id` (`role_id`),
+  KEY `index_workflows_on_new_status_id` (`new_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workflows`
+--
+
+LOCK TABLES `workflows` WRITE;
+/*!40000 ALTER TABLE `workflows` DISABLE KEYS */;
+INSERT INTO `workflows` VALUES (1,1,1,2,3,0,0),(2,1,1,3,3,0,0),(3,1,1,4,3,0,0),(4,1,1,5,3,0,0),(5,1,1,6,3,0,0),(6,1,2,1,3,0,0),(7,1,2,3,3,0,0),(8,1,2,4,3,0,0),(9,1,2,5,3,0,0),(10,1,2,6,3,0,0),(11,1,3,1,3,0,0),(12,1,3,2,3,0,0),(13,1,3,4,3,0,0),(14,1,3,5,3,0,0),(15,1,3,6,3,0,0),(16,1,4,1,3,0,0),(17,1,4,2,3,0,0),(18,1,4,3,3,0,0),(19,1,4,5,3,0,0),(20,1,4,6,3,0,0),(21,1,5,1,3,0,0),(22,1,5,2,3,0,0),(23,1,5,3,3,0,0),(24,1,5,4,3,0,0),(25,1,5,6,3,0,0),(26,1,6,1,3,0,0),(27,1,6,2,3,0,0),(28,1,6,3,3,0,0),(29,1,6,4,3,0,0),(30,1,6,5,3,0,0),(31,2,1,2,3,0,0),(32,2,1,3,3,0,0),(33,2,1,4,3,0,0),(34,2,1,5,3,0,0),(35,2,1,6,3,0,0),(36,2,2,1,3,0,0),(37,2,2,3,3,0,0),(38,2,2,4,3,0,0),(39,2,2,5,3,0,0),(40,2,2,6,3,0,0),(41,2,3,1,3,0,0),(42,2,3,2,3,0,0),(43,2,3,4,3,0,0),(44,2,3,5,3,0,0),(45,2,3,6,3,0,0),(46,2,4,1,3,0,0),(47,2,4,2,3,0,0),(48,2,4,3,3,0,0),(49,2,4,5,3,0,0),(50,2,4,6,3,0,0),(51,2,5,1,3,0,0),(52,2,5,2,3,0,0),(53,2,5,3,3,0,0),(54,2,5,4,3,0,0),(55,2,5,6,3,0,0),(56,2,6,1,3,0,0),(57,2,6,2,3,0,0),(58,2,6,3,3,0,0),(59,2,6,4,3,0,0),(60,2,6,5,3,0,0),(61,3,1,2,3,0,0),(62,3,1,3,3,0,0),(63,3,1,4,3,0,0),(64,3,1,5,3,0,0),(65,3,1,6,3,0,0),(66,3,2,1,3,0,0),(67,3,2,3,3,0,0),(68,3,2,4,3,0,0),(69,3,2,5,3,0,0),(70,3,2,6,3,0,0),(71,3,3,1,3,0,0),(72,3,3,2,3,0,0),(73,3,3,4,3,0,0),(74,3,3,5,3,0,0),(75,3,3,6,3,0,0),(76,3,4,1,3,0,0),(77,3,4,2,3,0,0),(78,3,4,3,3,0,0),(79,3,4,5,3,0,0),(80,3,4,6,3,0,0),(81,3,5,1,3,0,0),(82,3,5,2,3,0,0),(83,3,5,3,3,0,0),(84,3,5,4,3,0,0),(85,3,5,6,3,0,0),(86,3,6,1,3,0,0),(87,3,6,2,3,0,0),(88,3,6,3,3,0,0),(89,3,6,4,3,0,0),(90,3,6,5,3,0,0),(91,1,1,2,4,0,0),(92,1,1,3,4,0,0),(93,1,1,4,4,0,0),(94,1,1,5,4,0,0),(95,1,2,3,4,0,0),(96,1,2,4,4,0,0),(97,1,2,5,4,0,0),(98,1,3,2,4,0,0),(99,1,3,4,4,0,0),(100,1,3,5,4,0,0),(101,1,4,2,4,0,0),(102,1,4,3,4,0,0),(103,1,4,5,4,0,0),(104,2,1,2,4,0,0),(105,2,1,3,4,0,0),(106,2,1,4,4,0,0),(107,2,1,5,4,0,0),(108,2,2,3,4,0,0),(109,2,2,4,4,0,0),(110,2,2,5,4,0,0),(111,2,3,2,4,0,0),(112,2,3,4,4,0,0),(113,2,3,5,4,0,0),(114,2,4,2,4,0,0),(115,2,4,3,4,0,0),(116,2,4,5,4,0,0),(117,3,1,2,4,0,0),(118,3,1,3,4,0,0),(119,3,1,4,4,0,0),(120,3,1,5,4,0,0),(121,3,2,3,4,0,0),(122,3,2,4,4,0,0),(123,3,2,5,4,0,0),(124,3,3,2,4,0,0),(125,3,3,4,4,0,0),(126,3,3,5,4,0,0),(127,3,4,2,4,0,0),(128,3,4,3,4,0,0),(129,3,4,5,4,0,0),(130,1,1,5,5,0,0),(131,1,2,5,5,0,0),(132,1,3,5,5,0,0),(133,1,4,5,5,0,0),(134,1,3,4,5,0,0),(135,2,1,5,5,0,0),(136,2,2,5,5,0,0),(137,2,3,5,5,0,0),(138,2,4,5,5,0,0),(139,2,3,4,5,0,0),(140,3,1,5,5,0,0),(141,3,2,5,5,0,0),(142,3,3,5,5,0,0),(143,3,4,5,5,0,0),(144,3,3,4,5,0,0);
+/*!40000 ALTER TABLE `workflows` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2012-10-08  0:00:02
