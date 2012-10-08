@@ -44,6 +44,7 @@
 
 		<!-- Left part of split pane containing the web UI -->
 		<div id = "splitterLeft" class = "splitterLeft">
+
 			<!-- Container for the web UI, making sure the height is minimum the window height -->
 			<div class = "webUI">
 
@@ -92,13 +93,15 @@
 
 				<!-- Bottombar in web UI -->
 				<div class = "bottombar">
-					<div id="pubnubIndicator" class="pubnubIndicator" >PN</div>
+					<div id="pubnubIndicator" class="pubnubIndicator paddingLeft">PN</div>
 				</div>
 
-				<!-- end "webUI" -->
-			</div>
-			<!-- end "splitterLeft" -->
+				
+			</div> 
+			<!-- end "webUI" -->
 		</div>
+		<!-- end "splitterLeft" -->
+
 
 		<!-- Splitpane grabber -->
 		<div class = "drag"></div>
