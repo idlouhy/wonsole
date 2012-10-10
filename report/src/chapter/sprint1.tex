@@ -10,14 +10,15 @@ The goal for the first sprint is to get a basic version of the library applicati
 
 \subsection{User stories}
 The user stories we chose to implement in this sprint with their estimated workload is listed in Table~\ref{table:sp1usrstories}. We assume that we have around 170 hours a sprint for working with the actual user stories. The remaining 30 hours will be used for meetings, demonstrations and project management.
-Some points on the estimation vs act:
+
+Following is some points to discuss the deviations in estimated effort and actual time used.
 \begin{itemize}
 \item We used more time on implementation than we planned for. We are still getting used to the fact that we have to document everything, usually we just code and hope for the best. Also we had to spend some time setting up technologies on a server and get them running before we started implementing actual functionality.
-\item We used less time on design than we planned. Still getting used to designing everything before we code, up front. Plan to do this better the next sprint
-\item We used quite a lot of time less on testing than we estimated. We anticipated that we had to use a considerable time to correct bugs and errors during the testing, but all the test cases passed on the first attempt. We anticipated that we had to spend more time on getting all the technologies we had chosen to play together nicely through extensive testing, but it turned out that they were a great fit, and that it wasn't too much work to get them working together int he way we intended.
+\item We used less time on design than we planned. Still getting used to designing everything before we code, up front. We plan to do this better the next sprint
+\item We used quite a lot of time less on testing than we estimated. We anticipated that we had to use a considerable time to correct bugs and errors during the testing, but all the test cases passed on the first attempt. We anticipated that we had to spend more time on getting all the technologies we had chosen to play together nicely through extensive testing, but it turned out that they were a great fit, and that it wasn't too much work to get them working together in the way we intended.
 \item Once we had implemented the functionality of adding new books, the time used to implement D2 and D5 was considerably reduced, as we could resuse much of the code we had created for D1.
 \item The PubNub real- time messaging turned out to be easier to implement with Node.js than we expected. 
-\item We ended up spending more time on the Scrum planning meeting than we planned for. In addition we didn't work as many hours that we planned for. As a result we had less time available to implement the user stories. Luckily the it turned out that this time was sufficient to finish all the user stories.
+\item We ended up spending more time on the Scrum planning meeting than we planned for. In addition we didn't work as many hours that we planned for. As a result we had less time available to implement the user stories. Luckily the it turned out that this time was sufficient to finish all the user stories we planned to implement.
 \end{itemize}
 
 \begin{table}
@@ -89,14 +90,74 @@ Implementation	&82		&88		\\
 Testing			&23		&16		\\
 Documentation	&18		&19		\\
 \hline
-\bf{Total}			&\bf{170}	\bf{151}		\\
+\bf{Total}			&\bf{170}	&\bf{151}		\\
 \hline
 \end{tabular}
 \label{table:sp1workload}
 \end{table}
 
 
-\section{Design}
+\section{Architecture}
+This section will handle the architecture we used for this sprint. The architecture will be described through class diagram and component diagram.
+
+
+\subsection{4+1 view model}
+The 4+1 view model. Here the views will be described, and how they will look in our architecture. 
+
+\subsubsection{Logical View}
+Describes the functionality in the system from the end users perspective.The end users will mainly be power users, wanting to perform object editing tasks efficiently. This view will be described through class, communication and sequence diagram.
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{image/ClassDiagram.png}
+\caption{Client Class Diagram}
+\label{figure:clientClassDiagram}
+\end{figure}
+
+Figure~\ref{figure:clientClassDiagram} The client class diagram gives an overview of the class structure of system, and how they collaborate. We can see that the client consists of two separate views, a GUI and a Shell, which is split by a splitpane so the user can se bouth a GUI interface and the commandline interface. These two views can make changes to the library objects, and get reflected back to the other view. The library objects consists of a library filed with books. The changes done to a book is delivered to other clients and the server through PubNub. 
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{image/ServerClassDiagram.png}
+\caption{Client Class Diagram}
+\label{figure:serverClassDiagram}
+\end{figure}
+
+Figure~\ref{figure:serverClassDiagram} The server class diagram shows how the REST api is set up, and the communication with the pubnub and db where the library information is stored.
+
+
+\subsubsection{Development View}
+Describes the system from the programmer's perspective. This will be described through how the different component parts are separated. Component and package diagrams will show this.
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{image/ComponentDiagram.png}
+\caption{Component Diagram}
+\label{figure:componentDiagram}
+\end{figure}
+
+Figure~\ref{figure:componentDiagram} These components form a three layered structure, and communicate with each other through the neighboring layer.
+
+
+
+%\subsubsection{Process View}
+%Describes the dynamic aspect of the system, and explains how the different parts of the system will communicate at runtime. This is described with a activity diagram.
+
+%The user will ask for an object from the backend, this will be delivered to the client through the communication channel as a json object, the client will interpret this and the user can then edit it through the console, and send it back to the backend.
+
+
+
+\subsubsection{Physical View}
+Describes the system from the system engineer's perspective. And explains the physical connections between the software components. Described through a deployment diagram. 
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{image/DeploymentDiagram.png}
+\caption{Deployment Diagram}
+\label{figure:deploymentDiagram}
+\end{figure}
+
+Figure~\ref{figure:deploymentDiagram} The structure of the four different parts of the system.
 
 
 \section{Implementation}
@@ -389,3 +450,33 @@ All our tests passed on the first attempt, without any comlications to speak of.
 
 
 \section{Evaluation}
+\subsection{Review}
+\subsection{Positive}
+
+\begin{itemize}
+\item We delivered a functional system for the demo, with all the promised functionality.
+\item The customer was happy with the product and our progress so far.
+\item We finished all the user stories, and even additional ones we didn't plan for
+\item We divided the work amongst the group members in a good way
+\item Conducted a good planning meeting on the first Monday, and we got the customer included in the prioritization of user stories.
+\item We received valuable feedback from customer on the demonstration.
+\end{itemize}
+
+\subsection{Negative}
+\begin{itemize}
+\item We didn't do a lot of design up front, and ended up using more time on implementation than we planned for.
+\item We weren't good enough to document our work in the report during the sprint. This lead to some work that had to be done after the sprint was finished.
+\item We are not using the time tracking system properly at the moment. As a result the documentation of work hours was more time consuming than necessary.
+\item Problems with the burndown chart
+\item We failed to use the scrum process properly, as we didn't divide the user stories into tasks, and weren't good enough to facilitate daily scrum meetings.
+\end{itemize}
+
+\subsection{Planned Responses}
+\begin{itemize}
+\item Do more design up front, before we start to implemen
+\item Break down the user stories into smaller tasks, so its easier to estimate the workload and assign them to different persons.
+\item Facilitate the daily Scrum meetings
+\item Do more documentation during the sprint, to avoid extra work after the sprint is finished.
+\item Fix the burndown chart plugin, and start using it as a tool in the development process
+\item Try to log our work hours more accurate, to make it easier to document them afterwards
+\end{itemize}

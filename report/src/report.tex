@@ -37,6 +37,7 @@
 }
 
 \usepackage{fullpage}
+\usepackage{verbatim}
 
 \begin{document}
 
@@ -45,6 +46,7 @@
 \begin{center}
 	\vspace{\stretch{0.7}}
 	{\Huge Wonsole} \\
+	\medskip
 	{\LARGE The new web console for power users} \\ 
 	\vspace{\stretch{0.3}}
 	\includegraphics[width=2.5in]{image/logo-ntnu.pdf} \\
@@ -56,13 +58,16 @@
 
 %ABSTRACT
 \begin{abstract}
-Imagine the old minimachine systems where the end user works in a domain specific application in a black-and-green terminal. She is super efficient, jumping between windows with short cuts and everything is "in her fingers".
- 
-This is then replaced with a web-frontend and a mouse. Everything is "wrong", the design makes the usage patterns locked and she gets "mouse sickness" from point-clicking every command.
- 
-The task is to modify a web-application and add a scripting-console where the end-user can enter commands into a DSL - similar to the older interface. When commands are run, the results are shown both in the console and the web-interface. The use can still use the mouse and navigate as usual.
- 
-The target is a simple proof-of-concept in order to research any changes to the API, the potential of the method as well as evaluate the usability of scripting languages/DSL and API.
+This report will give the reader an insight into the details of the design, development and implementation of the task given in the course TDT4290 - Customer Driven Project, taught at NTNU - Norwegian University of Science and Technology. Netlight is the customer and they have presented the group with the task of breathing new life into the console.
+
+Web-applications these days are leaning against a mouse and web-fronted design. This has taken away the efficiency of a power user, who used a terminal application on a daily basis, and had the system to their fingertips.
+
+A hybrid web-fronted/console design would be a possible solution to this problem. Where the power user can get use of their full potential through a console whilst the objects are presented in the web-interface. 
+
+This is a proof-of-concept task, and research done will be documented and use to argue for and against the solutions used and not used. Everything from the planning of the project startup and preliminary-study too the complete conclusion is stated in this report. 
+
+The approach to investigate and solve this problem starts with a thorough study of relevant technologies, and how this can be made possible. The conclusion from this study let us put together a system which we test on different kinds of users, such as, librarians, our peers and others. Through this whole process we have a close work-relationship with our customer to ensure the wants and expectations are met, and that our conclusions and findings boosts future research in this field. 
+
 \end{abstract}
 
 % LISTS
@@ -73,12 +78,12 @@ The target is a simple proof-of-concept in order to research any changes to the 
 \listoftables
 
 %CHAPTERS
-\input{chapter/introduction}
-\input{chapter/project-management}
-\input{chapter/prestudy}
+\input{chapter/01-introduction}
+\input{chapter/02-project-management}
+\input{chapter/03-prestudy}
 \input{chapter/requirements}
 \input{chapter/test-plan}
-\input{chapter/design}
+\input{chapter/architecture}
 \input{chapter/sprint1}
 \input{chapter/sprint2}
 \input{chapter/sprint3}
