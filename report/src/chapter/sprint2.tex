@@ -2,54 +2,64 @@
 \section{Planning}
 \subsection{Duration}
 \subsection{Sprint Goal}
-\subsection{User stories}
+\subsection{User Stories}
+Each estimate for the subtasks includes design and implementation of the solution. Testing includes writing unit tests as we code, write test cases and to perform them. Documentation includes all the work necessary to document our work on that user story in the report.
+
+110 hours available. Less than normal as we have to focus on pre- delivery of the report on October 14th.
 
 \begin{table}
 \caption{Sprint 2 User Stories}
 \centering
 \begin{tabular}{ l p{8cm} l l }
 \hline 
-            &               &\multicolumn{2}{c}{Hours}          \\
- User Story & Short Description     &Est.       &Act.                                  \\ 
+			&				&\multicolumn{2}{c}{Hours}			\\
+ User Story	& Short Description		&Est.		&Act.	                               \\ 
 \hline \\ [-2.0ex]
- \bf{A4}     &\bf{Schemaless database}        &\bf{50}        &          \\ 
-          &Design                           &15          &      \\
-          &Implementation                   &20         &     \\
-          &Testing                          &5          &      \\
-          &Documentation                    &5          &      \\
+ \bf{A4}     &\bf{Update to schemaless database}		&\bf{10}		&\bf{}          \\ 
+		  &Change the server implemenation		&4			&		\\
+		  &Update REST API calls					&2			&		\\
+		  &Testing							&2			&		\\
+		  &Documentation						&2			&		\\
 
- \bf{G4}     &\bf{Clearly disply changes}         &\bf{25}        &               \\ 
-          &Design                           &10          &      \\
-          &Implementation                   &10         &      \\
-          &Testing                          &3          &      \\
-          &Documentation                    &2          &      \\
+ \bf{G4}     &\bf{Reflect actions from the GUI in the console} 		&\bf{11}		&\bf{}               \\ 
+		  &Print the commands in the console				&6			&		\\
+		  &Testing									&3			&		\\
+		  &Documentation								&2			&		\\
 
- \bf{G7}     &\bf{Autocomplete and display commands}     &\bf{20}        &             \\ 
-          &Design                           &4          &      \\
-          &Implementation                   &10          &     \\
-          &Testing                          &4          &      \\
-          &Documentation                    &2            &      \\
+ \bf{G7}     &\bf{Autocompletion of commands} 	&\bf{30}		&\bf{}		     \\ 
+		  &Add methods to list commands		&4			&		\\
+		  &Create popup menu				&10			&		\\
+		  &Update elements in menu			&4			&		\\
+		  &Make selection of commands possible&3			&		\\
+		  &Autocomplete on selection			&1			&		\\
+		  &Testing						&4			&		\\
+		  &Documentation					&4			&		\\
 
- \bf{G10}     &\bf{Indicate working object in GUI}       &\bf{25}        &            \\ 
-          &Design                           &10         &     \\
-          &Implementation                   &10         &     \\
-          &Testing                          &3          &      \\
-          &Documentation                    &2          &      \\
+ \bf{G10}   &\bf{Indicate the selected objects in GUI}		&\bf{26}		&\bf{}		     \\ 
+		  &Design soulution for highlighting elements	&2			&		\\
+		  &Create method for highlighting				&2			&		\\
+		  &Create record for selected objects			&4			&		\\
+		  &Respond to changes in selection				&8			&		\\
+		  &Highlight newly created objects				&2			&		\\
+		  &Testing								&4			&		\\
+		  &Documentation							&4			&		\\
 
- \bf{G11}      &\bf{Cycle through objects in console}              &\bf{15}        &             \\
-          &Design                           &3          &      \\
-          &Implementation                   &8          &     \\
-          &Testing                          &2          &      \\
-          &Documentation                    &2          &      \\
+ \bf{G11}	  &\bf{Cycle through the current selection}	&\bf{25}		&\bf{}		     \\
+		  &Logic to keep track of selection			&5			&		\\
+		  &Update this list when selection changes	&4			&		\\
+		  &Extract objects when cycling through		&7			&		\\
+		  &Update the GUI when selection changes	&2			&		\\
+		  &Testing							&4			&		\\
+		  &Documentation						&3			&		\\
 
-\bf{G12}   &\bf{Display record info on record click}               &\bf{10}        &          \\
-          &Design                           &1          &      \\
-          &Implementation                   &5          &      \\
-          &Testing                          &2          &      \\
-          &Documentation                    &2          &      \\
-
+\bf{G8}	  &\bf{Show details on click}			&\bf{8}		&\bf{}		     \\
+		  &Make ID clickable					&1			&		\\
+		  &Update relevant section on click		&2			&		\\
+		  &Able the user to make changes		&3			&		\\
+		  &Testing						&1			&		\\
+		  &Documentation					&1			&		\\
 \hline 
-          &\bf{Total:}                      &\bf{140}       &       \\
+		  &\bf{Total:}						&\bf{110}		&\bf{}		\\
 \hline
 \end{tabular}
 \label{table:sp2usrstories}
@@ -80,6 +90,7 @@ Documentation   &15     &     \\
 \subsubsection{Development View}
 \subsubsection{Process View}
 \subsubsection{Physical View}
+
 \section{Implementation}
 \section{Testing}
 \subsection{Test Results}
