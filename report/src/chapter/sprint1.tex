@@ -383,31 +383,32 @@ We are providing a global object containing a list of books, called LIB, which i
 
 Library object specification:
 \begin{verbatim}
-    remove all books that are selected in the visible list, will update the web UI and db.
     function removeSelected ()
+    remove all books that are selected in the visible list, will update the web UI and db.
     
-    List all books into the console.
     function listBooks()
+    List all books into the console.
     
-    Remove a book with the given ID. Will update the web UI and db.
     function removeBookByID(_id)
+    Remove a book with the given ID. Will update the web UI and db.
 
-    this.selectAllToggle = selectAllToggle;
+    function selectAllToggle()
     Toggle select all books currently in the visible list. Will update the web UI and db.
     This function is coupled with the checkbox for selecting all books in the list.
-    function selectAllToggle()
     
-    Queries the list of books for an array of books where the specified book parameters match their respective values.
+    function query(parameter1, value1, parameter2, value2 ...)
+    Queries the list of books for an array of books where the 
+    specified book parameters match their respective values.
     May be called with an arbitrary even number of arguments. 
     The values will be interpreted as regular expressions if they are strings.
-    function query(parameter1, value1, parameter2, value2 ...)
 
-    Generate list elements for all books in the system, at the "BOOKTABLE" element in the HTML document.
     function generateHTML()
+    Generate list elements for all books in the system, 
+    at the "BOOKTABLE" element in the HTML document.
     
+    function retrieveObjects()
     This function retrieves all objects from the server and updates the web UI and db. 
     Will lock the UI until objects have been received.
-    function retrieveObjects()
 
 \end{verbatim}
 
@@ -416,34 +417,38 @@ The aforementioned list contains objects of the type Book. These objects contain
 
 Book object specification:
 \begin{verbatim}
-    Constructor for the Book object. Will add it to the list of Books in LIB. Should be used with the new keyword.
-    If id is null, the object will be sent to the server, and the id will be returned. This will block the UI and then update it.
-    Not specifying the id parameter at all upon using the constructor will be interpreted as the id being null.
-    id should be null when using this from the console or web UI, but defined in the callback function for retrieving Books.
     function Book(title, author, id)
+    Constructor for the Book object. Will add it to the list of Books in LIB. 
+    Should be used with the new keyword.
+    If id is null, the object will be sent to the server, and the id will be returned. 
+    This will block the UI and then update it.
+    Leaving out the id parameter entirely will be interpreted as the id being null.
+    id should be null when using this from the console or web UI, 
+    but defined in the callback function for retrieving Books.
     
+    function saveUpdate()
     Update the book on the server, blocking/unblocking and updating the UI in the process.
     Should be called after altering the Book object's variables.
-    function saveUpdate()
     
-    Change the author of the book. Will update the web UI and db.
     function changeAuthor(newAuthor)
+    Change the author of the book. Will update the web UI and db.
     
-    Generate a JSON object from this Book.
     function toJSON()
+    Generate a JSON object from this Book.
 
-    Change the name of the book. Will update the web UI and db.
     function changeTitle(newTitle)
+    Change the name of the book. Will update the web UI and db.
 
-    Toggle whether this book is selected. Will make sure the value of the Book's checkbox is correct, if it exists.
     function toggleSelect()
+    Toggle whether this book is selected. 
+    Will make sure the value of the Book's checkbox is correct, if it exists.
     
     Remove this book from the system. Will update database and UI.
     function remove()
 
+    function generateHTML()
     Generate HTML element(s) for this book. Will not manipulate the UI by itself.
     Returns the DOM HTML element. Should be a table row. Row style will be overridden.
-    function generateHTML()
 \end{verbatim}
 
 
