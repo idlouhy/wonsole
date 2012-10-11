@@ -211,3 +211,196 @@
 \label{table:testcasetid10}
 \end{table}
 
+
+\subsection{Sprint 2}
+
+
+\begin{table}
+\caption{Test Case TID11}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Storing objects without a schema in a database on the central server . \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & There needs to be a server up and running with a database available\\ 
+ Feature         & The ability to store objects with a different attribute set, in the same database.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Call the appropriate method for storing a new object with a given set of attributes \\ 2. Call the same method again, but provide an object with a different set of attributes \\ 3. Observe that both objects are stored in the database with the correct attributes.} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & Both objects, with different attributes, are stored in the database.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid11}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID12}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Printing out commands in the console while operating with the GUI. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & For every action made in the GUI the corresponding command in the console should be printed in the console.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Do a lot of different actions in the GUI. \\ 3. Observe that the correct commands are printed in the console.} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The correct commands are printed in the console.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid12}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID13}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Showing a popup menu in the console with the available methods and attributes for the object which is currently selected. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to list the methods and attributes of a given object in a popup menu.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Create a new object. \\ 3. Select that object using the console. \\ 4. Show the popup menu using the corresponding hotkey} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The correct methods and attributes of the selected object is shown in the popup menu.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid13}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID14}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Selecting an element from the popup menu and insert the selected method or attribute in the console. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to autocomplete methods and attributes selected from the popup menu.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Select an object using the console. \\ 3. Pick a method or attribute from the popup menu. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The selected method or attribute from the popup menu is printed in the console.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid14}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID15}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Highlighting an object in the GUI when it is selected from the console. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & Highlighting a selected object.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Select an object using the console. \\ 3. Observe the response in the GUI. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The selected object should be highlighted in the GUI.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid15}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID16}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Highlighting a group of objects in the GUI when it is selected from the console. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & The system must be capable of selecting multiple objects\\ 
+ Feature         & Highlighting groups of objects.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Select a group of objects. \\ 3. Observe the response in the GUI. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The selected objects should be highlighted in the GUI.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid16}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID17}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Cycling through the current selection of objects using a hotkey. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & The system must be capable of selecting multiple objects\\ 
+ Feature         & The ability to cycle through the current selection of objects in the console using a hotkey.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Select a group of objects. \\ 3. Cycle through the objects using the hotkey in the console. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The objects in the current selection are made available to the user one by one, in the correct order.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid17}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID18}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description                                                              \\ 
+\hline \\ [-2.0ex]
+ Description     &Highlighting the selected object while cycling through a selection of objects. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & The system must be capable of selecting multiple objects\\ 
+ Feature         & While cycling through a selection of objects in the console the current object will be highlighted in the GUI.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Select a group of objects. \\ 3. Cycle through the objects using the hotkey in the console. \\ 4. Observe the response in the GUI. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The highlighted object in the GUI will be updated as you cycle through the selection.          \\
+\hline 
+\end{tabular}
+\label{table:testcasetid18}
+\end{table}
+
+\clearpage
+
+\begin{table}
+\caption{Test Case TID19}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Update a separate section of the GUI when the user clicks on a record, and make the user able to edit the record in this section. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to edit the information on a record from a separate section of the GUI.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Click on a record. \\ 3. Edit the info on the clicked record in the separate section. \\ 4. Observe the response in the GUI. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & A separate section of the GUI is updated with the information on the clicked record. When this information is edited the record is updated. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid19}
+\end{table}
+
