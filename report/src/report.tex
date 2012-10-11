@@ -12,6 +12,8 @@
 \usepackage{wrapfig}
 \usepackage{pbox}
 
+\usepackage[acronym]{glossaries}
+
 \fontfamily{ptm}\selectfont
 
 \usepackage{hyperref}
@@ -93,9 +95,16 @@ The approach to investigate and solve this problem starts with a thorough study 
 \input{chapter/conclusion}
 \input{chapter/appendices}
 
+\newacronym{lvm}{LVM}{Logical Volume Manager}
 
 It was shown in \cite{example}
 
+
+\addcontentsline{toc}{chapter}{Glossary}
+\printglossaries
+
+
+\addcontentsline{toc}{chapter}{References}
 \bibliography{references}
 
 \end{document}
