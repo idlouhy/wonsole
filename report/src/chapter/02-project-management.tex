@@ -1,9 +1,11 @@
 \chapter{Project management}
 
-\section{Project plan}
-\subsection{Tool Selection}
-After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. 
+\section{Tool Selection}
+After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
 
+LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
+
+For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
 
 \begin{table}
 \centering
@@ -18,16 +20,16 @@ Report & Latex \\
 Backend & Node.js \\
 Database & MongoDB \\
 Communication & PubNub \\
-Client & JavasScript + JQuery \\
+Client & JavasScript + JQuery, HTML, CSS \\
 \hline
 \end{tabular}
 \caption{Tools used in project}
 \label{table-tools}
 \end{table}
 
-
 \subsection{Concrete Project Work Plan}
 The first 4,5 weeks of the project were used on project planning, pre- study on the domain of the problem, to deduce user stories for the product backlog and to create the overall architecture of the system. The project is a proof of concept type of project, so it was important that we used a considerable amount of time on studying the domain of the problem and to find technologies that would solve the task as best as possible. The Scrum process consisted of 4 sprints, each 2 weeks long. In each sprint we had 200 work hours available, but a part of this will be used on report writing, project management, lectures and meetings. The two first sprint had an estimate of 130 hours availablefor development tasks, while the two last had an estimate of 140 work hours available. The last week will be used to evaluate the project, finish the report and to prepare the final presentation. The timeline of the project is outlined in Figure~\ref{figure:gantt}, and the WBS of the project is given in Table~\ref{table:wbs}.
+
 
 \begin{figure}
 \centering
@@ -86,33 +88,32 @@ Project name is important project identificator. It should summarize main projec
 
 In this section, we will describe the process of choosing a name for the project. First of all, we made a list of words, that we can use in the project name. These words describe project funcionality or goal.
 
-Words that can be used in project name: master, console, web, text, keyboard
+Words that can be used in project name: master, console, web, text, keyboard.
 
 We used the list of words and brainstorming session on a meeting for compiling a list of project name candidates:
 
-Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI
+Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI.
 
 After discussion we chose the name \emph{Wonsole}. Project name can be sometimes little confusing, so we added the subtitle: \emph{The new web console for power users.}
 
 
 \section{Team Structure}
+We are a very small development team of just four team members. In typicall software project, there is a lot of different roles, so each of us have to have more roles. We started with creating a list of roles, that we need in the team. Each role represents a responsibility. This person should have overview of the progress on his area of responsibility and control the work done. The work itself is beeing broken down into tasks and on these tasks can work anyone from the team. The roles in our team are listed in the table \ref{table-teamroles}, overview of the roles is in the table \ref{table-rolesoverview}.
 
-\subsection{Team Roles}
 \begin{table}
 \centering
-\begin{tabular}{  l  l }
+\begin{tabular}{ l  l }
   \hline
-  \textbf{Team member} & \textbf{Roles} \\ 
-\hline
-  Ivo & Group leader, Customer and Advisor Contact, Scrum Master \\ 
-  Oystein & Test Manager, QA Manager, Weekly Report Manager \\ 
-  Oddvar & GUI Designer, Code Master, Meeting Secretary, Time Keeper \\ 
-  Martin & System Architect, Report Manager \\ 
-\hline
+  \textbf{Team member} & \textbf{Roles} \\
+  Ivo & Group leader, Customer and Advisor Contact, Scrum Master \\
+  Oystein & Test Manager, QA Manager, Weekly Report Manager \\
+  Oddvar & GUI Designer, Code Master, Meeting Secretary, Time Keeper \\
+  Martin & System Architect, Report Manager \\
+  \hline
 \end{tabular}
+\label{table-rolesoverview}
 \caption{Team role overview}
 \end{table}
-
 
 
 \begin{table}
@@ -154,6 +155,7 @@ After discussion we chose the name \emph{Wonsole}. Project name can be sometimes
   \hline
 \end{tabularx}
 \caption{Team role}
+\label{table-teamroles}
 \end{table}
 
 \section{Quality Assurance}
