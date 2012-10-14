@@ -181,18 +181,6 @@ Web-based hosting service for software development. It uses the Git revision con
 
 LaTex is a document markup language that uses the TeX typesetting program. The main focus of LaTex is to make authors able to focus on the content of what they are writing without worrying about its visual presentation. It is mainly used to transform XML- based documents to PDFs. LaTex is widely used in academia, to produce scientific reports, etc.
 
-\subsection{Quality assurance technologies}
-\subsubsection*{JSLint}
-JSLint looks through JavaScript code and detects potentially problematic and unusual syntax in the code to improve the quality of the code. 
-
-JavaScript was originally aimed for web pages with small tasks where the Java platform was too heavy to run and develop for. But JavaScript is capable of much more, and has became used in more and larger projects. However, the lenient and flexible syntax useful for small tasks has proven to make JavaScript troublesome for larger projects. JSLint helps the developer in handling this.
-\footnote{http://www.jslint.com/lint.html}
-
-\subsubsection*{JSHint}
-JSHint is a fork of JSLint which was designed with similar goals of enforcing code quality and avoiding common programming errors, but in a more lenient manner. JSLint is criticized for being a tool that is not first and foremost helpful in preventing bugs or improving readability, but rather a tool that enforces any strict convention as a goal in itself. JSHint attempts to alleviate this, and is more configurable and exhibits less absolutist behaviour.
-
-\footnote{http://anton.kovalyov.net/2011/02/20/why-i-forked-jslint-to-jshint/}
-
 \subsection{Database}
 \subsubsection*{MongoDB}
 MongoDB is document-oriented high performance and availability database system. Instead of the schema DB approach, used in traditional database systems, but is document oriented. That means, the database consists of collections (as in tables), collection consists of documents. Document is one record in the collection. Document is structured, so it contains a set of key-value pair fields \cite{mongodb-intro}. Advantage of this setup is, that it is very easy to mix and migrate data with different attributes. MongoDB is has its own access console, where you can use scripting with Javascript language. 
@@ -218,7 +206,7 @@ ASP.NET is a part of the .NET Framework used for creating web applications and s
 PHP is a acronym for Hypertext Preprocessor. It is a serverside programming language mainly used for web applications. PHP is easy to use and supports a lot of modules, platforms and database systems. One of the main disadvantages is, that is not as effective for web applications, because it is interpreted and doesnt keep application context \cite{php-whatis}.
 
 \subsubsection*{Ruby on Rails}
-Ruby on Rails is a web application Framework using the MVC, Model View Controller model. It is a Ruby language module for building dynamic web applications. This framework also offers variety of modules, which can extend functionality or simplify tasks. The code is run the same way as Node.js and PHP, they are all interpreted, but Ruby on Rails is more difficult to install \cite{ror-about}.
+Ruby on Rails is a web application Framework using the MVC, Model View Controller model. It is a Ruby language module for building dynamic web applications. This framework also offers variety of modules, which can extend functionality or simplify tasks. The code is run the same way as Node.js and PHP, they are all interpreted, but Ruby on Rails is more difficult to install \cite{ror-about}
 
 
 \subsection{Client-side web application technologies}
@@ -497,4 +485,10 @@ We will be writing unit tests throughout the implementation process and run thes
 We will be utilizing user testing and involve end users to get feedback on the entire system or specific functions. This testing will mainly be used to get feedback on the domain scripting language and how easy it is to understand and use. Preferably it will be done continuously throughout the development process. It is important to involve users as the goal of this project is to ease their workflow. As we are not working with an existing system thats actually in use, there will not exist any real users of this system with experience using it. We will therefore mainly be using our fellow students as test subjects, as they are readily available and technically competent enough to understand the concept and act as superusers. In addition the customer has stated that it will encourage employees from the entire company to us give feedback if we ask for it. Specific solutions can be sent to the customer representative which in turn will relay it to experts on the area it concerns.
 
 \section{Code conventions}
-JSLint
+\subsection*{JSLint}
+JSLint looks through JavaScript code and detects potentially problematic and unusual syntax in the code to improve the quality of the code. 
+
+JavaScript was originally aimed for web pages with small tasks where the Java platform was too heavy to run and develop for. But JavaScript is capable of much more, and has became used in more and larger projects. However, the lenient and flexible syntax useful for small tasks has proven to make JavaScript troublesome for larger projects. JSLint helps the developer in handling this. \cite{jslint-about}
+
+\subsection*{JSHint}
+JSHint is a fork of JSLint which was designed with similar goals of enforcing code quality and avoiding common programming errors, but in a more lenient manner. JSLint is criticized for being a tool that is not first and foremost helpful in preventing bugs or improving readability, but rather a tool that enforces any strict convention as a goal in itself. JSHint attempts to alleviate this, and is more configurable and exhibits less absolutist behaviour. \cite{jshint-about}
