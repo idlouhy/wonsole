@@ -1,24 +1,26 @@
 \chapter{Project management}
 
-\section{Project plan}
-\subsection{Tool Selection}
-After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. 
+\section{Tool Selection}
+After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
 
+LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
+
+For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
 
 \begin{table}
 \centering
 \begin{tabular}{ l l}
-\textbf{part of project}  & \textbf{technology} \\
+\textbf{Part of project}  & \textbf{Technology} \\
 \hline
-communication & Skype, Google Groups, Google Calendar \\
-document colaboration & Google Docs, Google Drive \\
-code colaboration & Git + Github \\
-time tracking and mamangement & Redmine \\
-report & Latex \\
-backend & Node.js \\
-database & MongoDB \\
-communication & PubNub \\
-client & JavasScript + JQuery \\
+Communication & Skype, Google Groups, Google Calendar \\
+Document colaboration & Google Docs, Google Drive \\
+Code colaboration & Git + Github \\
+Time tracking and mamangement & Redmine \\
+Report & Latex \\
+Backend & Node.js \\
+Database & MongoDB \\
+Communication & PubNub \\
+Client & JavasScript + JQuery, HTML, CSS \\
 \hline
 \end{tabular}
 \caption{Tools used in project}
@@ -28,8 +30,6 @@ client & JavasScript + JQuery \\
 
 
 
-
-\subsection{Concrete Project Work Plan}
 
 \begin{figure}
 \centering
@@ -88,30 +88,32 @@ Project name is important project identificator. It should summarize main projec
 
 In this section, we will describe the process of choosing a name for the project. First of all, we made a list of words, that we can use in the project name. These words describe project funcionality or goal.
 
-Words that can be used in project name: master, console, web, text, keyboard
+Words that can be used in project name: master, console, web, text, keyboard.
 
 We used the list of words and brainstorming session on a meeting for compiling a list of project name candidates:
 
-Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI
+Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI.
 
 After discussion we chose the name \emph{Wonsole}. Project name can be sometimes little confusing, so we added the subtitle: \emph{The new web console for power users.}
 
 
 \section{Team Structure}
+We are a very small development team of just four team members. In typicall software project, there is a lot of different roles, so each of us have to have more roles. We started with creating a list of roles, that we need in the team. Each role represents a responsibility. This person should have overview of the progress on his area of responsibility and control the work done. The work itself is beeing broken down into tasks and on these tasks can work anyone from the team. The roles in our team are listed in the table \ref{table-teamroles}, overview of the roles is in the table \ref{table-rolesoverview}.
 
-\subsection{Team Roles}
 \begin{table}
-\begin{tabularx}{\textwidth}{ | l | X | l | }
+\centering
+\begin{tabular}{ l  l }
   \hline
-  \textbf{Team member} & \textbf{Roles} \\ \hline
-  Ivo & Group leader, Customer and Advisor Contact, Scrum Master \\ \hline
-  Oystein & Test Manager, QA Manager, Weekly Report Manager \\ \hline
-  Oddvar & GUI Designer, Code Master, Meeting Secretary, Time Keeper \\ \hline
-  Martin & System Architect, Report Manager \\ \hline
-\end{tabularx}
+  \textbf{Team member} & \textbf{Roles} \\
+  Ivo & Group leader, Customer and Advisor Contact, Scrum Master \\
+  Oystein & Test Manager, QA Manager, Weekly Report Manager \\
+  Oddvar & GUI Designer, Code Master, Meeting Secretary, Time Keeper \\
+  Martin & System Architect, Report Manager \\
+  \hline
+\end{tabular}
+\label{table-rolesoverview}
 \caption{Team role overview}
 \end{table}
-
 
 
 \begin{table}
@@ -153,6 +155,7 @@ After discussion we chose the name \emph{Wonsole}. Project name can be sometimes
   \hline
 \end{tabularx}
 \caption{Team role}
+\label{table-teamroles}
 \end{table}
 
 \section{Quality Assurance}
