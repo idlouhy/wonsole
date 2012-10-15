@@ -75,7 +75,7 @@
 				<div class = "webContent">
 
 					<h3>Books:</h3>
-					<button onclick='LIB.removeSelected();'>
+					<button onclick='LIB.removeSelected(); shellCommands.print("LIB.removeSelected();")'>
 						remove
 					</button>
 					<div id = "BOOKTABLE"></div>
