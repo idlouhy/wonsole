@@ -56,6 +56,7 @@ api.get('/api', function (req, res) {
 
 //GET /api/books
 api.get('/api/:collection', function (req, res) {
+  console.log("GET /api/" + req.params.collection + " " + JSON.stringify(req.body));
   db.collection(req.params.collection, function(err, collection) {
     collection.find({}).toArray(function(err, items) {
       return res.send(items);
@@ -65,6 +66,7 @@ api.get('/api/:collection', function (req, res) {
 
 //GET /api/books/:id
 api.get('/api/:collection/:id', function (req, res) {
+  console.log("GET /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
   db.collection(req.params.collection, function(err, collection) {
     collection.find({"_id": req.params.id}).toArray(function(err, items) {
       return res.send(items);
@@ -72,27 +74,27 @@ api.get('/api/:collection/:id', function (req, res) {
   });
 });
 
-//POST /api/books
+//POST /api/collection
 api.post('/api/:collection', function (req, res) {
-  console.log("POST /api/" + req.params.collection + req.body);
-});
+  console.log("POST /api/" + req.params.collection + " " + JSON.stringify(req.body));
 
-//Update a book by id
-api.put('/api/books/:id', function (req, res){
-  /*
-  return BookModel.findById(req.params.id, function (err, book) {
-    book.title = req.body.title;
-    book.author = req.body.author;
-    return book.save(function (err) {
-      if (!err) {
-        console.log("updated");
-      } else {
-        console.log(err);
-      }
-      return res.send(book);
+  db.collection(req.params.collection, function(err, collection) {
+    collection.insert(req.body, {safe: true}, function(err, result) {
+      return res.send(JSON.stringify(result[0]));
     });
   });
-*/
+
+});
+
+//POST /api/collection/id
+api.put('/api/:collection/:id', function (req, res) {
+  console.log("POST /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
+  
+  db.collection(req.params.collection, function(err, collection) {
+    collection.update({"_id": mongo.BSONPure.ObjectID(req.params.id)}, req.body, {safe: true}, function(err, result) {
+      return res.send(JSON.stringify(result[0]));
+    });
+  });
 });
 
 //Delete book
