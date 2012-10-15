@@ -91,7 +91,7 @@
 					<input type="text" id="BOOKAUTHOR">
 					</textarea>
 					<br/>
-					<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value); console.log(shellCommands)'>
+					<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value); shellCommands.print("newBook(\"Author\", \"Title\")");'>
 						Add book
 					</button>
 
