@@ -9,17 +9,13 @@ var apilication_root = __dirname,
 
   var server = new mongo.Server('localhost', 27017, {auto_reconnect: true});
   var db = new mongo.Db('books', server);
-
+  
   db.open(function(err, db) {
-    if(!err) {
-      console.log("We are connected");
-//      db.createCollection('devel', {safe:true}, function(err, collection) {
-//        console.log(collection);
-//      });
-      db.collection("books", function(err, collection) {
-	collection.find().toArray(function(err, items) {
-          console.log(items);
-        });
+    if (!err) {
+      db.collection("devel", function(err, collection) {
+        if (!err) {
+          console.log("connected to db...");
+        }
       });
     }
   });
@@ -34,7 +30,7 @@ var apilication_root = __dirname,
     message : 'server started'
   });
 
-mongoose.connect('mongodb://localhost/books');
+//mongoose.connect('mongodb://localhost/books');
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
@@ -53,81 +49,37 @@ api.configure(function () {
   api.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-var Schema = mongoose.Schema;
-
-var Book =
-  new Schema({
-//    id: { type: Number, required: true },
-    title: { type: String, required: false },
-    author: { type: String, required: false }
-});
-
-var BookModel = mongoose.model('Book', Book);
-
 //GET /api
 api.get('/api', function (req, res) {
   res.send('api');
 });
 
 //GET /api/books
-api.get('/api/books', function (req, res) {
-/*
-    db.books.find({}, function(err, book) {
-        users.forEach( function(b) {          
-          console.log(b);
-          return b;
-        });
+api.get('/api/:collection', function (req, res) {
+  db.collection(req.params.collection, function(err, collection) {
+    collection.find({}).toArray(function(err, items) {
+      return res.send(items);
     });
-*/
-  return "";
-  /*
-  return BookModel.find(function (err, books) {
-    if (!err) {
-      return res.json(books);
-    } else {
-      return console.log(err);
-    }
   });
-  */
 });
-
 
 //GET /api/books/:id
-api.get('/api/books/:id', function (req, res) {
-  db.open(function(err, db) {
-    if(!err) {
-      db.collection("books", function(err, collection) {
-	collection.find({"_id": req.param.id}).toArray(function(err, items) {
-          return items;
-        });
-      });
-    }
+api.get('/api/:collection/:id', function (req, res) {
+  db.collection(req.params.collection, function(err, collection) {
+    collection.find({"_id": req.params.id}).toArray(function(err, items) {
+      return res.send(items);
+    });
   });
 });
-
 
 //POST /api/books
-api.post('/api/books', function (req, res){
-  var book;
-  console.log("POST: ");
-  console.log(req.body);
-  book = new BookModel({
-    title: req.body.title,
-    author: req.body.author
-  });
-  book.save(function (err) {
-    if (!err) {
-      return console.log("created");
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(book);
+api.post('/api/:collection', function (req, res) {
+  console.log("POST /api/" + req.params.collection + req.body);
 });
-
 
 //Update a book by id
 api.put('/api/books/:id', function (req, res){
+  /*
   return BookModel.findById(req.params.id, function (err, book) {
     book.title = req.body.title;
     book.author = req.body.author;
@@ -140,10 +92,12 @@ api.put('/api/books/:id', function (req, res){
       return res.send(book);
     });
   });
+*/
 });
 
 //Delete book
 api.delete('/api/books/:id', function (req, res){
+  /*
   return BookModel.findById(req.params.id, function (err, book) {
     if(book != null){
       return book.remove(function (err) {
@@ -159,6 +113,7 @@ api.delete('/api/books/:id', function (req, res){
 	return res.send("The book does not exist in this database");
     }
   });
+*/
 });
 
 
