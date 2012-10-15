@@ -75,7 +75,7 @@
 				<div class = "webContent">
 
 					<h3>Books:</h3>
-					<button onclick='LIB.removeSelected(); shellCommands.print("LIB.removeSelected();")'>
+					<button onclick='go("LIB.removeSelected()")'>
 						remove
 					</button>
 					<div id = "BOOKTABLE"></div>
@@ -91,7 +91,7 @@
 					<input type="text" id="BOOKAUTHOR">
 					</textarea>
 					<br/>
-					<button onclick='new Book(document.getElementById("BOOKNAME").value,document.getElementById("BOOKAUTHOR").value); shellCommands.print("newBook(\"Author\", \"Title\")");'>
+					<button onclick='go("new Book(\"" + document.getElementById("BOOKNAME").value + "\", \"" + document.getElementById("BOOKAUTHOR").value + "\");");'>
 						Add book
 					</button>
 
