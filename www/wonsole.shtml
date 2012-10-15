@@ -41,7 +41,7 @@
                 $("textarea#input").autocomplete({
                     source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
                 });
-*61+            });
+            });
         </script>
 
 		<!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
