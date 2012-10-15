@@ -94,7 +94,7 @@ function Library() {
         
         row = document.createElement('tr');
         cell = document.createElement('td');
-        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIB.selectAllToggle();'"+(self.selectAll?"checked":"")+">";
+        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIB.selectAllToggle();shellCommands.print(\"LIB.selectAllToggle();\");'" + (self.selectAll ? "checked" : "") + ">";
         row.appendChild(cell);
         cell = document.createElement('td');
         cell.innerHTML = "ID";
