@@ -12,6 +12,12 @@
 \usepackage{wrapfig}
 \usepackage{pbox}
 
+\usepackage{fullpage}
+\usepackage{verbatim}
+\usepackage{url}
+
+\usepackage[acronym]{glossaries}
+
 \fontfamily{ptm}\selectfont
 
 \usepackage{hyperref}
@@ -36,8 +42,6 @@
     urlcolor=cyan           % color of external links
 }
 
-\usepackage{fullpage}
-\usepackage{verbatim}
 
 \bibliographystyle{plain}
 
@@ -83,19 +87,24 @@ The approach to investigate and solve this problem starts with a thorough study 
 \input{chapter/01-introduction}
 \input{chapter/02-project-management}
 \input{chapter/03-prestudy}
-\input{chapter/requirements}
-\input{chapter/test-plan}
-\input{chapter/architecture}
+\input{chapter/04-requirements}
+\input{chapter/05-test-plan}
+\input{chapter/06-architecture}
 \input{chapter/sprint1}
 \input{chapter/sprint2}
 \input{chapter/sprint3}
 \input{chapter/sprint4}
-\input{chapter/conclusion}
-\input{chapter/appendices}
+\input{chapter/90-conclusion}
+\input{chapter/99-appendices}
+
+%\newacronym{lvm}{LVM}{Logical Volume Manager}
 
 
-It was shown in \cite{example}
+%\addcontentsline{toc}{chapter}{Glossary}
+%\printglossaries
 
+
+\addcontentsline{toc}{chapter}{References}
 \bibliography{references}
 
 \end{document}

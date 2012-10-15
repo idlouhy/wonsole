@@ -148,6 +148,67 @@ A file storage and synchronization service. Google Drive is the home of Google D
 \footnote{http://en.wikipedia.org/wiki/Google\_Drive}
 
 
+\subsubsection{Skype}
+
+\begin{wrapfigure}{r}{.25\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .20\textwidth]{image/skype-logo.png}
+\end{wrapfigure}
+
+A free P2P/client-server communication program. It lets the users communicate with each other through voice, video, instant messaging and file transferring. The users needs a Skype account to reach other Skype users. This program is a VoIP service which lets us communicate without any extra cost if connected to a network. We mainly use Skype for discussions when the group is not gathered, this also gives us a transcript of what was discussed.
+\footnote{http://en.wikipedia.org/wiki/Skype}
+
+\subsubsection{GitHub}
+
+\begin{wrapfigure}{r}{.25\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .20\textwidth]{image/github-logo.png}
+\end{wrapfigure}
+
+Web-based hosting service for software development. It uses the Git revision control system. Git focus on speed, and gives the user full revision tracking. GitHub uses this to present different functionalities to the users, such as setting up repositories, forking repositories, writing wikis and setting up web pages for the repositories.
+\footnote{http://en.wikipedia.org/wiki/GitHub}
+\footnote{http://en.wikipedia.org/wiki/Git\_\(software\)}
+
+\subsubsection{LaTeX}
+
+\begin{wrapfigure}{r}{.25\textwidth}
+\vspace{-30pt}
+\centering
+\includegraphics[width = .20\textwidth]{image/latex-logo.png}
+\end{wrapfigure}
+
+LaTex is a document markup language that uses the TeX typesetting program. The main focus of LaTex is to make authors able to focus on the content of what they are writing without worrying about its visual presentation. It is mainly used to transform XML- based documents to PDFs. LaTex is widely used in academia, to produce scientific reports, etc.
+
+\subsection{Database}
+\subsubsection*{MongoDB}
+MongoDB is document-oriented high performance and availability database system. Instead of the schema DB approach, used in traditional database systems, but is document oriented. That means, the database consists of collections (as in tables), collection consists of documents. Document is one record in the collection. Document is structured, so it contains a set of key-value pair fields \cite{mongodb-intro}. Advantage of this setup is, that it is very easy to mix and migrate data with different attributes. MongoDB is has its own access console, where you can use scripting with Javascript language. 
+
+\subsubsection*{CouchDB}
+CouchDB is another example of document-oriented database and (so called) NoSQL. It also uses JSON format to store the records. Disadvantage of NoSQL databases is, they do not support relations. Also it just stores JSON data, not whole objects, so it is not object-oriented.
+\cite{couchdb-about, couchdb-technical}
+
+\subsubsection*{MySQL}
+MySQL is a database system using schema-oriented approach. It is relativelly fast, user friendly and easy to operate, so it is favourite amongst many developers.
+It is open source software supported by Oracle Company, formerly Sun. It is often used in web applications.
+\cite{mysql-about}
+
+
+\subsection{Backend}
+\subsubsection*{node.js}
+Node.js is a platform designed for server side applications. It is written in JavaScript using Google Chrome's JavaScript runtime called V8. The same runtime is used by the MongoDB database engine, so it shares some of its properties. It can be used for building fast and scalable network applications. Also it is very lightweight and efficient \cite{nodejs-about}.
+
+\subsubsection*{ASP.NET}
+ASP.NET is a part of the .NET Framework used for creating web applications and services. The framework is language independent, so you can use any language that .NET offers. It also allows programmers to use similar approach in web applications as in desktop applications. On the other hand is not as lightweight as Node.js \cite{aspnet-about}.
+
+\subsubsection*{PHP}
+PHP is a acronym for Hypertext Preprocessor. It is a serverside programming language mainly used for web applications. PHP is easy to use and supports a lot of modules, platforms and database systems. One of the main disadvantages is, that is not as effective for web applications, because it is interpreted and doesnt keep application context \cite{php-whatis}.
+
+\subsubsection*{Ruby on Rails}
+Ruby on Rails is a web application Framework using the MVC, Model View Controller model. It is a Ruby language module for building dynamic web applications. This framework also offers variety of modules, which can extend functionality or simplify tasks. The code is run the same way as Node.js and PHP, they are all interpreted, but Ruby on Rails is more difficult to install \cite{ror-about}
+
+
 \subsection{Client-side web application technologies}
 Our main focus will be on the client part of the application, since this is the experimental part of our system, and it is this part that is visible to the user through the web browser. It is therefore important to choose a suitable technology for this.
 
@@ -424,4 +485,10 @@ We will be writing unit tests throughout the implementation process and run thes
 We will be utilizing user testing and involve end users to get feedback on the entire system or specific functions. This testing will mainly be used to get feedback on the domain scripting language and how easy it is to understand and use. Preferably it will be done continuously throughout the development process. It is important to involve users as the goal of this project is to ease their workflow. As we are not working with an existing system thats actually in use, there will not exist any real users of this system with experience using it. We will therefore mainly be using our fellow students as test subjects, as they are readily available and technically competent enough to understand the concept and act as superusers. In addition the customer has stated that it will encourage employees from the entire company to us give feedback if we ask for it. Specific solutions can be sent to the customer representative which in turn will relay it to experts on the area it concerns.
 
 \section{Code conventions}
-JSLint
+\subsection*{JSLint}
+JSLint looks through JavaScript code and detects potentially problematic and unusual syntax in the code to improve the quality of the code. 
+
+JavaScript was originally aimed for web pages with small tasks where the Java platform was too heavy to run and develop for. But JavaScript is capable of much more, and has became used in more and larger projects. However, the lenient and flexible syntax useful for small tasks has proven to make JavaScript troublesome for larger projects. JSLint helps the developer in handling this. \cite{jslint-about}
+
+\subsection*{JSHint}
+JSHint is a fork of JSLint which was designed with similar goals of enforcing code quality and avoiding common programming errors, but in a more lenient manner. JSLint is criticized for being a tool that is not first and foremost helpful in preventing bugs or improving readability, but rather a tool that enforces any strict convention as a goal in itself. JSHint attempts to alleviate this, and is more configurable and exhibits less absolutist behaviour. \cite{jshint-about}

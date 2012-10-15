@@ -3,7 +3,7 @@ del report.pdf
 
 pdflatex report
 
-bibtex references.bib
+bibtex report
 
 pdflatex report
 pdflatex report
