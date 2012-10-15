@@ -205,8 +205,14 @@ function Book(title, author, id) {
     this.changeAuthor = changeAuthor;
     /**Change the author of the book. Will update the web UI.*/
     function changeAuthor(newAuthor) {
-        self.author = newAuthor;
-        self.saveUpdate();
+        if (newAuthor != self.author) {
+            /**Print the command in the console*/
+            var index = LIB.list.indexOf(self);
+            shellCommands.print("LIB.list[" + index + "].changeAuthor(\"" + newAuthor + "\")");
+
+            self.author = newAuthor;
+            self.saveUpdate();
+        }
     }
     
     this.toJSON = toJSON;
@@ -218,8 +224,14 @@ function Book(title, author, id) {
     this.changeTitle = changeTitle;
     /**Change the name of the book. Will update the web UI.*/
     function changeTitle(newTitle) {
-        self.title = newTitle;
-        self.saveUpdate();
+        if (newTitle != self.title) {
+            /**Print the command in the console*/
+            var index = LIB.list.indexOf(self);
+            shellCommands.print("LIB.list[" + index + "].changeTitle(\"" + newTitle + "\")");
+
+            self.title = newTitle;
+            self.saveUpdate();
+        }
     }
 
     this.toggleSelect = toggleSelect;
