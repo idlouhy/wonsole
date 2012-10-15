@@ -165,6 +165,12 @@ function Library() {
             $.unblockUI();
         });
     }
+
+    this.autoCompleteVals = autoCompleteVals;
+    function autoCompleteVals() {
+        return { "listBooks":"Prints a list of all books",
+                "query":"Return an array of books where the variables match their respective values. Regex is supported"};
+    }
 }
 var LIB = new Library();
 function initLibrary() {
@@ -237,6 +243,7 @@ function Book(title, author, id) {
         pubnubRefresh();
     }
 
+
     this.generateHTML = generateHTML;
     /**Generate HTML element(s) for this book.
       *@return The string for the HTML element. Should return a table row. Row style will be overridden.*/
@@ -298,6 +305,13 @@ function Book(title, author, id) {
             dataType: "json"
         });
         pubnubRefresh();
+    }
+
+    this.autoCompleteVals = autoCompleteVals;
+    function autoCompleteVals() {
+        return { "changeAuthor":"changeAuthor the author",
+                "changeTitle":"change the title",
+                "remove":"remove the book from the library" };
     }
 }
 Book.prototype.toString = function(){

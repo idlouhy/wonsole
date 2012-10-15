@@ -33,18 +33,19 @@ function beforeShellUnload() {
 
 
 
-var 
+var
 histList = [""],               //The command history list.
 histPos = 0,                   //The current position in the history list. Used for traversing with up and down keys.
 storedHistoryLength = 0,       //Was the length of the histList when loading it from the persistent data store on startup
 tempValue = null,              //Temporary value used only for retrieving data from store.
-_scope = {},                   
+_scope = {},
 _win,                          // a top-level context.
 question,                      //The current command being executed(taken from the input text area).
 _in,                           //The input text area
 _out,                          //The output text area
-tooManyMatches = null,         
-lastError = null;              
+tooManyMatches = null,
+lastError = null,
+suggestionsFocused = false;
 
 function refocus()
 {
@@ -56,6 +57,10 @@ function initShell()
 {
   _in = document.getElementById("input");
   _out = document.getElementById("output");
+
+  $("textarea#input").autocomplete({
+    source: ""
+  });
 
   _win = window;
 
@@ -80,7 +85,7 @@ function initTarget()
 
 // Unless the user is selected something, refocus the textbox.
 // (requested by caillon, brendan, asa)
-function keepFocusInTextbox(e) 
+function keepFocusInTextbox(e)
 {
   var g = e.srcElement ? e.srcElement : e.target; // IE vs. standard
   
@@ -110,38 +115,46 @@ function keepFocusInTextbox(e)
 }
 
 function inputKeydown(e) {
-  // Use onkeydown because IE doesn't support onkeypress for arrow keys
-
-  //alert(e.keyCode + " ^ " + e.keycode);
-
+  // alert(e.keyCode + " ^ " + e.keycode);
   if (e.shiftKey && e.keyCode == 13) { // shift-enter
     // don't do anything; allow the shift-enter to insert a line break as normal
+    suggestionsFocused = false;
   } else if (e.keyCode == 13) { // enter
     // execute the input on enter
-    try { go(); } catch(er) { alert(er); };
-    setTimeout(function() { _in.value = ""; }, 0); // can't preventDefault on input, so clear it later
-  } else if (e.keyCode == 38) { // up
+    if(suggestionsFocused) {
+      suggestionsFocused = false;
+    } else {
+      try { go(); } catch(er) { alert(er); }
+      setTimeout(function() { _in.value = ""; }, 0); // can't preventDefault on input, so clear it later
+    }
+
+  } else if (e.keyCode == 38 && !suggestionsFocused) { // up
     // go up in history if at top or ctrl-up
     if (e.ctrlKey || caretInFirstLine(_in))
       hist(true);
-  } else if (e.keyCode == 40) { // down
+  } else if (e.keyCode == 40 && !suggestionsFocused) { // down
     // go down in history if at end or ctrl-down
     if (e.ctrlKey || caretInLastLine(_in))
       hist(false);
   } else if (e.keyCode == 9) { // tab
     tabcomplete();
     setTimeout(function() { refocus(); }, 0); // refocus because tab was hit
-  } else { }
+  } else {
+    suggestionsFocused = false;
+  }
 
   setTimeout(recalculateInputHeight, 0);
-  
-  //return true;
-};
+}
 
-function caretInFirstLine(textbox)
-{
+function inputKeyup(e) {
+  // if(!suggestionsFocused) {
+    advancedSuggestion();
+  // }
+}
+
+function caretInFirstLine(textbox) {
   // IE doesn't support selectionStart/selectionEnd
-  if (textbox.selectionStart == undefined)
+  if (textbox.selectionStart === undefined)
     return true;
 
   var firstLineBreak = textbox.value.indexOf("\n");
@@ -360,7 +373,7 @@ function hist(up)
 {
   // histList[0] = first command entered, [1] = second, etc.
   // type something, press up --> thing typed is now in "limbo"
-  // (last item in histList) and should be reachable by pressing 
+  // (last item in histList) and should be reachable by pressing
   // down again.
 
   var L = histList.length;
@@ -368,43 +381,37 @@ function hist(up)
   if (L == 1)
     return;
 
-  if (up)
-  {
+  if (up) {
     if (histPos == L-1)
     {
       // Save this entry in case the user hits the down key.
       histList[histPos] = _in.value;
     }
 
-    if (histPos > 0)
-    {
+    if (histPos > 0) {
       histPos--;
       // Use a timeout to prevent up from moving cursor within new text
       // Set to nothing first for the same reason
       setTimeout(
         function() {
-          _in.value = ''; 
+          _in.value = '';
           _in.value = histList[histPos];
           var caretPos = _in.value.length;
-          if (_in.setSelectionRange) 
+          if (_in.setSelectionRange)
             _in.setSelectionRange(caretPos, caretPos);
         },
         0
       );
     }
-  } 
-  else // down
-  {
-    if (histPos < L-1)
-    {
+  }
+  else { // down
+    if (histPos < L-1) {
       histPos++;
       _in.value = histList[histPos];
     }
-    else if (histPos == L-1)
-    {
+    else if (histPos == L-1) {
       // Already on the current entry: clear but save
-      if (_in.value)
-      {
+      if (_in.value) {
         histList[histPos] = _in.value;
         ++histPos;
         _in.value = "";
@@ -649,12 +656,12 @@ function tabcomplete()
       ////dump("matches: " + matches + "\n");
       var objAndComplete = (objname || obj) + "." + bestmatch;
       //dump("matches.length: " + matches.length + ", tooManyMatches: " + tooManyMatches + ", objAndComplete: " + objAndComplete + "\n");
-      if(matches.length > 1 && (tooManyMatches == objAndComplete || matches.length <= 10)) {
+      if(matches.length > 1 && (tooManyMatches == objAndComplete || matches.length <= 20)) {
 
         printWithRunin("Matches: ", matches.join(', '), "tabcomplete");
         tooManyMatches = null;
       }
-      else if(matches.length > 10)
+      else if(matches.length > 20)
       {
         println(matches.length + " matches.  Press tab again to see them all", "tabcomplete");
         tooManyMatches = objAndComplete;
@@ -662,6 +669,7 @@ function tabcomplete()
       else {
         tooManyMatches = null;
       }
+
       if(bestmatch != "")
       {
         var sstart;
@@ -677,6 +685,268 @@ function tabcomplete()
         setselectionto(_in,caret + (bestmatch.length - complete.length));
       }
     }
+}
+
+function advancedSuggestion(){
+    function findbeginning(s, from, stopAtDot) {
+      function equalButNotEscaped(s,i,q) {
+        if(s.charAt(i) != q) // not equal go no further
+          return false;
+
+        if(i === 0) // beginning of string
+          return true;
+
+        if(s.charAt(i-1) == '\\') // escaped?
+          return false;
+
+        return true;
+      }
+
+      var nparens = 0;
+      var i;
+      for(i=from; i>=0; i--)
+      {
+        if(s.charAt(i) == ' ')
+          break;
+
+        if(stopAtDot && s.charAt(i) == '.')
+          break;
+          
+        if(s.charAt(i) == ')')
+          nparens++;
+        else if(s.charAt(i) == '(')
+          nparens--;
+
+        if(nparens < 0)
+          break;
+
+        // skip quoted strings
+        if(s.charAt(i) == '\'' || s.charAt(i) == '\"')
+        {
+          //dump("skipping quoted chars: ");
+          var quot = s.charAt(i);
+          i--;
+          while(i >= 0 && !equalButNotEscaped(s,i,quot)) {
+            //dump(s.charAt(i));
+            i--;
+          }
+          //dump("\n");
+        }
+      }
+      return i;
+    }
+
+  // XXX should be used more consistently (instead of using selectionStart/selectionEnd throughout code)
+  // XXX doesn't work in IE, even though it contains IE-specific code
+  function getcaretpos(inp) {
+    if(inp.selectionEnd !== null) {
+      return inp.selectionEnd;
+    }
+      
+    if(inp.createTextRange){
+      var docrange = _win.Shell.document.selection.createRange();
+      var inprange = inp.createTextRange();
+      if (inprange.setEndPoint)
+      {
+        inprange.setEndPoint('EndToStart', docrange);
+        return inprange.text.length;
+      }
+    }
+    return inp.value.length; // sucks, punt
+  }
+
+  function setselectionto(inp,pos) {
+    if(inp.selectionStart) {
+      inp.selectionStart = inp.selectionEnd = pos;
+    }
+    else if(inp.createTextRange) {
+      var docrange = _win.Shell.document.selection.createRange();
+      var inprange = inp.createTextRange();
+      inprange.select();
+    }
+    else { }
+  }
+
+  var caret = getcaretpos(_in);
+
+  caret = caret;
+  if(caret) {
+    var dotpos, dotpos2, spacepos, complete, obj;
+    
+    // see if there's a dot before here
+    dotpos = findbeginning(_in.value, caret-1, true);
+    dotpos2 = dotpos;
+    if(dotpos == -1 || _in.value.charAt(dotpos) != '.') {
+      dotpos = caret;
+    }
+
+    // look backwards for a non-variable-name character
+    spacepos = findbeginning(_in.value, dotpos-1, false);
+    // get the object we're trying to complete on
+    if(spacepos == dotpos || spacepos+1 == dotpos || dotpos == caret) {
+      // try completing function args
+      if(_in.value.charAt(dotpos) == '(' ||
+         (_in.value.charAt(spacepos) == '(' && (spacepos+1) == dotpos)) {
+        var fn,fname;
+        var from = (_in.value.charAt(dotpos) == '(') ? dotpos : spacepos;
+        spacepos = findbeginning(_in.value, from-1, false);
+
+        fname = _in.value.substr(spacepos+1,from-(spacepos+1));
+        try {
+          with(_win.Shell._scope)
+            with(_win)
+              with(Shell.shellCommands)
+                fn = eval(fname);
+        }
+        catch(er) {
+          //dump('fn is not a valid object\n');
+          return;
+        }
+        if(fn === undefined) {
+          return;
+        }
+        if(fn instanceof Function) {
+          // Print function definition, including argument names, but not function body
+          if(!fn.toString().match(/function .+?\(\) +\{\n +\[native code\]\n\}/))
+            println(fn.toString().match(/function .+?\(.*?\)/), "tabcomplete");
+        }
+        return;
+      }
+      else
+        obj = _win;
+    }
+    else {
+      var objname = _in.value.substr(spacepos+1,dotpos-(spacepos+1));
+      //dump("objname: |" + objname + "|\n");
+      try {
+        with(_win.Shell._scope)
+          with(_win)
+            obj = eval(objname);
+      }
+      catch(er) {
+        printError(er);
+        return;
+      }
+      if(obj === undefined) {
+        // sometimes this is tabcomplete's fault, so don't print it :(
+        // e.g. completing from "print(document.getElements"
+        // println("Can't complete from null or undefined expression " + objname, "error");
+        console.log("objcet undefined");
+        return;
+      }
+    }
+
+
+    // get the thing we're trying to complete
+    if(dotpos == caret) {
+      if(spacepos+1 == dotpos || spacepos == dotpos) {
+        return;
+      }
+      complete = _in.value.substr(spacepos+1,dotpos-(spacepos+1));
+    }
+    else {
+      complete = _in.value.substr(dotpos+1,caret-(dotpos+1));
+    }
+    //dump("complete: " + complete + "\n");
+    // ok, now look at all the props/methods of this obj
+    // and find ones starting with 'complete'
+    var matches = [];
+    var bestmatch = null;
+    if(obj instanceof Book || obj instanceof Library){
+      obj = obj.autoCompleteVals();
+    } else {
+
+    }
+    // else {
+      for(var a in obj) {
+        //a = a.toString();
+        //XXX: making it lowercase could help some cases,
+        // but screws up my general logic.
+        if(a.substr(0,complete.length) == complete) {
+          if(dotpos2 > 0){
+            matches.push($("textarea#input")[0].value.substring(0,dotpos2+1) + a);
+          } else {
+            matches.push(a);
+          }
+          ////dump("match: " + a + "\n");
+          // if no best match, this is the best match
+          if(bestmatch === null) {
+            bestmatch = a;
+          }
+          else {
+            // the best match is the longest common string
+            function min(a,b){ return ((a<b)?a:b); }
+            var i;
+            for(i=0; i< min(bestmatch.length, a.length); i++) {
+              if(bestmatch.charAt(i) != a.charAt(i))
+                break;
+            }
+            bestmatch = bestmatch.substr(0,i);
+          }
+        }
+      }
+    // }
+    bestmatch = (bestmatch || "");
+    ////dump("matches: " + matches + "\n");
+    var objAndComplete = (objname || obj) + "." + bestmatch;
+    //dump("matches.length: " + matches.length + ", tooManyMatches: " + tooManyMatches + ", objAndComplete: " + objAndComplete + "\n");
+
+    // if(matches.length === 1) {
+      // suggestionsFocused = false;
+    // }
+    if(matches.length >= 1) { // && (tooManyMatches == objAndComplete || matches.length <= 20)
+
+      $("textarea#input").autocomplete({
+        source: matches,
+        focus: function(event, ui) {
+          suggestionsFocused = true;
+        },
+        // open: function(event, ui){
+        //   var oldTop = jQuery(".ui-autocomplete").offset().top;
+        //   var newTop = oldTop - jQuery(".ui-autocomplete").height() - jQuery("#quick_add").height() - 30;
+        //   jQuery(".ui-autocomplete").css("top", newTop);
+        // },
+        position: {
+          my: "left top",
+          at: "left bottom",
+          collision: "flip"
+        }
+      });
+
+      console.log(matches);
+
+      //printWithRunin("Matches: ", matches.join(', '), "tabcomplete");
+      tooManyMatches = null;
+    }
+    else if(matches.length > 20) {
+      println(matches.length + " matches.  Press tab again to see them all", "tabcomplete");
+      tooManyMatches = objAndComplete;
+    }
+    else {
+      tooManyMatches = null;
+    }
+
+      // TODO FIX!!
+    // if(bestmatch != "")
+    // {
+    //   var sstart;
+    //   if(dotpos == caret) {
+    //     sstart = spacepos+1;
+    //   }
+    //   else {
+    //     sstart = dotpos+1;
+    //   }
+    //   _in.value = _in.value.substr(0, sstart)
+    //             + bestmatch
+    //             + _in.value.substr(caret);
+    //   setselectionto(_in,caret + (bestmatch.length - complete.length));
+    // }
+  }
+}
+
+
+function simpleCompletion(){
+
 }
 
 function printQuestion(q)

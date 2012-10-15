@@ -35,14 +35,14 @@
 			}
 
 		</script>
-
-        <script>
-            $(document).ready(function() {
-                $("textarea#input").autocomplete({
-                    source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
-                });
-            });
-        </script>
+        
+        <style type="text/css">
+        .ui-autocomplete.ui-menu
+        {
+             opacity: 0.7;
+             filter: alpha(opacity=70); /* for mozilla */
+        }
+        </style>
 
 		<!-- for http://ted.mielczarek.org/code/mozilla/extensiondev/ -->
 		<!-- <script type="text/javascript" src="chrome://extensiondev/content/rdfhistory.js"></script> -->
@@ -123,7 +123,7 @@
 			<div id="output">
 				Property autocompletion: Tab, Multiline input: Shift+Enter, Input history: (Ctrl+) Up/Down, <a accesskey="M" href="javascript:go('scope(Math); mathHelp();');" title="Accesskey: M">Math</a>, <a accesskey="H" href="http://www.squarefree.com/shell/?ignoreReferrerFrom=shell1.4"  title="Accesskey: H">help</a>, ans, print(string), <a accesskey="P" href="javascript:go('props(ans)')" title="Accesskey: P">props(object)</a>, <a accesskey="B" href="javascript:go('blink(ans)')" title="Accesskey: B">blink(node)</a>, <a accesskey="C" href="javascript:go('clear()')" title="Accesskey: C">clear()</a>, <a accesskey="D" href="javascript:go('deleteHistory()')" title="Accesskey: D">deleteHistory()</a>, load(scriptURL), scope(object)
 			</div>
-			<textarea id="input" class="input" onkeydown="inputKeydown(event)"></textarea>			
+			<textarea id="input" class="input" onkeyup="inputKeyup(event)" onkeydown="inputKeydown(event)"></textarea>			
 			
 
  <!-- End splitterRight -->
