@@ -6,7 +6,7 @@ function initPubnub() {
         disconnect: pubnubDisconnect,
         reconnect: pubnubReconnect,
         connect: pubnubConnect
-    })
+    });
 }
 
 function pubnubDisconnect() {
@@ -24,7 +24,7 @@ function pubnubRefresh() {
 	PUBNUB.publish({
 		channel : "books",
 		message : "client connected"
-	})
+	});
 }
 
 function pubnubReconnect() {
