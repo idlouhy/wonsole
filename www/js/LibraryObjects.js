@@ -226,8 +226,13 @@ function Book(title, author, id) {
     /**Toggle whether this book is selected. Will make sure the value of the checkbox is correct, if it exists.*/
     function toggleSelect() {
         self.select = !self.select;
-        if(self.checkbox !== null && self.checkbox.checked!=self.select)
+        if (self.checkbox !== null && self.checkbox.checked != self.select)
             self.checkbox.checked = self.select;
+        /**Print the appropriate command in the console */
+        if (self.select)
+            shellCommands.print("Book selected");
+        else
+            shellCommands.print("Book deselected");
     }
     
     this.remove = remove;
