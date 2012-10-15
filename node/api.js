@@ -3,12 +3,26 @@ var apilication_root = __dirname,
     path = require("path"),
     mongoose = require('mongoose');
 
-    db = require("mongojs");
+    mongo = require("mongodb");
     pubnub = require('pubnub');
     api = express();
 
-  
-  db.connect("localhost/books", ["books"]);
+  var server = new mongo.Server('localhost', 27017, {auto_reconnect: true});
+  var db = new mongo.Db('books', server);
+
+  db.open(function(err, db) {
+    if(!err) {
+      console.log("We are connected");
+//      db.createCollection('devel', {safe:true}, function(err, collection) {
+//        console.log(collection);
+//      });
+      db.collection("books", function(err, collection) {
+	collection.find().toArray(function(err, items) {
+          console.log(items);
+        });
+      });
+    }
+  });
 
   pn = pubnub.init({
     publish_key: "pub-a47de1d5-fb27-49e6-877e-ce4198efee32",
@@ -57,13 +71,15 @@ api.get('/api', function (req, res) {
 
 //GET /api/books
 api.get('/api/books', function (req, res) {
-    db.books.find(function(err, book) {
+/*
+    db.books.find({}, function(err, book) {
         users.forEach( function(b) {          
           console.log(b);
           return b;
         });
     });
-
+*/
+  return "";
   /*
   return BookModel.find(function (err, books) {
     if (!err) {
@@ -78,13 +94,15 @@ api.get('/api/books', function (req, res) {
 
 //GET /api/books/:id
 api.get('/api/books/:id', function (req, res) {
-    return BookModel.findById(req.params.id, function (err, book) {
-        if (!err) {
-            return res.send(book);
-        } else {
-            return console.log(err);
-        }
-    });
+  db.open(function(err, db) {
+    if(!err) {
+      db.collection("books", function(err, collection) {
+	collection.find({"_id": req.param.id}).toArray(function(err, items) {
+          return items;
+        });
+      });
+    }
+  });
 });
 
 
@@ -148,4 +166,4 @@ api.options('/api/books/:id', function (req, res){
   return res.send('');
 });
 
-api.listen(4000);
+api.listen(5000);
