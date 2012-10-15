@@ -1,9 +1,14 @@
-var application_root = __dirname,
+var apilication_root = __dirname,
     express = require("express"),
     path = require("path"),
     mongoose = require('mongoose');
+
+    db = require("mongojs");
     pubnub = require('pubnub');
-    app = express();
+    api = express();
+
+  
+  db.connect("localhost/books", ["books"]);
 
   pn = pubnub.init({
     publish_key: "pub-a47de1d5-fb27-49e6-877e-ce4198efee32",
@@ -22,17 +27,16 @@ var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,HEAD,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Authorization');
-
-    next();
+  next();
 }
 
-app.configure(function () {
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(allowCrossDomain);
-  app.use(app.router);
-  app.use(express.static(path.join(application_root, "public")));
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+api.configure(function () {
+  api.use(express.bodyParser());
+  api.use(express.methodOverride());
+  api.use(allowCrossDomain);
+  api.use(api.router);
+  api.use(express.static(path.join(apilication_root, "public")));
+  api.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 var Schema = mongoose.Schema;
@@ -46,16 +50,21 @@ var Book =
 
 var BookModel = mongoose.model('Book', Book);
 
-
-//REST api
-app.get('/api', function (req, res) {
-  res.send('REST api running');
+//GET /api
+api.get('/api', function (req, res) {
+  res.send('api');
 });
 
+//GET /api/books
+api.get('/api/books', function (req, res) {
+    db.books.find(function(err, book) {
+        users.forEach( function(b) {          
+          console.log(b);
+          return b;
+        });
+    });
 
-//List all the books
-app.get('/api/books', function (req, res) {
-
+  /*
   return BookModel.find(function (err, books) {
     if (!err) {
       return res.json(books);
@@ -63,16 +72,24 @@ app.get('/api/books', function (req, res) {
       return console.log(err);
     }
   });
-
-  pn.publish({
-    channel : "books",
-    message : 'loaded list of books'
-  });
-
+  */
 });
 
-//Add a single book
-app.post('/api/books', function (req, res){
+
+//GET /api/books/:id
+api.get('/api/books/:id', function (req, res) {
+    return BookModel.findById(req.params.id, function (err, book) {
+        if (!err) {
+            return res.send(book);
+        } else {
+            return console.log(err);
+        }
+    });
+});
+
+
+//POST /api/books
+api.post('/api/books', function (req, res){
   var book;
   console.log("POST: ");
   console.log(req.body);
@@ -90,19 +107,9 @@ app.post('/api/books', function (req, res){
   return res.send(book);
 });
 
-//Get single book
-app.get('/api/books/:id', function (req, res) {
-    return BookModel.findById(req.params.id, function (err, book) {
-        if (!err) {
-            return res.send(book);
-        } else {
-            return console.log(err);
-        }
-    });
-});
 
 //Update a book by id
-app.put('/api/books/:id', function (req, res){
+api.put('/api/books/:id', function (req, res){
   return BookModel.findById(req.params.id, function (err, book) {
     book.title = req.body.title;
     book.author = req.body.author;
@@ -118,7 +125,7 @@ app.put('/api/books/:id', function (req, res){
 });
 
 //Delete book
-app.delete('/api/books/:id', function (req, res){
+api.delete('/api/books/:id', function (req, res){
   return BookModel.findById(req.params.id, function (err, book) {
     if(book != null){
       return book.remove(function (err) {
@@ -137,8 +144,8 @@ app.delete('/api/books/:id', function (req, res){
 });
 
 
-app.options('/api/books/:id', function (req, res){
+api.options('/api/books/:id', function (req, res){
   return res.send('');
 });
 
-app.listen(4000);
+api.listen(4000);
