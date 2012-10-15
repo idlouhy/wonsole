@@ -95,31 +95,24 @@ api.put('/api/:collection/:id', function (req, res) {
       return res.send(JSON.stringify(result[0]));
     });
   });
+
 });
 
-//Delete book
-api.delete('/api/books/:id', function (req, res){
-  /*
-  return BookModel.findById(req.params.id, function (err, book) {
-    if(book != null){
-      return book.remove(function (err) {
-        if (!err) {
-          console.log("removed");
-          return res.send('');
-        } else {
-          console.log(err);
-        }
-      });
-    }
-    else {
-	return res.send("The book does not exist in this database");
-    }
+//DELETE /api/collection/id
+api.delete('/api/:collection/:id', function (req, res) {
+  console.log("DELETE /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
+
+  db.collection(req.params.collection, function(err, collection) {
+    collection.remove({"_id": mongo.BSONPure.ObjectID(req.params.id)}, {safe: true}, function(err, result) {
+      return res.send(JSON.stringify(result[0]));
+    });
   });
-*/
+
 });
 
 
-api.options('/api/books/:id', function (req, res){
+api.options('/apai/:collection/:id', function (req, res){
+  console.log("OPTIONS /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
   return res.send('');
 });
 
