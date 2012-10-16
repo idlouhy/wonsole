@@ -174,8 +174,8 @@ function Library() {
 
     this.autoCompleteVals = autoCompleteVals;
     function autoCompleteVals() {
-        return { "listBooks":"Prints a list of all books",
-                "query":"Return an array of books where the variables match their respective values. Regex is supported"};
+        return { "listBooks()":"Prints a list of all books",
+                "query()":"Return an array of books where the variables match their respective values. Regex is supported"};
     }
 }
 var LIB = new Library();
@@ -341,9 +341,9 @@ function Book(title, author, id) {
 
     this.autoCompleteVals = autoCompleteVals;
     function autoCompleteVals() {
-        return { "changeAuthor":"changeAuthor the author",
-                "changeTitle":"change the title",
-                "remove":"remove the book from the library" };
+        return { "changeAuthor()":"changeAuthor the author",
+                "changeTitle()":"change the title",
+                "remove()":"remove the book from the library" };
     }
 }
 Book.prototype.toString = function(){
