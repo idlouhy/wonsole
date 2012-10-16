@@ -49,6 +49,12 @@ function Library() {
         return "No such book";
     }
 
+    this.selectAllToggleConsole = selectAllToggleConsole;
+    /**Calls selectAllToggle from the console*/
+    function selectAllToggleConsole() {
+        go("LIB.selectAllToggle()");
+    }
+
     this.selectAllToggle = selectAllToggle;
     /**Toggle select all books currently in the visible list. Will update the web UI.*/
     function selectAllToggle() {
@@ -94,7 +100,7 @@ function Library() {
         
         row = document.createElement('tr');
         cell = document.createElement('td');
-        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIB.selectAllToggle();'"+(self.selectAll?"checked":"")+">";
+        cell.innerHTML = "<input type='checkbox' id='SELECTALL' onclick = 'LIB.selectAllToggleConsole();'" + (self.selectAll ? "checked" : "") + ">";
         row.appendChild(cell);
         cell = document.createElement('td');
         cell.innerHTML = "ID";
@@ -207,9 +213,18 @@ function Book(title, author, id) {
         LIB.generateHTML();
         
     }
-    
+
+    this.changeAuthorConsole = changeAuthorConsole;
+    /**Calls changeAuthor() from the console*/
+    function changeAuthorConsole(newAuthor) {
+        if (newAuthor != self.author) {
+            var index = LIB.list.indexOf(self);
+            go("LIB.list[" + index + "].changeAuthor(\"" + newAuthor + "\")");
+        }
+    }
+
     this.changeAuthor = changeAuthor;
-    /**Change the author of the book. Will update the web UI.*/
+    /**Change the name of the book. Will update the web UI.*/
     function changeAuthor(newAuthor) {
         self.author = newAuthor;
         self.saveUpdate();
@@ -221,19 +236,36 @@ function Book(title, author, id) {
         return { _id:self.id, title: self.title, author: self.author};
     }
 
+    this.changeTitleConsole = changeTitleConsole;
+    /**Calls changeTitle() from the console*/
+    function changeTitleConsole(newTitle) {
+        if (newTitle != self.title) {
+            var index = LIB.list.indexOf(self);
+            go("LIB.list[" + index + "].changeTitle(\"" + newTitle + "\")");
+        }
+    }
+
     this.changeTitle = changeTitle;
     /**Change the name of the book. Will update the web UI.*/
     function changeTitle(newTitle) {
-        self.title = newTitle;
-        self.saveUpdate();
+            self.title = newTitle;
+            self.saveUpdate();
+    }
+
+    this.toggleSelectConsole = toggleSelectConsole;
+    /**Use the toggleSelect() from the console*/
+    function toggleSelectConsole() {
+        var index = LIB.list.indexOf(self);
+        go("LIB.list[" + index + "].toggleSelect()");
     }
 
     this.toggleSelect = toggleSelect;
     /**Toggle whether this book is selected. Will make sure the value of the checkbox is correct, if it exists.*/
     function toggleSelect() {
         self.select = !self.select;
-        if(self.checkbox !== null && self.checkbox.checked!=self.select)
+        if (self.checkbox !== null && self.checkbox.checked != self.select) {
             self.checkbox.checked = self.select;
+        }
     }
     
     this.remove = remove;
@@ -257,7 +289,7 @@ function Book(title, author, id) {
         input .type = "checkbox";
         input.id = "SELECT_"+self.id;
         input.checked = self.select;
-        input.onchange = self.toggleSelect;
+        input.onchange = self.toggleSelectConsole;
         cell.appendChild(input );
         row.appendChild(cell);
         
@@ -270,7 +302,7 @@ function Book(title, author, id) {
         input.type = "text";
         input.id = "TITLE_"+self.id;
         input.value = self.title;
-        input.onchange = function(){self.changeTitle(this.value);};
+        input.onchange = function(){self.changeTitleConsole(this.value);};
         cell.appendChild(input );
         row.appendChild(cell);
         
@@ -279,7 +311,7 @@ function Book(title, author, id) {
         input.type = "text";
         input.id = "AUTHOR_"+self.id;
         input.value = self.author;
-        input.onchange = function(){self.changeAuthor(this.value);};
+        input.onchange = function(){self.changeAuthorConsole(this.value);};
         cell.appendChild(input );
         row.appendChild(cell);
 
