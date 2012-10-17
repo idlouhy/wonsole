@@ -33,17 +33,17 @@ function beforeShellUnload() {
 
 
 
-var
+var 
 histList = [""],               //The command history list.
 histPos = 0,                   //The current position in the history list. Used for traversing with up and down keys.
 storedHistoryLength = 0,       //Was the length of the histList when loading it from the persistent data store on startup
 tempValue = null,              //Temporary value used only for retrieving data from store.
-_scope = {},
+_scope = {},                   
 _win,                          // a top-level context.
 question,                      //The current command being executed(taken from the input text area).
 _in,                           //The input text area
 _out,                          //The output text area
-tooManyMatches = null,
+tooManyMatches = null,         
 lastError = null,
 suggestionsFocused = false;
 
@@ -115,7 +115,10 @@ function keepFocusInTextbox(e)
 }
 
 function inputKeydown(e) {
+  // Use onkeydown because IE doesn't support onkeypress for arrow keys
+
   // alert(e.keyCode + " ^ " + e.keycode);
+
   if (e.shiftKey && e.keyCode == 13) { // shift-enter
     // don't do anything; allow the shift-enter to insert a line break as normal
     suggestionsFocused = false;
@@ -125,7 +128,7 @@ function inputKeydown(e) {
       suggestionsFocused = false;
     } else {
       try { go(); } catch(er) { alert(er); }
-      setTimeout(function() { _in.value = ""; }, 0); // can't preventDefault on input, so clear it later
+    setTimeout(function() { _in.value = ""; }, 0); // can't preventDefault on input, so clear it later
     }
 
   } else if (e.keyCode == 38 && !suggestionsFocused) { // up
@@ -137,6 +140,14 @@ function inputKeydown(e) {
     if (e.ctrlKey || caretInLastLine(_in))
       hist(false);
   } else if (e.keyCode == 9) { // tab
+    e.preventDefault();
+    
+    var err = cycle();
+    if(err != "")
+        println(err, "error");
+    setTimeout(function() { refocus(); }, 0); // refocus because tab was hit
+  } else if (e.keyCode == 45) { // ins
+    e.preventDefault();
     tabcomplete();
     setTimeout(function() { refocus(); }, 0); // refocus because tab was hit
   } else {
@@ -420,8 +431,75 @@ function hist(up)
   }
 }
 
-function tabcomplete()
-{
+function cycle() {
+    var str = _in.value;
+    
+    //if it contains ( or ), return. unsafe to eval functions.
+    if(str.search("[(|)|=]")>=0)
+        return str+" is not an Array variable(please do not use a function).";
+    
+    //strip [x], [x or [ things at end, identify value of x if integer, otherwise 0
+    if(str.search("\\]$")>=0)
+        str = str.substring(0,str.length-1);
+    var numPos = str.search("\\[[0-9]+$");
+    var num = 0;
+    if(numPos>=0) {
+        numPos++;
+        num = str.substring(numPos,str.length);
+        str = str.substring(0,numPos);
+    }
+    if(str.search("\\[$")>=0)
+        str = str.substring(0,str.length-1);
+    
+    //str is now the candidate array variable string
+    //num is now the index we are currently at
+    
+    //Check if the candidate is actually an array
+    try {
+        var array = eval(str);
+        if(array instanceof Array) {
+            //Check if the current element is actually a Book
+            if (array[num] instanceof Book) {
+                //Check if the book is already highlighted.
+                if(LIB.isHighlighted(array[num])) {
+                    //Increment to next index, with wrap around.
+                    num ++; if(num>=array.length) num = 0;
+                    if (array[num] instanceof Book) {
+                        //Successfully select next book
+                        _in.value = str+"["+num+"]";
+                        array[num].highlight();
+                        return "";
+                    } else {
+                        return str+" does not contain a Book at position "+num+".";
+                    }
+                }
+                else {
+                    //Successfully select current book
+                    _in.value = str+"["+num+"]";
+                    array[num].highlight();
+                    return "";
+                }
+            }
+            else {
+                return str+" does not contain a Book at position "+num+".";
+            }
+            
+        } else {
+            if(array instanceof Book) {
+                array.highlight();
+                return "";
+            }
+            else {
+                return str+" is not an Array or a Book.";
+            }
+        }
+        
+    } catch(error) {
+        return str+" is undefined.";
+    }
+}
+
+function tabcomplete() {
   /*
    * Working backwards from s[from], find the spot
    * where this expression starts.  It will scan

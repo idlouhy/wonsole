@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -80,20 +80,41 @@
 					</button>
 					<div id = "BOOKTABLE"></div>
 					<br/>
-					<h3>Add a book:</h3>
-					Name:
-					<br/>
-					<input type="text" id="BOOKNAME">
-					</textarea>
-					<br/>
-					Author:
-					<br/>
+
+					<form id = "BOOKFORM">
+					<h3>Book:</h3>
+					ID:<br/>
+					<input type="text" id="BOOKID" disabled="disabled">
+					</input><br/>
+					Name:<br/>
+					<input type="text" id="BOOKTITLE">
+					</input><br/>
+					Author:<br/>
 					<input type="text" id="BOOKAUTHOR">
-					</textarea>
-					<br/>
-					<button onclick='go("new Book(\"" + document.getElementById("BOOKNAME").value + "\", \"" + document.getElementById("BOOKAUTHOR").value + "\");");'>
-						Add book
+					</input><br/>
+					<button id="EDITBOOK" onclick='
+							var book = LIB.getBookByID(document.getElementById("BOOKID").value);
+							if(book!=null) {
+								book.title = document.getElementById("BOOKTITLE").value;
+								book.author = document.getElementById("BOOKAUTHOR").value;
+								book.saveUpdate();
+							}
+                                                        return false;' disabled="disabled">
+						Edit book
 					</button>
+					<button id="NEWBOOK" onclick='
+							new Book(document.getElementById("BOOKTITLE").value,document.getElementById("BOOKAUTHOR").value);
+							return false;'>
+						New book
+					</button>
+					<button id="CLEARBUTTON" onclick='
+							LIB.highlight(null);
+							return false;'>
+						Clear
+					</button>
+
+
+					</form>
 
 					<!-- Box that pushes the bottombar down -->
 					<div class = "bottombox"></div>

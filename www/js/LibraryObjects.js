@@ -4,8 +4,33 @@ function Library() {
     this.list   = [];
     this.selectAll = false;
     
+    var highlightedBook = null;
+    
     /*Should be set to the number of books to be removed before calling the private removeBookAtIndex function.*/
     var removeCount = 0;
+    
+    this.isHighlighted = isHighlighted;
+    /**Check if a book is highlighted*/
+    function isHighlighted(book) {
+        return (highlightedBook == book);
+    }
+    
+    this.highlight = highlight;
+    /**Highlight a book, or null*/
+    function highlight(book) {
+        highlightedBook = book;
+        LIB.generateHTML();
+        var loc;
+        loc = document.getElementById("BOOKID");
+        loc.value = book==null?"":book.id;
+        loc = document.getElementById("BOOKTITLE");
+        loc.value = book==null?"":book.title;
+        loc = document.getElementById("BOOKAUTHOR");
+        loc.value = book==null?"":book.author;
+        loc = document.getElementById("EDITBOOK");
+        loc.disabled = book==null?"disabled":"";
+
+    }
     
     this.removeSelected = removeSelected ;
     /**remove all books that are selected in the visible list, will update the web UI.*/
@@ -65,6 +90,26 @@ function Library() {
         self.generateHTML();
     }
     
+    this.getIndexByID = getIndexByID;
+    /**Returns a single Book instance with the given ID, or null if there is none.*/
+    function getIndexByID(id) {
+        for(var c = 0; c<self.list.length; c++) {
+            if(self.list[c].id == id)
+                return c;
+        }
+        return -1;
+    }
+
+    this.getBookByID = getBookByID;
+    /**Returns a single Book instance with the given ID, or null if there is none.*/
+    function getBookByID(id) {
+        for(var c = 0; c<self.list.length; c++) {
+            if(self.list[c].id == id)
+                return self.list[c];
+        }
+        return null;
+    }
+    
     this.query = query;
     function query() {
         var result = [];
@@ -116,7 +161,14 @@ function Library() {
         
         for(c=0; c<self.list.length; c++) {
             row = self.list[c].generateHTML();
-            row.setAttribute("class",((c%2) === 0)?"evenRow":"oddRow");
+            var str;
+            if(self.list[c]==highlightedBook)
+                str = "highlightedRow";
+            else if((c%2)==0)
+                str = "evenRow";
+            else
+                str = "oddRow";
+            row.setAttribute("class",str);
             tbo.appendChild(row);
         }
         if(self.list.length === 0) {
@@ -142,6 +194,8 @@ function Library() {
     var removeBookAtIndex = function(index) {
         /*Remove book from local storage immediately. If this is ever changed, remove button loop must also be changed!*/
         var removedBook = self.list[index];
+        if(removedBook == highlightedBook)
+            highlight(null);
 
 	//function to get the class name from object
 	function getObjectClass(obj) {
@@ -188,7 +242,7 @@ function Library() {
         for (var i = 0; i < self.list.length; i++) {
             self.list[i].deleted = true;
         }
-        $.getJSON("http://netlight.dlouho.net:9004/api/books", function (data) {
+        $.getJSON("http://netlight.dlouho.net:9004/api/books" ,function (data) {
             for (var i = 0; i < data.length; i++) {
                 var book = searchForId(data[i]._id);
                 if (book == null) {
@@ -229,6 +283,7 @@ function Library() {
 }
 var LIB = new Library();
 function initLibrary() {
+    LIB.highlight(null);
     LIB.retrieveObjects();
     }
 
@@ -244,6 +299,12 @@ function Book(title, author, id) {
     
     this.select = false;
     this.checkbox = null;
+    
+    this.highlight = highlight;
+    /**Highlight the Book and open it for editing in the UI.*/
+    function highlight() {
+        LIB.highlight(self);
+    }
     
     this.saveUpdate = saveUpdate;
     /*Update the book on the server, blocking/unblocking and updating the UI in the process.*/
@@ -274,7 +335,7 @@ function Book(title, author, id) {
     }
 
     this.changeAuthor = changeAuthor;
-    /**Change the name of the book. Will update the web UI.*/
+    /**Change the author of the book. Will update the web UI.*/
     function changeAuthor(newAuthor) {
         self.author = newAuthor;
         self.saveUpdate();
@@ -344,7 +405,11 @@ function Book(title, author, id) {
         row.appendChild(cell);
         
         cell = document.createElement("td");
-        cell.innerHTML = self.id;
+        var link = document.createElement("a");
+        link.setAttribute("href","JavaScript:void(0);");
+        link.innerHTML = self.id;
+        cell.onclick = function() {_in.value = "LIB.list["+LIB.getIndexByID(self.id)+"]"; self.highlight(); return false;};
+        cell.appendChild(link);
         row.appendChild(cell);
         
         cell = document.createElement("td");
