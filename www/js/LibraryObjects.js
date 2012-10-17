@@ -162,11 +162,25 @@ function Library() {
     this.retrieveObjects = retrieveObjects;
     /*This function retrieves all objects from the server and updates the web UI. Will lock the UI until objects have been received.*/
     function retrieveObjects() {
-        self.list = [];
         $.blockUI();
-        $.getJSON("http://netlight.dlouho.net:9004/api/books" ,function (data) {
-            for(var i = 0; i<data.length; i++)
-                new Book(data[i].title,data[i].author,data[i]._id);
+        for (var i = 0; i < self.list.length; i++) {
+            self.list[i].deleted = true;
+        }
+        $.getJSON("http://netlight.dlouho.net:9004/api/books", function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var book = searchForId(data[i]._id);
+                if (book == null) {
+                    new Book(data[i].title, data[i].author, data[i]._id);
+                }
+                else {
+                    book.title = data[i].title;
+                    book.author = data[i].author;
+                }
+            }
+            for (var i = 0; i < self.list.length; i++) {
+                if (self.list[i].deleted)
+                    self.list.splice(i, 1);
+            }
             generateHTML();
             $.unblockUI();
         });
@@ -177,6 +191,19 @@ function Library() {
         return { "listBooks()":"Prints a list of all books",
                 "query()":"Return an array of books where the variables match their respective values. Regex is supported"};
     }
+
+    this.searchForId = searchForId;
+    /**Searches for a specific id in the list of books */
+    function searchForId(id) {
+        for (var i = 0; i < self.list.length; i++) {
+            if (id == self.list[i].id) {
+                self.list[i].deleted = false;
+                return self.list[i];
+            }
+        }
+        return null;
+    }
+
 }
 var LIB = new Library();
 function initLibrary() {
@@ -190,7 +217,8 @@ function Book(title, author, id) {
     var self    = this;
     this.title   = title;
     this.author = author;
-    this.id     = id;
+    this.id = id;
+    this.deleted = false;
     
     this.select = false;
     this.checkbox = null;
