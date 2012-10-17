@@ -2,6 +2,7 @@ var apilication_root = __dirname,
     express = require("express"),
     mongo = require("mongodb");
     pubnub = require('pubnub');
+    path = require('path');
 
     api = express();
 
@@ -101,11 +102,13 @@ api.put('/api/:collection/:id', function (req, res) {
   console.log("POST /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
   
   db.collection(req.params.collection, function(err, collection) {
+    delete req.body["_id"]; //remove _id so that mongdb does not complain
     collection.update({"_id": mongo.BSONPure.ObjectID(req.params.id)}, req.body, {safe: true}, function(err, result) {
       if (!err) {
         return res.send(JSON.stringify(result[0]));
       }
       else {
+        console.log(err);
         res.status("404");
         return res.send(err);
       }
