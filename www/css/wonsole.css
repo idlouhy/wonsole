@@ -181,6 +181,10 @@ td {
 .oddRow {
     background:gray;
 }
+/*Highlighted table row*/
+.highlightedRow {
+    background:#f07182;
+}
 
 /*Add Padding to left*/
 .paddingLeft{
