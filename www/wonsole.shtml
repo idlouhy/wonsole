@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 	<head>
@@ -94,21 +94,22 @@
 					</input><br/>
 					<button id="EDITBOOK" onclick='
 							var book = LIB.getBookByID(document.getElementById("BOOKID").value);
+                            var index = LIB.list.indexOf(book);
 							if(book!=null) {
-								book.title = document.getElementById("BOOKTITLE").value;
-								book.author = document.getElementById("BOOKAUTHOR").value;
+								go("LIB.list[" + index + "].changeTitle(\"" + document.getElementById("BOOKTITLE").value+ "\")");
+								go("LIB.list[" + index + "].changeAuthor(\"" + document.getElementById("BOOKAUTHOR").value + "\")");
 								book.saveUpdate();
 							}
-                                                        return false;' disabled="disabled">
+                            return false;' disabled="disabled">
 						Edit book
 					</button>
 					<button id="NEWBOOK" onclick='
-							new Book(document.getElementById("BOOKTITLE").value,document.getElementById("BOOKAUTHOR").value);
-							return false;'>
+                            go("new Book(\"" + document.getElementById("BOOKTITLE").value + "\", \"" + document.getElementById("BOOKAUTHOR").value + "\");"); 
+                            return false;'>
 						New book
 					</button>
 					<button id="CLEARBUTTON" onclick='
-							LIB.highlight(null);
+							go("LIB.highlight(null)");
 							return false;'>
 						Clear
 					</button>
