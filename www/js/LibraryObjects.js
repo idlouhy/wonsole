@@ -169,10 +169,8 @@ function Library() {
         $.getJSON("http://netlight.dlouho.net:9004/api/books", function (data) {
             for (var i = 0; i < data.length; i++) {
                 var book = searchForId(data[i]._id);
-                console.log(book);
                 if (book == null) {
                     new Book(data[i].title, data[i].author, data[i]._id);
-                    console.log(self.list.length);
                 }
                 else {
                     book.title = data[i].title;
