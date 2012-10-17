@@ -142,6 +142,28 @@ function Library() {
     var removeBookAtIndex = function(index) {
         /*Remove book from local storage immediately. If this is ever changed, remove button loop must also be changed!*/
         var removedBook = self.list[index];
+
+	//function to get the class name from object
+	function getObjectClass(obj) {
+		if (obj && obj.constructor && obj.constructor.toString) {
+			var arr = obj.constructor.toString().match(/function\s*(\w+)/);
+			if (arr && arr.length == 2) {
+				return arr[1];
+			}
+		}
+		return undefined;
+	}
+	//go through variables and find out the references
+	for (var i in window) {
+		if (getObjectClass(window[i]) == "Book") {
+			if (window[i] === removedBook) {
+				//i object removed due to references
+				println("Referencing object "+i+" removed.")
+				delete window[i];
+			}
+		}
+	}
+
         self.list.splice(index,1);
         $.ajax({
             type: "DELETE",
