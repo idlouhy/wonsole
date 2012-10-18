@@ -885,8 +885,9 @@ function advancedSuggestion(){
         }
         if(fn instanceof Function) {
           // Print function definition, including argument names, but not function body
-          if(!fn.toString().match(/function .+?\(\) +\{\n +\[native code\]\n\}/))
-            println(fn.toString().match(/function .+?\(.*?\)/), "tabcomplete");
+          if(!fn.toString().match(/function .+?\(\) +\{\n +\[native code\]\n\}/)){
+            // println(fn.toString().match(/function .+?\(.*?\)/), "tabcomplete");
+          }
         }
         return;
       }
@@ -991,7 +992,7 @@ function advancedSuggestion(){
         }
       });
 
-      console.log(matches);
+      // console.log(matches);
 
       //printWithRunin("Matches: ", matches.join(', '), "tabcomplete");
       tooManyMatches = null;
