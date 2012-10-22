@@ -147,7 +147,7 @@ api.delete('/api/:collection/:id', function (req, res) {
 });
 
 //OPTIONS
-api.options('/apai/:collection/:id', function (req, res){
+api.options('/api/:collection/:id', function (req, res){
   console.log("OPTIONS /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
   return res.send('');
 });
