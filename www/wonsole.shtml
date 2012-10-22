@@ -102,10 +102,8 @@
 							var book = LIB.getBookByID(document.getElementById("BOOKID").value);
                             var index = LIB.list.indexOf(book);
 							if(book!=null) {
-								go("LIB.list[" + index + "].changeTitle(\"" + document.getElementById("BOOKTITLE").value+ "\")");
-								go("LIB.list[" + index + "].changeAuthor(\"" + document.getElementById("BOOKAUTHOR").value + "\")");
-								book.saveUpdate();
-							}
+								go("LIB.list[" + index + "].changeTitle(\"" + document.getElementById("BOOKTITLE").value + "\"); LIB.list[" + index + "].changeAuthor(\"" + document.getElementById("BOOKAUTHOR").value + "\")");
+                            }
                             return false;' disabled="disabled">
 						Edit book
 					</button>
