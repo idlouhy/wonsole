@@ -33,5 +33,5 @@ function pubnubReconnect() {
 
 function pubnubCallback() {
 	LIB.retrieveObjects();
+	LIB.generateHTML();
 }
-   
