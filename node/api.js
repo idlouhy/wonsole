@@ -21,8 +21,8 @@ pn = pubnub.init({
 });
 
 pn.publish({
-  channel : "library",
-  message : "server started"
+  channel : "system",
+  message : "server-start"
 });
 
 
@@ -86,6 +86,10 @@ api.post('/api/:collection', function (req, res) {
   db.collection(req.params.collection, function(err, collection) {
     collection.insert(req.body, {safe: true}, function(err, result) {
       if (!err) {
+	pn.publish({
+	  channel : "library",
+	  message : "refresh"
+	});
         return res.send(JSON.stringify(result[0]));
       }
       else {
@@ -99,12 +103,16 @@ api.post('/api/:collection', function (req, res) {
 
 //PUT /api/collection/id
 api.put('/api/:collection/:id', function (req, res) {
-  console.log("POST /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
+  console.log("PUT /api/" + req.params.collection + "/" + req.params.id + " " + JSON.stringify(req.body));
   
   db.collection(req.params.collection, function(err, collection) {
     delete req.body["_id"]; //remove _id so that mongdb does not complain
     collection.update({"_id": mongo.BSONPure.ObjectID(req.params.id)}, req.body, {safe: true}, function(err, result) {
       if (!err) {
+	pn.publish({
+	  channel : "library",
+	  message : "refresh"
+	});
         return res.send(JSON.stringify(result[0]));
       }
       else {
@@ -123,6 +131,10 @@ api.delete('/api/:collection/:id', function (req, res) {
   db.collection(req.params.collection, function(err, collection) {
     collection.remove({"_id": mongo.BSONPure.ObjectID(req.params.id)}, {safe: true}, function(err, result) {
       if (!err) {
+	pn.publish({
+	  channel : "library",
+	  message : "refresh"
+	});
         return res.send(JSON.stringify(result[0]));
       }
       else {
