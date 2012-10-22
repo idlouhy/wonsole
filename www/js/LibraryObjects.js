@@ -304,6 +304,7 @@ function Book(title, author, id) {
     function highlight() {
         LIB.highlight(self);
     }
+    this.highlight();
     
     this.saveUpdate = saveUpdate;
     /*Update the book on the server, blocking/unblocking and updating the UI in the process.*/
