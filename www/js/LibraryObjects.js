@@ -232,7 +232,6 @@ function Library() {
             },
             dataType: "text"
         });
-        pubnubRefresh();
     };
 
     this.retrieveObjects = retrieveObjects;
@@ -320,8 +319,6 @@ function Book(title, author, id) {
             },
             dataType: "json"
         });
-        pubnubRefresh();
-        LIB.generateHTML();
         
     }
 
@@ -383,7 +380,6 @@ function Book(title, author, id) {
     /*Remove this book from the system. Will update database and UI.*/
     function remove() {
         LIB.removeBookByID(self.id);
-        pubnubRefresh();
     }
 
 
@@ -451,7 +447,6 @@ function Book(title, author, id) {
             },
             dataType: "json"
         });
-        pubnubRefresh();
     }
 
     this.autoCompleteVals = autoCompleteVals;
