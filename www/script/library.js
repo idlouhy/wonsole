@@ -1,36 +1,32 @@
-$(document).ready(function() {
+//$(document).ready(function() {
 
+init = function() {
+	
+	
 	$.ajax({
-		type : "GET",
-		url : "http://netlight.dlouho.net:9002/library/_design/books/_view/books",
-		success : function(response) {
-			alert(response["total_rows"]);
-			
-		},
-		dataType : "json"
-	});
-
-
-
+    url: "http://localhost:5984/library/_design/books/_view/books",
+    dataType: 'json',
+    success: function(data) {
+//$("#list").append("success");
+        //$.each(data, function(key, val) {
+            
+            $("#list").append(data);
+        //});
+    },
+    
+    complete: function(data) {
+       // $.each(data, function(key, val) {
+          //  $("#list").append('complete');
+            //$("#list").append('key: ' + key + ' Val: ' +  val + '<br />');
+            
+       // });
+    },
+    error: function(error) { }
 });
 
-
-/*
-{
-total_rows: 1,
-offset: 0,
-rows: [
-{
-id: "9e50827761bae06fd9b88fcd0c000219",
-key: "9e50827761bae06fd9b88fcd0c000219",
-value: {
-_id: "9e50827761bae06fd9b88fcd0c000219",
-_rev: "2-ffefcff5b8e3d8c8cae66d9ce50d1555",
-title: "Title"
+	
+	//var data = $.ajax("http://localhost:5984/library/_design/books/_view/books");
+    
+ 
 }
-}
-]
-}
-
-
-*/
+	
