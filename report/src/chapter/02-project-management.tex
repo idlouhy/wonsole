@@ -1,104 +1,9 @@
 \chapter{Project management}
 
-\section{Tool Selection}
-After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
-
-LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
-
-For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
-
-\begin{table}
-\centering
-\begin{tabular}{ l l}
-\textbf{Part of project}  & \textbf{Technology} \\
-\hline
-Communication & Skype, Google Groups, Google Calendar \\
-Document colaboration & Google Docs, Google Drive \\
-Code colaboration & Git + Github \\
-Time tracking and mamangement & Redmine \\
-Report & Latex \\
-Backend & Node.js \\
-Database & MongoDB \\
-Communication & PubNub \\
-Client & JavasScript + JQuery, HTML, CSS \\
-\hline
-\end{tabular}
-\caption{Tools used in project}
-\label{table-tools}
-\end{table}
-
-\subsection{Concrete Project Work Plan}
-The first 4,5 weeks of the project were used on project planning, pre- study on the domain of the problem, to deduce user stories for the product backlog and to create the overall architecture of the system. The project is a proof of concept type of project, so it was important that we used a considerable amount of time on studying the domain of the problem and to find technologies that would solve the task as best as possible. The Scrum process consisted of 4 sprints, each 2 weeks long. In each sprint we had 200 work hours available, but a part of this will be used on report writing, project management, lectures and meetings. The two first sprint had an estimate of 130 hours availablefor development tasks, while the two last had an estimate of 140 work hours available. The last week will be used to evaluate the project, finish the report and to prepare the final presentation. The timeline of the project is outlined in Figure~\ref{figure:gantt}, and the WBS of the project is given in Table~\ref{table:wbs}.
-
-
-\begin{figure}
-\centering
-\includegraphics[width=6in]{image/gantt.png}
-\caption{Gantt Chart}
-\label{figure:gantt}
-\end{figure}
-
-\begin{table}
-\caption{Work Breakdown Structure}
-\centering
-\begin{tabular}{ l l l l l }
-\hline 
-			&				&				&\multicolumn{2}{c}{Hours}		\\
- Task		& From date		&To date			&Est.			&Act.	                \\ 
-\hline \\ [-2.0ex]
- The report     			&21/08/2012		&22/11/2012		&300		&         	 \\
- Project Management	&21/08/2012		&22/11/2012		&180		&		\\
- Project Planning		&21/08/2012		&05/09/2012		&100		&		\\
- Lectures				&21/08/2012		&05/09/2012		&40			&		\\	
- Pre- Study			&06/09/2012		&18/09/2012		&80			&		\\
- Backlog				&10/09/2012		&21/09/2012		&60			&		\\
- Architecture			&17/09/2012		&21/09/2012		&40			&		\\
-\hline \\ [-2.0ex]
- \bf{Sprint 1}			&\bf{24/09/2012}	&\bf{05/10/2012}	&\bf{130}		&		\\
- Planning				&				&				&20			&		\\
- Design/Implementation	&				&				&90			&		\\
- Testing				&				&				&20			&		\\
-\hline \\ [-2.0ex]
- \bf{Sprint 2}			&\bf{08/10/2012}	&\bf{19/10/2012}	&\bf{130}		&		\\
- Planning				&				&				&20			&		\\
- Design/Implementation	&				&				&90			&		\\
- Testing				&				&				&20			&		\\
-\hline \\ [-2.0ex]
- \bf{Sprint 3}			&\bf{22/10/2012}	&\bf{02/11/2012}	&\bf{140}		&		\\
- Planning				&				&				&20			&		\\
- Design/Implementation	&				&				&100		&		\\
- Testing				&				&				&20			&		\\
-\hline \\ [-2.0ex]
- \bf{Sprint 4}			&\bf{05/11/2012}	&\bf{16/11/2012}	&\bf{140}		&		\\
- Planning				&				&				&20			&		\\
- Design/Implementation	&				&				&100		&		\\
- Testing				&				&				&20			&		\\
-\hline \\ [-2.0ex]
- Evaluation			&19/11/2012		&22/11/2012		&30			&		\\
- Presenation			&19/11/2012		&21/11/2012		&30			&		\\
-\hline \\ [-2.0ex]
- \bf{Total}			&				&				&\bf{1400}	&		\\
-\hline
-\end{tabular}
-\label{table:wbs}
-\end{table}
-
-\section{Project name}
-Project name is important project identificator. It should summarize main project goal or functionality. In real project, is often a trademark, or reflects the name of the company.
-
-In this section, we will describe the process of choosing a name for the project. First of all, we made a list of words, that we can use in the project name. These words describe project funcionality or goal.
-
-Words that can be used in project name: master, console, web, text, keyboard.
-
-We used the list of words and brainstorming session on a meeting for compiling a list of project name candidates:
-
-Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI.
-
-After discussion we chose the name \emph{Wonsole}. Project name can be sometimes little confusing, so we added the subtitle: \emph{The new web console for power users.}
-
+In order to successfully actualize this project, it is necessary to establish a common, high-level understanding of the team, external factors influencing the project, the project itself, and how to organize the work. The project management chapter is meant to document this.
 
 \section{Team Structure}
-We are a very small development team of just four team members. In typicall software project, there is a lot of different roles, so each of us have to have more roles. We started with creating a list of roles, that we need in the team. Each role represents a responsibility. This person should have overview of the progress on his area of responsibility and control the work done. The work itself is beeing broken down into tasks and on these tasks can work anyone from the team. The roles in our team are listed in the table \ref{table-teamroles}, overview of the roles is in the table \ref{table-rolesoverview}.
+We are a very small development team of just four team members. In a typical software development project, there are a large number of different roles, so each of us have to be assigned several different roles. We have defined a role for each responsibility that we believe to be important in our process. The person who is assigned a role should have an overview of the progress and have control over which tasks need to be done on their area. The work itself may be broken down into tasks so that these tasks can be executed by anyone from the team. The roles in our team are listed in the table \ref{table-teamroles}, overview of the roles is in the table \ref{table-rolesoverview}.
 
 \begin{table}
 \centering
@@ -158,9 +63,98 @@ We are a very small development team of just four team members. In typicall soft
 \label{table-teamroles}
 \end{table}
 
+\section{Concrete Project Work Plan}
+The first 4,5 weeks of the project were used on project planning, pre- study on the domain of the problem, to deduce user stories for the product backlog and to create the overall architecture of the system. The project is a proof of concept type of project, so it was important that we used a considerable amount of time on studying the domain of the problem and to find technologies that would solve the task as best as possible. Our Scrum process consists of 4 sprints, each 2 weeks long. In each sprint we had 200 work hours available, but a part of this will be used on report writing, project management, lectures and meetings. The two first sprint had an estimate of 130 hours available for development tasks, while the two last had an estimate of 140 work hours available. The last week will be used to evaluate the project, finish the report and to prepare the final presentation. The timeline of the project is outlined in Figure~\ref{figure:gantt}, and the WBS of the project is given in Table~\ref{table:wbs}.
+
+\section{Schedule of Results}
+\subsection {Deliverables}
+These are the deliverables and deadlines, that we have to take into account.
+\begin {itemize}
+
+\item August 21, Project start
+
+\item October 14, Pre- Delivery: Deliver a copy of the Abstract, Introduction, the Pre-study and the Choice-of Lifecycle-model chapters to the external examiner (censor) and technical writing teacher. Also deliver the outline of the full report (Table of  Contents).
+
+\item November 22, Final Delivery: Project end. Deliver final report and present and demonstrate the final product at NTNU. Four printed and bound copies of  the project report should be delivered, as well as one electronic (PDF) copy.
+
+\end {itemize}
+
+\subsection {Sprints}
+
+Sprint deadlines:
+The pre- study, requirements, and testing plan activities should be finished before the start of the first sprint. If this is not the case the number sprints and their deadline might change. The start and end dates of each sprint is listed in Table~\ref{table:sprintdeadlines}
+
+\begin{table}
+\caption{Sprint Deadlines}
+\centering
+\begin{tabular}{ l l l }
+\hline
+Sprint Nr.		&Start		&End		\\
+\hline
+1		&24. September		&5. October		\\
+2		&8. September			&19. October		\\
+3		&22. October			&2. November		\\
+4		&4. November			&18. November	\\
+\hline
+\end{tabular}
+\label{table:sprintdeadlines}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{image/gantt.png}
+\caption{Gantt Chart}
+\label{figure:gantt}
+\end{figure}
+
+\begin{table}
+\caption{Work Breakdown Structure}
+\centering
+\begin{tabular}{ l l l l l }
+\hline 
+			&				&				&\multicolumn{2}{c}{Hours}		\\
+ Task		& From date		&To date			&Est.			&Act.	                \\ 
+\hline \\ [-2.0ex]
+ The report     			&21/08/2012		&22/11/2012		&300		&         	 \\
+ Project Management	&21/08/2012		&22/11/2012		&180		&		\\
+ Project Planning		&21/08/2012		&05/09/2012		&100		&		\\
+ Lectures				&21/08/2012		&05/09/2012		&40			&		\\	
+ Pre- Study			&06/09/2012		&18/09/2012		&80			&		\\
+ Backlog				&10/09/2012		&21/09/2012		&60			&		\\
+ Architecture			&17/09/2012		&21/09/2012		&40			&		\\
+\hline \\ [-2.0ex]
+ \bf{Sprint 1}			&\bf{24/09/2012}	&\bf{05/10/2012}	&\bf{130}		&		\\
+ Planning				&				&				&20			&		\\
+ Design/Implementation	&				&				&90			&		\\
+ Testing				&				&				&20			&		\\
+\hline \\ [-2.0ex]
+ \bf{Sprint 2}			&\bf{08/10/2012}	&\bf{19/10/2012}	&\bf{130}		&		\\
+ Planning				&				&				&20			&		\\
+ Design/Implementation	&				&				&90			&		\\
+ Testing				&				&				&20			&		\\
+\hline \\ [-2.0ex]
+ \bf{Sprint 3}			&\bf{22/10/2012}	&\bf{02/11/2012}	&\bf{140}		&		\\
+ Planning				&				&				&20			&		\\
+ Design/Implementation	&				&				&100		&		\\
+ Testing				&				&				&20			&		\\
+\hline \\ [-2.0ex]
+ \bf{Sprint 4}			&\bf{05/11/2012}	&\bf{16/11/2012}	&\bf{140}		&		\\
+ Planning				&				&				&20			&		\\
+ Design/Implementation	&				&				&100		&		\\
+ Testing				&				&				&20			&		\\
+\hline \\ [-2.0ex]
+ Evaluation			&19/11/2012		&22/11/2012		&30			&		\\
+ Presenation			&19/11/2012		&21/11/2012		&30			&		\\
+\hline \\ [-2.0ex]
+ \bf{Total}			&				&				&\bf{1400}	&		\\
+\hline
+\end{tabular}
+\label{table:wbs}
+\end{table}
+
 \section{Quality Assurance}
 \subsection{Communication rules}
-Communication with the customer is usually done by mail. The customer will contact the assigned customer contact if anything else is not specified. The assigned customer contact is responsible for relaying any information received from the customer to the other group members as soon as possible. The customer contact is also responsible for sending any information from the group to the customer. Any communication from the customer demanding a reply, will be replied to within 8 hours. If any communication is sent from the group to the customer demanding a reply, this reply should be received by the group within 24 hours.
+Communication with the customer is usually done by email. The customer will contact the assigned customer contact if anything else is not specified. The assigned customer contact is responsible for relaying any information received from the customer to the other group members as soon as possible. The customer contact is also responsible for sending any information from the group to the customer. Any communication from the customer demanding a reply, will be replied to within 8 hours. If any communication is sent from the group to the customer demanding a reply, this reply should be received by the group within 24 hours.
 
 The same rules apply to the communication with the advisor.
 
@@ -203,6 +197,9 @@ These templates are listed in the appendices.
 
 \input{chapter/project-management/risks.tex}
 
+\section{Planned Effort}
+The course staff recommends us to work 25 person-hours per week and student. This project is estimated for 14 weeks. Since we at the moment have 4 group members in our group, the available effort will be $14*25*4=1400$ person hours including own reading, meetings, lectures, and seminars. The customer requested 5-7 students to handle this project, it is regrettably not likely that we will be supplied by one extra group member, so we must expect some more work hours divided on the four of us.
+
 \section{Lectures}
 Lectures held by the course TDT4290 Customer Driven Project mainly aim to educate the students in the in the art of project management and the different tools used to handle this task in a better way. The lectures can give good insight into the workflow and how to avoid different issues, and should therefore be attended when the lecture involves tools used by the group or tools the group should consider using. After the lectures the group will reflect upon the presented material and if it is usable, or add value to our project, it will be integraded into the project.
 
@@ -213,8 +210,44 @@ The customer has a huge workforce at their disposal, and it can be introduced to
 \subsection{Issues regarding the workflow}
 The advisor can help us with issues regarding project management and workflow issues. If the group were to be stuck at some point, the advisor can jank the group out of the ditch and set it back on track. 
 
+\section{Tool Selection}
+After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
 
-\section{Domain choosing}
+LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
+
+For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
+
+\begin{table}
+\centering
+\begin{tabular}{ l l}
+\textbf{Part of project}  & \textbf{Technology} \\
+\hline
+Communication & Skype, Google Groups, Google Calendar \\
+Document colaboration & Google Docs, Google Drive \\
+Code colaboration & Git + Github \\
+Time tracking and mamangement & Redmine \\
+Report & Latex \\
+Backend & Node.js \\
+Database & MongoDB \\
+Communication & PubNub \\
+Client & JavasScript + JQuery, HTML, CSS \\
+\hline
+\end{tabular}
+\caption{Tools used in project}
+\label{table-tools}
+\end{table}
+
+\section{Choice of Domain}
+Our project's problem is a rather general one, not intrinsically tied to any specific domain. However, its existence depends on an actual area of application. For this reason, it has been necessary for us to discover a domain for which to implement our prototype. Our criteria for selecting such a domain were as follows:
+\begin{itemize}
+\item It should be simple enough for test subjects to understand and feel familliar with.
+\item It should be complicated enough to demonstrate the problem.
+\item The console has to be useful in the domain, in such a way that it eases the workflow or opens new possibilities
+\item Object oriented design should be applicable
+\item There should be potential for the existence of power users capable of using the console
+\end{itemize}
+Various domains were considered, including but not limited to banking, warehouses, project management, travel agencies, education, social networking, music management and health care. Ultimately, based on the criteria listed, we decided in consensus to implement our solution for a library system.
+
 \begin{comment}
 Domain ideas:
 project management tool (ehm. redmine)
@@ -317,3 +350,16 @@ save command for object attribute editing
 what about object operations?
 transaction support
 \end{comment}
+
+\section{Project name}
+Project name is important project identificator. It should summarize main project goal or functionality. In real project, is often a trademark, or reflects the name of the company.
+
+In this section, we will describe the process of choosing a name for the project. First of all, we made a list of words, that we can use in the project name. These words describe project funcionality or goal.
+
+Words that can be used in project name: master, console, web, text, keyboard.
+
+We used the list of words and brainstorming session on a meeting for compiling a list of project name candidates:
+
+Candidate project names: console 2.0, wonsole, wensole, websole, werminal, interCLI.
+
+After discussion we chose the name \emph{Wonsole}. Project name can be sometimes little confusing, so we added the subtitle: \emph{The new web console for power users.}
