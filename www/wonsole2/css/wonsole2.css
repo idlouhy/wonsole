@@ -1,0 +1,71 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 80%;
+	font-family: Consolas, Courier New;
+	
+}
+
+#console {
+	float: none;
+	background-color: black;
+    height: 100%;
+    min-height: 100%;
+    width: 40%;    
+    
+	overflow: auto;
+	
+	display: block;
+	position: fixed;
+	left: 60%;
+	top: 0%;
+
+}
+
+#ui {
+	float: left;
+    height: 100%;
+    min-height: 100%;
+    width: 60%;
+	
+	overflow: auto;
+	
+	display: block;
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	
+	padding: 1em;
+}
+
+#console-input {
+    outline: none;
+    border: none;
+    resize: none;
+    background: black;
+    color: gray;
+    width: 95%;
+    margin: 2.5%;
+}
+
+
+input {
+	overflow: hidden;
+    outline: none;
+    border: none;
+    resize: none;
+    background: #EEEEEE;
+    font-family: Consolas, Courier New;
+	
+}
+
+
+#commands {
+	position: fixed;
+	bottom: 1em;
+	left: 1em;
+}
+
+#list {
+	list-style: none;
+}
