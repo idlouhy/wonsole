@@ -20,6 +20,9 @@ function command(input) {
 	log(c+"<<");
 	log(arg+"<<");
 	
+	$('#console-output').append("<p>"+input+"</p>");
+	$('#console-input').text("");
+	
 	window[commands[c].callback]();
 }
 
