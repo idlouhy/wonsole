@@ -5,23 +5,29 @@
 		<title>Wonsole2 Sketches</title>
 		<link rel = "stylesheet" type="text/css" href="css/wonsole2.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    
 		<script src="script/wonsole.js"></script>
 		<script src="script/wonsole.persistence.js"></script>
 		<script src="script/wonsole.ui.js"></script>
+		<script src="script/wonsole.console.js"></script>
 	</head>
 
-	<body onload="reload();">
+	<body onload="ui_init();">
 		<div id="ui">
 			<div id="data">
+				<ul id="list"></ul>
+			</div>
+			<div id="log">
 			</div>
 			<div id="commands">
-				<a href="#">Add new</a>
-				<a href="#" onclick="commit()">Commit</a>
 			</div>
 		</div>
-		<div id="console">
-			<input id="console-input" value="" oninput="consoleOnInput(event)" onkeypress="consoleKeyPress(event)" />
+		<div id="console" onclick="console_event_click(event)">
+			<input id="console-input" value="" oninput="console_event_input(event)" onkeypress="console_event_keypress(event)" />
 		</div>
 	</body>
 </html>
