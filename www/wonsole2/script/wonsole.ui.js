@@ -1,141 +1,74 @@
-var w = new Object();
-
-
-indentSpace = function(n) {
-  var s = "";
-  for (var i=0; i<n; i++) {
-    s = s + "&nbsp;";
-  }
-  return s;
+function ui_init() {
+	ui_list_databases();
 }
 
-
-generateDetailR = function(key, value, indent) {
-  var e = $("#data");
+function ui_list_databases() {
+  $('#data').html('<ul id="list"></ul>');
+  var target = $('#list');
+  target.text("");
   
-  e.append(indentSpace(indent));
-  e.append('"'+key+'" : ');
-  e.append('{<br/>');
+  function ui_list_databases_line(database) {
+  	target.append('<li><a  href="#/'+database+'" onclick="ui_list_views(\''+database+'\');">'+database+'</a></li>');
+  }
   
-  $.each(value, function(key, value) {
-    if (value instanceof Object) {
-      generateDetailR(key, value, indent+2);
-    }
-    else {
-      e.append(generateJSONFormInput(key, value, indentSpace(indent+2)));
-    }
-	  });
-  e.append(indentSpace(indent));
-  e.append('}<br />');
-
+  persistence_list_databases(function(json) {
+  	 $.each(json, function(key, value) {
+  	   ui_list_databases_line(value);
+  	 });
+  });
 }
 
-generateDetail = function(key, json) {
-  var e = $("#data");
-  e.html("");
+function ui_list_views(database) {
+  $('#data').html('<ul id="list"></ul>');
+  var target = $('#list');
+  target.text("");
+  
+  target.append('<li><a  href="#" onclick="ui_list_databases();">..</a></li>');
 
-  e.append('<form id="detail">');
-  generateDetailR(key, json, 0);
-
-  e.append("</form>");
-}
-
-inputOnInput = function(event) {
-  w[event.target.id] = event.target.value;
-  commit();
-}
-
-generateJSONFormInput = function(key, value, indentstr) {
-  var disabled = false;
-  if (key[0] == '_') {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" disabled="disabled" />"<br />';
+  function ui_list_views_line(database, view) {
+  	target.append('<li><a  href="#/'+database+'/'+view+'" onclick="ui_list_docs(\''+database+'\',\''+view+'\');">'+view+'</a></li>');
   }
-  else {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="inputOnInput(event)" />"<br />';
-  }
-  return r;
-}
-
-
-generateListItem = function(json) {
-  var e = $("#data");
-  e.append(JSON.stringify(json));
-}
-
-
-generateList = function(json) {
-  var e = $("#data");
-  e.html("");
-  //e.append(JSON.stringify(json));
-//  e.append(JSON.stringify(json));
-  $.each(json, function(key, value) {
-       var o = value.value;
-       e.append('<li><a  href="wonsole.html?'+o._id+'">'+o._id+'</a></li>');
+  
+  persistence_list_views(database, function(json) {
+    $.each(json, function(key, value) {  	
+  	  ui_list_views_line(database, value);
+    });	
   });
 }
 
 
-//{"id":"9e50827761bae06fd9b88fcd0c000219","key":"9e50827761bae06fd9b88fcd0c000219","value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"4-f2ee0f9f21982d9296f8d321ab33341c","title":"Title","test":["test","data",{"id":1}]}}
+function ui_list_docs(database, view) {
+  $('#data').html('<ul id="list"></ul>');
+  var target = $('#list');
+  target.text("");
 
+  target.append('<li><a  href="#/'+database+'" onclick="ui_list_views(\''+database+'\');">..</a></li>');
 
-commit = function() {
-        $.ajax({
-          type: "PUT",
-          data: JSON.stringify(w),
-          url: "/couchdb/library/"+w._id,
-          dataType: 'json',
-          cache: 'false',
-          success: function(obj) {
-//            alert(JSON.stringify(obj));
-          },
-          error: function(obj) {
-            alert(JSON.stringify(obj));
-          },
-        });
-        reload();
-      }
-
-
-reload = function() {
-
-  var doc_id = window.location.search.substr(1);
-  w = new Object();
-
-  if (doc_id) {
-    $.ajax({
-      url: "/couchdb/library/"+doc_id,
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-         w = data;
-         generateDetail(doc_id, data);
-      },
-    });
+  function ui_list_docs_line(database, view, doc) {
+  	target.append('<li><a  href="#/'+database+'/'+doc+'" onclick="ui_view_doc(\''+database+'\', \''+view+'\', \''+doc+'\');">'+doc+'</a></li>');
   }
-  else {
-    $.ajax({
-      url: "/couchdb/library/_design/books/_view/books",
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-        generateList(data.rows);
-      },
-    });
-  }
-}
 
-command = function(data) {
-  $('#console').append(eval(data));
+  persistence_list_docs(database, view, function(json) {
+  	$.each(json, function(key, value) {
+  	  ui_list_docs_line(database, view, key);
+  	});
+  });
 }
 
 
-consoleOnInput = function(event) {
-}	
-
-consoleKeyPress = function(event) {
-  if (event.keyCode == 13) {
-    command(event.target.value);
-    commit();
-  }
+function ui_view_doc(database, view, doc) {
+  var target = $('#data');
+  target.text("");
+  
+  target.append('<li><a  href="#/'+database+'/'+view+'" onclick="ui_list_docs(\''+database+'\',\''+view+'\');">..</a></li>');
+  
+  persistence_get_doc(database, view, doc, function(json) {
+  	target.append(JSON.stringify(json));
+  });
+ 
 }
+
+
+
+
 

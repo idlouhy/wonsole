@@ -1,141 +1,108 @@
-var w = new Object();
+var persistence_type = {
+  demo : {value: 0, name: "Demo", path: "demo:"},
+  local : {value: 1, name: "Local", path: "file://"}, 
+  couchdb : {value: 2, name: "CouchDB", path: "/couchdb"}
+};
 
 
-indentSpace = function(n) {
-  var s = "";
-  for (var i=0; i<n; i++) {
-    s = s + "&nbsp;";
-  }
-  return s;
+var persistence = persistence_type.couchdb;
+
+function persistence_list_databases(callback) {
+	if (persistence == persistence_type.demo) {
+		return JSON.parse('["database1", "database2"]')
+	}
+	else {
+		persistence_get(persistence.path+"/_all_dbs", function(data) {
+		  console.log(JSON.stringify(data));
+		  callback(data);	
+		});
+		
+		// ["authors", "_users", "library", "books" ]
+	}
 }
 
 
-generateDetailR = function(key, value, indent) {
-  var e = $("#data");
-  
-  e.append(indentSpace(indent));
-  e.append('"'+key+'" : ');
-  e.append('{<br/>');
-  
-  $.each(value, function(key, value) {
-    if (value instanceof Object) {
-      generateDetailR(key, value, indent+2);
-    }
-    else {
-      e.append(generateJSONFormInput(key, value, indentSpace(indent+2)));
-    }
-	  });
-  e.append(indentSpace(indent));
-  e.append('}<br />');
-
+function persistence_list_views(database, callback) {
+	console.log(database);
+	if (persistence == persistence_type.demo) {
+		return JSON.parse('["view1", "view_by_id", "view_by_title"]')
+	}
+	else {
+		var path = persistence.path+'/'+database+'/_all_docs?startkey="_design/"&endkey="_design0"&include_docs=true';
+		persistence_get(path, function(json) {
+			var views = [];
+			views.push("_all_docs");
+			$.each(json.rows, function(key, row) {
+				var design_path = row.id;
+				$.each(row.doc.views, function(key, value) {
+					var view_path = design_path + '/_view/' + key
+					views.push(view_path);
+					console.log(view_path);
+				});			  
+			});
+			callback(views);
+		});
+	}   
 }
 
-generateDetail = function(key, json) {
-  var e = $("#data");
-  e.html("");
-
-  e.append('<form id="detail">');
-  generateDetailR(key, json, 0);
-
-  e.append("</form>");
+function persistence_list_docs(database, view, callback) {
+	console.log(view);
+	if (persistence == persistence_type.demo) {
+		return JSON.parse('{"00000001" : {"id":"1", "title":"title1"}, "00000002" : {"id":"2", "title":"title2"}}');
+	}
+	else {
+		var path = persistence.path+'/'+database+'/'+view;
+		persistence_get(path, function(json) {
+			var docs = {};
+			$.each(json.rows, function(key, row) {
+				docs[row.id] = row.value;
+				console.log(row.id);
+			});
+			callback(docs);
+		});
+	}
 }
 
-inputOnInput = function(event) {
-  w[event.target.id] = event.target.value;
-  commit();
+function persistence_get_doc(database, view, doc, callback) {
+	if (persistence == persistence_type.demo) {
+	}
+	else {
+		var path = persistence.path+'/'+database+'/'+doc;
+		persistence_get(path, function(json) {
+			callback(json);
+			
+			/*
+			var docs = {};
+			$.each(json.rows, function(key, row) {
+				docs[row.id] = row.value;
+				console.log(row.id);
+			});
+			callback(docs);
+			*/
+		});
+	}
 }
 
-generateJSONFormInput = function(key, value, indentstr) {
-  var disabled = false;
-  if (key[0] == '_') {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" disabled="disabled" />"<br />';
-  }
-  else {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="inputOnInput(event)" />"<br />';
-  }
-  return r;
-}
+/*
 
 
-generateListItem = function(json) {
-  var e = $("#data");
-  e.append(JSON.stringify(json));
-}
+{"total_rows":4,"offset":0,"rows":[
+{"id":"9e50827761bae06fd9b88fcd0c000219","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"42-632ea6a7ca8d50a2a4f93921b5c5bdd2","0":"","title":"test","test":["test","data",{"id":1}],"id":"15","coauthor":["aaa","bbb","cccc"],"newatribute":"something"}},
+{"id":"9e50827761bae06fd9b88fcd0c001035","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c001035","_rev":"9-166af2de1f3bcbc51149a9369741d8c5","title":"uv35"}},
+{"id":"9e50827761bae06fd9b88fcd0c0029d6","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c0029d6","_rev":"1-967a00dff5e02add41819138abb3284d"}},
+{"id":"undefined","key":null,"value":{"_id":"undefined","_rev":"14-34275954af7d1f8730fc0fef164e5400","title":"abc"}}
+]}
 
 
-generateList = function(json) {
-  var e = $("#data");
-  e.html("");
-  //e.append(JSON.stringify(json));
-//  e.append(JSON.stringify(json));
-  $.each(json, function(key, value) {
-       var o = value.value;
-       e.append('<li><a  href="wonsole.html?'+o._id+'">'+o._id+'</a></li>');
+*/
+
+
+function persistence_get(path, success_callback) {
+  $.ajax({
+    url: path,
+    type: 'GET',
+    dataType: 'json',
+    cache: 'false',
+    success: success_callback,
   });
 }
-
-
-//{"id":"9e50827761bae06fd9b88fcd0c000219","key":"9e50827761bae06fd9b88fcd0c000219","value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"4-f2ee0f9f21982d9296f8d321ab33341c","title":"Title","test":["test","data",{"id":1}]}}
-
-
-commit = function() {
-        $.ajax({
-          type: "PUT",
-          data: JSON.stringify(w),
-          url: "/couchdb/library/"+w._id,
-          dataType: 'json',
-          cache: 'false',
-          success: function(obj) {
-//            alert(JSON.stringify(obj));
-          },
-          error: function(obj) {
-            alert(JSON.stringify(obj));
-          },
-        });
-        reload();
-      }
-
-
-reload = function() {
-
-  var doc_id = window.location.search.substr(1);
-  w = new Object();
-
-  if (doc_id) {
-    $.ajax({
-      url: "/couchdb/library/"+doc_id,
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-         w = data;
-         generateDetail(doc_id, data);
-      },
-    });
-  }
-  else {
-    $.ajax({
-      url: "/couchdb/library/_design/books/_view/books",
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-        generateList(data.rows);
-      },
-    });
-  }
-}
-
-command = function(data) {
-  $('#console').append(eval(data));
-}
-
-
-consoleOnInput = function(event) {
-}	
-
-consoleKeyPress = function(event) {
-  if (event.keyCode == 13) {
-    command(event.target.value);
-    commit();
-  }
-}
-
