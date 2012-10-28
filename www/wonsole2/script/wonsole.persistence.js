@@ -1,3 +1,5 @@
+var persistance_cache_databases;
+
 var persistence_type = {
   demo : {value: 0, name: "Demo", path: "demo:"},
   local : {value: 1, name: "Local", path: "file://"}, 
@@ -14,6 +16,7 @@ function persistence_list_databases(callback) {
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
 		  console.log(JSON.stringify(data));
+		  persistance_cache_databases = data;
 		  callback(data);	
 		});
 		
