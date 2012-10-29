@@ -11,6 +11,13 @@ The goal of the second sprint is to increase the functionality of the console. W
 As of this sprint we tried to split each user story into smaller sub- tasks that could be distributed easily amonst the group members. Each estimate for the subtasks includes design and implementation of the solution. Testing includes writing unit tests as we code, write test cases and to perform them. Documentation includes all the work necessary to document our work on that user story in the report.
 
 For this sprint we had 110 hours available for the sprint, exluding work on the report, project management, sprint planning and evaluation. Its a bit less than normal as we decided to put in some extra work on the pre- delivery of the report on October 14th.
+\newline
+
+The decision to make smaller sub- tasks turned out to be succesful, as we were able to estimate the workload more precisly than we did in the last sprint. The tasks were much more detailed as well, instead of general tasks such as "Design" and "Implementation". We experienced that it was easier to estimate the tasks when they represented something concise, and to achieve this they needed to be small enough.
+
+There is still room for improvement, as the estimates on some of the sub- tasks were somewhat far away from the actual time used. The tasks that we felt were the most difficult to estimate were the bigger ones. We generally spent less time than planned on these, and we feel that the reason for this was that we failed to break these down to small enough packages. Our general feeling is that the smaller and more concise the tasks are, the better we are able to estimate them. For the next sprint we should make an effort to do more of the same, and try to make the tasks as small and concise as possible and avoid big and general ones.
+
+We used less time on the user stories than we planned for this sprint, and a big part of this was due to the pre- delivery of the report. We failed to properly estimate the workload of this delivery, and as a result we had less time available for the user stories. Luckily we were able to finish them using with the time available, mostly because some of the tasks were easier to accomplish than we originally thought. However, this may not be the case in the following sprints. Thats why we feel its important to get the estimates even more precise, so we know exactly how much effort its going to take to achieve the goals we set for the sprints. 
 
 \begin{table}
 \caption{Sprint 2 User Stories}
@@ -20,74 +27,56 @@ For this sprint we had 110 hours available for the sprint, exluding work on the 
 			&				&\multicolumn{2}{c}{Hours}			\\
  User Story	& Short Description		&Est.		&Act.	                               \\ 
 \hline \\ [-2.0ex]
- \bf{A4}     &\bf{Update to schemaless database}		&\bf{10}		&\bf{}          \\ 
-		  &Change the server implemenation		&4			&		\\
-		  &Update REST API calls					&2			&		\\
-		  &Testing							&2			&		\\
-		  &Documentation						&2			&		\\
+ \bf{A4}     &\bf{Update to schemaless database}		&\bf{10}		&\bf{11}          \\ 
+		  &Change the server implemenation		&4			&5		\\
+		  &Update REST API calls					&2			&1.5		\\
+		  &Testing							&2			&2.5		\\
+		  &Documentation						&2			&2		\\
 
- \bf{G4}     &\bf{Reflect actions from the GUI in the console} 		&\bf{11}		&\bf{}               \\ 
-		  &Print the commands in the console				&6			&5		\\
-		  &Testing									&3			&3		\\
-		  &Documentation								&2			&		\\
+ \bf{G4b}     &\bf{Reflect actions from the GUI in the console} 		&\bf{11}		&\bf{13.5}               \\ 
+		  &Print the commands in the console				&6			&8		\\
+		  &Testing									&3			&3.5		\\
+		  &Documentation								&2			&2		\\
 
- \bf{G7}     &\bf{Autocompletion of commands} 	&\bf{30}		&\bf{}		     \\ 
-		  &Add methods to list commands		&4			&		\\
-		  &Create popup menu				&10			&		\\
-		  &Update elements in menu			&4			&		\\
-		  &Make selection of commands possible&3			&		\\
-		  &Autocomplete on selection			&1			&		\\
-		  &Testing						&4			&		\\
-		  &Documentation					&4			&		\\
+ \bf{G7}     &\bf{Autocompletion of commands} 	&\bf{30}		&\bf{22.5}		     \\ 
+		  &Add methods to list commands		&4			&2		\\
+		  &Create popup menu				&10			&5		\\
+		  &Update elements in menu			&4			&3		\\
+		  &Make selection of commands possible&3			&3.5		\\
+		  &Autocomplete on selection			&1			&1		\\
+		  &Testing						&4			&5		\\
+		  &Documentation					&4			&3		\\
 
- \bf{G10}   &\bf{Indicate the selected objects in GUI}		&\bf{26}		&\bf{}		     \\ 
-		  &Design soulution for highlighting elements	&2			&		\\
-		  &Create method for highlighting				&2			&		\\
-		  &Create record for selected objects			&4			&		\\
-		  &Respond to changes in selection				&8			&		\\
-		  &Highlight newly created objects				&2			&		\\
-		  &Testing								&4			&		\\
-		  &Documentation							&4			&		\\
+ \bf{G10}   &\bf{Indicate the selected objects in GUI}		&\bf{26}		&\bf{17}		     \\ 
+		  &Design soulution for highlighting elements	&2			&1		\\
+		  &Create method for highlighting				&2			&1.5		\\
+		  &Create record for selected objects			&4			&2		\\
+		  &Respond to changes in selection				&8			&4		\\
+		  &Highlight newly created objects				&2			&2		\\
+		  &Testing								&4			&3.5		\\
+		  &Documentation							&4			&3		\\
 
- \bf{G11}	  &\bf{Cycle through the current selection}	&\bf{25}		&\bf{}		     \\
-		  &Logic to keep track of selection			&5			&		\\
-		  &Update this list when selection changes	&4			&		\\
-		  &Extract objects when cycling through		&7			&		\\
-		  &Update the GUI when selection changes	&2			&		\\
-		  &Testing							&4			&		\\
-		  &Documentation						&3			&		\\
+ \bf{G11}	  &\bf{Cycle through the current selection}	&\bf{25}		&\bf{18}		     \\
+		  &Logic to keep track of selection			&5			&3.5		\\
+		  &Update this list when selection changes	&4			&3		\\
+		  &Extract objects when cycling through		&7			&4		\\
+		  &Update the GUI when selection changes	&2			&2		\\
+		  &Testing							&4			&3.5		\\
+		  &Documentation						&3			&2		\\
 
-\bf{G8}	  &\bf{Show details on click}			&\bf{8}		&\bf{}		     \\
-		  &Make ID clickable					&1			&		\\
-		  &Update relevant section on click		&2			&		\\
-		  &Able the user to make changes		&3			&		\\
-		  &Testing						&1			&		\\
-		  &Documentation					&1			&		\\
+\bf{G12}	  &\bf{Show details on click}			&\bf{8}		&\bf{7.5}		     \\
+		  &Make ID clickable					&1			&1		\\
+		  &Update relevant section on click		&2			&1.5		\\
+		  &Able the user to make changes		&3			&1.5		\\
+		  &Testing						&1			&2.5		\\
+		  &Documentation					&1			&1		\\
 \hline 
-		  &\bf{Total:}						&\bf{110}		&\bf{}		\\
+		  &\bf{Total:}						&\bf{110}		&\bf{89.5}		\\
 \hline
 \end{tabular}
 \label{table:sp2usrstories}
 \end{table}
 
-\begin{table}
-\caption{Sprint 2 Workload}
-\centering
-\begin{tabular}{ l l l }
-\hline 
-            &\multicolumn{2}{c}{Hours}          \\
- Task       &Est.           &Act.                                  \\ 
-\hline \\ [-2.0ex]
-Design          &43     &     \\
-Implementation  &63     &     \\
-Testing         &19     &     \\
-Documentation   &15     &     \\
-\hline
-\bf{Total}          &\bf{140}   &       \\
-\hline
-\end{tabular}
-\label{table:sp2workload}
-\end{table}
 
 \section{Architecture}
 \subsection{4+1 view model}
