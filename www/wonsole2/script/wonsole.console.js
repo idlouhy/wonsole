@@ -1,5 +1,5 @@
-var history = []
-var prompt = "wonsole2> "
+var history = [];
+var prompt = "wonsole2> ";
 var input = "";
 
 //var autocomplete_commands_cache = [];
@@ -47,11 +47,11 @@ function autocomplete_event() {
 function console_event_input(event) {
 	input = event.target.value;
 	//autocomplete_event();
-}	
+}
 
 function console_event_keypress(event) {
   if (event.keyCode == 13) { //enter
-  	command(input);
+    command(input);
   }
 }
 

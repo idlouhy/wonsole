@@ -2,7 +2,7 @@ var persistance_cache_databases;
 
 var persistence_type = {
   demo : {value: 0, name: "Demo", path: "demo:"},
-  local : {value: 1, name: "Local", path: "file://"}, 
+  local : {value: 1, name: "Local", path: "file://"},
   couchdb : {value: 2, name: "CouchDB", path: "/couchdb"}
 };
 
@@ -15,9 +15,9 @@ function persistence_list_databases(callback) {
 	}
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
-		  console.log(JSON.stringify(data));
-		  persistance_cache_databases = data;
-		  callback(data);	
+            console.log(JSON.stringify(data));
+            persistance_cache_databases = data;
+            callback(data);
 		});
 		
 		// ["authors", "_users", "library", "books" ]
@@ -38,14 +38,14 @@ function persistence_list_views(database, callback) {
 			$.each(json.rows, function(key, row) {
 				var design_path = row.id;
 				$.each(row.doc.views, function(key, value) {
-					var view_path = design_path + '/_view/' + key
+					var view_path = design_path + '/_view/' + key;
 					views.push(view_path);
 					console.log(view_path);
-				});			  
+				});
 			});
 			callback(views);
 		});
-	}   
+	}
 }
 
 function persistence_list_docs(database, view, callback) {
@@ -68,7 +68,7 @@ function persistence_list_docs(database, view, callback) {
 
 function persistence_get_doc(database, view, doc, callback) {
 	if (persistence == persistence_type.demo) {
-	  callback(JSON.parse('{"id":"9e50827761bae06fd9b88fcd0c000219"}'));		
+        callback(JSON.parse('{"id":"9e50827761bae06fd9b88fcd0c000219"}'));
 	}
 	else {
 		var path = persistence.path+'/'+database+'/'+doc;
@@ -101,20 +101,20 @@ function persistence_get_doc(database, view, doc, callback) {
 */
 
 function persistence_commit() {
-	//commit the changes	
+	//commit the changes
 	$.ajax({
-          type: "PUT",
-          data: JSON.stringify(book),
-          url: "/couchdb/"+database+"/"+book._id,
-          dataType: 'json',
-          cache: 'false',
-          success: function(obj) {
+        type: "PUT",
+        data: JSON.stringify(book),
+        url: "/couchdb/"+database+"/"+book._id,
+        dataType: 'json',
+        cache: 'false',
+            success: function(obj) {
+        alert(JSON.stringify(obj));
+        },
+        error: function(obj) {
             alert(JSON.stringify(obj));
-          },
-          error: function(obj) {
-            alert(JSON.stringify(obj));
-          },
-        });
+        }
+    });
         //reload();
 }
 
@@ -125,6 +125,6 @@ function persistence_get(path, success_callback) {
     type: 'GET',
     dataType: 'json',
     cache: 'false',
-    success: success_callback,
+    success: success_callback
   });
 }

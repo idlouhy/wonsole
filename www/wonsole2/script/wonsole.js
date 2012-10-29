@@ -1,4 +1,4 @@
-var database = null; 
+var database = null;
 var view = null;
 
 var book = null;
@@ -9,26 +9,26 @@ var commands = {
   "view" : {"callback" : "command_view"},
   "doc" : {"callback" : "command_doc"},
   "log" : {"callback" : "command_log"},
-  "commit" : {"callback" : "command_commit"},
-}
+  "commit" : {"callback" : "command_commit"}
+};
 
 
 function command_db(input) {
 	console_print("db "+input);
 	database = input; log("database = '"+input+"'");
-	ui_list_views(input); log("ui_list_views('"+input+"')");	
+	ui_list_views(input); log("ui_list_views('"+input+"')");
 }
 
 function command_view(input) {
 	console_print("view "+input);
 	view = input; log("view = '"+input+"'");
-	ui_list_docs(database, input); log("ui_list_docs('"+database+"', '"+input+"')");	
+	ui_list_docs(database, input); log("ui_list_docs('"+database+"', '"+input+"')");
 }
 
 function command_doc(input) {
 	console_print("doc "+input);
 	doc = input;
-	ui_view_doc(database, view, input);	
+	ui_view_doc(database, view, input);
 }
 
 function command_log(input) {
@@ -60,11 +60,11 @@ function command(input) {
 	$('#console-input').val(""); //FIX
 	
 	if (commands[command_part] != null) {
-	  window[commands[command_part].callback](argument_part);	
+		window[commands[command_part].callback](argument_part);
 	}
 	else {
-	  console_print("undefined command "+command_part+" -> JS eval");
-	  command_eval(input);	
+		console_print("undefined command "+command_part+" -> JS eval");
+		command_eval(input);
 	}
 	
 }
