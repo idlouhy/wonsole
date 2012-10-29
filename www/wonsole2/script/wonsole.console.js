@@ -2,20 +2,16 @@ var history = []
 var prompt = "wonsole2> "
 var input = "";
 
-
-
-
 //var autocomplete_commands_cache = [];
-
 
 var current = null;
 
 
-function console_print(message) {
-	$('#console').prepend("<p>"+message+"</p>");
-	
-	
+function console_print(input) {
+	$('#console-output').append("<div>"+input+"</div>");
 }
+
+
 
 /*
 function autocomplete_path() {

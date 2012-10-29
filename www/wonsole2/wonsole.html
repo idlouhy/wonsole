@@ -6,11 +6,12 @@
 		<link rel = "stylesheet" type="text/css" href="css/wonsole2.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		
+		<script src="script/jquery.js"></script>
+		<!--
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		
 		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-    
+    -->
 		<script src="script/wonsole.js"></script>
 		<script src="script/wonsole.persistence.js"></script>
 		<script src="script/wonsole.ui.js"></script>
@@ -26,13 +27,14 @@
 			<div id="log">
 			</div>
 			<div id="commands">
+				<a href="#" onclick="command_commit()">Commit</a>
 			</div>
 		</div>
 		<div id="console" onclick="console_event_click(event)">
 			<div id="console-output">
 			</div>
 			
-			<label id="console-prompt" for="console-input">wonsole> </label>
+			<label id="console-prompt" for="console-input">wonsole></label>
 			<input id="console-input" value="" oninput="console_event_input(event)" onkeypress="console_event_keypress(event)" />
 		</div>
 	</body>

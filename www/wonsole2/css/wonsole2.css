@@ -24,11 +24,18 @@ body {
 }
 
 #console * {
-	margin: 1em;
+	/*margin: 1em;*/
 	
 }
 
-#console 
+#console-output div {
+	margin: 0;
+}
+
+#console-output {
+	margin-top: 1em;
+	margin-left: 1em;
+}
 
 #ui {
 	float: left;
@@ -46,16 +53,31 @@ body {
 	padding: 1em;
 }
 
+#console-prompt {
+	margin-left: 1em;
+	color: #FFFFFF;
+}
+
 #console-input {
     outline: none;
     border: none;
     resize: none;
     background: black;
-    color: gray;
-    margin: 1em;
-    margin-left: 0;
+    color: #CCCCCC;
     /*width: %;*/
     /*margin: 2.5%;*/
+}
+
+#log {
+	background-color: #EEEEEE;
+	margin-left: 1em;
+	position: fixed;
+	bottom: 1em;
+	left: 2.5%;
+	height: 16em;
+	width: 50%;
+	overflow: auto;
+	font-size: 80%;
 }
 
 

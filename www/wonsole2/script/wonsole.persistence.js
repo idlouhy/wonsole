@@ -11,7 +11,7 @@ var persistence = persistence_type.couchdb;
 
 function persistence_list_databases(callback) {
 	if (persistence == persistence_type.demo) {
-		return JSON.parse('["database1", "database2"]')
+		callback(JSON.parse('["database1", "database2"]'));
 	}
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
@@ -28,7 +28,7 @@ function persistence_list_databases(callback) {
 function persistence_list_views(database, callback) {
 	console.log(database);
 	if (persistence == persistence_type.demo) {
-		return JSON.parse('["view1", "view_by_id", "view_by_title"]')
+		callback(JSON.parse('["view1", "view_by_id", "view_by_title"]'));
 	}
 	else {
 		var path = persistence.path+'/'+database+'/_all_docs?startkey="_design/"&endkey="_design0"&include_docs=true';
@@ -51,7 +51,7 @@ function persistence_list_views(database, callback) {
 function persistence_list_docs(database, view, callback) {
 	console.log(view);
 	if (persistence == persistence_type.demo) {
-		return JSON.parse('{"00000001" : {"id":"1", "title":"title1"}, "00000002" : {"id":"2", "title":"title2"}}');
+		callback(JSON.parse('{"00000001" : {"id":"1", "title":"title1"}, "00000002" : {"id":"2", "title":"title2"}}'));
 	}
 	else {
 		var path = persistence.path+'/'+database+'/'+view;
@@ -68,6 +68,7 @@ function persistence_list_docs(database, view, callback) {
 
 function persistence_get_doc(database, view, doc, callback) {
 	if (persistence == persistence_type.demo) {
+	  callback(JSON.parse('{"id":"9e50827761bae06fd9b88fcd0c000219"}'));		
 	}
 	else {
 		var path = persistence.path+'/'+database+'/'+doc;
@@ -98,6 +99,24 @@ function persistence_get_doc(database, view, doc, callback) {
 
 
 */
+
+function persistence_commit() {
+	//commit the changes	
+	$.ajax({
+          type: "PUT",
+          data: JSON.stringify(book),
+          url: "/couchdb/"+database+"/"+book._id,
+          dataType: 'json',
+          cache: 'false',
+          success: function(obj) {
+            alert(JSON.stringify(obj));
+          },
+          error: function(obj) {
+            alert(JSON.stringify(obj));
+          },
+        });
+        //reload();
+}
 
 
 function persistence_get(path, success_callback) {
