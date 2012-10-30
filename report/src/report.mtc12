@@ -1,11 +1,11 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.1}Risks}{\reset@font\mtcSfont 74}{section.12.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.2}Test Cases}{\reset@font\mtcSfont 80}{section.12.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {12.2.1}Sprint 1}{\reset@font\mtcSSfont 80}{subsection.12.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {12.2.2}Sprint 2}{\reset@font\mtcSSfont 80}{subsection.12.2.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.3}RESTful API}{\reset@font\mtcSfont 87}{section.12.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Base URL}{\reset@font\mtcSSSfont 87}{section*.83}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Get a list of all books}{\reset@font\mtcSSSfont 87}{section*.84}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Add a book to the database}{\reset@font\mtcSSSfont 87}{section*.85}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Get a single book by id}{\reset@font\mtcSSSfont 88}{section*.86}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Update a single book by id}{\reset@font\mtcSSSfont 88}{section*.87}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Delete a book by id}{\reset@font\mtcSSSfont 89}{section*.88}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.1}Risks}{\reset@font\mtcSfont 80}{section.12.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.2}Test Cases}{\reset@font\mtcSfont 86}{section.12.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {12.2.1}Sprint 1}{\reset@font\mtcSSfont 86}{subsection.12.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {12.2.2}Sprint 2}{\reset@font\mtcSSfont 86}{subsection.12.2.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {12.3}RESTful API}{\reset@font\mtcSfont 93}{section.12.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Base URL}{\reset@font\mtcSSSfont 93}{section*.89}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Get a list of all books}{\reset@font\mtcSSSfont 93}{section*.90}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Add a book to the database}{\reset@font\mtcSSSfont 93}{section*.91}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Get a single book by id}{\reset@font\mtcSSSfont 94}{section*.92}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Update a single book by id}{\reset@font\mtcSSSfont 94}{section*.93}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Delete a book by id}{\reset@font\mtcSSSfont 95}{section*.94}}
