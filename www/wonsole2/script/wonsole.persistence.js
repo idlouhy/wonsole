@@ -1,26 +1,24 @@
-var persistance_cache_databases;
-
 var persistence_type = {
-  demo : {value: 0, name: "Demo", path: "demo:"},
-  local : {value: 1, name: "Local", path: "file://"}, 
+  demo : {value: 0, name: "Demo", path: "demo://"},
+  local : {value: 1, name: "Local", path: "http://127.0.0.1:5984/"}, 
   couchdb : {value: 2, name: "CouchDB", path: "/couchdb"}
 };
 
-
 var persistence = persistence_type.demo;
+
+
+var persistence_cache_docs = null;
+var persistence_cache_doc = null;
 
 function persistence_list_databases(callback) {
 	if (persistence == persistence_type.demo) {
-		callback(JSON.parse('["database1", "database2"]'));
+		callback(JSON.parse('["authors", "_users", "library", "books" ]'));
 	}
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
 		  console.log(JSON.stringify(data));
-		  persistance_cache_databases = data;
 		  callback(data);	
 		});
-		
-		// ["authors", "_users", "library", "books" ]
 	}
 }
 
@@ -51,7 +49,7 @@ function persistence_list_views(database, callback) {
 function persistence_list_docs(database, view, callback) {
 	console.log(view);
 	if (persistence == persistence_type.demo) {
-		callback(JSON.parse('[{"id":"1", "title":"title1", "price":10}, {"id":"2", "title":"title2", "price":20}]'));
+		callback(JSON.parse('[{"_id":"1", "title":"title1", "price":10, "author" : {"name":"ivo", "surname":123}}, {"_id":"2", "title":"title2", "price":20}]'));
 	}
 	else {
 		var path = persistence.path+'/'+database+'/'+view;
@@ -61,35 +59,12 @@ function persistence_list_docs(database, view, callback) {
 				docs[row.id] = row.value;
 				console.log(row.id);
 			});
+			persistence_cache_docs = docs;
 			callback(docs);
 		});
 	}
 }
-
-function persistence_get_doc(database, view, doc, callback) {
-	if (persistence == persistence_type.demo) {
-	  callback(JSON.parse('{"id":"9e50827761bae06fd9b88fcd0c000219"}'));		
-	}
-	else {
-		var path = persistence.path+'/'+database+'/'+doc;
-		persistence_get(path, function(json) {
-			callback(json);
-			
-			/*
-			var docs = {};
-			$.each(json.rows, function(key, row) {
-				docs[row.id] = row.value;
-				console.log(row.id);
-			});
-			callback(docs);
-			*/
-		});
-	}
-}
-
 /*
-
-
 {"total_rows":4,"offset":0,"rows":[
 {"id":"9e50827761bae06fd9b88fcd0c000219","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"42-632ea6a7ca8d50a2a4f93921b5c5bdd2","0":"","title":"test","test":["test","data",{"id":1}],"id":"15","coauthor":["aaa","bbb","cccc"],"newatribute":"something"}},
 {"id":"9e50827761bae06fd9b88fcd0c001035","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c001035","_rev":"9-166af2de1f3bcbc51149a9369741d8c5","title":"uv35"}},
@@ -99,6 +74,9 @@ function persistence_get_doc(database, view, doc, callback) {
 
 
 */
+
+
+
 
 function persistence_commit() {
 	//commit the changes	
@@ -115,7 +93,6 @@ function persistence_commit() {
             alert(JSON.stringify(obj));
           },
         });
-        //reload();
 }
 
 

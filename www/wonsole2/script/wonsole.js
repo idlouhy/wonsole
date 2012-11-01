@@ -1,6 +1,8 @@
 var database = null; 
 var view = null;
+
 var doc = null;
+var docs = null;
 
 var book = null;
 var books = null;
@@ -9,12 +11,14 @@ var commands = {
   "db" : {"callback" : "command_db"},
   "cd" : {"callback" : "command_db"},
   "view" : {"callback" : "command_view"},
-  "doc" : {"callback" : "command_doc"},
+  //"doc" : {"callback" : "command_doc"},
   "log" : {"callback" : "command_log"},
   "commit" : {"callback" : "command_commit"},
   "refresh" : {"callback" : "command_refresh"},
   "print" : {"callback" : "command_print"},
   "foreach" : {"callback" : "command_foreach"},
+  "docs" : {"callback" : "command_docs"},
+  "doc" : {"callback" : "command_doc"},
 }
 
 
@@ -28,22 +32,22 @@ function command_db(input) {
 	console_print_command("db "+input);
 	database = input; log("database = '"+input+"'");
 	view = null;
-	doc = null;
 	ui_list_views(input); log("ui_list_views('"+input+"')");	
 }
 
 function command_view(input) {
 	console_print_command("view "+input);
 	view = input; log("view = '"+input+"'");
-	doc = null;
 	ui_list_docs(database, input); log("ui_list_docs('"+database+"', '"+input+"')");	
 }
 
+/*
 function command_doc(input) {
 	console_print_command("doc "+input);
 	doc = input;
 	ui_view_doc(database, view, input);	
 }
+*/
 
 function command_print(input) {
 	console_print_command("print "+input);
@@ -85,6 +89,21 @@ function command_log(input) {
 	console_print_command("log");
 	ui_log_toggle();
 }
+
+
+function command_docs(input) {
+	console_print_command("docs");
+	ui_docs_list(docs);
+}
+
+function command_doc(input) {
+	console_print_command("doc");
+	
+	//ui_doc_preview(book);
+	
+}
+
+
 
 function log(message) {
 	$('#log').append('<div>'+message+'</div>');

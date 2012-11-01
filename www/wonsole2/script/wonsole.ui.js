@@ -49,7 +49,7 @@ function ui_list_docs(database, view) {
   }
 
   persistence_list_docs(database, view, function(json) {
-  	books = json;
+  	docs = json;
   	log(books);
   	$.each(json, function(key, value) {
   	  ui_list_docs_line(database, view, key);
@@ -65,7 +65,7 @@ function ui_view_doc(database, view, doc) {
   target.append('<li><a  href="#/'+database+'/'+view+'" onclick="command_view(\''+view+'\');">..</a></li>');
   
   persistence_get_doc(database, view, doc, function(json) {
-  	book = json;
+  	doc = json;
   	generateDetail(doc, json);
   	//target.append(JSON.stringify(json));
   });
@@ -95,12 +95,51 @@ function ui_log_toggle(on) {
 
 
 
+
+/*
 indentSpace = function(n) {
   var s = "";
   for (var i=0; i<n; i++) {
     s = s + "&nbsp;";
   }
   return s;
+}
+*/
+
+
+function ui_docs_list(json_array) {
+  $('#data').html('<ul id="list"></ul>');
+  $('#list').html(ui_get_docs_list(json_array));    
+}
+
+function ui_get_docs_list(json_array) {
+  var r = "";
+
+  $.each(json_array, function(key, value) {
+    r = r + ui_get_doc_preview(value);
+  });
+  return r;
+}
+
+
+function ui_get_doc_preview(json) {
+	  
+  function ui_get_doc_preview_attribute(key, value) {
+  	if (value instanceof Object) {
+      return key+":"+"Object";
+    }
+    else {
+      return key+":"+JSON.stringify(value);
+    }
+  }
+  
+  var r = "<li>";
+  $.each(json, function(key, value) {
+  	r = r + ui_get_doc_preview_attribute(key, value);
+  	r = r + " ";
+  });
+  r = r + "</li>";
+  return r;
 }
 
 
@@ -134,11 +173,6 @@ generateDetail = function(key, json) {
   e.append("</form>");
 }
 
-inputOnInput = function(event) {
-  w[event.target.id] = event.target.value;
-  commit();
-}
-
 generateJSONFormInput = function(key, value, indentstr) {
   var disabled = false;
   if (key[0] == '_') {
@@ -148,22 +182,4 @@ generateJSONFormInput = function(key, value, indentstr) {
     var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="book.'+key+' = event.target.value; " />"<br />';
   }
   return r;
-}
-
-
-generateListItem = function(json) {
-  var e = $("#data");
-  e.append(JSON.stringify(json));
-}
-
-
-generateList = function(json) {
-  var e = $("#data");
-  e.html("");
-  //e.append(JSON.stringify(json));
-//  e.append(JSON.stringify(json));
-  $.each(json, function(key, value) {
-       var o = value.value;
-       e.append('<li><a  href="wonsole.html?'+o._id+'">'+o._id+'</a></li>');
-  });
 }
