@@ -1,5 +1,4 @@
 function ui_init() {
-	ui_log_toggle(false);
 	ui_list_databases();
 }
 
@@ -50,6 +49,8 @@ function ui_list_docs(database, view) {
   }
 
   persistence_list_docs(database, view, function(json) {
+  	books = json;
+  	log(books);
   	$.each(json, function(key, value) {
   	  ui_list_docs_line(database, view, key);
   	});
@@ -72,6 +73,10 @@ function ui_view_doc(database, view, doc) {
 }
 
 
+function ui_refresh() {
+	generateDetail(null, book);
+}
+
 function ui_log_toggle(on) {
 	if (on != null) {
 	  if (on) $("#log").show();
@@ -81,6 +86,9 @@ function ui_log_toggle(on) {
 	  $("#log").toggle();	
 	}
 }
+
+
+
 
 
 /*****************************************************************************************************************/
@@ -137,7 +145,7 @@ generateJSONFormInput = function(key, value, indentstr) {
     var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" disabled="disabled" />"<br />';
   }
   else {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="inputOnInput(event)" />"<br />';
+    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="book.'+key+' = event.target.value; " />"<br />';
   }
   return r;
 }
@@ -159,4 +167,3 @@ generateList = function(json) {
        e.append('<li><a  href="wonsole.html?'+o._id+'">'+o._id+'</a></li>');
   });
 }
-

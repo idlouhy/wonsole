@@ -7,7 +7,7 @@ var persistence_type = {
 };
 
 
-var persistence = persistence_type.couchdb;
+var persistence = persistence_type.demo;
 
 function persistence_list_databases(callback) {
 	if (persistence == persistence_type.demo) {
@@ -51,7 +51,7 @@ function persistence_list_views(database, callback) {
 function persistence_list_docs(database, view, callback) {
 	console.log(view);
 	if (persistence == persistence_type.demo) {
-		callback(JSON.parse('{"00000001" : {"id":"1", "title":"title1"}, "00000002" : {"id":"2", "title":"title2"}}'));
+		callback(JSON.parse('[{"id":"1", "title":"title1", "price":10}, {"id":"2", "title":"title2", "price":20}]'));
 	}
 	else {
 		var path = persistence.path+'/'+database+'/'+view;

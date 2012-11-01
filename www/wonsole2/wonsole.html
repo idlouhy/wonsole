@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		
 		<script src="script/jquery.js"></script>
-		<!--
+	<!--
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
@@ -19,7 +19,7 @@
 		   
 	</head>
 
-	<body onload="ui_init();">
+	<body onload="wonsole_init();">
 		<div id="ui">
 			<div id="data">
 				<ul id="list"></ul>
@@ -34,8 +34,8 @@
 			<div id="console-output">
 			</div>
 			
-			<label id="console-prompt" for="console-input">wonsole></label>
-			<input id="console-input" value="" oninput="console_event_input(event)" onkeypress="console_event_keypress(event)" />
+			<label id="console-prompt" for="console-input">wonsole2></label>
+			<input id="console-input" value="" oninput="console_event_input(event)" onkeypress="console_event_keypress(event)" onkeydown="console_event_keydown(event)" />
 		</div>
 	</body>
 </html>

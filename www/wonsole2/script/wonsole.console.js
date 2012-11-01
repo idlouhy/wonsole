@@ -8,9 +8,28 @@ var current = null;
 
 
 function console_print(input) {
-	$('#console-output').append("<div>"+input+"</div>");
+  $('#console-output').append("<div>"+input+"</div>");
 }
 
+
+
+function console_print_output(message) {
+  $('#console-output').append("<div>"+message+"</div>");
+}
+
+
+function console_print_command(message) {
+  $('#console-output').append("<div style=\"color: white\">"+prompt+message+"</div>");	
+}
+
+
+function console_set_command(message) {
+  $('#console-input').val(message); 	
+}
+
+function console_execute_command() {
+  command(input);	
+}
 
 
 /*
@@ -51,8 +70,14 @@ function console_event_input(event) {
 
 function console_event_keypress(event) {
   if (event.keyCode == 13) { //enter
-  	command(input);
+  	console_execute_command();
   }
+}
+
+function console_event_keydown(event) {
+	if (event.keyCode == 38) { //keyup
+	  console_set_command(history.pop());	
+	}
 }
 
 
