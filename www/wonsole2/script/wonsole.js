@@ -1,17 +1,11 @@
 var database = null; 
-var view = null;
 
 var doc = null;
 var docs = null;
 
-var book = null;
-var books = null;
-
 var commands = {
   "db" : {"callback" : "command_db"},
   "cd" : {"callback" : "command_db"},
-  "view" : {"callback" : "command_view"},
-  //"doc" : {"callback" : "command_doc"},
   "log" : {"callback" : "command_log"},
   "commit" : {"callback" : "command_commit"},
   "refresh" : {"callback" : "command_refresh"},
@@ -32,22 +26,12 @@ function command_db(input) {
 	console_print_command("db "+input);
 	database = input; log("database = '"+input+"'");
 	view = null;
-	ui_list_views(input); log("ui_list_views('"+input+"')");	
+	//ui_list_views(input); log("ui_list_views('"+input+"')");
+	persistence_list_docs(input, function(json_array) {
+	  docs = json_array;
+	  ui_docs_list(docs);	
+	});
 }
-
-function command_view(input) {
-	console_print_command("view "+input);
-	view = input; log("view = '"+input+"'");
-	ui_list_docs(database, input); log("ui_list_docs('"+database+"', '"+input+"')");	
-}
-
-/*
-function command_doc(input) {
-	console_print_command("doc "+input);
-	doc = input;
-	ui_view_doc(database, view, input);	
-}
-*/
 
 function command_print(input) {
 	console_print_command("print "+input);
@@ -56,12 +40,11 @@ function command_print(input) {
 
 
 function command_foreach(input1, input2, input3) {
-  console_print_command("foreach "+input1+" "+input2+" "+input3);
-  log(books.length);
-  
-  for (var i=0; i < books.length; i++) {
-   	log(books[i][input2]+input3);
-    books[i][input2] = eval(books[i][input2]+input3); 
+  console_print_command("foreach "+input1+" "+input2+" "+input3);   
+    
+  for (var i=0; i < window[input1].length; i++) {
+   	log(window[input1][i][input2]+input3);
+    window[input1][i][input2] = eval(window[input1][i][input2]+input3); 
   };
   
   //foreach books book.price = book.price + 10
@@ -69,20 +52,8 @@ function command_foreach(input1, input2, input3) {
 
 
 function command_refresh() {
-	/*
-	if (doc) {
-		command_doc(doc)
-	} else if (view) {
-		command_view(view);
-	}
-	else if (database) {
-		command_db(database)
-	}
-	else {
-		ui_init();
-	}
-	*/
-	ui_refresh();
+  console_print_command("refresh");
+  ui_refresh();
 }
 
 function command_log(input) {
@@ -93,12 +64,15 @@ function command_log(input) {
 
 function command_docs(input) {
 	console_print_command("docs");
-	ui_docs_list(docs);
+	view = view_type.list;
+	ui_docs(docs);
 }
 
 function command_doc(input) {
 	console_print_command("doc");
-	
+	doc = docs[input];
+	view = view_type.detail;
+	ui_doc(doc);
 	//ui_doc_preview(book);
 	
 }
@@ -138,7 +112,7 @@ function command(input) {
 	  command_eval(input);	
 	}
 	
-	//ui_refresh();
+	ui_refresh();
 }
 
 

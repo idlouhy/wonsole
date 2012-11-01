@@ -64,7 +64,10 @@ body {
     resize: none;
     background: black;
     color: #CCCCCC;
-    /*width: %;*/
+    width: 80%;
+    white-space: normal; 
+    word-wrap: break-word;
+    overflow:visible;
     /*margin: 2.5%;*/
 }
 

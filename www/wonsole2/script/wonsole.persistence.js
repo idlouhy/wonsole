@@ -6,64 +6,47 @@ var persistence_type = {
 
 var persistence = persistence_type.demo;
 
-
+var persistence_cache_db = null;
 var persistence_cache_docs = null;
 var persistence_cache_doc = null;
 
 function persistence_list_databases(callback) {
 	if (persistence == persistence_type.demo) {
-		callback(JSON.parse('["authors", "_users", "library", "books" ]'));
+		callback(JSON.parse('["authors", "library", "books" ]'));
 	}
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
-		  console.log(JSON.stringify(data));
-		  callback(data);	
+		  var dbs = [];
+		  $.each(data, function(key, value) {
+		    if (value[0] != '_') {
+		    	dbs.push(value);
+		    }
+		  });
+		  persistence_cache_db = dbs;
+		  callback(dbs);	
 		});
 	}
 }
 
-
-function persistence_list_views(database, callback) {
-	console.log(database);
-	if (persistence == persistence_type.demo) {
-		callback(JSON.parse('["view1", "view_by_id", "view_by_title"]'));
-	}
-	else {
-		var path = persistence.path+'/'+database+'/_all_docs?startkey="_design/"&endkey="_design0"&include_docs=true';
-		persistence_get(path, function(json) {
-			var views = [];
-			views.push("_all_docs");
-			$.each(json.rows, function(key, row) {
-				var design_path = row.id;
-				$.each(row.doc.views, function(key, value) {
-					var view_path = design_path + '/_view/' + key
-					views.push(view_path);
-					console.log(view_path);
-				});			  
-			});
-			callback(views);
-		});
-	}   
-}
-
-function persistence_list_docs(database, view, callback) {
-	console.log(view);
+function persistence_list_docs(database, callback) {
 	if (persistence == persistence_type.demo) {
 		callback(JSON.parse('[{"_id":"1", "title":"title1", "price":10, "author" : {"name":"ivo", "surname":123}}, {"_id":"2", "title":"title2", "price":20}]'));
 	}
 	else {
-		var path = persistence.path+'/'+database+'/'+view;
+		var path = persistence.path+'/'+database+'/_all_docs';
 		persistence_get(path, function(json) {
-			var docs = {};
-			$.each(json.rows, function(key, row) {
-				docs[row.id] = row.value;
-				console.log(row.id);
+			var docs = [];
+			$.each(json.rows, function(key, value) {
+				docs.push(value.value);
 			});
 			persistence_cache_docs = docs;
 			callback(docs);
 		});
 	}
 }
+
+
+
 /*
 {"total_rows":4,"offset":0,"rows":[
 {"id":"9e50827761bae06fd9b88fcd0c000219","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"42-632ea6a7ca8d50a2a4f93921b5c5bdd2","0":"","title":"test","test":["test","data",{"id":1}],"id":"15","coauthor":["aaa","bbb","cccc"],"newatribute":"something"}},
