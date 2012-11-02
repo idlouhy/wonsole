@@ -4,7 +4,7 @@ var persistence_type = {
   couchdb : {value: 2, name: "CouchDB", path: "/couchdb"}
 };
 
-var persistence = persistence_type.demo;
+var persistence = persistence_type.couchdb;
 
 var persistence_cache_db = null;
 var persistence_cache_docs = null;
@@ -33,13 +33,15 @@ function persistence_list_docs(database, callback) {
 		callback(JSON.parse('[{"_id":"1", "title":"title1", "price":10, "author" : {"name":"ivo", "surname":123}}, {"_id":"2", "title":"title2", "price":20}]'));
 	}
 	else {
-		var path = persistence.path+'/'+database+'/_all_docs';
+		var path = persistence.path+'/'+database+'/_all_docs?include_docs=true';
 		persistence_get(path, function(json) {
+			log(JSON.stringify(json));
 			var docs = [];
 			$.each(json.rows, function(key, value) {
-				docs.push(value.value);
+				docs.push(value.doc);
 			});
 			persistence_cache_docs = docs;
+			
 			callback(docs);
 		});
 	}
@@ -63,21 +65,25 @@ function persistence_list_docs(database, callback) {
 
 function persistence_commit() {
 	//commit the changes	
-	$.ajax({
-          type: "PUT",
-          data: JSON.stringify(book),
-          url: "/couchdb/"+database+"/"+book._id,
+    
+    var post = {};
+    post["docs"] = docs;
+    log(JSON.stringify(post));
+    $.ajax({
+          type: "POST",
+          contentType: 'application/json; charset=UTF-8',
+          data: JSON.stringify(post),
+          url: "/couchdb/"+database+"/_bulk_docs",
           dataType: 'json',
           cache: 'false',
           success: function(obj) {
-            alert(JSON.stringify(obj));
+            log(JSON.stringify(obj));
           },
           error: function(obj) {
-            alert(JSON.stringify(obj));
+            log(JSON.stringify(obj));
           },
         });
 }
-
 
 function persistence_get(path, success_callback) {
   $.ajax({
