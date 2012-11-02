@@ -1,141 +1,163 @@
-var w = new Object();
+var database = null;
 
+var doc = null;
+var docs = null;
 
-indentSpace = function(n) {
-  var s = "";
-  for (var i=0; i<n; i++) {
-    s = s + "&nbsp;";
-  }
-  return s;
+var commands = {
+  "db" : {"callback" : "command_db"},
+  "cd" : {"callback" : "command_db"},
+  "log" : {"callback" : "command_log"},
+  "commit" : {"callback" : "command_commit"}
+  "rollback" : {"callback" : "command_rollback"},
+  "refresh" : {"callback" : "command_refresh"},
+  "print" : {"callback" : "command_print"},
+  "foreach" : {"callback" : "command_seteach"},
+  "seteach" : {"callback" : "command_seteach"},
+  "applyeach" : {"callback" : "command_applyeach"},
+  "docs" : {"callback" : "command_docs"},
+  "doc" : {"callback" : "command_doc"},
+  "quiet" : {"callback" : "command_quiet"},
 }
 
 
-generateDetailR = function(key, value, indent) {
-  var e = $("#data");
+function wonsole_init() {
+	ui_init();
+	ui_log_toggle(false);
+}
+
+
+function command_db(input) {
+	console_print_command("db "+input);
+	database = input; log("database = '"+input+"'");
+	view = view_type.list;
+	//ui_list_views(input); log("ui_list_views('"+input+"')");
+	persistence_list_docs(input, function(json_array) {
+	  docs = json_array;
+	  ui_docs_list(docs);	
+	});
+}
+
+function command_rollback(input) {
+	console_print_command("rollback");
+	view = view_type.list;
+	persistence_list_docs(database, function(json_array) {
+	  docs = json_array;
+	  ui_docs_list(docs);	
+	});
+}
+
+function command_print(input) {
+	console_print_command("print "+input);
+	console_print_output(eval('JSON.stringify('+input+')'));
+}
+
+
+function command_seteach(input) {
+  var array_name = input.split(' ') [0];
+  var atribute_name = input.split(' ')[1];
+  var code = input.split(' ').slice(2).join(' ');
+    
+  console_print_command("seteach "+input);   
+    
+  for (var i=0; i < window[array_name].length; i++) {
+   	//log(window[input1][i][input2]+input3);
+    window[array_name][i][atribute_name] = eval(code); 
+  };
   
-  e.append(indentSpace(indent));
-  e.append('"'+key+'" : ');
-  e.append('{<br/>');
+  ui_refresh();
+}
+
+function command_applyeach(input) {
+  var array_name = input.split(' ') [0];
+  var atribute_name = input.split(' ')[1];
+  var code = input.split(' ').slice(2).join(' ');
+    
+  console_print_command("foreach "+input);   
+    
+  for (var i=0; i < window[array_name].length; i++) {
+   	//log(window[input1][i][input2]+input3);
+    window[array_name][i][atribute_name] = eval(window[array_name][i][atribute_name]+" "+code); 
+  };
   
-  $.each(value, function(key, value) {
-    if (value instanceof Object) {
-      generateDetailR(key, value, indent+2);
-    }
-    else {
-      e.append(generateJSONFormInput(key, value, indentSpace(indent+2)));
-    }
-	  });
-  e.append(indentSpace(indent));
-  e.append('}<br />');
-
-}
-
-generateDetail = function(key, json) {
-  var e = $("#data");
-  e.html("");
-
-  e.append('<form id="detail">');
-  generateDetailR(key, json, 0);
-
-  e.append("</form>");
-}
-
-inputOnInput = function(event) {
-  w[event.target.id] = event.target.value;
-  commit();
-}
-
-generateJSONFormInput = function(key, value, indentstr) {
-  var disabled = false;
-  if (key[0] == '_') {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" disabled="disabled" />"<br />';
-  }
-  else {
-    var r = indentstr + '"'+key+'" : "<input id="'+key+'" value="'+value+'" oninput="inputOnInput(event)" />"<br />';
-  }
-  return r;
+  ui_refresh();
 }
 
 
-generateListItem = function(json) {
-  var e = $("#data");
-  e.append(JSON.stringify(json));
+
+function command_refresh() {
+  console_print_command("refresh");
+  ui_refresh();
+}
+
+function command_log(input) {
+	console_print_command("log");
+	ui_log_toggle();
 }
 
 
-generateList = function(json) {
-  var e = $("#data");
-  e.html("");
-  //e.append(JSON.stringify(json));
-//  e.append(JSON.stringify(json));
-  $.each(json, function(key, value) {
-       var o = value.value;
-       e.append('<li><a  href="wonsole.html?'+o._id+'">'+o._id+'</a></li>');
-  });
+function command_docs(input) {
+	console_print_command("docs");
+	view = view_type.list;
+	ui_docs(docs);
+}
+
+function command_doc(input) {
+	console_print_command("doc "+input);
+	doc = docs[input];
+	view = view_type.detail;
+	ui_doc(doc);
+	//ui_doc_preview(book);
+	
+}
+
+function log(message) {
+	$('#log').append('<div>'+message+'</div>');
+}
+
+function command_commit(input) {
+	console_print_command("commit");
+	log("persistence_commit();");
+	persistence_commit();
+}
+
+function command_eval(input) {
+	console_print_command(input);
+	$.globalEval(input);
+	//console_print_output(out);
+}
+
+function command_quiet() {
+	quiet = !quiet;
+}
+
+function command(input) {
+	
+	history.push(input);
+	
+	var command_part = input.split(' ')[0];
+	var argument_part = input.split(' ').slice(1).join(' ');	
+			
+	$('#console-input').val(""); 
+	
+	
+	try {
+	
+	if (commands[command_part] != null) {
+		window[commands[command_part].callback](argument_part);
+	  window[commands[command_part].callback](argument_part);	
+	}
+	else {
+	  log("eval");
+		command_eval(input);
+	}
+	
+	}
+	catch (error) {
+		console_print_error(error.message);
+	}
+		
+	ui_refresh();
 }
 
 
-//{"id":"9e50827761bae06fd9b88fcd0c000219","key":"9e50827761bae06fd9b88fcd0c000219","value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"4-f2ee0f9f21982d9296f8d321ab33341c","title":"Title","test":["test","data",{"id":1}]}}
-
-
-commit = function() {
-        $.ajax({
-          type: "PUT",
-          data: JSON.stringify(w),
-          url: "/couchdb/library/"+w._id,
-          dataType: 'json',
-          cache: 'false',
-          success: function(obj) {
-//            alert(JSON.stringify(obj));
-          },
-          error: function(obj) {
-            alert(JSON.stringify(obj));
-          },
-        });
-        reload();
-      }
-
-
-reload = function() {
-
-  var doc_id = window.location.search.substr(1);
-  w = new Object();
-
-  if (doc_id) {
-    $.ajax({
-      url: "/couchdb/library/"+doc_id,
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-         w = data;
-         generateDetail(doc_id, data);
-      },
-    });
-  }
-  else {
-    $.ajax({
-      url: "/couchdb/library/_design/books/_view/books",
-      dataType: 'json',
-      cache: 'false',
-      success: function(data) {
-        generateList(data.rows);
-      },
-    });
-  }
-}
-
-command = function(data) {
-  $('#console').append(eval(data));
-}
-
-
-consoleOnInput = function(event) {
-}	
-
-consoleKeyPress = function(event) {
-  if (event.keyCode == 13) {
-    command(event.target.value);
-    commit();
-  }
-}
 

@@ -1,5 +1,11 @@
 \chapter{Preliminary Study}
 
+\minitoc
+
+\subsubsection{Purpose}
+
+\clearpage
+
 \section{Concept}
 
 \section{Constraints}
@@ -185,39 +191,42 @@ LaTex is a document markup language that uses the TeX typesetting program. The m
 For the system we need some kind of persistent storage, a database which all the clients can talk to to get the latest data in the system and to synchronise data from different clients. This database will be placed on a central server which all the clients can communicate with. For the database we are left with a decision between traditional SQL database or a socalled NoSQL database. The differences are explained below.
 
 \subsubsection*{NoSQL}
-NoSQL arose from the need to store large amount of data that do not necessarily follow the same schema, or share all the same attributes. The main characteristic of NoSQL databases is their schema- less structure. They are easy to replicate and they offer simple APIs for the clients to communicate with. They are heavily customised for web- applications, and have gained much popularity in the modern web era. They generally focus on quick replies to requests, as the queries operation is by far the most common in a typical web- application. Because they typically are distributed, NoSQL databases are able to store enormous amounts of data, and they are often used within "Big Data"(explanation) applications like Hadoop(reference), which recently has become a very popular subject within the computer science community. BASE(explanation) instead of ACID. 
+NoSQL arose from the need to store large amount of data that do not necessarily follow the same schema, or share all the same attributes. The main characteristic of NoSQL databases is their schema- less structure. They also differ from SQL by generally not using a structured query language for data manipulation. They are easy to replicate and they offer simple APIs for the clients to communicate with. They are heavily customised for web- applications, and have gained much popularity in the modern web era. Most NoSQL databases focus on quick replies to requests, as the queries operation is by far the most common in a typical web- application. Because they typically are distributed, NoSQL databases are able to store enormous amounts of data, and they are often used within "Big Data"(explanation) applications like Hadoop(reference), which recently has become a very popular subject within the computer science community. BASE(explanation) instead of ACID. 
 
 
 \subsubsection*{SQL}
-The traditional SQL databases is the de facto standard for storing data in the world today. They store data in columns and tables, and add relationships between these tables. As a result they are referred to as relational databases. They focus on query optimisation techniques and most of them use some kind of structured query language. Typically supports 4 basic operations which is select, update, delete and insert. SQL databases are schema defined and follows the ACID principles(Need explanation somehow)
+The traditional SQL databases is by far the most common way of storing data in the world today. They store data in columns and tables, and add relationships between these tables. As a result they are referred to as relational databases. They focus on query optimisation techniques and most of them use some kind of structured query language. Typically supports 4 basic operations which is select, update, delete and insert. SQL databases are schema defined and follows the ACID principles(Need explanation somehow)
 \newline
 
-We decided to use NoSQL in this project. We are working in a web domain, which NoSQL databases were designed for. While developing the console we will be working closely with JavaScript objects , and find ways of exposing these to the users. These objects are easily converted to JSON, the format used to store data in document NoSQL databases like MongoDB and CouchDB.  As we only have the need to store the actual objects and a limited amount of relations between them, using NoSQL will ease our work considerably, and allow us to do things which would not be possible with a regular SQL database. NoSQL imposes far less restrictions on how you store your data than traditional SQL does. As long as the data is represented in JSON, you can store pretty much store anything you like, even within the same database. This will give us great flexibility when it comes to adding information to specific objects, and also means that objects of the same type can contain different attributes without us needing to create a new schema or change anything in the database. It also gives the user great flexibility in the sense that they can add any information they would like to the different objects, and we the developers don't have to plan for it at all, the database does all this for us. As a result, instead of explicitly adding functionality, we can add restrictions to allow the user to add functionality within a certain scope.
-
-The fact that the customer suggested to us that we could use a NoSQL database, also influenced our decision. 
-\newline
-
-Relational databases is the traditional way to deploy databases and they are in widespread use. In many situations they are extremely useful. However relational databases requires you to model your data up front, before you save anything to the database. Failing to comply with these restrictions will lead to failure, and it is sometimes difficult to create this kind of model that actually fits real world data. Even though objects may share common attributes, there are bound to be some attributes that are different. This is difficult to plan for in advance, and its the main reason we will not be using a SQL database for this project.
-
-
-\subsubsection{Database Options}
-Below, some of the database system available to us are discussed. Both NoSQL and traditional SQL options are discussed.
+\subsubsection{Database Alternatives}
+Below, some of the database implementation available to us are discussed. Both NoSQL and traditional SQL options are introduced.
 
 \subsubsection*{MongoDB}
-MongoDB is document-oriented high performance and availability database system. Instead of the schema DB approach, used in traditional database systems, but is document oriented. That means, the database consists of collections (as in tables), collection consists of documents. Document is one record in the collection. Document is structured, so it contains a set of key-value pair fields \cite{mongodb-intro}. Advantage of this setup is, that it is very easy to mix and migrate data with different attributes. MongoDB is has its own access console, where you can use scripting with Javascript language. 
+MongoDB is a large scale, high availability, robust system. It is a NoSQL system, so instead of storing the data in tables as you would in MySQL, the data is stored in a document based fashion through for instance JSON with dynamic schemas. This makes the DB easier scalable horizontally. But the mongoDB still possesses the some of the great properties from relational databases, such as indexes, dynamic queries and updates. With mongoDB it is easy to map objects to programming language data types, which makes the DB easy to work with. The embedded documents and arrays makes the join operations less importance, which result in the ability to make reads and writes faster. JavaScripts can also be included in the queries. This makes mongoDB an efficient and high speed data base for storing objects and fetching to a system. MongoDB also has its own access console, where you can use scripting with Javascript language. \cite{mongodb-intro}
 
 \subsubsection*{CouchDB}
-CouchDB is another example of document-oriented database and (so called) NoSQL. It also uses JSON format to store the records. Disadvantage of NoSQL databases is, they do not support relations. Also it just stores JSON data, not whole objects, so it is not object-oriented.
+CouchDB stores the data in JSON documents(NoSQL) object-oriented, which can be accessed through HTTP. The data documents can be transformed and data fetched with JavaScript. CouchDB has a lot of built in features which makes web development with CouchDB easier. It scales well through replication and is a consistent system, where CouchDB prioritises the data of the user. CouchDB is multiversion concurrency control based, this is good for intense versioning, offline databases which resync later and master to master replication. The interface to the database is REST based, which is a useful feature when you are developing a web- application.
 \cite{couchdb-about, couchdb-technical}
 
 \subsubsection*{MySQL}
-MySQL is a database system using schema-oriented approach. It is relativelly fast, user friendly and easy to operate, so it is favourite amongst many developers.
-It is open source software supported by Oracle Company, formerly Sun. It is often used in web applications.
+MySQL is the most popular database in the world of open databases. This is because of its high performance, reliability and ease of use, and should therefore be considered when the question comes to which database system to use. In opposition of the two database systems described above, MySQL is a relational database. This makes it more troublesome to work, with when it comes to JavaScript, than the other two. It is not as well integrated with JSON and will need parsing to be working with the clients. This alone is a hard negative towards MySQL.
 \cite{mysql-about}
 
 
+\subsubsection{Conclusion}
+We decided to go for NoSQL in this project. We are working in a web domain, which NoSQL databases were designed for. While developing the console we will be working closely with JavaScript objects, and try to find ways of exposing these to the users. JavaScript objects are easily converted to JSON, the format used to store data in document NoSQL databases like MongoDB and CouchDB.  As we only have the need to store the actual objects and a limited amount of relations between them, using NoSQL will ease our work considerably, and allow us to do things which would not be possible with a regular SQL database. NoSQL imposes far less restrictions on how you store your data than traditional SQL does. As long as the data is represented in JSON, you can store pretty much store anything you like, even within the same database. This will give us great flexibility when it comes to adding information to specific objects, and also means that objects of the same type can contain different attributes without us needing to create a new schema or change anything in the database. It also gives the user great flexibility in the sense that they can add any information they would like to the different objects, and we the developers don't have to plan for it at all, the database does all this for us. As a result, instead of explicitly adding functionality, we can add restrictions to allow the user to add functionality within a certain scope.
+
+The fact that the customer suggested to us that we could use a NoSQL database, also tiped the scale in direction of the NoSQL alternatives. 
+\newline
+\newline
+Relational databases is the traditional way to deploy databases and they are in widespread use. In many situations they are extremely useful. However relational databases requires you to model your data up front, before you save anything to the database. Failing to comply with these restrictions will lead to failure, and it is sometimes difficult to create this kind of model that actually fits real world data. Even though objects may share common attributes, there are bound to be some attributes that are different. This is difficult to plan for in advance, and its the main reason we will not be using a SQL database for this project.
+\newline
+\newline
+For the database, we originally chose to use MongoDB as our NoSQL database. This was due to the fact that it was better documented and seemed better suited for the system as we originally planned it. Some of the features CouchDB offered wasn't thought of as necessary for the project at the time. During the implementation process we however came to the conclusion that CouchDb actually was a better fit. This was mostly due to its ability to act as an standalone system on a server without the need for other supporting server technologies like Node.js or ASP.NET. Also, the fact that it automaticly creates a RESTful API to access the database turned out to save us a lot of time. Its comprehensive versioning control system, which we deemed unnecessary at first, actually turned out to be a great resource. As a result of these discoveries we changed to CouchDb during the third sprint.
+
+
 \subsection{Backend}
-\subsubsection*{node.js}
+\subsubsection*{Node.js}
 Node.js is a platform designed for server side applications. It is written in JavaScript using Google Chrome's JavaScript runtime called V8. The same runtime is used by the MongoDB database engine, so it shares some of its properties. It can be used for building fast and scalable network applications. Also it is very lightweight and efficient \cite{nodejs-about}.
 
 \subsubsection*{ASP.NET}

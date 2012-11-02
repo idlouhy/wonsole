@@ -9,6 +9,7 @@ body {
 #console {
 	float: none;
 	background-color: black;
+	color: gray;
     height: 100%;
     min-height: 100%;
     width: 40%;    
@@ -20,6 +21,20 @@ body {
 	left: 60%;
 	top: 0%;
 
+}
+
+#console * {
+	/*margin: 1em;*/
+	
+}
+
+#console-output div {
+	margin: 0;
+}
+
+#console-output {
+	margin-top: 1em;
+	margin-left: 1em;
 }
 
 #ui {
@@ -38,25 +53,45 @@ body {
 	padding: 1em;
 }
 
+#console-prompt {
+	margin-left: 1em;
+	color: #FFFFFF;
+}
+
 #console-input {
     outline: none;
     border: none;
     resize: none;
     background: black;
-    color: gray;
-    width: 95%;
-    margin: 2.5%;
+    color: #CCCCCC;
+    width: 80%;
+    white-space: normal; 
+    word-wrap: break-word;
+    overflow:visible;
+    /*margin: 2.5%;*/
+}
+
+#log {
+	background-color: #EEEEEE;
+	margin-left: 1em;
+	position: fixed;
+	bottom: 1em;
+	left: 2.5%;
+	height: 16em;
+	width: 50%;
+	overflow: auto;
+	font-size: 80%;
 }
 
 
-input {
+#data input {
 	overflow: hidden;
     outline: none;
     border: none;
     resize: none;
     background: #EEEEEE;
     font-family: Consolas, Courier New;
-	
+    	
 }
 
 
@@ -66,6 +101,7 @@ input {
 	left: 1em;
 }
 
-#list {
+ul {
 	list-style: none;
+	list-style-type: none;
 }

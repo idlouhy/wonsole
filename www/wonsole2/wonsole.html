@@ -2,26 +2,41 @@
 <html>
 
 	<head>
-		<title>Wonsole2 Sketches</title>
+		<title>Wonsole2</title>
+		<!-- description: "The new web console for power users" -->
 		<link rel = "stylesheet" type="text/css" href="css/wonsole2.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		
+		<script src="script/jquery.js"></script>
+	<!--
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    -->
 		<script src="script/wonsole.js"></script>
 		<script src="script/wonsole.persistence.js"></script>
 		<script src="script/wonsole.ui.js"></script>
+		<script src="script/wonsole.console.js"></script>
+		   
 	</head>
 
-	<body onload="reload();">
+	<body onload="wonsole_init();">
 		<div id="ui">
 			<div id="data">
+				<ul id="list"></ul>
+			</div>			
+			<div id="log">
 			</div>
 			<div id="commands">
-				<a href="#">Add new</a>
-				<a href="#" onclick="commit()">Commit</a>
+			
 			</div>
 		</div>
-		<div id="console">
-			<input id="console-input" value="" oninput="consoleOnInput(event)" onkeypress="consoleKeyPress(event)" />
+		<div id="console" onclick="console_event_click(event)">
+			<div id="console-output">
+			</div>
+			
+			<label id="console-prompt" for="console-input">wonsole2></label>
+			<input id="console-input" value="" oninput="console_event_input(event)" onkeypress="console_event_keypress(event)" onkeydown="console_event_keydown(event)" />
 		</div>
 	</body>
 </html>

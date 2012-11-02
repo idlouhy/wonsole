@@ -1,4 +1,15 @@
 \chapter{Sprint 1}
+
+\minitoc
+
+\subsubsection{Purpose}
+
+This chapter will outline the work we did in the first sprint. It explains in detail how we planned the sprint, including which user stories we chose and the architecture we employed to implement these. Details on the implementation on each user story is also included, as well documentation on the testing process. Finally our evaluation of the first sprint is presented. 
+
+
+
+\clearpage
+
 \section{Planning}
 We started the sprint with a sprint planning meeting September 24th. The plan for this sprint is to implement a basic implementation of the system, so that we have something to show the customer at the end of the sprint. We chose user stories from the backlog that would enable us to this, a client and server offering only the most basic operations. 
 
@@ -9,7 +20,7 @@ This sprint started on September 24th and will last for two weeks. A customer de
 The goal for the first sprint is to get a basic version of the library application working. This includes creating a basic GUI with both the graphical web- application and the console side by side, creating a server capable of storing objects and establish communication between the server and client through a basic REST api. The user should be able to use both the web- application and the console to add a new book to the system and to list the books currently in the system. In addition we decided to implement the real- time messaging from the server to the clients to verify that the solution we chose in the pre- study would be up to the task.
 
 \subsection{User stories}
-The user stories we chose to implement in this sprint with their estimated workload is listed in Table~\ref{table:sp1usrstories}. We assume that we have around 170 hours a sprint for working with the actual user stories. The remaining 30 hours will be used for meetings, demonstrations and project management.
+The user stories we chose to implement in this sprint with their estimated workload is listed in Table~\ref{table:sp1usrstories}. We assume that we have around 160 hours a sprint for working with the actual user stories. The remaining 40 hours will be used for meetings, demonstrations and project management.
 
 Following is some points to discuss the deviations in estimated effort and actual time used.
 \begin{itemize}
@@ -109,21 +120,21 @@ Describes the functionality in the system from the end users perspective.The end
 
 \begin{figure}
 \centering
-\includegraphics[width=6in]{image/ClassDiagram.png}
+\includegraphics[width=6in]{image/s1clientClassDiagram.png}
 \caption{Client Class Diagram}
-\label{figure:clientClassDiagram}
+\label{figure:s1clientClassDiagram}
 \end{figure}
 
-Figure~\ref{figure:clientClassDiagram} The client class diagram gives an overview of the class structure of system, and how they collaborate. We can see that the client consists of two separate views, a GUI and a Shell, which is split by a splitpane so the user can se bouth a GUI interface and the commandline interface. These two views can make changes to the library objects, and get reflected back to the other view. The library objects consists of a library filed with books. The changes done to a book is delivered to other clients and the server through PubNub. 
+Figure~\ref{figure:s1clientClassDiagram} The client class diagram gives an overview of the class structure of system, and how they collaborate. We can see that the client consists of two separate views, a GUI and a Shell, which is split by a splitpane so the user can se bouth a GUI interface and the commandline interface. These two views can make changes to the library objects, and get reflected back to the other view. The library objects consists of a library filed with books. The changes done to a book is delivered to other clients and the server through PubNub. 
 
 \begin{figure}
 \centering
-\includegraphics[width=6in]{image/ServerClassDiagram.png}
+\includegraphics[width=6in]{image/s1serverClassDiagram.png}
 \caption{Client Class Diagram}
-\label{figure:serverClassDiagram}
+\label{figure:s1serverClassDiagram}
 \end{figure}
 
-Figure~\ref{figure:serverClassDiagram} The server class diagram shows how the REST api is set up, and the communication with the pubnub and db where the library information is stored.
+Figure~\ref{figure:s1serverClassDiagram} The server class diagram shows how the REST api is set up, and the communication with the pubnub and db where the library information is stored.
 
 
 \subsubsection{Development View}
@@ -131,12 +142,12 @@ Describes the system from the programmer's perspective. This will be described t
 
 \begin{figure}
 \centering
-\includegraphics[width=6in]{image/ComponentDiagram.png}
+\includegraphics[width=6in]{image/s1ComponentDiagram.png}
 \caption{Component Diagram}
-\label{figure:componentDiagram}
+\label{figure:s1ComponentDiagram}
 \end{figure}
 
-Figure~\ref{figure:componentDiagram} These components form a three layered structure, and communicate with each other through the neighboring layer.
+Figure~\ref{figure:s1ComponentDiagram} These components form a three layered structure, and communicate with each other through the neighboring layer.
 
 
 
@@ -152,12 +163,12 @@ Describes the system from the system engineer's perspective. And explains the ph
 
 \begin{figure}
 \centering
-\includegraphics[width=6in]{image/DeploymentDiagram.png}
+\includegraphics[width=6in]{image/s1DeploymentDiagram.png}
 \caption{Deployment Diagram}
-\label{figure:deploymentDiagram}
+\label{figure:s1DeploymentDiagram}
 \end{figure}
 
-Figure~\ref{figure:deploymentDiagram} The structure of the four different parts of the system.
+Figure~\ref{figure:s1DeploymentDiagram} The structure of the four different parts of the system.
 
 
 \section{Implementation}
