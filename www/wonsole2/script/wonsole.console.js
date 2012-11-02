@@ -22,6 +22,11 @@ function console_print_command(message) {
   $('#console-output').append("<div style=\"color: white\">"+prompt+message+"</div>");	
 }
 
+function console_print_error(message) {
+  $('#console-output').append("<div style=\"color: red\">"+message+"</div>");	
+}
+
+
 
 function console_set_command(message) {
   $('#console-input').val(message); 	
