@@ -64,7 +64,7 @@ function persistence_list_docs(database, callback) {
 
 
 function persistence_commit() {
-	//commit the changes	
+	//commit the changes
     
     var post = {};
     post["docs"] = docs;
@@ -74,15 +74,15 @@ function persistence_commit() {
           contentType: 'application/json; charset=UTF-8',
           data: JSON.stringify(post),
           url: "/couchdb/"+database+"/_bulk_docs",
-          dataType: 'json',
-          cache: 'false',
-          success: function(obj) {
+        dataType: 'json',
+        cache: 'false',
+            success: function(obj) {
             log(JSON.stringify(obj));
-          },
-          error: function(obj) {
+        },
+        error: function(obj) {
             log(JSON.stringify(obj));
-          },
-        });
+        }
+    });
 }
 
 function persistence_get(path, success_callback) {
@@ -91,6 +91,6 @@ function persistence_get(path, success_callback) {
     type: 'GET',
     dataType: 'json',
     cache: 'false',
-    success: success_callback,
+    success: success_callback
   });
 }

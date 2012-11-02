@@ -1,4 +1,4 @@
-var database = null; 
+var database = null;
 
 var doc = null;
 var docs = null;
@@ -7,7 +7,7 @@ var commands = {
   "db" : {"callback" : "command_db"},
   "cd" : {"callback" : "command_db"},
   "log" : {"callback" : "command_log"},
-  "commit" : {"callback" : "command_commit"},
+  "commit" : {"callback" : "command_commit"}
   "rollback" : {"callback" : "command_rollback"},
   "refresh" : {"callback" : "command_refresh"},
   "print" : {"callback" : "command_print"},
@@ -143,11 +143,12 @@ function command(input) {
 	try {
 	
 	if (commands[command_part] != null) {
+		window[commands[command_part].callback](argument_part);
 	  window[commands[command_part].callback](argument_part);	
 	}
 	else {
 	  log("eval");
-	  command_eval(input);	
+		command_eval(input);
 	}
 	
 	}

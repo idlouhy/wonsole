@@ -94,7 +94,7 @@ function ui_refresh() {
 }
 
 function ui_log_toggle(on) {
-	if (on != null) {
+  if (on != null) {
 		if (on)
 			$("#log").show();
 		else
@@ -215,8 +215,7 @@ generateDetailR = function(key, value, indent) {
 	});
 	e.append(indentSpace(indent));
 	e.append('}<br />');
-
-}
+};
 generateDetail = function(key, json) {
 	var e = $("#data");
 	e.html("");
@@ -225,7 +224,7 @@ generateDetail = function(key, json) {
 	generateDetailR(key, json, 0);
 
 	e.append("</form>");
-}
+};
 generateJSONFormInput = function(key, value, indentstr) {
 	var disabled = false;
 	if (key[0] == '_') {
@@ -234,4 +233,4 @@ generateJSONFormInput = function(key, value, indentstr) {
 		var r = indentstr + '"' + key + '" : "<input id="' + key + '" value="' + value + '" oninput="book.' + key + ' = event.target.value; " />"<br />';
 	}
 	return r;
-}
+};
