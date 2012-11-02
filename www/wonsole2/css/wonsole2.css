@@ -84,14 +84,14 @@ body {
 }
 
 
-input {
+#data input {
 	overflow: hidden;
     outline: none;
     border: none;
     resize: none;
     background: #EEEEEE;
     font-family: Consolas, Courier New;
-	
+    	
 }
 
 
