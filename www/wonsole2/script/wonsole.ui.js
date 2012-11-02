@@ -8,6 +8,7 @@ var view_type = {
 }
 
 var view = null;
+var quiet = true;
 
 function ui_init() {
 	ui_list_databases();
@@ -126,6 +127,12 @@ function ui_docs_list(json_array) {
 		function ui_get_doc_preview(json) {
 
 			function ui_get_doc_preview_attribute(key, value) {
+				if (key[0] == '_') {
+					return "";
+				}
+				if (quiet && key != "title") {
+					return "";
+				}
 				if ( value instanceof Object) {
 					return key + ":" + "Object";
 				} else {
@@ -148,7 +155,9 @@ function ui_docs_list(json_array) {
 		$.each(json_array, function(key, value) {
 			r = r + "<li>";
 			r = r + "<strong>" + i + ":</strong> ";
+			r = r + "<a href=\"#\" onclick=\"command('doc "+i+"');\"> ";
 			r = r + ui_get_doc_preview(value);
+			r = r + "</a> ";
 			r = r + "</li>";
 			i++;
 		});
@@ -162,23 +171,29 @@ function ui_docs_list(json_array) {
 
 function ui_doc(json) {
 	var e = $('#data');
-	e.html("");
+	e.html("<h3>Object</h3>");
 	 
 	//ui_get_doc_preview(json));
-	function ui_doc_field(key, value, path) {
+	function ui_doc_field(key, value, path, indent) {
+	  if (key[0] == '_') {
+	  	return "";
+	  }
 	  if (value instanceof Object) {
+	  	e.append(key+": <br/>");
 	  	$.each(value, function(k, v) {
-	      ui_doc_field(k, v, path+"."+key);  
+	      ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;");  
 	    });
 	  }
 	  else {
-	   e.append(key+": ")
-	   e.append('<input id="'+path+'.'+key+'" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
+	   e.append(indent);
+	   e.append(key);
+	   e.append(": ");
+	   e.append('<input id="'+path+'.'+key+'" style="width: '+value.length+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
 	   e.append("<br/>");
      }
 	}
 	$.each(json, function(key, value) {
-	  ui_doc_field(key, value, "doc");
+	  ui_doc_field(key, value, "doc", "&nbsp;&nbsp;");
 	});
 	
 	
