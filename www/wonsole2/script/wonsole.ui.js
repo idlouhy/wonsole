@@ -5,7 +5,7 @@ var view_type = {
 	detail : {
 		value : 1
 	}
-}
+};
 
 var view = null;
 var quiet = true;
@@ -175,25 +175,25 @@ function ui_doc(json) {
 	 
 	//ui_get_doc_preview(json));
 	function ui_doc_field(key, value, path, indent) {
-	  if (key[0] == '_') {
-	  	return "";
-	  }
-	  if (value instanceof Object) {
-	  	e.append(key+": <br/>");
-	  	$.each(value, function(k, v) {
-	      ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;");  
-	    });
-	  }
-	  else {
-	   e.append(indent);
-	   e.append(key);
-	   e.append(": ");
-	   e.append('<input id="'+path+'.'+key+'" style="width: '+value.length+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
-	   e.append("<br/>");
+		if (key[0] == '_') {
+			return "";
+		}
+		if (value instanceof Object) {
+			e.append(key+": <br/>");
+			$.each(value, function(k, v) {
+				ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;");
+			});
+		}
+		else {
+			e.append(indent);
+			e.append(key);
+			e.append(": ");
+			e.append('<input id="'+path+'.'+key+'" style="width: '+value.length+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
+			e.append("<br/>");
      }
 	}
 	$.each(json, function(key, value) {
-	  ui_doc_field(key, value, "doc", "&nbsp;&nbsp;");
+		ui_doc_field(key, value, "doc", "&nbsp;&nbsp;");
 	});
 	
 	

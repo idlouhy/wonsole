@@ -1,4 +1,4 @@
-all: clean build
+all: build
 
 clean:
 	rm report.aux
