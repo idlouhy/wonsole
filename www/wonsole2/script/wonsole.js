@@ -17,7 +17,7 @@ var commands = {
   "docs" : {"callback" : "command_docs"},
   "doc" : {"callback" : "command_doc"},
   "quiet" : {"callback" : "command_quiet"},
-}
+};
 
 
 function wonsole_init() {
@@ -32,8 +32,8 @@ function command_db(input) {
 	view = view_type.list;
 	//ui_list_views(input); log("ui_list_views('"+input+"')");
 	persistence_list_docs(input, function(json_array) {
-	  docs = json_array;
-	  ui_docs_list(docs);	
+        docs = json_array;
+        ui_docs_list(docs);
 	});
 }
 
@@ -41,8 +41,8 @@ function command_rollback(input) {
 	console_print_command("rollback");
 	view = view_type.list;
 	persistence_list_docs(database, function(json_array) {
-	  docs = json_array;
-	  ui_docs_list(docs);	
+        docs = json_array;
+        ui_docs_list(docs);
 	});
 }
 
@@ -57,12 +57,12 @@ function command_seteach(input) {
   var atribute_name = input.split(' ')[1];
   var code = input.split(' ').slice(2).join(' ');
     
-  console_print_command("seteach "+input);   
+  console_print_command("seteach "+input);
     
   for (var i=0; i < window[array_name].length; i++) {
-   	//log(window[input1][i][input2]+input3);
-    window[array_name][i][atribute_name] = eval(code); 
-  };
+    //log(window[input1][i][input2]+input3);
+    window[array_name][i][atribute_name] = eval(code);
+  }
   
   ui_refresh();
 }
@@ -72,12 +72,12 @@ function command_applyeach(input) {
   var atribute_name = input.split(' ')[1];
   var code = input.split(' ').slice(2).join(' ');
     
-  console_print_command("foreach "+input);   
+  console_print_command("foreach "+input);
     
   for (var i=0; i < window[array_name].length; i++) {
-   	//log(window[input1][i][input2]+input3);
-    window[array_name][i][atribute_name] = eval(window[array_name][i][atribute_name]+" "+code); 
-  };
+    //log(window[input1][i][input2]+input3);
+    window[array_name][i][atribute_name] = eval(window[array_name][i][atribute_name]+" "+code);
+  }
   
   ui_refresh();
 }
@@ -135,19 +135,19 @@ function command(input) {
 	history.push(input);
 	
 	var command_part = input.split(' ')[0];
-	var argument_part = input.split(' ').slice(1).join(' ');	
+	var argument_part = input.split(' ').slice(1).join(' ');
 			
-	$('#console-input').val(""); 
+	$('#console-input').val("");
 	
 	
 	try {
 	
 	if (commands[command_part] != null) {
 		window[commands[command_part].callback](argument_part);
-	  window[commands[command_part].callback](argument_part);	
+    window[commands[command_part].callback](argument_part);
 	}
 	else {
-	  log("eval");
+    log("eval");
 		command_eval(input);
 	}
 	

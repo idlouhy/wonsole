@@ -1,6 +1,6 @@
 var persistence_type = {
   demo : {value: 0, name: "Demo", path: "demo://"},
-  local : {value: 1, name: "Local", path: "http://127.0.0.1:5984/"}, 
+  local : {value: 1, name: "Local", path: "http://127.0.0.1:5984/"},
   couchdb : {value: 2, name: "CouchDB", path: "/couchdb"}
 };
 
@@ -16,14 +16,14 @@ function persistence_list_databases(callback) {
 	}
 	else {
 		persistence_get(persistence.path+"/_all_dbs", function(data) {
-		  var dbs = [];
-		  $.each(data, function(key, value) {
-		    if (value[0] != '_') {
-		    	dbs.push(value);
-		    }
-		  });
-		  persistence_cache_db = dbs;
-		  callback(dbs);	
+            var dbs = [];
+            $.each(data, function(key, value) {
+                if (value[0] != '_') {
+                    dbs.push(value);
+                }
+            });
+            persistence_cache_db = dbs;
+            callback(dbs);
 		});
 	}
 }
