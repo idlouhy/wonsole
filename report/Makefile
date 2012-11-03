@@ -7,7 +7,7 @@ clean:
 build:
 	pdflatex report
 
-	bibtex references.bib
+	bibtex report
 
 	pdflatex report
 	pdflatex report
