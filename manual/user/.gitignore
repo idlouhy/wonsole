@@ -1,2 +1,7 @@
 .project
 .texlipse
+tmp
+src/*.aux
+src/*.toc
+src/*.log
+src/*.out
