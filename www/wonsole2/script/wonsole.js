@@ -7,7 +7,7 @@ var commands = {
   "db" : {"callback" : "command_db"},
   "cd" : {"callback" : "command_db"},
   "log" : {"callback" : "command_log"},
-  "commit" : {"callback" : "command_commit"}
+  "commit" : {"callback" : "command_commit"},
   "rollback" : {"callback" : "command_rollback"},
   "refresh" : {"callback" : "command_refresh"},
   "print" : {"callback" : "command_print"},
