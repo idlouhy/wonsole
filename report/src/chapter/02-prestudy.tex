@@ -8,12 +8,6 @@
 
 \section{Concept}
 
-\section{Constraints}
-\subsection{Time}
-The project must be completed within a timeframe of 13.6 weeks. The guideline is 24.3 work hours per person, per week. 
-\subsection{Knowledge about the problem}
-Our problem is not well-explored and the customer cannot give us exact requirements. Thus, this is as much a research project as it is a software development project.
-
 \section{Feasibility study}
 
 \section{Similar solutions}
@@ -522,3 +516,10 @@ JavaScript was originally aimed for web pages with small tasks where the Java pl
 
 \subsection*{JSHint}
 JSHint is a fork of JSLint which was designed with similar goals of enforcing code quality and avoiding common programming errors, but in a more lenient manner. JSLint is criticized for being a tool that is not first and foremost helpful in preventing bugs or improving readability, but rather a tool that enforces any strict convention as a goal in itself. JSHint attempts to alleviate this, and is more configurable and exhibits less absolutist behaviour. \cite{jshint-about}
+
+\subsection*{Comparison and Conclusion}
+We chose JSHint, this is why.
+JSLint is a stricter version of JSHint. We started out with JSLint after we had written some lines of code, and saw that it produced closer to a 100 errors, and satisfying the linter would mean to rewrite most of the code. After this discovery we tested the JSHint fork of JSLint, which  “make a more configurable version of JSLint—the one that doesn't enforce one particular coding style on its users—” - \footnote{\url{http://www.jshint.com/about/}}. JSHint is also much more involved in the JavaScript developer community, and based on this. JSHint did not produce as many errors, and did not require as much effort to satisfy.
+JSLint enforces its own way of coding, which is not always what you want from a linter. The team switches between different coding languages both inside and outside the project. It is unnecessarily time consuming to get into the mind of Douglas Crockford (maker of JSLint) every time you switch to JavaScript. JavaScript is a dynamic language which lets you write the same code in so many different ways, and the way of JSLint isn’t always the way.
+\footnote{\url{http://www.jslint.com/}}
+\footnote{\url{http://www.jshint.com/}}
