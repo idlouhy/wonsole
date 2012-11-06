@@ -390,7 +390,6 @@
 \label{table:testcasetid18}
 \end{table}
 
-\clearpage
 
 \begin{table}
 \caption{Test Case TID19}
@@ -411,6 +410,136 @@
 \end{tabular}
 \label{table:testcasetid19}
 \end{table}
+
+\clearpage
+
+
+\section{Sprint 3}
+
+\begin{table}
+\caption{Test Case TID20}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Changing directory in the application in the console. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to easily change the working directory from the console.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Call the command for changing directory. \\ 3. Observe the response in the GUI and console. } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The GUI is updated to represent the specified directory. The objects in this directory is available from the console. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid20}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID21}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Storing objects as local variable. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to extract objects and store these in specified variables in the console.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Navigate to a directory with objects. \\ 3. Extract an object with a DSL command, and assign it to a variable. \\ 4.Change directory. \\ 5.Print the content of the variable in the console } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The object which you assigned to the variable is printed. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid21}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID22}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Allow for the use of functions on the objects. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to apply function on single or groups of objects.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Retrieve a group of objects. \\ 3. Call DSL command for applying a function to a group of objects. \\ 4.Call DSL command and apply a mathematical function on a numerical attribute of the objects.} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The function is applied correctly to all the objects, and the attributes of the involved objects are updated accordingly. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid22}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID23}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Allow for editing of attributes. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to edit existing attributes or add new ones.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Navigate to a specific object. \\ 3. Change an attribute, using both the GUI and the console. \\ 4.Add an attribute, using both the GUI and the console. \\ 5.Extract an entire JSON object and add it as a new attribute for the object } \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & Existing attributes are correctly updated, and new attributes are correctly added. The JSON object is added as a attribute of the specified object. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid23}
+\end{table}
+
+
+\begin{table}
+\caption{Test Case TID24}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Update GUI according to changes. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & Whenever a user changes, deletes or adds an attribute of one or several of the objects, the GUI updates.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Make changes to single and groups of objects} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The GUI updates whenever an object changes. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid24}
+\end{table}
+
+\begin{table}
+\caption{Test Case TID25}
+\centering
+\begin{tabular}{ l p{13cm} }
+\hline 
+ Item            & Description        \\ 
+\hline \\ [-2.0ex]
+ Description     &Store changes to database. \\ 
+ Tester          & Øystein Heimark                  \\ 
+ Preconditions   & None\\ 
+ Feature         & The ability to work locally and push changes to the server when the user desires.   \vspace{3pt}                     \\ 
+\hline \\ [-1.5ex]
+ Execution steps & \pbox{13cm}{1. Open a new client \\ 2. Do a variety of actions in the application. \\ 3. Issues DSL command to store the changes on the server} \vspace{3pt} \\
+\hline \\ [-1.5ex]
+ Expected result & The changes are successfully stored on the server, and is retrievable for other users as well. \\
+\hline 
+\end{tabular}
+\label{table:testcasetid25}
+\end{table}
+
 
 \clearpage
 

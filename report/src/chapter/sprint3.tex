@@ -18,6 +18,92 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 
 \subsection{User stories}
 
+\begin{table}
+\caption{Sprint 3 User Stories}
+\centering
+\begin{tabular}{ l p{8cm} l l }
+\hline 
+			&				&\multicolumn{2}{c}{Hours}			\\
+ User Story	& Short Description		&Est.		&Act.	                               \\ 
+\hline \\ [-2.0ex]
+ 
+\bf{1}     &\bf{Navigate the application like a directory}		&\bf{5}		&\bf{3.5}          \\ 
+		  &Decide on syntax						&			&		\\
+		  &Detect and parse navigation commands	&			&		\\
+		  &Change directory when command is issued&			&		\\
+		  &Testing							&			&		\\
+		  &Documentation						&			&		\\
+
+ \bf{2}     &\bf{Store variables in the console} 				&\bf{4}		&\bf{4}               \\ 
+		  &Make objects in current directory available		&			&		\\
+		  &Ensure persistent storage of the stored objects	&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+ \bf{3}     &\bf{GUI represent current directory} 			&\bf{5}		&\bf{4}		     \\ 
+		  &Make viewsfor each directory in CouchDB		&			&		\\
+		  &Call the correct view when changing directory	&			&		\\
+		  &Update the GUI							&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+ \bf{4}   	&\bf{Expose properties of the objects}			&\bf{6}		&\bf{7.5}		     \\ 
+		  &Make objects available						&			&		\\
+		  &Make objects in GUI clickable				&			&		\\
+		  &Query database on selection				&			&		\\
+		  &Update GUI								&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+ \bf{5}	  &\bf{Call specific functions}					&\bf{8}		&\bf{5.5}		     \\
+		  &Allow user to extract objects				&			&		\\
+		  &Create DSL command						&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+\bf{6}	  &\bf{Perform mathematical operations}			&\bf{8.5}		&\bf{6}		     \\
+		  &Allow user to use mathematical functions		&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+\bf{7}   	&\bf{Change or add attributes}				&\bf{3}		&\bf{4}		     \\ 
+		  &Allow user to edit the attributes				&			&		\\
+		  &Allow user to add new attributes				&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+\bf{8}   	&\bf{Allow user to add entire JSON objects}			&\bf{1.5}		&\bf{2}		     \\ 
+		  &Allow user to assign JSON objects as attributes		&			&		\\
+		  &Testing									&			&		\\
+		  &Documentation								&			&		\\
+
+\bf{9}   	&\bf{Replicate changes to GUI}				&\bf{3}		&\bf{2}		     \\ 
+		  &Detect changes made from the console		&			&		\\
+		  &Update the GUI accordingly					&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+\bf{10}   	&\bf{Allow user to work locally}				&\bf{2}		&\bf{4}		     \\ 
+		  &Keep track of actions made by user			&			&		\\
+		  &Add command for storing on server			&			&		\\
+		  &Testing								&			&		\\
+		  &Documentation							&			&		\\
+
+\hline 
+		  &\bf{Total:}						&\bf{46}		&\bf{42.5}		\\
+\hline
+\end{tabular}
+\label{table:sp3usrstories}
+\end{table}
+
+
+
+
+
+
+
+
+
 \section{Architecture}
 \subsection{4+1 view model}
 \subsubsection{Logical View}
