@@ -11,84 +11,100 @@
 \section{Feasibility study}
 
 \section{Similar solutions}
+In this section, we will discuss similar solutions and their relevance to our project.
 
-\subsection{Counter-Strike}
-
-\begin{figure}
-\centering
-\includegraphics[width = 0.8\textwidth]{image/counterstrike.png}
-\caption{Counter-Strike console}
-\label{image-counterstrike}
-\end{figure}
-
-This game features a console that offers a wide variety of commands, including:
+\begin{center}
+\begin{tabularx}{\textwidth}{ | l | X | }
+\hline
+\textbf{Product} & Counter-Strike \\ \hline
+\textbf{Concept} & This game features a console that offers a wide variety of commands, including:
 - Changing the game options
 - Altering the game world
 - Player actions and cheats
-- Multiplayer communication and administration
-Example screenshot is on \ref{image-counterstrike}.
+- Multiplayer communication and administration \\ \hline
+\textbf{Intended use} & In a game, this functionality eases development and debugging, as well as increasing the moddability and long-term value for players. \\ \hline
+\textbf{Similar products} & Similar consoles also exist in other games, such as Carmageddon TDR 2000. \\ \hline
+\textbf{Relationship to our project} & Like our project, the Counter-Strike console allows for using a DSL to work with objects in its given domain. It shows that the console can be a powerful tool that comes at a relatively small development cost compared to designing a GUI with a similar feature set. \\ \hline
+\end{tabularx}
+\captionof{table}{Counter-Strike Console}\label{tab:csc}
+\end{center}
 
-In a game, this functionality eases development and debugging, as well as increasing the moddability and long-term value for players. Similar consoles also exist in other games, such as Carmageddon TDR 2000.
+\begin{center}
+\includegraphics[width = 0.8\textwidth]{image/counterstrike.png}
+\captionof{figure}{Counter-Strike Console}\label{cscimage}%
+\end{center}
 
-\subsection{Blender}
+\begin{center}
+\begin{tabularx}{\textwidth}{ | l | X | }
+\hline
+\textbf{Product} & Blender \\ \hline
+\textbf{Concept} & This 3D modelling software features a Python console with access to the model data, animation data, etc. It is also common to extend the program using custom Python scripts. \\ \hline
+\textbf{Intended use} & In a creative suite, this type of functionality can be used to perform operations that are not directly supported in the user interface. It is particularly useful for programmatically executing repetitive tasks that can be automatized. \\ \hline
+\textbf{Similar products} & Similar solutions also exist in other creative tools, including a Python console in GIMP and Nyquist prompt in Audacity. \\ \hline
+\textbf{Relationship to our project} & The Blender console exposes the underlying data structures to the user via an already widespread, powerful scripting language. This enables the users themselves to expand upon the functionality of the program and perform operations that would be prohibitively time-consuming to execute manually. \\ \hline
+\end{tabularx}
+\captionof{table}{Blender Console}\label{tab:blenderc}
+\end{center}
 
-\begin{figure}
-\centering
+\begin{center}
 \includegraphics[width = 0.8\textwidth]{image/blender.png}
-\caption{Blender console}
-\label{image-blender}
-\end{figure}
+\captionof{figure}{Blender Console}\label{blendercimage}%
+\end{center}
 
-This 3D modelling software features a Python console with access to the model data, animation data, etc. It can be used to perform operations that are not directly supported in the user interface. It is also common to extend the program using custom Python scripts. 
+\begin{center}
+\begin{tabularx}{\textwidth}{ | l | X | }
+\hline
+\textbf{Product} & Firefox \\ \hline
+\textbf{Concept} & This web browser features a Web Console where it is possible to execute JavaScript commands with access to the objects on the current page. \\ \hline
+\textbf{Intended use} & In a web browser, this is useful for web development, prototyping and debugging for websites that use JavaScript. \\ \hline
+\textbf{Similar products} & Similar features also exist in a few other browsers, such as Google Chrome. \\ \hline
+\textbf{Relationship to our project} & Like our project, the Firefox Web Console offers access to the objects on a web page. It is possible for us to use the same principle, but for features that are useful for the end user and not just the developer. \\ \hline
+\end{tabularx}
+\captionof{table}{Firefox Web Console}\label{tab:firefoxc}
+\end{center}
 
-Similar solutions also exist in other creative tools, including a Python console in GIMP and Nyquist prompt in Audacity.
-
-Example screenshot is on \ref{image-blender}.
-
-\subsection{Firefox}
-
-\begin{figure}
-\centering
+\begin{center}
 \includegraphics[width = 0.8\textwidth]{image/firefox.png}
-\caption{Firefox console}
-\label{image-firefox}
-\end{figure}
+\captionof{figure}{Firefox Web console}\label{firefoxcimage}%
+\end{center}
 
-This web browser features a Web Console where it is possible to execute JavaScript commands with access to the objects on the current page. This is useful for web development and debugging. Similar features also exist in a few other browsers, such as Google Chrome.
 
-Example screenshot is on \ref{image-blender}.
+\begin{center}
+\begin{tabularx}{\textwidth}{ | l | X | }
+\hline
+\textbf{Product} & try.mongodb.org \\ \hline
+\textbf{Concept} & This database website features a console where the user can execute commands on a dummy database. \\ \hline
+\textbf{Intended use} & On this website, the console serves as an educational and demonstrational tool for people who don't want to invest too much time in learning about the database system. \\ \hline
+\textbf{Similar products} & Comparable consoles also exist to allow the user to execute arbitrary queries in database administration tools such as PHPMyAdmin. \\ \hline
+\textbf{Relationship to our project} & This console allows the user to execute queries directly on a database, and interestingly it allows input of objects with arbitrary structure. We will require persistent storage of our objects on a server, so this technology may be relevant. \\ \hline
+\end{tabularx}
+\captionof{table}{MongoDB Console}\label{tab:mongodbc}
+\end{center}
 
-\subsection{try.mongodb.org}
-
-\begin{figure}
-\centering
+\begin{center}
 \includegraphics[width = 0.8\textwidth]{image/mongodb.png}
-\caption{MongoDB console}
-\label{image-mongo}
-\end{figure}
+\captionof{figure}{MongoDB Console}\label{mongodbcimage}%
+\end{center}
 
-This database website features a console where the user can execute commands on a dummy database. It is an educational tool for people who don't want to invest too much time in it. Comparable consoles also exist to allow the user to execute arbitrary queries in database administration tools such as PHPMyAdmin.
 
-Example screenshot is on \ref{image-mongo}.
+\begin{center}
+\begin{tabularx}{\textwidth}{ | l | X | }
+\hline
+\textbf{Product} & web-console.org \\ \hline
+\textbf{Concept} & This project provides shell access to a server through the browser window over HTTP with support for real-time communication. \\ \hline
+\textbf{Intended use} & This system is intended to be used for server administration purposes when HTTP may be the only feasible method of connection. \\ \hline
+\textbf{Similar products} & Similar solutions include access to unix Shells via VPN. \\ \hline
+\textbf{Relationship to our project} & If, in our project, the server is designed to support user input using a DSL in a terminal window, then a solution like this one may provide the necessary functionality to embed a useful console into a Web UI. \\ \hline
+\end{tabularx}
+\captionof{table}{Web-Console}\label{tab:webconsolec}
+\end{center}
 
-\subsection{web-console.org}
-
-\begin{figure}
-\centering
+\begin{center}
 \includegraphics[width = 0.8\textwidth]{image/webconsole.png}
-\caption{Web-console}
-\label{image-webconsole}
-\end{figure}
+\captionof{figure}{Web- Console}\label{webconsolecimage}%
+\end{center}
 
-This project provides shell access to a server through the browser window over HTTP.
-
-It supports real time communication, and is intended to be used for server administration purposes.
-
-Example screenshot is on \ref{image-webconsole}.
-
-\subsection{Conclusion}
-
-This is by no means an exhaustive list, but it serves to illustrate that consoles are still applicable for purposes including software development, debugging, learning, extendability and where there is a high demand for flexibility.
+These products serve to illustrate that consoles are still applicable for purposes including software development, debugging, learning, extendability and where there is a high demand for flexibility. They can enhance productivity and provide features that would be prohibitively complex or expensive to implement in a graphical user interface. They also show that consoles do exist on the web, and that this is a field that is worth closer examination.
 
 
 
