@@ -95,6 +95,23 @@ The user stories picked out for sprint two did not have much of an impact on the
 \subsection{Autocomplete}
 The autocomplete i made of a jQuery suggestion menu, a modified JavaScript Shell 1.4 and the available objects in the running system. The suggestion menu is attached to the console textarea in Shell. Shell already possessed the ability to generate suggestions based on the user’s input in the console. This information is basically reflected onto the attached suggestion menu, which displays these. Since the system is to be efficient for the selected domain, the available methods and attributes have been cut down, so only the essentials remain, and the user doesn't have to look through unnecessary methods when working.
 
+\subsection{Object highlighting and detailed editing}
+It was made possible to click the ID field of book objects in order to highlight their row in the list. This action also filled out the section for adding new books with the information about the given book object. Furthermore, the section for adding new books was enhanced to allow editing of the existing object.
+
+\subsection{Cycling through objects}
+Logic was implemented in the console to detect the presence of an array in the user input, and incrementing the index of this array upon pressing the Tab key. The object at the indicated index was then highlighted for editing in the GUI. In order to detect arrays in the textual user input string, the following approach was used:
+\begin{itemize}
+\item If the string contains the characters '(', ')' or '=', terminate. The code later makes use of the eval() function to determine whether the array is valid, and it was deemed unsafe to risk performing function calls(indicated by the presence of parentheses) or assignment statements(indicated by the presence of an equals sign).
+\item Strip complete or partial occurrences of [index] at the end of the string, where 'index' would be an integer literal. Determine the value of 'index' if it is present, set it to 0 otherwise.
+\item Evaluate the resulting string and store it in a variable, then test the type of the variable. If the variable is not an array, or if it is an array containing objects that are not book objects, terminate.
+\item If the book object at the previously determined index in the array is highlighted in the GUI, increment the index by one, wrapping around if necessary.
+\item Add the [index] construct to the end of the string in the console, and highlight the book object at the current index in the array for editing in the GUI.
+\end{itemize}
+
+\subsection{Reflection of GUI actions in the console}
+The GUI elements were altered so that they sent strings containing JavaScript code to the console for execution, and subsequently displaying the results. 
+
+In itself, the console already contained support for programmatically executing code and displaying the result. However, to make this feasible, some specific implementations had to be altered so as to not use references that were not accessible from the global scope. For instance, the GUI elements for editing book objects were originally implemented by having the book objects create DOM elements with callbacks directly to the book object which created them. This was changed so that the GUI element instead used an index in the global array of books(which was accessible from the console) in order to obtain a reference to the correct book object.
 
 \section{Testing}
 This section will present the tests performed during the second sprint and their result.
