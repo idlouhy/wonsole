@@ -98,12 +98,6 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 
 
 
-
-
-
-
-
-
 \section{Architecture}
 \subsection{4+1 view model}
 \subsubsection{Logical View}
@@ -115,7 +109,65 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 
 \section{Testing}
 \subsection{Test Results}
+We performed a total of 6 test cases during this sprint; TID20-25. The results are listed in Table~\ref{table:sp3testresults}. The test cases themselves can be found in the appendix ~\ref{sec:sp3testcases}.
+
+\begin{table}
+\caption{Sprint 3 Test Results}
+\centering
+\begin{tabular}{ l p{13cm} }
+
+\hline 
+Item			&Description		\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID20}			\\
+Description	&Changing directory in the application in the console.	\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Success				\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID21}			\\
+Description	&Storing objects as local variable.  	\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Success			\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID22}			\\
+Description	&Allow for the use of functions on the objects.	\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Success			\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID23}			\\
+Description	&Allow for editing and adding of attributes.	\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Failure. It is not possible to add attributes from the GUI			\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID24}			\\
+Description	&Update GUI according to changes.	\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Success		'	\\
+\hline \\ [-2.0ex]
+
+\bf{TestID}		&\bf{TID25}			\\
+Description	&Store changes to database.\\
+Tester		&Øystein Heimark	\\
+Date			&02/11 - 2012	\\
+Result		&Success			\\
+\hline
+
+\end{tabular}
+\label{table:sp3testresults}
+\end{table}
+
 \subsection{Test Evaluation}
+We had one failed test this time, which was due to some missing functionality in the GUI. More specificly it is not possible to add new attributes to existing objects from the GUI. We decided not to correct this, as the focus of this project is the console and its functionality. We prioritized to implement more functionality to the console instead. This was a feeling shared by the customer, they wanted us to exhibit what was possible to do in the console. The functionality of the GUI was not important to them.
 
 \section{Customer Feedback}
 This sections covers the feedback we got from the customer, both before and after the sprint.
