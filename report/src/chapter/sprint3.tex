@@ -100,10 +100,60 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 
 \section{Architecture}
 \subsection{4+1 view model}
+The 4+1 view model\cite{Kruchten}. Here the views will be described as they are in sprint 3, and how they will look in our architecture. 
+
 \subsubsection{Logical View}
-\subsubsection{Process View}
+Describes the functionality in the system from the end users perspective. The end users will mainly be power users, wanting to perform object editing tasks efficiently. This view will be described through class, communication and sequence diagram.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6in]{image/architecture/s3/s3clientClassDiagram.png}
+\caption{Client Class Diagram}
+\label{figure:s3clientClassDiagram}
+\end{figure}
+
+Figure~\ref{figure:s3clientClassDiagram} The client class diagram gives an overview of the class structure of system, and how they collaborate. This sprint we made some changes to the client side to better handle and work with the new database system we introduced in this sprint. We still has a UI/Console view, for the user to work with, but the console and UI now can work more freely onto the database through commands, as seen in the "Wonsole"-class. Since the edited client and new database together made a more dynamic system, the objects the user can work with does not need to be restricted to Book and library objects. The persistence class is instead holding more dynamic versions of these. Changes done in the console is still reflected onto the UI through the Wonsole and persistence classes. The changes are pushed onto the server through a "commit"-command, instead of an automatic push done by the previously used PubNub.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3in]{image/architecture/s3/s3serverClassDiagram.png}
+\caption{Client Class Diagram}
+\label{figure:s3serverClassDiagram}
+\end{figure}
+
+Figure~\ref{figure:s3serverClassDiagram} The server class diagram shows how the REST api is set up. Since the PubNub no longer is a used function, it is removed from the server side also. The new database system is both a REST api and a database system, this renders the separation of REST and DBCommunicator obsolete, and lets us merge it all together into one component. 
+
+
+%\subsubsection{Process View}
+%Describes the dynamic aspect of the system, and explains how the different parts of the system will communicate at runtime. This is described with a activity diagram.
+
+%The user will ask for an object from the backend, this will be delivered to the client through the communication channel as a json object, the client will interpret this and the user can then edit it through the console, and send it back to the backend.
+
+
+
 \subsubsection{Physical View}
+Describes the system from the system engineer's perspective. And explains the physical connections between the software components. Described through a deployment diagram. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=4in]{image/architecture/s3/s3DeploymentDiagram.png}
+\caption{Deployment Diagram}
+\label{figure:s3DeploymentDiagram}
+\end{figure}
+
+Figure~\ref{figure:s3DeploymentDiagram} The structure of the now two different parts of the system, database can be accessed without a middleman, and the PubNub is no longer used.
+
 \subsubsection{Development View}
+Describes the system from the programmer's perspective. This will be described through how the different component parts are separated. Component and package diagrams will show this.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3in]{image/architecture/s3/s3ComponentDiagram.png}
+\caption{Component Diagram}
+\label{figure:s3ComponentDiagram}
+\end{figure}
+
+Figure~\ref{figure:s3ComponentDiagram} These components still form a three layered structure, but the DB component is both the logical tier and the data tier. The components communicates with each other through the neighboring layer.
 
 
 \section{Implementation}
