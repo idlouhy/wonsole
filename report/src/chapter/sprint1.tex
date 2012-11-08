@@ -6,8 +6,6 @@
 
 This chapter will outline the work we did in the first sprint. It explains in detail how we planned the sprint, including which user stories we chose and the architecture we employed to implement these. Details on the implementation on each user story is also included, as well documentation on the testing process. Finally our evaluation of the first sprint is presented. 
 
-
-
 \clearpage
 
 \section{Planning}
@@ -118,7 +116,7 @@ The 4+1 view model. Here the views will be described, and how they will look in 
 \subsubsection{Logical View}
 Describes the functionality in the system from the end users perspective.The end users will mainly be power users, wanting to perform object editing tasks efficiently. This view will be described through class, communication and sequence diagram.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=6in]{image/s1clientClassDiagram.png}
 \caption{Client Class Diagram}
@@ -127,28 +125,14 @@ Describes the functionality in the system from the end users perspective.The end
 
 Figure~\ref{figure:s1clientClassDiagram} The client class diagram gives an overview of the class structure of system, and how they collaborate. We can see that the client consists of two separate views, a GUI and a Shell, which is split by a splitpane so the user can se bouth a GUI interface and the commandline interface. These two views can make changes to the library objects, and get reflected back to the other view. The library objects consists of a library filed with books. The changes done to a book is delivered to other clients and the server through PubNub. 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=6in]{image/s1serverClassDiagram.png}
+\includegraphics[width=5in]{image/s1serverClassDiagram.png}
 \caption{Client Class Diagram}
 \label{figure:s1serverClassDiagram}
 \end{figure}
 
 Figure~\ref{figure:s1serverClassDiagram} The server class diagram shows how the REST api is set up, and the communication with the pubnub and db where the library information is stored.
-
-
-\subsubsection{Development View}
-Describes the system from the programmer's perspective. This will be described through how the different component parts are separated. Component and package diagrams will show this.
-
-\begin{figure}
-\centering
-\includegraphics[width=6in]{image/s1ComponentDiagram.png}
-\caption{Component Diagram}
-\label{figure:s1ComponentDiagram}
-\end{figure}
-
-Figure~\ref{figure:s1ComponentDiagram} These components form a three layered structure, and communicate with each other through the neighboring layer.
-
 
 
 %\subsubsection{Process View}
@@ -161,14 +145,26 @@ Figure~\ref{figure:s1ComponentDiagram} These components form a three layered str
 \subsubsection{Physical View}
 Describes the system from the system engineer's perspective. And explains the physical connections between the software components. Described through a deployment diagram. 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=6in]{image/s1DeploymentDiagram.png}
+\includegraphics[width=5in]{image/s1DeploymentDiagram.png}
 \caption{Deployment Diagram}
 \label{figure:s1DeploymentDiagram}
 \end{figure}
 
 Figure~\ref{figure:s1DeploymentDiagram} The structure of the four different parts of the system.
+
+\subsubsection{Development View}
+Describes the system from the programmer's perspective. This will be described through how the different component parts are separated. Component and package diagrams will show this.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=5in]{image/s1ComponentDiagram.png}
+\caption{Component Diagram}
+\label{figure:s1ComponentDiagram}
+\end{figure}
+
+Figure~\ref{figure:s1ComponentDiagram} These components form a three layered structure, and communicate with each other through the neighboring layer.
 
 
 \section{Implementation}
@@ -386,7 +382,7 @@ Result		&Success			\\
 \end{table}
 
 \subsection{Test Evaluation}
-All our tests passed on the first attempt, without any comlications to speak of. The likely cause of this is that we chose to implement a basic protoype for this sprint, with basic functionality all around. There weren't many comlicated components that had to be implemented, and the interfaces between the components were also pretty straight forward. The fact that we performed all of the tests towards the end of the sprint, when all the different components were completed, may also have been a contributing factor. In doing this we avoided getting errors and failed tests because some components were yet to be implemented.
+All our tests passed on the first attempt, without any complications to speak of. The likely cause of this is that we chose to implement a basic protoype for this sprint, with basic functionality all around. There weren't many comlicated components that had to be implemented, and the interfaces between the components were also pretty straight forward. The fact that we performed all of the tests towards the end of the sprint, when all the different components were completed, may also have been a contributing factor. In doing this we avoided getting errors and failed tests because some components were yet to be implemented.
 
 \section{Customer Feedback}
 This sections covers the feedback we got from the customer, both before and after the sprint.
@@ -400,25 +396,35 @@ The customer had a lot of suggestions for the second sprint. He would like us to
 
 
 \section{Evaluation}
+This section contains the evaluation of the first sprint, and what we plan to improve for the second sprint. These points were reached and agreed on during an internal meeting with all group members present.
+
 \subsection{Review}
-\subsection{Positive}
+All in all we were happy with our progress in the first sprint, and the fact that we were able to deliver a functioning basic version of the system. This was the goal we had set at the beginning of this sprint and we were able to finish all the user stories in the sprint backlog. We feel this was in large part due to the fact that we did a good job in dividing tasks among the team members. We were also happy with fact that the communication both within the group and with the customer was good throughout the sprint. The customer was satisfied with the product we were able to deliver, and liked the direction the project was taking. Also we recieved valueable feedback from the customer after the sprint demonstration, with many suggestions for improvements.
+\newline
+\newline
+Although we were happy with the end result, we felt there was a lot of areas in which we could improve. One of them was the execution of the Scrum process. None of the team members had any previous experince with doing Scrum in an actual project, although we were all familiar with the basic concepts. We failed to properly see the importance of the daily meetings and the organization of these meetings was not good enough. Some days they were not performed at all, and we feel that this was the main reason we ended up doing some double work. In addition none of the team members had any experience in writing user stories before. As a result some of the user stories were not concise enough and a lot of them were overlapping. This actually resulted in us completing a lot more user stories than we planned for, because some of the functionality we implemented was covered by multiple user stories. Although this was a positive surprise we felt we needed to put some effort into rewrite some of the user stories and do a better job on the new ones we created.
+\newline
+\newline
+We planned to do a lot of design up front before we started this sprint. However we did not succeed in doing this, most of the time was used on implementation. This is a project where the amount of documentation is expected to be extensive, and we were at the time still getting used to that. This also hurt us when it was time to document our work, as we didn't produce much written material during the implementation. As a result we ended up with a lot of unfinished work on the report that had to be done in the second sprint. Also our time tracking routines during the sprint was not good enough, and this led to a lot of extra work when we tried to document the time spent on the different user stories.
+
+\subsubsection{Positive Experiences}
 
 \begin{itemize}
-\item We delivered a functional system for the demo, with all the promised functionality.
-\item The customer was happy with the product and our progress so far.
-\item We finished all the user stories, and even additional ones we didn't plan for
-\item We divided the work amongst the group members in a good way
-\item Conducted a good planning meeting on the first Monday, and we got the customer included in the prioritization of user stories.
-\item We received valuable feedback from customer on the demonstration.
+\item Delivered a functional system for the demo.
+\item Customer was happy with the product and our progress so far.
+\item We finished all the user stories
+\item Good work distribution amongst the team members
+\item Able to include the customer in the planning of the sprint
+\item Received valuable feedback from customer.
 \end{itemize}
 
-\subsection{Negative}
+\subsubsection{Negative Experiences}
 \begin{itemize}
-\item We didn't do a lot of design up front, and ended up using more time on implementation than we planned for.
-\item We weren't good enough to document our work in the report during the sprint. This lead to some work that had to be done after the sprint was finished.
-\item We are not using the time tracking system properly at the moment. As a result the documentation of work hours was more time consuming than necessary.
+\item Not enough design up front
+\item Too little documentation durin implementation 
+\item Poor use of time tracking system
 \item Problems with the burndown chart
-\item We failed to use the scrum process properly, as we didn't divide the user stories into tasks, and weren't good enough to facilitate daily scrum meetings.
+\item Inexperience in using the scrum process.
 \end{itemize}
 
 \subsection{Planned Responses}
