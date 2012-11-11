@@ -16,8 +16,8 @@ This sprint started on October 8th and will last for two weeks. A customer demo 
 \subsection{Sprint Goal}
 The goal of the second sprint is to increase the functionality of the console. We will try to include user stories that add functionality that is easy to use and is valuable for the end user. The user stories concerned with domain specifics of the system, like implementing support for adding users to the library, will be left untouched in this sprint.
 
-\subsection{User Stories}
-As of this sprint we tried to split each user story into smaller sub- tasks that could be distributed easily amonst the group members. Each estimate for the subtasks includes design and implementation of the solution. Testing includes writing unit tests as we code, write test cases and to perform them. Documentation includes all the work necessary to document our work on that user story in the report. For this sprint we had 110 hours available for the sprint, exluding work on the report, project management, sprint planning and evaluation. Its a bit less than normal as we decided to put in some extra work on the pre- delivery of the report on October 14th.
+\subsection{Sprint Backlog}
+The user stories we chose to include in the sprint backlog with their estimated workload is listed in Table~\ref{table:sp2backlog}. As of this sprint we tried to split each user story in the sprint backlog into smaller sub- tasks that could be distributed easily amonst the group members. Each estimate for the subtasks includes design and implementation of the solution. Testing includes writing unit tests as we code, write test cases and to perform them. Documentation includes all the work necessary to document our work on that user story in the report. For this sprint we had 110 hours available for the sprint, exluding work on the report, project management, sprint planning and evaluation. Its a bit less than normal as we decided to put in some extra work on the pre- delivery of the report on October 14th.
 \newline
 \newline
 The decision to make smaller sub- tasks turned out to be succesful, as we were able to estimate the workload more precisly than we did in the last sprint. The tasks were much more detailed as well, instead of general tasks such as "Design" and "Implementation". We experienced that it was easier to estimate the tasks when they represented something concise, and to achieve this they needed to be small enough.
@@ -29,7 +29,7 @@ There is still room for improvement, as the estimates on some of the sub- tasks 
 We used less time on the user stories than we planned for this sprint, and a big part of this was due to the pre- delivery of the report. We failed to properly estimate the workload of this delivery, and as a result we had less time available for the user stories. Luckily we were able to finish them using with the time available, mostly because some of the tasks were easier to accomplish than we originally thought. However, this may not be the case in the following sprints. Thats why we feel its important to get the estimates even more precise, so we know exactly how much effort its going to take to achieve the goals we set for the sprints. 
 
 \begin{table}
-\caption{Sprint 2 User Stories}
+\caption{Sprint 2 Backlog}
 \centering
 \begin{tabular}{ l p{8cm} l l }
 \hline 
@@ -83,17 +83,17 @@ We used less time on the user stories than we planned for this sprint, and a big
 		  &\bf{Total:}						&\bf{110}		&\bf{89.5}		\\
 \hline
 \end{tabular}
-\label{table:sp2usrstories}
+\label{table:sp2backlog}
 \end{table}
 
 
 \section{Architecture}
-The user stories picked out for sprint two did not have much of an impact on the architecture constructed earlier. We therefore kept using the same architecture like the one from the last sprint. 
+The user stories picked out for sprint two did not have much of an impact on the architecture constructed earlier. We therefore kept using the same architecture as in sprint 1. 
 
 \section{Implementation}
 
 \subsection{Autocomplete}
-The autocomplete i made of a jQuery suggestion menu, a modified JavaScript Shell 1.4 and the available objects in the running system. The suggestion menu is attached to the console textarea in Shell. Shell already possessed the ability to generate suggestions based on the user’s input in the console. This information is basically reflected onto the attached suggestion menu, which displays these. Since the system is to be efficient for the selected domain, the available methods and attributes have been cut down, so only the essentials remain, and the user doesn't have to look through unnecessary methods when working.
+The autocomplete is made of a jQuery suggestion menu, a modified JavaScript Shell 1.4 and the available objects in the running system. The suggestion menu is attached to the console textarea in Shell. Shell already possessed the ability to generate suggestions based on the user’s input in the console. This information is basically reflected onto the attached suggestion menu, which displays these. Since the system is to be efficient for the selected domain, the available methods and attributes have been cut down, so only the essentials remain, and the user doesn't have to look through unnecessary methods when working.
 
 \subsection{Object highlighting and detailed editing}
 It was made possible to click the ID field of book objects in order to highlight their row in the list. This action also filled out the section for adding new books with the information about the given book object. Furthermore, the section for adding new books was enhanced to allow editing of the existing object.
@@ -132,7 +132,7 @@ Item			&Description		\\
 Description	&Storing objects on the server without a schema	\\
 Tester		&Øystein Heimark	\\
 Date			&19/10 - 2012	\\
-Result		&				\\
+Result		&Success				\\
 \hline \\ [-2.0ex]
 
 \bf{TestID}		&\bf{TID12}			\\
