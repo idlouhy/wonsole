@@ -7,21 +7,44 @@
 \clearpage
 
 \section{Use cases}
-Chosen domain: Library
-Possible classes: user/customer, employee, book, author
-Use cases: Register new user/customer, Register new employee, Order new book, Add new book to system, List books in the library, Search for specific books, search by author or some other parameter, Reserve a book, Borrow a book / Return a book, Extend a loan, Register state of book when it returns from customer, Remove books from library, Request a book(User), Export inventory, Find placement, Generate reports(Scheduled for return(book) today, etc.)
+As discussed earlier, our domain is a library system. This leaves us with objects such as books, authors, employees and customers. Possible use cases would include: 
+\begin{itemize}
+  \item Register a new customer
+  \item Register a new employee
+  \item Order a new book
+  \item Add a new book to the system
+  \item List books in the system
+  \item Search for books
+  \item Place a reservation on a book
+  \item Record a borrowing of a book
+  \item Record a return of a book
+  \item Extend a borrowing of a book
+  \item Register the state of a returned book
+  \item Remove a book from the library
+  \item Request that a new book is ordered
+  \item Export inventory
+  \item Find the location of a book
+  \item Generate reports
+\end{itemize}
+
+\begin{center}
+\includegraphics[width = 0.8\textwidth]{image/usecase-customer.png}
+\captionof{figure}{Use Case Diagram - Customer}\label{usecase-customer}%
+\end{center}
+
+\begin{center}
+\includegraphics[width = 0.8\textwidth]{image/usecase-employee.png}
+\captionof{figure}{Use Case Diagram - Employee}\label{usecase-employee}%
+\end{center}
 
 \section{User stories}
-User stories are sentences describing requirements of users and justification of those requirements. They are written in the perspective of the end user.
+User stories are sentences describing requirements of users and justification of those requirements. They are written in the perspective of the end user. Our customer was unable to supply us with an explicit set of such user stories, so we composed a list of candidate user stories from our common understanding of the system gained through earlier meetings with the customer. The user stories are presented from a few different points of view: The administrator section describes detailed technical requirements. The general section contains stories applicable on general problems. The domain specific section contains user stories that are specific to the library domain. \footnote{http://scrummethodology.com/scrum-user-stories/}
 
-
-We compiled list of user stories from a few points of view. Administrator section describes mostly detailed technical requirements. General section contains stories applicable on general problem. Domain section contains domain specific user stories. \footnote{http://scrummethodology.com/scrum-user-stories/}
-
-\subsection*{Developer point of view}
+\subsection*{Administrator point of view}
 \begin{itemize}
-  \item [\textbf{A1}] As a developer, I want to be able to store objects in a persistent database, so that I can migrate data easily.
-  \item [\textbf{A2}] As a developer, I want to reflect the changes in persistent storage back to user sessions within one second, so the users always see the latest updated data.
-  \item [\textbf{A3}] As a developer, I want to be able to work directly with object attributes rather than any form of raw data.
+  \item [\textbf{A1}] As an administrator, I want to be able to store objects in a persistent database, so that I can migrate data easily.
+  \item [\textbf{A2}] As an administrator, I want to reflect the changes in persistent storage back to user sessions within one second, so the users always see the latest updated data.
+  \item [\textbf{A3}] As an administrator, I want to be able to work directly with object attributes rather than any form of raw data.
 \end{itemize}
 
 \subsection*{User point of view - General}
@@ -43,7 +66,7 @@ We compiled list of user stories from a few points of view. Administrator sectio
   \item [\textbf{D3}] As a user, I want to be able to edit information on a specific book and save these changes using both the console and graphical interface.
   \item [\textbf{D4}] As a user, I want to be able to search for a specific book in the system, so that I can watch the information on it using both the console and graphical interface.
   \item [\textbf{D5}] As a user, I want to be able to list all the books currently in the system, so that I easily can get an overview of all the books currently in the library. This should be possible in both the console and the graphical interface.
-  \item [\textbf{D6}] As a user, I want to be able to registrate a new customer in the system, so that customers can be saved in the system. This should be possible in both the console and the graphical interface.
+  \item [\textbf{D6}] As a user, I want to be able to register a new customer in the system, so that customers can be saved in the system. This should be possible in both the console and the graphical interface.
   \item [\textbf{D7}] As a user, I want to be able to registrate when a customer borrows a book, so that the information is stored in the system. This should be possible in both the console and the graphical interface.
   \item [\textbf{D8}] As a user, I want to be able to edit the information on a specific borrowing of a book, so that any changes can be recorded. This should be possible in both the console and the graphical interface.
   \item [\textbf{D9}] As a user, I want to be able to list all the books currently borrowed, so that I can get information on each of them. This should be possible in both the console and the graphical interface.
@@ -54,37 +77,40 @@ We compiled list of user stories from a few points of view. Administrator sectio
 \end{itemize}
 
 
+\subsection*{Difficulty Level Assignment}
+We proceeded to collectively estimate the difficulty of implementing each user story, presented in Table~\ref{table:userstory-difficulty}.
 
 \begin{table}
-\begin{tabular}{ | l | l | }
+\begin{tabular}{ | l | l | l | }
   \hline
-  \textbf{user story} & \textbf{difficulty level} \\ \hline
-  A1 & 5 \\ \hline
-  A2 & 6 \\ \hline
-  A3 & 4 \\ \hline
-  D1 & 1 (reference) \\ \hline
-  D2 & 0.5 \\ \hline
-  D3 & 2 \\ \hline
-  D4 & 0.75 \\ \hline
-  D5 & 1.5 \\ \hline
-  D6 & 1 \\ \hline
-  D7 & 1.75 \\ \hline
-  D8 & 2.5 \\ \hline
-  D9 & 2 \\ \hline
-  D10 & 3 \\ \hline
-  D11 & 2 \\ \hline
-  D12 & 1.5 \\ \hline
-  D13 & 1.5 \\ \hline
-  G1 & 3.5 \\ \hline
-  G2 & 2 \\ \hline
-  G3 & 8 \\ \hline
-  G4 & 4 \\ \hline
-  G5 & 3 \\ \hline
-  G6 & 3 \\ \hline
-  G7 & 2 \\ \hline
-  G8 & 3 \\ \hline
+  \textbf{User Story} & \textbf{Difficulty Level} & \textbf{Description} \\ \hline
+  A1 & 5 			& Database persistence \\ \hline
+  A2 & 6 			& Real time server synchronization \\ \hline
+  A3 & 4 			& Exposing objects rather than raw data \\ \hline
+  D1 & 1 (reference) 	& Adding books \\ \hline
+  D2 & 0.5 			& Deleting books \\ \hline
+  D3 & 2 			& Editing books \\ \hline
+  D4 & 0.75 			& Searching for books \\ \hline
+  D5 & 1.5 			& Listing all books \\ \hline
+  D6 & 1 			& Register new customer \\ \hline
+  D7 & 1.75 			& Record when books are borrowed \\ \hline
+  D8 & 2.5 			& Edit records on a borrowing of a book \\ \hline
+  D9 & 2 			& List all currently borrowed books \\ \hline
+  D10 & 3 			& Record book reservations \\ \hline
+  D11 & 2 			& List all reservations \\ \hline
+  D12 & 1.5 			& View reservations on a book \\ \hline
+  D13 & 1.5 			& Order new books \\ \hline
+  G1 & 3.5 			& Save users' changes to server \\ \hline
+  G2 & 2 			& Save users' changes in real time \\ \hline
+  G3 & 8 			& See console and web UI simultaneously \\ \hline
+  G4 & 4 			& Synchronize console and web UI \\ \hline
+  G5 & 3 			& Tutorial \\ \hline
+  G6 & 3 			& Display available commands \\ \hline
+  G7 & 2 			& Repeat previous commands \\ \hline
+  G8 & 3 			& Batch commands \\ \hline
 \end{tabular}
 \caption{User story diffuculty}
+\label{table:userstory-difficulty}
 \end{table}
 
 
@@ -98,12 +124,6 @@ We compiled list of user stories from a few points of view. Administrator sectio
 \end{tabular}
 \caption{User story sprint assignment}
 \end{table}
-
-
-
-
-
-
 
 
 
