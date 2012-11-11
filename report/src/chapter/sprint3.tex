@@ -14,9 +14,10 @@ This chapter will outline the work we did in the third sprint. It explains in de
 This sprint started on October 22th and will last for two weeks. A customer demo will be held at 1st of November to show of what we have achieved during the sprint and to ensure that the customer agrees with the solutions and the direction we are going in.
 
 \subsection{Sprint Goal}
-The goal for this sprint is to redesign the system to accomodate the new wishes from the customer, and present a working protoype using the suggested technologies.
+The goal for this sprint is to redesign the system to accomodate the new wishes from the customer, and present a working protoype incorperating the suggested technologies.
 
 \subsection{Sprint Backlog}
+The user stories included in the sprint backlog is presented in Table~\ref{table:sp3backlog}. As we chose to accomodate the new wishes from the customer we were forced to use a considerable amount of time on reasearch on new technologies and on redesigning the system to utilize these technologies. As a result the amount of time available for implementation of user stories was reduced, and this time we only had 50 hours available for this purpose. From experiences from the previous sprints, we tried to make each user story concise and not too general. We feel this helped us a lot in estimating the user stories more accuratly than in previous sprints.
 
 \begin{table}
 \caption{Sprint 3 Backlog}
@@ -27,14 +28,14 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
  User Story	& Short Description		&Est.		&Act.	                               \\ 
 \hline \\ [-2.0ex]
  
-\bf{1}     &\bf{Navigate the application like a directory}		&\bf{5}		&\bf{3.5}          \\ 
+\bf{1}     &\bf{Navigate the application like a directory}		&\bf{6}		&\bf{4.5}          \\ 
 		  &Decide on syntax						&			&		\\
 		  &Detect and parse navigation commands	&			&		\\
 		  &Change directory when command is issued&			&		\\
 		  &Testing							&			&		\\
 		  &Documentation						&			&		\\
 
- \bf{2}     &\bf{Store variables in the console} 				&\bf{4}		&\bf{4}               \\ 
+ \bf{2}     &\bf{Store variables in the console} 				&\bf{5}		&\bf{4}               \\ 
 		  &Make objects in current directory available		&			&		\\
 		  &Ensure persistent storage of the stored objects	&			&		\\
 		  &Testing								&			&		\\
@@ -47,7 +48,7 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
- \bf{4}   	&\bf{Expose properties of the objects}			&\bf{6}		&\bf{7.5}		     \\ 
+ \bf{4}   	&\bf{Expose properties of the objects}			&\bf{6}		&\bf{8.5}		     \\ 
 		  &Make objects available						&			&		\\
 		  &Make objects in GUI clickable				&			&		\\
 		  &Query database on selection				&			&		\\
@@ -55,13 +56,13 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
- \bf{5}	  &\bf{Call specific functions}					&\bf{8}		&\bf{5.5}		     \\
+ \bf{5}	  &\bf{Call specific functions}					&\bf{8}		&\bf{6.5}		     \\
 		  &Allow user to extract objects				&			&		\\
 		  &Create DSL command						&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{6}	  &\bf{Perform mathematical operations}			&\bf{8.5}		&\bf{6}		     \\
+\bf{6}	  &\bf{Perform mathematical operations}			&\bf{9}		&\bf{6}		     \\
 		  &Allow user to use mathematical functions		&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
@@ -72,7 +73,7 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{8}   	&\bf{Allow user to add entire JSON objects}			&\bf{1.5}		&\bf{2}		     \\ 
+\bf{8}   	&\bf{Allow user to add entire JSON objects}			&\bf{2}		&\bf{2.5}		     \\ 
 		  &Allow user to assign JSON objects as attributes		&			&		\\
 		  &Testing									&			&		\\
 		  &Documentation								&			&		\\
@@ -83,14 +84,14 @@ The goal for this sprint is to redesign the system to accomodate the new wishes 
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{10}   	&\bf{Allow user to work locally}				&\bf{2}		&\bf{4}		     \\ 
+\bf{10}   	&\bf{Allow user to work locally}				&\bf{4}		&\bf{5}		     \\ 
 		  &Keep track of actions made by user			&			&		\\
 		  &Add command for storing on server			&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
 \hline 
-		  &\bf{Total:}						&\bf{46}		&\bf{42.5}		\\
+		  &\bf{Total:}						&\bf{50}		&\bf{47}		\\
 \hline
 \end{tabular}
 \label{table:sp3backlog}
@@ -236,7 +237,48 @@ In the middle of the sprint we did a technology preview for the customer. The pu
 At the end of the sprint we did a sprint demonstration were we presented our results to the customer. He was very happy with our progress, and didn't expect us to be able to get so far so early. For the next sprint he requested that we make a manual for how to use the system(for the users), and a deployment manual for how to set up the system on a new server(for an administrator). He also wanted us to send him a copy of our report, so he could give us some feedback on it.
 
 \section{Evaluation}
+This section contains the evaluation of the third sprint, and what we plan to improve for the fourth sprint. The evaluation was performed during an internal meeting with all group members present.
+
 \subsection{Review}
-\subsection{Positive}
-\subsection{Negative}
+Again we feel we were able to deliver a great product, and we were able to complete all the user stories in the sprint backlog. This sprint posed a different kind of challenge for us, as we decided to switch some of the technologies we were using and to redesign much of the system. This was obviously not according to plan, but we feel we rose to this challenge, adapted well and succeded in making the switch. We found time to research new technologies as well as incorporating these into the design of the system.
+\newline
+\newline
+The communication with the customer was good throughout this sprint, even better than in the previous sprints. The customer was more included in the planning of this sprint, and he was more specific in what he wanted to be implemented. This helped us a lot when we were creating new user stories. This time we were also able to schedule a meeting with the customer in the middle of the sprint, to allow him a chance to provide some feedback on the prelimanary solutions we had implemented so far. We feel this great communication was reflected by the fact that the customer was very happy with the end result, which exceeded his expectations.
+\newline
+\newline
+In previous sprints, not enough focus was put on the report and general documentation. To address this issue we decided to put two team members full time on the report for the last week of this sprint, and it resulted in more work being done with the documentation. We were able to document our work on the research and implementation effectively during the sprint, and also found time to fix some parts of the report according to feedback we recieved from the advisor. All in all we feel this was a successful move.
+\newline
+\newline
+Despite it beeing a successful sprint in many ways, there was still some aspects of it that was not so good. In this sprint we were too dependent on one person for the implementation. We planned to assign two team members to the implementation, but one of them ended up working on the report instead. Although the person responsible for the implementation did a fantastic job, and we ended up delivering a great product, we should have done a better job in distributing the workload of the implementation. If the one assigned to the implementation somehow would be unable to work the last couple of days, we would have been in big trouble. We should have at least two team members involved in the implementation, to avoid one single point of failure.
+\newline
+\newline
+We also fell back to our old habits with the time tracking. Our focus was disturbed by the change of direction in the project, and in the middle of it all we forgot to follow up on our routines on time tracking. We also failed to peform the test cases earlier, as we set out to do before the sprint. This may also be credited to the changes. We ended up being very pressed on time towards the end of the sprint and prioritised to complete the implementation instead.
+
+\subsubsection{Positive}
+
+\begin{itemize}
+\item Was able to switch technologies without too many complications
+\item Finished all the user stories on time
+\item Great contact with the customer throughout the sprint
+\item Better preparation for customer demonstration
+\item Was able to create small and precise user stories, which was easier to estimate
+\end{itemize}
+
+\subsubsection{Negative}
+
+\begin{itemize}
+\item Too dependent on one person with implementation
+\item Time tracking, returned to our bad habits from sprint 1
+\item Failed to perform tests earlier, as we planned.
+\end{itemize}
+
 \subsection{Planned Responses}
+These are the actions we have planned for the final sprint to improve our work process.
+
+\subsubsection{Workload Distribution}
+Continue the success of putting two team members full time on the report, as this turned out to be a great measure to ensure the quality of the report. Although there is not a whole lot left to do on the implementation, we should assign two people to the tasks remaining. This to avoid a potensial single point of failure.
+
+\subsubsection{Time Tracking}
+Return to our routines for time tracking, which we were able to do so well in the second sprint.
+
+
