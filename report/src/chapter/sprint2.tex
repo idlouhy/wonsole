@@ -16,6 +16,27 @@ This sprint started on October 8th and lasted for two weeks. A customer demo was
 \subsection{Sprint Goal}
 The goal of the second sprint was to increase the functionality of the console. We tried to include user stories that would add functionality that was easy to use and valuable for the end user. The user stories concerned with domain specifics of the system, like implementing support for adding users to the library, will be left untouched in this sprint.
 
+\subsection{Product Backlog} 
+Between Sprint 1 and Sprint 2, the customer expressed a desire to improve the usability of the application, by adding features such as auto-completion, tabbing through objects, and better integration between the console and GUI. It was not desired that we implement any more domain-specific functionality. In addition, we decided to alter the backend to support arbitrary objects so that it would not be necessary to change the backend code when creating new types of objects in the application. 
+
+The following user stories were added:
+
+\begin{itemize}
+  \item [\textbf{A4}] As a developer, I want to have a schemaless database, so I don't have to change any code every time the objects change.
+  \item [\textbf{G4a}] - As a user, I want commands issued in console to update information in graphical UI.
+  \item [\textbf{G4b}] - As a user, I want the actions in graphical UI to print corresponding commands to console.
+  \item [\textbf{G9}] As a user, I want the system to be able to autocomplete the commands, and display a list of the available commands on a given object that can be chosen.
+  \item [\textbf{G10}] As a user, I want the graphical user interface to indicate which object or group of object I’m working on.
+  \item [\textbf{G10a}] - A newly created object should also be highlighted in the user interface.
+  \item [\textbf{G11}] As a user, I want the console to be able to cycle through objects in an array one at the time, and for the currently selected object to be displayed on the gui.
+  \item [\textbf{G12}] As a user, I want the system to show me details of a record, after I click on a record.
+  \item [\textbf{G13}] As a user, I want the system to highlight the changes my by other users, while I work with the system.
+  \item [\textbf{G14}] As a user I want to be able to maintain an uninterrupted workflow in the web UI when changes are performed by other users.
+  \item [\textbf{G15}] As a user I want to be able to sort the items or find an item, so that i can work with the data effectively
+\end{itemize}
+
+The full product backlog for sprint 2 can be found in section \ref{sprint2pb} in the appendix.
+
 \subsection{Sprint Backlog}
 The user stories we chose to include in the sprint backlog with their estimated workload is listed in Table~\ref{table:sp2backlog}. As of this sprint we tried to split each user story in the sprint backlog into smaller sub- tasks that could be distributed easily amonst the group members. Each estimate for the subtasks includes design and implementation of the solution. Testing includes writing unit tests as we code, write test cases and to perform them. Documentation includes all the work necessary to document our work on that user story in the report. For this sprint we had 110 hours available for the sprint, exluding work on the report, project management, sprint planning and evaluation. Its a bit less than normal as we decided to put in some extra work on the pre- delivery of the report on October 14th.
 \newline
@@ -47,7 +68,7 @@ We used less time on the user stories than we planned for this sprint, and a big
 		  &Testing									&3			&3.5		\\
 		  &Documentation								&2			&2		\\
 
- \bf{G7}     &\bf{Autocompletion of commands} 	&\bf{30}		&\bf{22.5}		     \\ 
+ \bf{G9}     &\bf{Autocompletion of commands} 	&\bf{30}		&\bf{22.5}		     \\ 
 		  &Add methods to list commands		&4			&2		\\
 		  &Create popup menu				&10			&5		\\
 		  &Update elements in menu			&4			&3		\\

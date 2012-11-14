@@ -14,10 +14,41 @@ This chapter will outline the work we did in the third sprint. It explains in de
 This sprint started on October 22th and lasted for two weeks. A customer demo was held at the 1st of November to show of what we had achieved during the sprint and to ensure that the customer agreed with the solutions and the direction we were going in.
 
 \subsection{Sprint Goal}
-The goal for this sprint was to redesign the system to accomodate the new wishes from the customer, and to present a working protoype incorperating the suggested technologies at the end of the sprint.
+The goal for this sprint was to redesign the system to accomodate to the new wishes from the customer, and to present a working protoype incorperating new technologies and concepts suggested by the customer.
+
+\subsection{Product Backlog}
+Since the end of Sprint 2, our customer representative had presented the system to other representatives of his company. From the current state of the prototype, they had derived a distinct, new set of new requirements that called for a paradigm shift for our project. Our customer emphasized a few features that our system should support:
+
+\begin{itemize}
+\item Arbitrary mathematical operations - Make it possible to execute arbitrary mathematical operations on the numerical attributes of the objects accessible through the console.
+\item Schemaless design - Allow the user to insert objects into other objects even though they were not specifically designed with this in mind.
+\item Navigation of database as a folder structure - Make it possible to navigate the contents of the database as a folder structure, where any type of object can be represented.
+\end{itemize}
+Futhermore, the customer no longer wanted us to focus on improving usability features, and instead wanted us to simplify the web UI design. It was also no longer desired that objects were synchronized in real time.
+
+Because real time synchronization was no longer an issue, we decided to no longer use PubNub. To ease the implementation of the folder structure navigation, we decided to adopt \textbf{CouchDB} instead of our previous node.js/MongoDB backend. Also, because of the requirement of schemaless objects, and the fact that the previous user interface design was too complex, we decided to do a complete rewrite of the system. For simplicity, the new prototype would not use the JavaScript Shell, jquery.blockUI or PersistJS.
+
+All previous user stories were removed from the product backlog and replaced with new ones:
+\begin{itemize}
+\item G9 - As a user, I want to be able to navigate the application like a directory structure, using simple commands to change the current directory.
+\item G10 - As a user, I want to be able to store objects in variables in the console, and to be able to use these later on.
+\item G11 - As a user, I want the content of the GUI to represent the current directory, so that I can easily see which directory I am currently in.
+\item G12 - As a user, I want to be able to issue a command to see the properties of a specific object both from the console and in the GUI
+\item G13 - As a user, I want to be able to call a specific function on a group of objects.
+\item G14 - As a user, I want to be able to perform mathematical operations on numerical attributes of the single or groups of objects.
+\item G15 - As a user, I want to be able to change current attributes or dynamically add new ones to the objects.
+\item G16 - As a user, I want to be able to add entire JSON objects as attributes of other objects. For example I want to be able to extract an author object and add this object to multiple book objects.
+\item G17 - As a user, I want the changes I do on the objects from the console to be replicated to GUI, so that the GUI always presents updated information.
+\item G18 - As a user, I want to be able to work locally, so that I can save changes to the server when I want to.
+\item G19 - As a user, I want to be able to filter a list of objects from the console, so that I can view only the books I am interested in.
+\end{itemize}
+
+The full product backlog for sprint 3 is listed in section \ref{sprint3pb} in the appendix.
+
+
 
 \subsection{Sprint Backlog}
-The user stories included in the sprint backlog is presented in Table~\ref{table:sp3backlog}. As we chose to accomodate the new wishes from the customer we were forced to use a considerable amount of time on reasearch on new technologies and on redesigning the system to utilize these technologies. As a result the amount of time available for implementation of user stories was reduced, and this time we only had 50 hours available for this purpose. From experiences from the previous sprints, we tried to make each user story concise and not too general. We feel this helped us a lot in estimating the user stories more accuratly than in previous sprints.
+The user stories included in the sprint backlog is presented in Table~\ref{table:sp3backlog}. As we chose to accomodate the new wishes from the customer we were forced to use a considerable amount of time on reasearch on new technologies and on redesigning the system to utilize these technologies. As a result the amount of time available for implementation of user stories was reduced, and this time we only had 50 hours available for this purpose. From experiences from the previous sprints, we tried to make each user story concise and not too general. We feel this helped us a lot in estimating the user stories more accurately than in previous sprints.
 
 \begin{table}
 \caption{Sprint 3 Backlog}
@@ -28,27 +59,27 @@ The user stories included in the sprint backlog is presented in Table~\ref{table
  User Story	& Short Description		&Est.		&Act.	                               \\ 
 \hline \\ [-2.0ex]
  
-\bf{1}     &\bf{Navigate the application like a directory}		&\bf{6}		&\bf{4.5}          \\ 
+\bf{G9}     &\bf{Navigate the database like a directory}		&\bf{6}		&\bf{4.5}          \\ 
 		  &Decide on syntax						&			&		\\
 		  &Detect and parse navigation commands	&			&		\\
 		  &Change directory when command is issued&			&		\\
 		  &Testing							&			&		\\
 		  &Documentation						&			&		\\
 
- \bf{2}     &\bf{Store variables in the console} 				&\bf{5}		&\bf{4}               \\ 
+ \bf{G10}     &\bf{Store variables in the console} 				&\bf{5}		&\bf{4}               \\ 
 		  &Make objects in current directory available		&			&		\\
 		  &Ensure persistent storage of the stored objects	&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
- \bf{3}     &\bf{GUI represent current directory} 			&\bf{5}		&\bf{4}		     \\ 
+ \bf{G11}     &\bf{GUI represent current directory} 			&\bf{5}		&\bf{4}		     \\ 
 		  &Make viewsfor each directory in CouchDB		&			&		\\
 		  &Call the correct view when changing directory	&			&		\\
 		  &Update the GUI							&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
- \bf{4}   	&\bf{Expose properties of the objects}			&\bf{6}		&\bf{8.5}		     \\ 
+ \bf{G12}   	&\bf{Expose properties of the objects}			&\bf{6}		&\bf{8.5}		     \\ 
 		  &Make objects available						&			&		\\
 		  &Make objects in GUI clickable				&			&		\\
 		  &Query database on selection				&			&		\\
@@ -56,35 +87,35 @@ The user stories included in the sprint backlog is presented in Table~\ref{table
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
- \bf{5}	  &\bf{Call specific functions}					&\bf{8}		&\bf{6.5}		     \\
+ \bf{G13}	  &\bf{Call function on group of objects}		&\bf{8}		&\bf{6.5}		     \\
 		  &Allow user to extract objects				&			&		\\
 		  &Create DSL command						&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{6}	  &\bf{Perform mathematical operations}			&\bf{9}		&\bf{6}		     \\
+\bf{G14}	  &\bf{Perform mathematical operations}			&\bf{9}		&\bf{6}		     \\
 		  &Allow user to use mathematical functions		&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{7}   	&\bf{Change or add attributes}				&\bf{3}		&\bf{4}		     \\ 
+\bf{G15}   	&\bf{Change or add attributes}				&\bf{3}		&\bf{4}		     \\ 
 		  &Allow user to edit the attributes				&			&		\\
 		  &Allow user to add new attributes				&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{8}   	&\bf{Allow user to add entire JSON objects}			&\bf{2}		&\bf{2.5}		     \\ 
+\bf{G16}   	&\bf{Allow user to add entire JSON objects}			&\bf{2}		&\bf{2.5}		     \\ 
 		  &Allow user to assign JSON objects as attributes		&			&		\\
 		  &Testing									&			&		\\
 		  &Documentation								&			&		\\
 
-\bf{9}   	&\bf{Replicate changes to GUI}				&\bf{3}		&\bf{2}		     \\ 
+\bf{G17}   	&\bf{Replicate changes to GUI}				&\bf{3}		&\bf{2}		     \\ 
 		  &Detect changes made from the console		&			&		\\
 		  &Update the GUI accordingly					&			&		\\
 		  &Testing								&			&		\\
 		  &Documentation							&			&		\\
 
-\bf{10}   	&\bf{Allow user to work locally}				&\bf{4}		&\bf{5}		     \\ 
+\bf{G18}   	&\bf{Allow user to work locally}				&\bf{4}		&\bf{5}		     \\ 
 		  &Keep track of actions made by user			&			&		\\
 		  &Add command for storing on server			&			&		\\
 		  &Testing								&			&		\\
@@ -100,6 +131,7 @@ The user stories included in the sprint backlog is presented in Table~\ref{table
 
 
 \section{Architecture}
+
 \subsection{4+1 view model}
 The 4+1 view model\cite{Kruchten}. Here the views will be described as they are in sprint 3, and how they will look in our architecture. 
 
@@ -223,17 +255,17 @@ We had one failed test this time, which was due to some missing functionality in
 
 \section{Customer Feedback}
 This sections covers the feedback we got from the customer, both before and after the sprint.
-\newline
-\newline
+
+
 At the end of sprint 2 the customer representative informed us that he would have a meeting with others in the company, to try to identify what our product was missing, a x- factor that would appeal to the users and promote the console. At the Scrum meeting for the third sprint he announced that they had indeed found this x- factor. He wanted us to return to the roots of the project, namely adding scripting to a web- page. We should focus on adding functionality which is impossible or difficult and time consuming to do in a regular GUI.
-\newline
-\newline
+
+
 He wanted us to add functionality that would show of the advantages of the technologies we are using, and how it would not be possible to do this with more traditional technologies. He listed some general use cases he wanted us to implement, and suggested that we looked into another solution for the backend. This was because he felt that this solution was better suited for the use cases he now presented us. He was aware of the time constraints of the project and did not expect us to manage to implement all the functionality he mentioned. But it was important that we could document that it would be possible to implement it with the technologies we are using in this project.
-\newline
-\newline
+
+
 In the middle of the sprint we did a technology preview for the customer. The purpose of this meeting was to ensure that we were going in the right direction. We presented the user stories we had derived from the new requirements and the customer was all in all happy with these. The customer suggested that we should focus on core functionality, features that will stand out during the presentation of the project. We also presented him what we had implemented so far, including an early implementation of the CouchDB system and an early draft of the GUI. He was impressed what we had managed to implement so far, and encouraged us to keep up the good work.
-\newline
-\newline
+
+
 At the end of the sprint we did a sprint demonstration were we presented our results to the customer. He was very happy with our progress, and didn't expect us to be able to get so far so early. For the next sprint he requested that we make a manual for how to use the system(for the users), and a deployment manual for how to set up the system on a new server(for an administrator). He also wanted us to send him a copy of our report, so he could give us some feedback on it.
 
 \section{Evaluation}
@@ -241,23 +273,23 @@ This section contains the evaluation of the third sprint, and what we plan to im
 
 \subsection{Review}
 Again we feel we were able to deliver a great product, and we were able to complete all the user stories in the sprint backlog. This sprint posed a different kind of challenge for us, as we decided to switch some of the technologies we were using and to redesign much of the system. This was obviously not according to plan, but we feel we rose to this challenge, adapted well and succeded in making the switch. We found time to research new technologies as well as incorporating these into the design of the system.
-\newline
-\newline
+
+
 The communication with the customer was good throughout this sprint, even better than in the previous sprints. The customer was more included in the planning of this sprint, and he was more specific in what he wanted to be implemented. This helped us a lot when we were creating new user stories. This time we were also able to schedule a meeting with the customer in the middle of the sprint, to allow him a chance to provide some feedback on the prelimanary solutions we had implemented so far. We feel this great communication was reflected by the fact that the customer was very happy with the end result, which exceeded his expectations.
-\newline
-\newline
+
+
 In previous sprints, not enough focus was put on the report and general documentation. To address this issue we decided to put two team members full time on the report for the last week of this sprint, and it resulted in more work being done with the documentation. We were able to document our work on the research and implementation effectively during the sprint, and also found time to fix some parts of the report according to feedback we recieved from the advisor. All in all we feel this was a successful move.
-\newline
-\newline
+
+
 Despite it beeing a successful sprint in many ways, there was still some aspects of it that was not so good. In this sprint we were too dependent on one person for the implementation. We planned to assign two team members to the implementation, but one of them ended up working on the report instead. Although the person responsible for the implementation did a fantastic job, and we ended up delivering a great product, we should have done a better job in distributing the workload of the implementation. If the one assigned to the implementation somehow would be unable to work the last couple of days, we would have been in big trouble. We should have at least two team members involved in the implementation, to avoid one single point of failure.
-\newline
-\newline
+
+
 We also fell back to our old habits with the time tracking. Our focus was disturbed by the change of direction in the project, and in the middle of it all we forgot to follow up on our routines on time tracking. We also failed to peform the test cases earlier, as we set out to do before the sprint. This may also be credited to the changes. We ended up being very pressed on time towards the end of the sprint and prioritised to complete the implementation instead.
 
 \subsubsection{Positive}
 
 \begin{itemize}
-\item Was able to switch technologies without too many complications
+\item We were able to switch technologies without too many complications
 \item Finished all the user stories on time
 \item Great contact with the customer throughout the sprint
 \item Better preparation for customer demonstration
