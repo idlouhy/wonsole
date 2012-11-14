@@ -190,6 +190,24 @@ Figure~\ref{figure:s3ComponentDiagram} These components still form a three layer
 
 
 \section{Implementation}
+\subsection{Database change}
+The biggest change in sprint 3 is the change of underlying database system. In first two sprints, we used MongoDB as a database system. This was combined with the server written in Node.js, that provided a REST API for database access. Clients used this API to manipulate with the data. Along with the new requirements, customer suggested, that we evaluate choice of the database system and also suggested replacement: CouchDB. Key functionality of CouchDB is, that it provides the complete REST interface and also another great functionality is custom views defined using functions.
+
+New requirements would bring changes for the implemented Node.js server providing REST interface, so we decided to replace the database system and deprecate rest of the server part. We installed CouchDB, created few databases with test data. The REST interface is provided on default, since it is also used for the database management. Only disadvantage of this approach is that all of the application logic is transfered to client, we refer to this as thick client.
+
+
+\subsection{Cross site scripting}
+The database system providing the REST api usually runs on different server or different port. This 
+
+
+\subsection{Persistence}
+
+\subsection{Commands}
+
+\subsection{Parts of the library}
+ui, persistence, console, 
+\subsection{Object view}
+
 
 \section{Testing}
 \subsection{Test Results}
