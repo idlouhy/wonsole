@@ -67,10 +67,15 @@ We are a very small development team of just four team members. In a typical sof
 \end{table}
 
 \section{Concrete Project Work Plan}
+The course staff recommends us to work 25 person-hours per week and student. This project is estimated for 14 weeks. Since we at the moment have 4 group members in our group, the available effort will be $14*25*4=1400$ person hours including own reading, meetings, lectures, and seminars. The customer requested 5-7 students to handle this project, it is regrettably not likely that we will be supplied by one extra group member, so we must expect some more work hours divided on the four of us.
+
 The first 4,5 weeks of the project were used on project planning, pre- study on the domain of the problem, to deduce user stories for the product backlog and to create the overall architecture of the system. The project is a proof of concept type of project, so it was important that we used a considerable amount of time on studying the domain of the problem and to find technologies that would solve the task as best as possible. Our Scrum process consists of 4 sprints, each 2 weeks long. In each sprint we had 200 work hours available, but a part of this will be used on report writing, project management, lectures and meetings. The two first sprint had an estimate of 130 hours available for development tasks, while the two last had an estimate of 140 work hours available. The last week will be used to evaluate the project, finish the report and to prepare the final presentation. The timeline of the project is outlined in Figure~\ref{figure:gantt}, and the WBS of the project is given in Table~\ref{table:wbs}.
 
-\section{Schedule of Results}
-\subsection {Deliverables}
+\subsection{Activities}
+\subsubsection{Lectures}
+Lectures held by the course TDT4290 Customer Driven Project mainly aim to educate the students in the in the art of project management and the different tools used to handle this task in a better way. The lectures can give good insight into the workflow and how to avoid different issues, and should therefore be attended when the lecture involves tools used by the group or tools the group should consider using. After the lectures the group will reflect upon the presented material and if it is usable, or add value to our project, it will be integraded into the project.
+
+\subsection {Milestones}
 These are the deliverables and deadlines, that we have to take into account.
 \begin {itemize}
 
@@ -78,12 +83,13 @@ These are the deliverables and deadlines, that we have to take into account.
 
 \item October 14, Pre- Delivery: Deliver a copy of the Abstract, Introduction, the Pre-study and the Choice-of Lifecycle-model chapters to the external examiner (censor) and technical writing teacher. Also deliver the outline of the full report (Table of  Contents).
 
+\item November 16, Code freeze: Final deadline for the completion of the implementation. The code should not be changed after this date.
+
 \item November 22, Final Delivery: Project end. Deliver final report and present and demonstrate the final product at NTNU. Four printed and bound copies of  the project report should be delivered, as well as one electronic (PDF) copy.
 
 \end {itemize}
 
 \subsection {Sprints}
-
 Sprint deadlines:
 The pre- study, requirements, and testing plan activities should be finished before the start of the first sprint. If this is not the case the number sprints and their deadline might change. The start and end dates of each sprint is listed in Table~\ref{table:sprintdeadlines}
 
@@ -159,9 +165,15 @@ Sprint Nr.		&Start		&End		\\
 \section{Constraints}
 \subsection{Time}
 The project must be completed within a timeframe of 13.6 weeks. The guideline is 24.3 work hours per person, per week. 
+
 \subsection{Knowledge about the problem}
 Our problem is not well-explored and the customer cannot give us exact requirements. Thus, this is as much a research project as it is a software development project.
 
+\subsection{Issues regarding  the system}
+The customer has a huge workforce at their disposal, and it can be introduced to us through the customer. If there would appear a problem regarding the system we can’t handle ourselves, we can contact the customer and they can forward the issue to other sections of the corporation for analysis and problem solving. The communication regarding issues of this kind will usually be done per email. 
+
+\subsection{Issues regarding the workflow}
+The advisor can help us with issues regarding project management and workflow issues. If the group were to be stuck at some point, the advisor can jank the group out of the ditch and set it back on track. 
 
 \section{Quality Assurance}
 \subsection{Communication rules}
@@ -258,22 +270,8 @@ We have tried to identify potential risks early, and document these, by specifyi
 \item Any deadline for when the problem must be resolved
 \item The person responsible for taking action on the risk
 \end{itemize}
-
 Full tables describing our identified risks are listed in the appendices.
 
-
-\section{Planned Effort}
-The course staff recommends us to work 25 person-hours per week and student. This project is estimated for 14 weeks. Since we at the moment have 4 group members in our group, the available effort will be $14*25*4=1400$ person hours including own reading, meetings, lectures, and seminars. The customer requested 5-7 students to handle this project, it is regrettably not likely that we will be supplied by one extra group member, so we must expect some more work hours divided on the four of us.
-
-\section{Lectures}
-Lectures held by the course TDT4290 Customer Driven Project mainly aim to educate the students in the in the art of project management and the different tools used to handle this task in a better way. The lectures can give good insight into the workflow and how to avoid different issues, and should therefore be attended when the lecture involves tools used by the group or tools the group should consider using. After the lectures the group will reflect upon the presented material and if it is usable, or add value to our project, it will be integraded into the project.
-
-\section{Issues}
-\subsection{Issues regarding  the system}
-The customer has a huge workforce at their disposal, and it can be introduced to us through the customer. If there would appear a problem regarding the system we can’t handle ourselves, we can contact the customer and they can forward the issue to other sections of the corporation for analysis and problem solving. The communication regarding issues of this kind will usually be done per email. 
-
-\subsection{Issues regarding the workflow}
-The advisor can help us with issues regarding project management and workflow issues. If the group were to be stuck at some point, the advisor can jank the group out of the ditch and set it back on track. 
 
 \section{Tool Selection}
 After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
@@ -301,141 +299,3 @@ Client & JavasScript + JQuery, HTML, CSS \\
 \caption{Tools used in project}
 \label{table-tools}
 \end{table}
-
-\section{Choice of Domain}
-Our project's problem is a rather general one, not intrinsically tied to any specific domain. However, its existence depends on an actual area of application. For this reason, it has been necessary for us to discover a domain for which to implement our prototype. Our criteria for selecting such a domain were as follows:
-\begin{itemize}
-\item It should be simple enough for test subjects to understand and feel familliar with.
-\item It should be complicated enough to demonstrate the problem.
-\item The console has to be useful in the domain, in such a way that it eases the workflow or opens new possibilities
-\item Object oriented design should be applicable
-\item There should be potential for the existence of power users capable of using the console
-\end{itemize}
-Various domains were considered, including but not limited to banking, warehouses, project management, travel agencies, education, social networking, music management and health care. Ultimately, based on the criteria listed, we decided in consensus to implement our solution for a library system.
-
-\begin{comment}
-Domain ideas:
-project management tool (ehm. redmine)
-warehouse
-airport / travel agency
-cash registers (not interesting)
-bank
-school information system (boring)
-time management system (aka calendar)
-facebook console (unreal)
-mail interface (gmail is too good, not useful)
-photo gallery (limited)
-music library (limited)
-physician system (treatments, prescriptions, add person)
-tax form (boring)
-Building management (boring)
-Library
-
-(ehm. redmine) 
-warehouse 1
-1
-bank 3 3
-(aka calendar) 2
-(treatments, prescriptions, add person) 1
-Library 2 2 3
-
-Ivo	Martin	Oddvar	Oystein	Total
-project management tool	3		2		5
-warehouse			1		1
-airport / travel agency		1			1
-bank		3		3	6
-time management system	2				2
-physician system	1			1	2
-Library		2	3	2	7
-
-
-
-
-Top3:
-library
-authors, books(location, state), book management, employees, user management, order new books, 
-
-bank
-accounts, transfer money, deposits, loans, customer management, employees
-
-project management
-projects, issues, work done on issues, workers, sprints, reports, 
-
-interesting	simple to understand	complex enough	ease workflow	existence of power user	total
-library	2	3	1	2	Y	8
-bank	2	3	2	2	Y	9
-project management	1	2	3	2	Y	8
-
-
-
-project management
-+ usefulness
-+ field of study
-- boring
-
-library
-+ libraries in campus, employees
-- simple
-
-bank
-- unknown ground
-
-
-library	project management	bank
-martin	3	2	1
-oddvar	3	2	1
-ivo	2	3	1
-oystein	3	1	2
-total	11	8	5
-
-
-
-Criteria:
-Interesting and simple enough for test subjects to understand. something they meet in everyday life
-Complicated enough to demonstrate the problem.
-Console has to be useful in the domain, ease the workflow
-Object oriented design
-Existence of power user, that will use the console
-
-Customer ideas:
-car models
-finn.no
-health sector
-human resources (people, how they are related, symptoms, how much money and what they own - advanced domain graph). 
-contact lists (peder)
-
-
-write these things to the report
-
-
-Future:
-batch operations
-undo the commands
-save command for object attribute editing
-what about object operations?
-transaction support
-\end{comment}
-
-\section{Project name}
-Project name is important project identificator. It should summarize main project goal or functionality. In real projects, this is often a trademark, or a name that reflects the name of the company. For our project, the main concern was to create a descriptor that reflected the root concept, namely incorporating a console into a web application.
-
-We held a brainstorming meeting specifically to create a name for the project. Early in the process, we created a list of words that could describe our project funcionality or goal. Some keywords:
-\begin{itemize}
-\item Master, Super User
-\item Console, Terminal, Command Line
-\item Web Application, GUI
-\item Internet, Networking
-\item Text, Keyboard
-\end{itemize}
-
-From these keywords we attempted to compile a list of candidate names:
-\begin{itemize}
-\item Console 2.0
-\item Wonsole
-\item Wensole
-\item Websole
-\item Werminal
-\item interCLI
-\end{itemize}
-
-After a discussion and a brief investigation into which names were already taken by other projects, we chose the name \emph{Wonsole}. The project name alone can be a little confusing, so we added the subtitle: \emph{The new web console for power users.}
