@@ -19,11 +19,11 @@ function console_print_output(message) {
 
 
 function console_print_command(message) {
-  $('#console-output').append("<div style=\"color: white\">"+prompt+message+"</div>");	
+    $('#console-output').append("<div style=\"color: white\">"+prompt+message+"</div>");
 }
 
 function console_print_error(message) {
-  $('#console-output').append("<div style=\"color: red\">"+message+"</div>");	
+    $('#console-output').append("<div style=\"color: red\">"+message+"</div>");
 }
 
 function console_print_notification(message) {
@@ -33,11 +33,11 @@ function console_print_notification(message) {
 
 
 function console_set_command(message) {
-  $('#console-input').val(message); 	
+    $('#console-input').val(message);
 }
 
 function console_execute_command() {
-  command(input);	
+    command(input);
 }
 
 
@@ -79,13 +79,13 @@ function console_event_input(event) {
 function console_event_keypress(event) {
   if (event.keyCode == 13) { //enter
   	input = event.target.value;
-  	console_execute_command();
+    console_execute_command();
   }
 }
 
 function console_event_keydown(event) {
 	if (event.keyCode == 38) { //keyup
-	  console_set_command(history.pop());	
+        console_set_command(history.pop());
 	}
 }
 
