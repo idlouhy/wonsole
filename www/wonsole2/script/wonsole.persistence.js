@@ -67,7 +67,19 @@ function persistence_commit() {
 	//commit the changes
     
     var post = {};
-    post["docs"] = docs;
+    post["docs"] = []    
+    
+    for (var i=0; i < docs.length; i++) {
+      post["docs"].push(docs[i]);
+    }
+    
+    //add removed documents with atribute deleted
+    for (var i=0; i < docs_removed.length; i++) {
+      docs_removed[i]._deleted = true;
+      docs_removed[i].deleted = true;
+      post["docs"].push(docs_removed[i]);
+    }
+        
     log(JSON.stringify(post));
     $.ajax({
           type: "POST",
@@ -78,11 +90,12 @@ function persistence_commit() {
         cache: 'false',
             success: function(obj) {
             log(JSON.stringify(obj));
+            docs_remove = [];
         },
         error: function(obj) {
             log(JSON.stringify(obj));
         }
-    });
+    });    
 }
 
 function persistence_get(path, success_callback) {

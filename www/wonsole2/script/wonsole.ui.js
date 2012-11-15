@@ -93,6 +93,10 @@ function ui_refresh() {
 	}
 }
 
+function ui_clear() {
+  $('#console-output').text("");
+}
+
 function ui_log_toggle(on) {
   if (on != null) {
 		if (on)
@@ -104,17 +108,6 @@ function ui_log_toggle(on) {
 	}
 }
 
-/*****************************************************************************************************************/
-
-/*
- indentSpace = function(n) {
- var s = "";
- for (var i=0; i<n; i++) {
- s = s + "&nbsp;";
- }
- return s;
- }
- */
 
 function ui_docs(json_array) {
 	ui_docs_list(json_array);
@@ -126,24 +119,39 @@ function ui_docs_list(json_array) {
 
 		function ui_get_doc_preview(json) {
 
-			function ui_get_doc_preview_attribute(key, value) {
+			function ui_get_doc_preview_attribute(key, value, first) {
+				var r = "";
+				
 				if (key[0] == '_') {
 					return "";
 				}
 				if (quiet && key != "title") {
 					return "";
 				}
+				
+				if (first == false) {
+					r = ",<br />&nbsp;&nbsp;&nbsp;";
+				}
+				else {
+					r = "";
+				}
+				
 				if ( value instanceof Object) {
-					return key + ":" + "Object";
-				} else {
-					return key + ":" + JSON.stringify(value);
+					return r + "<span style='color: black;'><strong>" + key + ":</strong></span>" + "Object";
+				}
+				else {
+					return r + "<span style='color: black;'><strong>" + key + ":</strong></span>"  + JSON.stringify(value);
 				}
 			}
 
 			var r = "";
+			var first = true;
 			$.each(json, function(key, value) {
-				r = r + ui_get_doc_preview_attribute(key, value);
-				r = r + " ";
+				var attribute = ui_get_doc_preview_attribute(key, value, first);
+				if (first && attribute.length > 0) {
+					first = false;
+				}
+				r = r + attribute ;
 			});
 
 			return r;

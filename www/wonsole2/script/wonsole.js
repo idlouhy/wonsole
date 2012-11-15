@@ -2,6 +2,9 @@ var database = null;
 
 var doc = null;
 var docs = null;
+var docs_removed = [];
+
+var commands_queue = [];
 
 var commands = {
   "db" : {"callback" : "command_db"},
@@ -11,13 +14,27 @@ var commands = {
   "rollback" : {"callback" : "command_rollback"},
   "refresh" : {"callback" : "command_refresh"},
   "print" : {"callback" : "command_print"},
-  "foreach" : {"callback" : "command_seteach"},
+  "filter" : {"callback" : "command_filter"},
+  "foreach" : {"callback" : "command_foreach"},
   "seteach" : {"callback" : "command_seteach"},
-  "applyeach" : {"callback" : "command_applyeach"},
   "docs" : {"callback" : "command_docs"},
   "doc" : {"callback" : "command_doc"},
   "quiet" : {"callback" : "command_quiet"},
+  "add" : {"callback" : "command_add"},
+  "remove" : {"callback" : "command_remove"},
+  "clear" : {"callback" : "command_clear"},
+  "script" : {"callback" : "command_script"},
+  "notify" : {"callback" : "command_notify"},
+  "help" : {"callback" : "command_help"},
 };
+
+
+
+var demo = [
+  "clear",
+  "db books",
+  "print docs"
+]
 
 
 function wonsole_init() {
@@ -67,21 +84,88 @@ function command_seteach(input) {
   ui_refresh();
 }
 
-function command_applyeach(input) {
+
+function command_foreach(input) {
   var array_name = input.split(' ') [0];
-  var atribute_name = input.split(' ')[1];
-  var code = input.split(' ').slice(2).join(' ');
+  var code = input.split(' ').slice(1).join(' ');
     
+  var length = 0;
+  eval("length = "+array_name+".length");
+
   console_print_command("foreach "+input);
-    
-  for (var i=0; i < window[array_name].length; i++) {
+  for (var i=0; i < length; i++) {
     //log(window[input1][i][input2]+input3);
-    window[array_name][i][atribute_name] = eval(window[array_name][i][atribute_name]+" "+code);
+    eval("(function(){with (this){"+code+"}}).call("+array_name+"["+i+"])");
+
   }
   
   ui_refresh();
 }
 
+
+function command_filter(input) {
+  var array_name = input.split(' ') [0];
+  var atribute_name = input.split(' ')[1];
+  var code = input.split(' ').slice(2).join(' ');
+    
+  console_print_command("filter "+input);
+  
+  var result = [];
+    
+  for (var i=0; i < window[array_name].length; i++) {
+    if (typeof window[array_name][i][atribute_name] == "string" && window[array_name][i][atribute_name].search(code) > -1) {
+   		result.push(window[array_name][i]);
+   	}
+  }
+  window[array_name] = result;
+  
+  ui_refresh();
+}
+
+
+function command_script(input) {
+  var array_name = input.split(' ') [0];
+  var step = input.split(' ')[1];
+  
+  if (step) {
+  	step = true;
+  }
+  else {
+  	step = false;
+  }
+  
+  
+  for (var i=0; i < window[array_name].length; i++) {
+  	
+  	if (step) {
+      commands_queue.push(window[array_name][i]);
+    }
+    else {
+  	  command(window[array_name][i]);
+    }
+  }
+  
+  
+  
+}
+
+function command_clear() {
+  console_print_command("clear");
+  ui_clear();
+}
+
+function command_help() {
+  console_print_command("help");
+  console_print_notification("<a href='http://wonsole.dlouho.net'>wonsole.dlouho.net</a>");
+}
+
+
+
+function command_notify(input) {
+  console_print_command("notify "+input);
+  console_print_notification(input);
+  ui_refresh();
+}
 
 
 function command_refresh() {
@@ -114,10 +198,34 @@ function log(message) {
 	$('#log').append('<div>'+message+'</div>');
 }
 
+function command_add(input) {
+	console_print_command("add " +input);
+	eval("docs.push("+input+")");
+	ui_refresh();
+}
+
+
+function command_remove(input) {
+	console_print_command("remove" +input);
+
+	if ((input - 0) == input) {
+	  docs_removed.push(docs[(input - 0)]);
+	  docs.splice((input - 0), 1);	
+	}
+	else {
+		eval("docs_removed.push("+input+")");
+	}
+	//send api call
+	ui_refresh();	
+}
+
+
 function command_commit(input) {
 	console_print_command("commit");
 	log("persistence_commit();");
 	persistence_commit();
+	
+	//d": "0", "_rev": "1-62657917", "_deleted": true},
 }
 
 function command_eval(input) {
@@ -141,22 +249,32 @@ function command(input) {
 	
 	
 	try {
-	
-	if (commands[command_part] != null) {
+	  if (commands[command_part] != null) {
 		window[commands[command_part].callback](argument_part);
-    window[commands[command_part].callback](argument_part);
-	}
-	else {
-    log("eval");
-		command_eval(input);
-	}
-	
-	}
+	  }
+	  else if (window[input]) {
+	  	command_script(input);
+	  }
+	  else {
+        log("eval");
+	    command_eval(input);
+      }
+    }
 	catch (error) {
 		console_print_error(error.message);
 	}
 		
+	
+	
+	//see if there are some commands in queue and prepare them
+	if (commands_queue.length > 0) {
+	  console_print_notification("command in queue: "+commands_queue[0]);
+	  console_set_command(commands_queue[0]);
+	  commands_queue.splice(0, 1);	
+	}
+	
 	ui_refresh();
+
 }
 
 
