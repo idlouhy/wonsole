@@ -26,6 +26,10 @@ function console_print_error(message) {
     $('#console-output').append("<div style=\"color: red\">"+message+"</div>");
 }
 
+function console_print_notification(message) {
+  $('#console-output').append("<div style=\"color: green\">"+message+"</div>");	
+}
+
 
 
 function console_set_command(message) {
@@ -70,11 +74,11 @@ function autocomplete_event() {
 
 function console_event_input(event) {
 	input = event.target.value;
-	//autocomplete_event();
 }
 
 function console_event_keypress(event) {
   if (event.keyCode == 13) { //enter
+  	input = event.target.value;
     console_execute_command();
   }
 }

@@ -3,7 +3,18 @@ body {
 	padding: 0;
 	font-size: 80%;
 	font-family: Consolas, Courier New;
-	
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	line-height: 4.5ex;
+}
+
+ul li a {
+	line-height: normal;
 }
 
 #console {
@@ -12,13 +23,13 @@ body {
 	color: gray;
     height: 100%;
     min-height: 100%;
-    width: 40%;    
+    width: 50%;    
     
 	overflow: auto;
 	
 	display: block;
 	position: fixed;
-	left: 60%;
+	left: 50%;
 	top: 0%;
 
 }
@@ -41,9 +52,9 @@ body {
 	float: left;
     height: 100%;
     min-height: 100%;
-    width: 60%;
+    width: 50%;
 	
-	overflow: auto;
+	overflow: scroll;
 	
 	display: block;
 	position: fixed;
@@ -64,7 +75,7 @@ body {
     resize: none;
     background: black;
     color: #CCCCCC;
-    width: 80%;
+    width: 60%;
     white-space: normal; 
     word-wrap: break-word;
     overflow:visible;

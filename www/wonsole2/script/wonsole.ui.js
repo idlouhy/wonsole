@@ -93,6 +93,10 @@ function ui_refresh() {
 	}
 }
 
+function ui_clear() {
+  $('#console-output').text("");
+}
+
 function ui_log_toggle(on) {
   if (on != null) {
 		if (on)
@@ -104,17 +108,6 @@ function ui_log_toggle(on) {
 	}
 }
 
-/*****************************************************************************************************************/
-
-/*
- indentSpace = function(n) {
- var s = "";
- for (var i=0; i<n; i++) {
- s = s + "&nbsp;";
- }
- return s;
- }
- */
 
 function ui_docs(json_array) {
 	ui_docs_list(json_array);
@@ -126,24 +119,39 @@ function ui_docs_list(json_array) {
 
 		function ui_get_doc_preview(json) {
 
-			function ui_get_doc_preview_attribute(key, value) {
+			function ui_get_doc_preview_attribute(key, value, first) {
+				var r = "";
+				
 				if (key[0] == '_') {
 					return "";
 				}
 				if (quiet && key != "title") {
 					return "";
 				}
+				
+				if (first == false) {
+					r = ",<br />&nbsp;&nbsp;";
+				}
+				else {
+					r = "";
+				}
+				
 				if ( value instanceof Object) {
-					return key + ":" + "Object";
-				} else {
-					return key + ":" + JSON.stringify(value);
+					return r + "<span style='color: black;'><strong>" + key + ":</strong></span>" + "Object";
+				}
+				else {
+					return r + "<span style='color: black;'><strong>" + key + ":</strong></span>"  + JSON.stringify(value);
 				}
 			}
 
 			var r = "";
+			var first = true;
 			$.each(json, function(key, value) {
-				r = r + ui_get_doc_preview_attribute(key, value);
-				r = r + " ";
+				var attribute = ui_get_doc_preview_attribute(key, value, first);
+				if (first && attribute.length > 0) {
+					first = false;
+				}
+				r = r + attribute ;
 			});
 
 			return r;
@@ -169,26 +177,38 @@ function ui_docs_list(json_array) {
 	$('#list').html(ui_get_docs_list(json_array));
 }
 
-function ui_doc(json) {
+function ui_doc(json, name) {
 	var e = $('#data');
-	e.html("<h3>Object</h3>");
-	 
+	if (name) {
+	  e.html("<h3>"+name+":</h3>");
+	}
+	else {
+	  e.html("<h3>Object</h3>");
+	}
+	
 	//ui_get_doc_preview(json));
 	function ui_doc_field(key, value, path, indent) {
 		if (key[0] == '_') {
 			return "";
 		}
+		if (!value) {
+			return "";
+		}
 		if (value instanceof Object) {
-			e.append(key+": <br/>");
+			e.append(indent+"&nbsp;&nbsp;"+key+": <br/>");
 			$.each(value, function(k, v) {
-				ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;");
+				ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;&nbsp;&nbsp;");
 			});
 		}
 		else {
 			e.append(indent);
 			e.append(key);
 			e.append(": ");
-			e.append('<input id="'+path+'.'+key+'" style="width: '+value.length+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
+			var l = 20;
+			if (value && value.length) {
+			  l = value.length;
+			}
+			e.append('<input id="'+path+'.'+key+'" style="width: '+l+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
 			e.append("<br/>");
      }
 	}

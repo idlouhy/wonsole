@@ -24,24 +24,24 @@
 
 \usepackage{hyperref}
 \hypersetup{
-    bookmarks=true,         % show bookmarks bar?
-    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
-    pdftoolbar=true,        % show Acrobat’s toolbar?
-    pdfmenubar=true,        % show Acrobat’s menu?
-    pdffitwindow=false,     % window fit to page when opened
-    pdfstartview={FitH},    % fits the width of the page to the window
-    pdftitle={My title},    % title
-    pdfauthor={Author},     % author
-    pdfsubject={Subject},   % subject of the document
-    pdfcreator={Creator},   % creator of the document
-    pdfproducer={Producer}, % producer of the document
-    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
-    pdfnewwindow=true,      % links in new window
-    colorlinks=false,       % false: boxed links; true: colored links
-    linkcolor=red,          % color of internal links
-    citecolor=green,        % color of links to bibliography
-    filecolor=magenta,      % color of file links
-    urlcolor=cyan           % color of external links
+    bookmarks=true,
+    unicode=true,
+    pdftoolbar=true,
+    pdfmenubar=true,
+    pdffitwindow=false,
+    pdfstartview={FitH},
+    pdftitle={Wonsole Administrator Manual},
+    pdfauthor={Ivo DLouhy},
+    pdfsubject={Wonsole User Manual},
+    %pdfcreator={Creator},
+    %pdfproducer={Producer},
+    pdfkeywords={ntnu} {customer-driven-project} {wonsole} {manual},
+    pdfnewwindow=true,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    filecolor=blue,
+    urlcolor=blue
 }
 
 
@@ -49,7 +49,6 @@
 
 \begin{document}
 
-%TITLE
 \thispagestyle{empty}
 \begin{center}
 	\vspace{\stretch{0.7}}
@@ -66,10 +65,135 @@
 {\large \today \\Team: Ivo Dlouhy, Martin Havig, Øystein Heimark, Oddvar Hungnes}
 \newpage
 
-% LISTS
 \setcounter{tocdepth}{1}
 \tableofcontents
 \clearpage
-\chapter{screenshots}
-\include{screenshot}
+\listoffigures
+
+
+\chapter{Introduction}
+This document describes how to use the Wonsole application. It contains a user
+tutorial as well as command refence.
+
+\chapter{Basics}
+User interface for wonsole is minimal a simple, so that the funcionality gets
+presented in a clear way. If you see the main screen in the
+picture \ref{wonsole2-00}, on the left hand side, there is a GUI - Graphical
+User Interface - this is where data get presented as graphics. On the right hand side, there is a console window. This is a place
+where user can input the commands and send the commands to the system by
+pressing enter.
+
+By default the list of available databases is displayed in GUI and
+command prompt in console.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-00.png}
+\caption{Main screen}
+\label{wonsole2-00}
+\end{figure}
+
+\chapter{Tutorial}
+
+\section{Database}
+The most basic command in Wonsole is the command to open, or switch database. It
+has this format:
+\begin{verbatim}
+db DATABASE
+\end{verbatim}
+Where DATABASE is the name of the database to open. Databases are listed in GUI
+and they can be opened by clicking at the name too.
+
+After issuing the command, the database contents are displayed in GUI, see
+picture \ref{wonsole2-02}.
+Wonsole uses document oriented database, so it is list of documents indexed by numbers.
+From each document the title attribute is displayed as preview.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-02.png}
+\caption{Database open}
+\label{wonsole2-02}
+\end{figure}
+
+Same command can be used to switch the database anywhere in the workflow as in
+picture \ref{wonsole2-04}.
+
+\textit{Note: All uncommited changes are lost when switching the database.}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-04.png}
+\caption{Database switch}
+\label{wonsole2-04}
+\end{figure}
+
+\section{Log}
+\textit{Note: Developers only.}
+
+\section{Print}
+Command print is available to display data in plaintext instead of using GUI.
+It's syntax is very simple - it has one attribute: variable or data to print.
+\begin{verbatim}
+print DATA
+\end{verbatim}
+Command loads the data, converts it into text and prints in the console as ssen
+in picture \ref{wonsole2-10}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-10.png}
+\caption{Print}
+\label{wonsole2-10}
+\end{figure}
+
+
+
+\section{View}
+Oposite of the print command there is view. It displays the complex variable in
+the GUI.
+\begin{verbatim}
+view VARIABLE
+\end{verbatim}
+
+
+\chapter{Appendices}
+\section{Command reference}
+%\begin{verbatim}
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{ | l | X | l | }
+\hline
+\textbf{command} & \textbf{description} & \textbf{example} \\ \hline 
+db DATABASE	& opens database DATABASE & db books \\ \hline
+docs & switches view to documents & docs \\ \hline
+doc INDEX & opens document at INDEX & doc 0 \\ \hline
+commit & commits the changes to database & commit \\ \hline
+rollback & rollbacks the changes & rollback \\ \hline
+refresh & refreshes the UI & refresh \\ \hline
+clear & clears the console & clear \\ \hline
+print & VARIABLE	prints the variable VARIABLE & print docs \\ \hline
+quiet & toggles list verbosity, default: on & quiet \\ \hline
+log & toggles log visibility, default: off & log \\ \hline
+remove INDEX & removes object at index INDEX & remove 0 \\ \hline
+remove JSON & removes object specified by JSON & remove  \{"id":1231232\} \\ \hline
+add JSON & adds object specified by JSON & add \{"title" : "New book"\} \\ \hline
+seteach ARRAY ATTRIBUTE VALUE & sets (creates if necessary) ATTRIBUTE in object in ARRAY to VALUE & seteach docs author "Unknown" \\ \hline
+foreach ARRAY CODE & executes the CODE for each item of ARRAY & foreach docs price=price*10 \\ \hline
+filter ARRAY ATTRIBUTE VALUE & filters the ARRAY with VALUE of ATTRIBUTE & filter docs  title Report \\ \hline
+script ARRAY & executes the ARRAY of commands specified by string & script ["clear", "db books"] \\ \hline
+\end{tabularx}
+\caption{Command reference}
+\label{table:command-reference}
+\end{table}
+%\end{verbatim}
+
+
+
+
+%\chapter{screenshots}
+%\include{screenshot}
 \end{document}

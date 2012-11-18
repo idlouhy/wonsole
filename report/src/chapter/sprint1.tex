@@ -200,76 +200,7 @@ In the console, it is possible to execute arbitrary JavaScript code. The intende
 \subsubsection{JavaScript Objects}
 We are providing a global object containing a list of books, called LIB, which is a monolith instance of the type Library. The full list of books is retrieved and kept updated from the server. For systems with large data sets, it would be possible to implement caching and more selective loading of server data, but this is not directly interesting to our project. 
 
-Library object specification:
-\begin{verbatim}
-    function removeSelected ()
-    remove all books that are selected in the visible list, will update the web UI and db.
-    
-    function listBooks()
-    List all books into the console.
-    
-    function removeBookByID(_id)
-    Remove a book with the given ID. Will update the web UI and db.
-
-    function selectAllToggle()
-    Toggle select all books currently in the visible list. Will update the web UI and db.
-    This function is coupled with the checkbox for selecting all books in the list.
-    
-    function query(parameter1, value1, parameter2, value2 ...)
-    Queries the list of books for an array of books where the 
-    specified book parameters match their respective values.
-    May be called with an arbitrary even number of arguments. 
-    The values will be interpreted as regular expressions if they are strings.
-
-    function generateHTML()
-    Generate list elements for all books in the system, 
-    at the "BOOKTABLE" element in the HTML document.
-    
-    function retrieveObjects()
-    This function retrieves all objects from the server and updates the web UI and db. 
-    Will lock the UI until objects have been received.
-
-\end{verbatim}
-
-
-The aforementioned list contains objects of the type Book. These objects contain information about the book, as well as methods to manipulate their data. Using these methods will also lead to the database and web UI to be updated.
-
-Book object specification:
-\begin{verbatim}
-    function Book(title, author, id)
-    Constructor for the Book object. Will add it to the list of Books in LIB. 
-    Should be used with the new keyword.
-    If id is null, the object will be sent to the server, and the id will be returned. 
-    This will block the UI and then update it.
-    Leaving out the id parameter entirely will be interpreted as the id being null.
-    id should be null when using this from the console or web UI, 
-    but defined in the callback function for retrieving Books.
-    
-    function saveUpdate()
-    Update the book on the server, blocking/unblocking and updating the UI in the process.
-    Should be called after altering the Book object's variables.
-    
-    function changeAuthor(newAuthor)
-    Change the author of the book. Will update the web UI and db.
-    
-    function toJSON()
-    Generate a JSON object from this Book.
-
-    function changeTitle(newTitle)
-    Change the name of the book. Will update the web UI and db.
-
-    function toggleSelect()
-    Toggle whether this book is selected. 
-    Will make sure the value of the Book's checkbox is correct, if it exists.
-    
-    Remove this book from the system. Will update database and UI.
-    function remove()
-
-    function generateHTML()
-    Generate HTML element(s) for this book. Will not manipulate the UI by itself.
-    Returns the DOM HTML element. Should be a table row. Row style will be overridden.
-\end{verbatim}
-
+The aforementioned list contains objects of the type Book. These objects contain information about the book, as well as methods to manipulate their data. Using these methods will also lead to the database and web UI to be updated. Detailed documentation of these objects can be found in section \ref{wonsoleobjects} in the appendix.
 
 \subsubsection{Pubnub}
 Pubnub, previously described in the prestudy, was used to transmit a message to all connected clients when data has been changed. For the first sprint, the client dispatches the message to all other clients when it changes a piece of data, and any client must reload the data from the server when receiving such a message. We realize this is a less-than-optimal and not very tidy solution, so it is likely to be improved in later sprints if it proves to be helpful for the project goal.
