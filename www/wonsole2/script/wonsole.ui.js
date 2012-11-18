@@ -130,7 +130,7 @@ function ui_docs_list(json_array) {
 				}
 				
 				if (first == false) {
-					r = ",<br />&nbsp;&nbsp;&nbsp;";
+					r = ",<br />&nbsp;&nbsp;";
 				}
 				else {
 					r = "";
@@ -177,26 +177,38 @@ function ui_docs_list(json_array) {
 	$('#list').html(ui_get_docs_list(json_array));
 }
 
-function ui_doc(json) {
+function ui_doc(json, name) {
 	var e = $('#data');
-	e.html("<h3>Object</h3>");
-	 
+	if (name) {
+	  e.html("<h3>"+name+":</h3>");
+	}
+	else {
+	  e.html("<h3>Object</h3>");
+	}
+	
 	//ui_get_doc_preview(json));
 	function ui_doc_field(key, value, path, indent) {
 		if (key[0] == '_') {
 			return "";
 		}
+		if (!value) {
+			return "";
+		}
 		if (value instanceof Object) {
-			e.append(key+": <br/>");
+			e.append(indent+"&nbsp;&nbsp;"+key+": <br/>");
 			$.each(value, function(k, v) {
-				ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;");
+				ui_doc_field(k, v, path+"."+key, indent+"&nbsp;&nbsp;&nbsp;&nbsp;");
 			});
 		}
 		else {
 			e.append(indent);
 			e.append(key);
 			e.append(": ");
-			e.append('<input id="'+path+'.'+key+'" style="width: '+value.length+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
+			var l = 20;
+			if (value && value.length) {
+			  l = value.length;
+			}
+			e.append('<input id="'+path+'.'+key+'" style="width: '+l+'em;" value="'+value+'" oninput="'+path+'.'+key+'=event.target.value;" />');
 			e.append("<br/>");
      }
 	}
