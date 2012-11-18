@@ -26,15 +26,89 @@ var commands = {
   "script" : {"callback" : "command_script"},
   "notify" : {"callback" : "command_notify"},
   "help" : {"callback" : "command_help"},
+  "view" : {"callback" : "command_view"},
 };
 
 
 
-var demo = [
-  "clear",
-  "db books",
-  "print docs"
+var demo_pre = [
+  'print "Welcome to Wonsole!"',
+  'alert("Welcome to Wonsole!")',
+  'log',
+  'log',
+  'db authors',
+  'db books',
+  'clear',
+  'print docs',
+  'clear',
+  'quiet',
+  'doc 0',
+  'print doc',
+  'print docs[0]',
+  'docs',
+  'clear',
+  'doc 0',
+  'doc.note = "New!"',
+  'docs',
+  'add {"title" : "New Book"}',
+  'remove 4',
+  'clear',
+  'seteach docs author "Ivo Dlouhy"',
+  'doc 0',
+  'docs',
+  'clear',
+  'db authors',
+  'var a = docs[0]',
+  'db books',
+  'add {"title" : "New Book1"}',
+  'add {"title" : "New Book2"}',
+  'clear',
+  'filter docs title New',
+  'seteach docs author a',
+  'seteach docs price 100',
+  'foreach docs price=price*2',  
 ]
+
+var demo1 = [
+  'var pbl = {}',
+  'pbl.title = "Frederik"',
+  'pbl.address = "Norway"',
+  'print pbl',
+  'db books',
+  'quiet',
+  'filter docs language no',
+  'seteach docs publisher pbl',  
+]
+
+var demo2 = [
+  'db books',
+  'quiet',
+  'var cmd = ["for (var item in docs) { if (docs[item].stock < 3) alert(docs[item].title+\\" is out of stock!\\"); }"]',
+  'cmd',
+  'clear',
+  'var sale = ["foreach docs if (tags.indexOf(\\"onsale\\") > -1) alert(title+\\" is on sale!\\");"]',
+  'sale',
+]
+
+var demo3 = [
+  'db books',
+  'quiet',
+  'add {"title":"Brand", "year":1865, tags:["post1800","boring", "priest"], stock: 0, price: 150, "language":"no"}',
+  'add {"title":"An Enemy of the People", "year":1865, tags:["post1800","boring", "enemy"], stock: 0, price: 160, "language":"no"}',  
+]
+
+
+var check_stock = [
+  'for (var item in docs) { if (docs[item].stock < 3) alert(docs[item].title+" is out of stock!"); }'
+]
+
+
+var check_sale = [
+  'foreach docs if (tags.indexOf("onsale") > -1) alert(title+" is on sale!");'
+]
+
+var avgprice = ["var sum=0", "foreach docs sum=sum+price", "print sum/docs.length"]
+
 
 
 function wonsole_init() {
@@ -66,6 +140,13 @@ function command_rollback(input) {
 function command_print(input) {
 	console_print_command("print "+input);
 	console_print_output(eval('JSON.stringify('+input+')'));
+}
+
+function command_view(input) {
+	console_print_command("view "+input);
+	view = view_type.detail;
+	eval('doc = '+input); 
+	eval('ui_doc('+input+', "'+input+'"');
 }
 
 
@@ -114,6 +195,9 @@ function command_filter(input) {
     
   for (var i=0; i < window[array_name].length; i++) {
     if (typeof window[array_name][i][atribute_name] == "string" && window[array_name][i][atribute_name].search(code) > -1) {
+   		result.push(window[array_name][i]);
+   	}
+   	if (typeof window[array_name][i][atribute_name] == "number" && window[array_name][i][atribute_name] == (code - 0)) {
    		result.push(window[array_name][i]);
    	}
   }
@@ -189,9 +273,7 @@ function command_doc(input) {
 	console_print_command("doc "+input);
 	doc = docs[input];
 	view = view_type.detail;
-	ui_doc(doc);
-	//ui_doc_preview(book);
-	
+	ui_doc(doc, input);	
 }
 
 function log(message) {
@@ -235,6 +317,7 @@ function command_eval(input) {
 }
 
 function command_quiet() {
+	console_print_command("quiet");
 	quiet = !quiet;
 }
 
@@ -276,6 +359,7 @@ function command(input) {
 	ui_refresh();
 
 }
+
 
 
 
