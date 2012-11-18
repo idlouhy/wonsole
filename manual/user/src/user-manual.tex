@@ -161,36 +161,35 @@ view VARIABLE
 
 \chapter{Appendices}
 \section{Command reference}
-\begin{verbatim}
-I DONT SEE AN ERROR HERE!
+%\begin{verbatim}
 
 \begin{table}
 \centering
-\begin{tabularx}{\textwidth}{ l | X | l }
-\textbf{command} & \textbf{description} & \textbf{example} \hline
-db DATABASE	& opens database DATABASE & db books \hline
-docs & switches view to documents & docs \hline
-doc INDEX & opens document at INDEX & doc 0 \hline
-commit & commits the changes to database & commit \hline
-rollback & rollbacks the changes & rollback \hline
-refresh & refreshes the UI & refresh \hline
-clear & clears the console & clear \hline
-print & VARIABLE	prints the variable VARIABLE & print docs \hline
-quiet & toggles list verbosity, default: on & quiet \hline
-log & toggles log visibility, default: off & log \hline
-remove INDEX & removes object at index INDEX & remove 0 \hline
-remove JSON & removes object specified by JSON & remove  \{“_id”:1231232\}
-\hline add JSON & adds object specified by JSON & add \{”title”: “New book” \} \hline
-seteach ARRAY ATTRIBUTE VALUE & sets (creates if necessary) ATTRIBUTE in object in ARRAY to VALUE & seteach docs author “Unknown” \hline
-foreach ARRAY CODE & executes the CODE for each item of ARRAY & foreach docs price=price*10 \hline
-filter ARRAY ATTRIBUTE VALUE & filters the ARRAY with VALUE of ATTRIBUTE & filter docs  title Report \hline
-script ARRAY & executes the ARRAY of commands specified by string & script
-\[“clear”, “db books”\] \hline
+\begin{tabularx}{\textwidth}{ | l | X | l | }
+\hline
+\textbf{command} & \textbf{description} & \textbf{example} \\ \hline 
+db DATABASE	& opens database DATABASE & db books \\ \hline
+docs & switches view to documents & docs \\ \hline
+doc INDEX & opens document at INDEX & doc 0 \\ \hline
+commit & commits the changes to database & commit \\ \hline
+rollback & rollbacks the changes & rollback \\ \hline
+refresh & refreshes the UI & refresh \\ \hline
+clear & clears the console & clear \\ \hline
+print & VARIABLE	prints the variable VARIABLE & print docs \\ \hline
+quiet & toggles list verbosity, default: on & quiet \\ \hline
+log & toggles log visibility, default: off & log \\ \hline
+remove INDEX & removes object at index INDEX & remove 0 \\ \hline
+remove JSON & removes object specified by JSON & remove  \{"id":1231232\} \\ \hline
+add JSON & adds object specified by JSON & add \{"title" : "New book"\} \\ \hline
+seteach ARRAY ATTRIBUTE VALUE & sets (creates if necessary) ATTRIBUTE in object in ARRAY to VALUE & seteach docs author "Unknown" \\ \hline
+foreach ARRAY CODE & executes the CODE for each item of ARRAY & foreach docs price=price*10 \\ \hline
+filter ARRAY ATTRIBUTE VALUE & filters the ARRAY with VALUE of ATTRIBUTE & filter docs  title Report \\ \hline
+script ARRAY & executes the ARRAY of commands specified by string & script ["clear", "db books"] \\ \hline
 \end{tabularx}
 \caption{Command reference}
 \label{table:command-reference}
 \end{table}
-\end{verbatim}
+%\end{verbatim}
 
 
 
