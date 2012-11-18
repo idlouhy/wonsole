@@ -77,7 +77,8 @@ report.
 Some software is required to run the Wonsole. 
 \section{Web Server}
 The client part is a web-application that is server by a web server. Any web
-server that can serve static files can fulfill this role. In our instalation, we will use Apache web server.
+server that can serve static files can fulfill this role. In our installation,
+we will use Apache web server.
 
 \section{Web Browser}
 The user needs a generic web browser to view the files and run the scripts. Any
@@ -97,8 +98,8 @@ should work with any version supporting the Bulk Documents API
 
 
 
-\chapter{Instalation and configuration}
-This chapter describes instalation and configuration of the tools required to
+\chapter{Installation and configuration}
+This chapter describes installation and configuration of the tools required to
 run this software. As long as you can install all the required software,
 choice of the system is up to you. The reference and only supported system by
 this manual is be Red Hat Enterprise Linux 6.3.
@@ -112,7 +113,7 @@ Install this package with all the dependencies.
 \begin{verbatim}
 yum install couchdb
 \end{verbatim}
-After instalation, we should setup the CouchDB. The default setup file location
+After installation, we should setup the CouchDB. The default setup file location
 is \url{file:///etc/couchdb/local.ini}. We will be using CouchDB directly as a
 backend, without a server middleware so we need to set it up to listen on
 publicly accesible interface and port. The interface bind address can set using
@@ -139,18 +140,20 @@ You should get the feedback similar to
 couchdb (pid  29915) is running...
 \end{verbatim}
 \section{Web Server}
-As a reference web server for this instalation, we will use Apache $2.2.15$. It
+As a reference web server for this installation, we will use Apache $2.2.15$. It
 can be installed using command
 \begin{verbatim}
 yum install httpd
 \end{verbatim}
 By default, the web server is configured to use the directory /var/www/html/ as
 a root for serving the necessary files. Copy all of the files from folder www from
-the instalation package to folder /var/www/html on your web server.
+the installation package to folder /var/www/html on your web server.
 The web server service httpd can be started using command:
 \begin{verbatim}
 service httpd start
 \end{verbatim}
+
+% http://wiki.apache.org/couchdb/Installation
 
 % \section{Same Origin Policy}
 % http://stackoverflow.com/questions/3386679/connection-ajax-couchdb-and-javascript http://en.wikipedia.org/wiki/Same_origin_policy
@@ -158,7 +161,7 @@ service httpd start
 % \chapter{Testing}
 
 \chapter{Appendices}
-\section{Instalation package contents}
+\section{Installation Package Contents}
 \begin{verbatim}
 wonsole-2.0/
   www/
