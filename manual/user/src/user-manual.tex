@@ -158,6 +158,140 @@ the GUI.
 view VARIABLE
 \end{verbatim}
 
+\section{JavaScript evaluatuion}
+Wonsole includes complete JavaScript language to the command set. If user issues
+acommand, that is not recognized as the Wonsole command, this input gets
+evaluated as JavaScript. You can for example issue a helper command, that does
+some required functionality not supported by Wonsole and than continue using
+default Wonsole commands, JavaScript language is 100% integrated into Wonsole.
+
+\begin{verbatim}
+var new = "New variable" //Javascript
+print variable
+"New variable"
+\end{verbatim}
+
+This is an example of creating a new JavaScript variable and using it in simple
+Wonsole command, demonstration on picture \ref{wonsole2-15}.
+
+\textit{Note: This is advanced functionality. JavaScript language is very
+complex and it is the user full responsibility to use it in a safe, suitable
+way.}
+ 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-15.png}
+\caption{Javascript integration}
+\label{wonsole2-15}
+\end{figure}
+
+\section{Quiet}
+When Wonsole displays a list of documents saved in the database (see command
+db) by default it uses quiet mode. In quiet mode, it displays only object index and
+value of the title attribute as a object identification as you can see in
+picture \ref{wonsole2-18}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-18.png}
+\caption{Quiet mode on}
+\label{wonsole2-18}
+\end{figure}
+
+\begin{verbatim}
+quiet
+\end{verbatim}
+
+You can toggle preview mode by using command quiet. When toggled off, all
+attributes of the object are displayed - but only the simple data types. If the
+atribute is complex, the Object keyword is displayed instead, see picture
+\ref{wonsole2-20}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-20.png}
+\caption{Quiet mode off}
+\label{wonsole2-20}
+\end{figure}
+
+
+\section{Navigtion in list of documents}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-24.png}
+\caption{Docs array}
+\label{wonsole2-24}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-26.png}
+\caption{Docs indexing}
+\label{wonsole2-26}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-30.png}
+\caption{Document opening and switching}
+\label{wonsole2-30}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-32.png}
+\caption{Doc object}
+\label{wonsole2-32}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-38.png}
+\caption{Modification of doc}
+\label{wonsole2-38}
+\end{figure}
+
+
+
+\section{Transactions: Commit and Rollback}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-39.png}
+\caption{Commit}
+\label{wonsole2-39}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-43.png}
+\caption{Rollback}
+\label{wonsole2-43}
+\end{figure}
+
+
+\section{Operating with objects: Add and Remove}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-48.png}
+\caption{Add}
+\label{wonsole2-48}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-55.png}
+\caption{Add and modify}
+\label{wonsole2-55}
+\end{figure}
+
+
 
 \chapter{Appendices}
 \section{Command reference}
