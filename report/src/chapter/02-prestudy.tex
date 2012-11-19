@@ -2,11 +2,12 @@
 
 \minitoc
 
-This chapter is ment to outline the preliminary study of our project. This includes what our technologies aims to achive and how we will use them to achive this.
+This chapter is ment to outline the preliminary study of our project. This includes what our technologies aims to achive and how we will use them to achive this. Beyond this, the chapter will show the methology the team chose too use and why this was a natural choce to go with. Research in software testing methods will be included and the best fit for this project. Since this is a prototype project, a considrible time is put into this part of the project, to assure the team makes good choices when it comes to thecnologies to use.
 
 \clearpage
 
 \section{Concept}
+The efficiency of the power user can always be increased. And one way of achieving this efficency boost is through adding new functionality, but for bigger systems, this functionality adding can prove to be troublesome. Switching between the mouse and the keyboard can add up to be timeconsuming in the long run, and also inefficient. With an envinonment where the user then instead can construct their own functionality, and keep their hands on the keyboard, can add tremendous value to the user experience. This can be made possible with a scripting environment, where the user themselves will be given the oppurtunity to work through a console on their graphical user interface. This can release them from the mouse and let them work more efficiently on the tasks at hand. 
 
 \section{Similar solutions}
 In this section, we will discuss similar solutions and their relevance to our project.
@@ -127,7 +128,7 @@ Redmine is an online project management tool. It is an open source, cross-platfo
 \includegraphics[width = .20\textwidth]{image/calendar-logo.png}
 \end{wrapfigure}
 
-Google Calendar is online time management tool, which enables users to create events in shared calendars. It is also possible to invite people to attend an event. We use it for planning the meetings, and put in important lectures and deadlines. Shared calendar is administered by team members.
+Google Calendar is online time management tool, which enables users to create events in shared calendars. It is also possible to invite people to attend an event. We use it for planning the meetings, and put in important lectures and deadlines. Shared calendar is administered by team members. It will let the members use their favourite mail, whilest still receaving invitations to planned meetings.
 \footnote{https://www.google.com/calendar}
 
 Our group Google Calendar is available on page:
@@ -166,7 +167,7 @@ A file storage and synchronization service. Google Drive is the home of Google D
 \includegraphics[width = .20\textwidth]{image/skype-logo.png}
 \end{wrapfigure}
 
-A free P2P/client-server communication program. It lets the users communicate with each other through voice, video, instant messaging and file transferring. The users needs a Skype account to reach other Skype users. This program is a VoIP service which lets us communicate without any extra cost if connected to a network. We mainly use Skype for discussions when the group is not gathered, this also gives us a transcript of what was discussed.
+A free P2P/client-server communication program. It lets the users communicate with each other through voice, video, instant messaging and file transferring. The users needs a Skype account to reach other Skype users. This program is a VoIP service which lets us communicate without any extra cost if connected to a network. We mainly use Skype for discussions when the group is not gathered, this also gives us a transcript of what was discussed. All the members possesed a skype account, which made it easy to set up a project group.
 \footnote{http://en.wikipedia.org/wiki/Skype}
 
 \subsubsection{GitHub}
@@ -177,7 +178,7 @@ A free P2P/client-server communication program. It lets the users communicate wi
 \includegraphics[width = .20\textwidth]{image/github-logo.png}
 \end{wrapfigure}
 
-Web-based hosting service for software development. It uses the Git revision control system. Git focus on speed, and gives the user full revision tracking. GitHub uses this to present different functionalities to the users, such as setting up repositories, forking repositories, writing wikis and setting up web pages for the repositories.
+Web-based hosting service for software development. It uses the Git revision control system. Git focus on speed, and gives the user full revision tracking. GitHub uses this to present different functionalities to the users, such as setting up repositories, forking repositories, writing wikis and setting up web pages for the repositories. This integrates well with the shared code and report writing.
 \footnote{http://en.wikipedia.org/wiki/GitHub}
 \footnote{http://en.wikipedia.org/wiki/Git\_\(software\)}
 
@@ -189,7 +190,7 @@ Web-based hosting service for software development. It uses the Git revision con
 \includegraphics[width = .20\textwidth]{image/latex-logo.png}
 \end{wrapfigure}
 
-LaTex is a document markup language that uses the TeX typesetting program. The main focus of LaTex is to make authors able to focus on the content of what they are writing without worrying about its visual presentation. It is mainly used to transform XML- based documents to PDFs. LaTex is widely used in academia, to produce scientific reports, etc.
+LaTex is a document markup language that uses the TeX typesetting program. The main focus of LaTex is to make authors able to focus on the content of what they are writing without worrying about its visual presentation. It is mainly used to transform XML- based documents to PDFs. LaTex is widely used in academia, to produce scientific reports, etc. This, and that the customer suggested it, made it a natural choice for the report. 
 
 \subsection{Database}
 For the system we need some kind of persistent storage, a database which all the clients can talk to to get the latest data in the system and to synchronise data from different clients. This database will be placed on a central server which all the clients can communicate with. For the database we are left with a decision between traditional SQL database or a socalled NoSQL database. The differences are explained below.
@@ -475,6 +476,7 @@ We will be writing unit tests throughout the implementation process and run thes
 
 We will be utilizing user testing and involve end users to get feedback on the entire system or specific functions. This testing will mainly be used to get feedback on the domain scripting language and how easy it is to understand and use. Preferably it will be done continuously throughout the development process. It is important to involve users as the goal of this project is to ease their workflow. As we are not working with an existing system thats actually in use, there will not exist any real users of this system with experience using it. We will therefore mainly be using our fellow students as test subjects, as they are readily available and technically competent enough to understand the concept and act as superusers. In addition the customer has stated that it will encourage employees from the entire company to us give feedback if we ask for it. Specific solutions can be sent to the customer representative which in turn will relay it to experts on the area it concerns.
 
+
 \section{Code conventions}
 \subsection*{JSLint}
 JSLint looks through JavaScript code and detects potentially problematic and unusual syntax in the code to improve the quality of the code. 
@@ -490,3 +492,5 @@ JSLint is a stricter version of JSHint. We started out with JSLint after we had 
 JSLint enforces its own way of coding, which is not always what you want from a linter. The team switches between different coding languages both inside and outside the project. It is unnecessarily time consuming to get into the mind of Douglas Crockford (maker of JSLint) every time you switch to JavaScript. JavaScript is a dynamic language which lets you write the same code in so many different ways, and the way of JSLint isn’t always the way.
 \footnote{\url{http://www.jslint.com/}}
 \footnote{\url{http://www.jshint.com/}}
+
+\section{Version Control}
