@@ -203,6 +203,7 @@ Document NoSQL databases seemed like they would fit our project quite well.
 
 \subsubsection*{SQL}
 The traditional SQL databases is by far the most common way of storing data in the world today. They store data in columns and tables, and add relationships between these tables. As a result they are referred to as relational databases. They focus on query optimisation techniques and most of them use some kind of structured query language. Typically supports 4 basic operations which is select, update, delete and insert. SQL databases are schema defined and follows the ACID(atomicity, consistency, isolation, durability) principles.
+\cite{ramakrishnan2003database}
 
 \subsubsection{Database Alternatives}
 Below, some of the database implementation available to us are discussed. We mainly investigated document NoSQL databases and regular SQL databses. The most appealing options are introduced below.
@@ -241,6 +242,8 @@ PHP is a acronym for Hypertext Preprocessor. It is a serverside programming lang
 \subsubsection*{Ruby on Rails}
 Ruby on Rails is a web application Framework using the MVC, Model View Controller model. It is a Ruby language module for building dynamic web applications. This framework also offers variety of modules, which can extend functionality or simplify tasks. The code is run the same way as Node.js and PHP, they are all interpreted, but Ruby on Rails is more difficult to install \cite{ror-about}
 
+\subsubsection{Conclusion}
+After looking at the alternatives we decided to go for Node.js as our backend system. This was largely because we wanted to be able to work with the same language on both front- and backend. Also Node.js offered extensive documentation on how to implement both MongoDB, which was the original choice for the database system, and PubNub in the system. Its a lightweight system that we thought suited this kind of project. Also Node.js is a relatively new technology that none of the team members had any previous experience with, but we were eager to learn it as it seemed like an exiting technology.
 
 \subsection{Client-side web application technologies}
 Our main focus will be on the client part of the application, since this is the experimental part of our system, and it is this part that is visible to the user through the web browser. It is therefore important to choose a suitable technology for this.
