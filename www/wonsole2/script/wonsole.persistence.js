@@ -48,21 +48,6 @@ function persistence_list_docs(database, callback) {
 }
 
 
-
-/*
-{"total_rows":4,"offset":0,"rows":[
-{"id":"9e50827761bae06fd9b88fcd0c000219","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c000219","_rev":"42-632ea6a7ca8d50a2a4f93921b5c5bdd2","0":"","title":"test","test":["test","data",{"id":1}],"id":"15","coauthor":["aaa","bbb","cccc"],"newatribute":"something"}},
-{"id":"9e50827761bae06fd9b88fcd0c001035","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c001035","_rev":"9-166af2de1f3bcbc51149a9369741d8c5","title":"uv35"}},
-{"id":"9e50827761bae06fd9b88fcd0c0029d6","key":null,"value":{"_id":"9e50827761bae06fd9b88fcd0c0029d6","_rev":"1-967a00dff5e02add41819138abb3284d"}},
-{"id":"undefined","key":null,"value":{"_id":"undefined","_rev":"14-34275954af7d1f8730fc0fef164e5400","title":"abc"}}
-]}
-
-
-*/
-
-
-
-
 function persistence_commit() {
 	//commit the changes
     
