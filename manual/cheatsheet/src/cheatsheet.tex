@@ -1,0 +1,120 @@
+\documentclass[8pt,a4wide,oneside]{report}
+
+\usepackage[section] {placeins}
+
+\usepackage[norsk,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\selectlanguage{english}
+
+\usepackage{tabularx}
+
+\usepackage[cm]{fullpage}
+\usepackage{verbatim}
+\usepackage{url}
+
+\usepackage[section]{placeins}
+
+\fontfamily{ptm}\selectfont
+
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=false,
+    unicode=true,
+    pdftoolbar=true,
+    pdfmenubar=true,
+    pdffitwindow=false,
+    pdfstartview={FitH},
+    pdftitle={Wonsole Cheatsheet},
+    pdfauthor={Ivo DLouhy},
+    pdfsubject={Wonsole Cheatsheet},
+    %pdfcreator={Creator},
+    %pdfproducer={Producer},
+    pdfkeywords={wonsole} {cheatsheet},
+    pdfnewwindow=true,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=black,
+    filecolor=blue,
+    urlcolor=blue
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\section*{Wonsole Cheatsheet}
+\centering
+\begin{tabularx}{\textwidth}{ | l | X | l | }
+\hline
+\textbf{Command} & \textbf{Description} & \textbf{Example usage} \\ \hline 
+\verb|db DATABASE| &
+opens database DATABASE &
+\verb|db books| \\ \hline
+
+\verb|docs| &
+switches view to documents &
+\verb|docs| \\ \hline
+
+\verb|doc INDEX| &
+opens document at INDEX &
+\verb|doc 0| \\ \hline
+
+\verb|commit| &
+commits the changes to database &
+\verb|commit| \\ \hline
+
+\verb|rollback| &
+rollbacks the changes &
+\verb|rollback| \\ \hline
+
+\verb|refresh| &
+refreshes the UI &
+\verb|refresh| \\ \hline
+
+\verb|clear| &
+clears the console &
+\verb|clear| \\ \hline
+
+\verb|print| &
+VARIABLE	prints the variable VARIABLE &
+\verb|print docs| \\ \hline
+
+\verb|quiet| &
+toggles list verbosity, default: on &
+\verb|quiet| \\ \hline
+
+\verb|log| &
+toggles log visibility, default: off &
+\verb|log| \\ \hline
+
+\verb|remove INDEX|&
+removes object at index INDEX &
+\verb|remove 0| \\ \hline
+
+\verb|remove JSON| &
+removes object specified by JSON &
+\verb|remove| \{"id":1231232\} \\ \hline
+
+\verb|add JSON| &
+ adds object specified by JSON &
+\verb|add \{"title" : "New book"\}| \\ \hline
+ 
+\verb|seteach ARRAY ATTRIBUTE VALUE| &
+sets (creates if necessary) ATTRIBUTE in \verb|object in ARRAY to VALUE| &
+\verb|seteach docs author "Unknown"| \\ \hline
+
+\verb|foreach ARRAY CODE| &
+executes the CODE for each item of ARRAY &
+\verb|foreach docs price=price*10| \\ \hline
+
+\verb|filter ARRAY ATTRIBUTE VALUE| &
+filters the ARRAY with VALUE of ATTRIBUTE &
+\verb|filter docs  title Report| \\ \hline
+
+\verb|script ARRAY| &
+executes the ARRAY of commands specified by string &
+\verb|script ["clear", "db books"]| \\ \hline
+\end{tabularx}
+
+\end{document}
