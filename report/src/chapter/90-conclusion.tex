@@ -33,10 +33,7 @@ Whereas trying to add undefined attributes to an existing record in a traditiona
 
 \section{Findings}
 As discussed above, the system allows the user to dynamically define new object types and redefine existing ones, which is a rare, but powerful feature. In non-trivial domains it can be extremely difficult to create good a model before the system is deployed, and the model may need to change over time. Traditionally, database redesign would be a much more complicated and expensive process.
-
-references:
-David M. Kroenke’s Database Processing Fundamentals, Design, and Implementation (10th Edition) (Chapter Eight)
-http://www.articlesphere.com/Article/Read-This-Before-You-Redesign-Your-Database-/49329
+\cite{kroenke2006database}
 
 As opposed to traditional systems where the developer has to explicitly add new functionality, our console solution features a complete feature set from the start, by means of the scripting language. The job of the developer is then to explicitly restrict unsafe functionality, offer simplifications to the syntax, and create alternative input methods(such as a rich GUI). A key advantage of implementing a console is the drastically reduced development cost of input commands as opposed to design and development of complex GUI elements. Exposing these to the user also poses a problem; Another important advantage of a hybrid console/GUI system is that the graphical part of the application can be simpler and therefore more likely to be user friendly, since the more complex functionality which is only used by power users can be accessed through the console. 
 
