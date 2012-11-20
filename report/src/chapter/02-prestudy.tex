@@ -170,7 +170,7 @@ A file storage and synchronization service. Google Drive is the home of Google D
 A free P2P/client-server communication program. It lets the users communicate with each other through voice, video, instant messaging and file transferring. The users needs a Skype account to reach other Skype users. This program is a VoIP service which lets us communicate without any extra cost if connected to a network. We mainly use Skype for discussions when the group is not gathered, this also gives us a transcript of what was discussed. All the members possesed a skype account, which made it easy to set up a project group.
 \footnote{http://en.wikipedia.org/wiki/Skype}
 
-\subsubsection{GitHub}
+\subsubsection{GitHub} \label{GitHub}
 
 \begin{wrapfigure}{r}{.25\textwidth}
 \vspace{-30pt}
@@ -497,3 +497,60 @@ JSLint enforces its own way of coding, which is not always what you want from a 
 \footnote{\url{http://www.jshint.com/}}
 
 \section{Version Control}
+\subsection{Git}
+Git is a open source project for distribution and version control of source code. Linus Torvalds wanted a source code manager with emphasis on speed, and git was the product of this. Git has the features show in table \ref{table-gitfeatures}.
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{ l X l }
+  \textbf{Feature}      & \textbf{Description} \\
+  \hline \\ [-1.5ex]
+  Branching and merging & Through this the developer can have multiple branches of the system, which can be independent of each other, which makes rollbacks, merging and editing simple and efficient. \vspace*{0.7ex} \\
+  \hline \\ [-1.5ex]
+  Small and fast        & Operations are made locally, which makes more efficient than other similar systems such as SVN. \\
+  \hline \\ [-1.5ex]
+  Distributed           & The distribution works through cloning of the working repository, this means that every user has a backup of the system in case of a crash. The distributed code can be pushed back to the shared repository with changes, and will update the system for other users to fetch back to their own clone. \\
+  \hline \\ [-1.5ex]
+  Data assurance        & The files and commits in the repositories has its own checksum, and can be retrieved through this checksum, this assures that a user cannot fetch anything out of the repository other than what has been put in. \\
+  \hline \\ [-1.5ex]
+  Staging area          & Before completing a commit, there is possible to review the changes. This makes it possible to decide upon which files to commit, if not all changes are to be pushed to the main repository. \\
+  \hline \\ [-1.5ex]
+  Free and open source  & The user are free to inspect the source code or contribute to the project. Git is under the GPLv2 software license\\
+\end{tabularx}
+\caption{Git features}
+\label{table-gitfeatures}
+\end{table}
+
+%[https://git.wiki.kernel.org/index.php/Main_Page][http://git-scm.com/]
+
+\subsection{Subversion}
+Apache Subversion (SVN) is open source. It is a cross-platform version control tool, used mainly for sharing source code, web pages and documentation. SVN is designed to be central, where you commit to one server. Some of SVN's features are shown in table \ref{table-subversionfeatures}.
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{ l X l }
+  \textbf{Feature}      & \textbf{Description} \\
+  \hline \\ [-1.5ex]
+  Branching and tagging are cheap   & This can be done in constant time \vspace*{0.7ex} \\
+  \hline \\ [-1.5ex]
+  Merge tracking                    & SVN lets the user track the changes between lines of development \\
+  \hline \\ [-1.5ex]
+  Standalone server option          & The standalon option lets the user run their own server, other then an apached HTTPD server \\
+  \hline \\ [-1.5ex]
+  Interactive conflict resolution   & Merging conflictsis made easy through either graphical user interface of the commandline. \\
+  \hline \\ [-1.5ex]
+  Atomic commits                    & There is no part of the file will be commited if not the whole file is commited. \\
+  \hline \\ [-1.5ex]
+  Free and open source              & The user are free to inspect the source code or contribute to the project. SVN is under the Apache License \\
+\end{tabularx}
+\caption{Subversion features}
+\label{table-subversionfeatures}
+\end{table}
+
+%http://subversion.apache.org/
+
+\subsection{Conclusion}
+Most of the team is fearly familliar with the Git version control tool. It is important that it is not centrelised like the Subversion tool, git aloves the members to easy work offline, since git lets the user always be "online" through their own cloned repository.
+The git version control tool also alos the team to disribute the reportfiles, images and database-files more easily since git is a "file contetn managment tool". 
+The Git repository is easy to distribute of use through GitHub \ref{GitHub}, and makes the project reachable for all the team members.
+The mentioned points and the fact that the team is more familiar with Git then SVN made us choose Git as our version control system.
