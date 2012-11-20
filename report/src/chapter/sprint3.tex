@@ -193,11 +193,35 @@ serves files to proxy the calls to database.
 
 
 \subsection{Persistence}
+Since the database system changed in this sprint, new implementation of
+communication with database needed to be reimplemented. In earlier sprints, we
+could design the API ourselves so the implementation was straightforward and
+simple. Now, we are using built in API of CouchDB that is more complex - so we
+implemented persistence layer that is an abstract on the data persistence. There
+are defined few types of persistence such as local connection to database,
+production server connection to database and demo data - this means, the
+persistence layer will serve only data for demonstration, without connecting
+anywhere. Developer can easily set the persistence mode using one variable and
+the source of data changes automatically. This ensures, that any change in the
+future is very easy - you just have to implement the API for new database
+system, binary files, whatever you want and add this option to a set.
 
 \subsection{Commands}
+Commands are also brand new in this sprint. We created another set of commands,
+another simple language on top of JavaScript. These commands allow the
+functionality of Wonsole to be more accessible - you dont have to implement
+everything in JavaScript, you can just use the set of predefined commands. In
+fact, you don not have to use JavaScript at all. See the table
+\ref{sprint3:table:commands} for command reference.
+
 
 \subsection{Parts of the library}
-ui, persistence, console, 
+The Wonsole library was divided into 4 main parts in different source files: ui
+representing functions and callbacks from user interface, persistence - data
+source (see Persistence subsection), console - implementing functionality of
+console and main script wonsole.js containing the commands and putting it all
+togethe
+r.
 \subsection{Object view}
 
 
