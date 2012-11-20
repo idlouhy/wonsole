@@ -53,7 +53,7 @@ The stakeholders and their concerns when it comes to the system.
 The 4+1 view model\cite{Kruchten}. Here the views will be described, and how they will look in our architecture. This approach of designing makes the system easier to understand for both the developer, user and the customer, and gives the developers a good overview of what need to be done. Diagrams are based on Martin Fowler's UML\cite{Fowl04}
 
 \subsection{Logical View}
-Describes the functionality in the system from the end users perspective. The end users will mainly be a power users, wanting to perform object editing tasks efficiently. This view will be described through class, communication and sequence diagram.  We had some bigger changes from sprint two to three. The development of the logical view, and the road taken to reach this functionality representation can be observed through the sprint chapters.
+Describes the functionality in the system from the end users perspective. The end users will mainly be a power users, wanting to perform object editing tasks efficiently. This view will be described through class diagrams.  We had some bigger changes from sprint two to three. The development of the logical view, and the road taken to reach this functionality representation can be observed through the sprint chapters.
 
 \begin{figure}[h]
 \centering
@@ -66,23 +66,12 @@ Figure~\ref{figure:clientClassDiagram} The client class diagram gives an overvie
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=3in]{image/architecture/serverClassDiagram.png}
+\includegraphics[width=2in]{image/architecture/serverClassDiagram.png}
 \caption{Client Class Diagram}
 \label{figure:serverClassDiagram}
 \end{figure}
 
 Figure~\ref{figure:serverClassDiagram} The server class diagram shows how the REST api is set up. Since the CouchDB in an integrated REST and server system we only have one class here, which can easily communicate with the server.
-
-SEQUENCE DIAGRAM COMING
-
-
-
-\subsection{Process View}
-Describes the dynamic aspect of the system, and explains how the different parts of the system will communicate at runtime. Can help pointing out bottlenecks and how to scale the system better. This is described with a activity diagram.
-
-
-activity diagram COMING.
-
 
 \subsection{Physical View}
 Describes the system from the system engineer's perspective. And explains the physical connections between the software components. Can help to show how changes affect different physical parts of the system, and their impact. Described through a deployment diagram. 
@@ -114,7 +103,6 @@ Figure~\ref{figure:ComponentDiagram} These components form a three layered struc
 Is the + 1 in the 4 + 1 view model. It describes the system through a set of use cases/scenarios. These use cases/scenarios describes how the objects and processes work together. The scenarios can be found in Chapter 4, Requirements.
 
 
-
 \section{Architectural tactics} \label{Tactics}
 The architectural tactics are used to describe how different qualities of the system are achieved. 
 
@@ -128,7 +116,6 @@ This can be handled with a well defined functionality map, so that the expected 
 It will also be important to make sure that too much does not depend on too much, so it will be possible to avoid potential ripple effects. This happens when one change can expand into the need of changing everything. 
 
 This can be prevented by encapsulating information, or constructing interfaces and maintain existing interfaces. 
-
 
 
 \section{Architectural patterns} \label{Architectural patterns}
