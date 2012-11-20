@@ -8,13 +8,10 @@
 
 \selectlanguage{english}
 
-\usepackage{graphicx}
 \usepackage{tabularx}
-\usepackage{booktabs}
-\usepackage{wrapfig}
-\usepackage{pbox}
+\usepackage{graphicx}
 
-\usepackage{fullpage}
+\usepackage[cm]{fullpage}
 \usepackage{verbatim}
 \usepackage{url}
 
@@ -96,7 +93,7 @@ command prompt in console.
 
 \chapter{Tutorial}
 
-\section{Database}
+\section{Database: db}
 The most basic command in Wonsole is the command to open, or switch database. It
 has this format:
 \begin{verbatim}
@@ -130,10 +127,7 @@ picture \ref{wonsole2-04}.
 \label{wonsole2-04}
 \end{figure}
 
-\section{Log}
-\textit{Note: Developers only.}
-
-\section{Print}
+\section{Presentation: print and view}
 Command print is available to display data in plaintext instead of using GUI.
 It's syntax is very simple - it has one attribute: variable or data to print.
 \begin{verbatim}
@@ -149,16 +143,13 @@ in picture \ref{wonsole2-10}.
 \label{wonsole2-10}
 \end{figure}
 
-
-
-\section{View}
 Oposite of the print command there is view. It displays the complex variable in
 the GUI.
 \begin{verbatim}
 view VARIABLE
 \end{verbatim}
 
-\section{JavaScript evaluatuion}
+\section{JavaScript integration}
 Wonsole includes complete JavaScript language to the command set. If user issues
 acommand, that is not recognized as the Wonsole command, this input gets
 evaluated as JavaScript. You can for example issue a helper command, that does
@@ -186,7 +177,7 @@ way.}
 \label{wonsole2-15}
 \end{figure}
 
-\section{Quiet}
+\section{Display: Quiet}
 When Wonsole displays a list of documents saved in the database (see command
 db) by default it uses quiet mode. In quiet mode, it displays only object index and
 value of the title attribute as a object identification as you can see in
@@ -216,31 +207,30 @@ atribute is complex, the Object keyword is displayed instead, see picture
 \end{figure}
 
 
-\section{Navigtion in list of documents}
+\section{Documents: docs and doc}
+After opening the database, list of documents is loaded. Is is stored in
+\verb|docs| variable for you to work with. This variable is an array, so you can
+index it and get a single document object as seen in picture \ref{wonsole2-26}.
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-24.png}
-\caption{Docs array}
-\label{wonsole2-24}
-\end{figure}
-
+\begin{verbatim}
+db books
+docs
+[...]
+\end{verbatim}
+ 
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-26.png}
-\caption{Docs indexing}
+\caption{List of documents}
 \label{wonsole2-26}
 \end{figure}
 
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-30.png}
-\caption{Document opening and switching}
-\label{wonsole2-30}
-\end{figure}
-
+Documents displayed in the document list mode are indexed using numbers. You can
+use these numbers together with \verb|doc| command to open a single document.
+This command can be also used to switch between documents, you just have to
+issue it with different index. The opened document is stored inside a \verb|doc|
+variable as demonstrated in picture \ref{wonsole2-32}.
 
 \begin{figure}
 \centering
@@ -248,6 +238,10 @@ atribute is complex, the Object keyword is displayed instead, see picture
 \caption{Doc object}
 \label{wonsole2-32}
 \end{figure}
+
+To change the document, use a simple assignment command. This way you can modify
+the object freely, you can also add a new attribute. Example is in the picture
+\ref{wonsole2-38}
 
 
 \begin{figure}
@@ -260,23 +254,23 @@ atribute is complex, the Object keyword is displayed instead, see picture
 
 
 \section{Transactions: Commit and Rollback}
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-39.png}
-\caption{Commit}
-\label{wonsole2-39}
-\end{figure}
+All changes you perform on objects are local, so at any point during the
+modification process, transaction, you have a option to save all the changes to
+database using command \verb|commit| or to throw away all local changes and load
+back the values from database with command \verb|rollback|. This functionality
+can be used as an undo command, it is up to you, how often you commit the
+changes.
 
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-43.png}
-\caption{Rollback}
-\label{wonsole2-43}
-\end{figure}
+\section{Objects: Add and Remove}
+To add a new object, use an \verb|add| command. It has one parameter, object to
+add. If you are not sure, just create an empty object. Otherwise you can
+directly define specific object attributes as in picture \ref{wonsole2-48}. The
+new object will immediatelly appear in document list, so you can open
+it and continue working with it, for example add a new attribute as in picture
+\ref{wonsole2-48}.
 
 
-\section{Operating with objects: Add and Remove}
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{screenshot/wonsole2/wonsole2-48.png}
@@ -291,43 +285,4 @@ atribute is complex, the Object keyword is displayed instead, see picture
 \label{wonsole2-55}
 \end{figure}
 
-
-
-\chapter{Appendices}
-\section{Command reference}
-%\begin{verbatim}
-
-\begin{table}
-\centering
-\begin{tabularx}{\textwidth}{ | l | X | l | }
-\hline
-\textbf{command} & \textbf{description} & \textbf{example} \\ \hline 
-db DATABASE	& opens database DATABASE & db books \\ \hline
-docs & switches view to documents & docs \\ \hline
-doc INDEX & opens document at INDEX & doc 0 \\ \hline
-commit & commits the changes to database & commit \\ \hline
-rollback & rollbacks the changes & rollback \\ \hline
-refresh & refreshes the UI & refresh \\ \hline
-clear & clears the console & clear \\ \hline
-print & VARIABLE	prints the variable VARIABLE & print docs \\ \hline
-quiet & toggles list verbosity, default: on & quiet \\ \hline
-log & toggles log visibility, default: off & log \\ \hline
-remove INDEX & removes object at index INDEX & remove 0 \\ \hline
-remove JSON & removes object specified by JSON & remove  \{"id":1231232\} \\ \hline
-add JSON & adds object specified by JSON & add \{"title" : "New book"\} \\ \hline
-seteach ARRAY ATTRIBUTE VALUE & sets (creates if necessary) ATTRIBUTE in object in ARRAY to VALUE & seteach docs author "Unknown" \\ \hline
-foreach ARRAY CODE & executes the CODE for each item of ARRAY & foreach docs price=price*10 \\ \hline
-filter ARRAY ATTRIBUTE VALUE & filters the ARRAY with VALUE of ATTRIBUTE & filter docs  title Report \\ \hline
-script ARRAY & executes the ARRAY of commands specified by string & script ["clear", "db books"] \\ \hline
-\end{tabularx}
-\caption{Command reference}
-\label{table:command-reference}
-\end{table}
-%\end{verbatim}
-
-
-
-
-%\chapter{screenshots}
-%\include{screenshot}
 \end{document}
