@@ -171,9 +171,7 @@ Figure~\ref{figure:s1ComponentDiagram} These components form a three layered str
 \section{Implementation}
 
 \subsection{RESTful API}
-We decided to expose the contents of the database on the central server to the clients through a RESTful API that is served over HTTP. REST is an abbreviation for REpresentational State Transfer, and it basically allows you to get information and perform action equipped only with URLs and standard HTTP methods like GET and POST. The point of REST is having one standard interface for any service. Instead of exposing an interface which has methods, you only expose 4 methods; create, update, read and delete.  You use the URL to describe what object you are performing the action on.
-
-A detailed explanation of the RESTful is included in the appendices. In addition example code with jQuery(JavaScript) will be supplied.
+We decided to expose the contents of the database on the central server to the clients through a RESTful API that is served over HTTP. REST is an abbreviation for REpresentational State Transfer, and it basically allows you to get information and perform action equipped only with URLs and standard HTTP methods like GET and POST. The point of REST is having one standard interface for any service. Instead of exposing an interface which has methods, you only expose 4 methods; create, update, read and delete.  You use the URL to describe what object you are performing the action on. A detailed explanation of the RESTful is included in the appendices. In addition example code with jQuery(JavaScript) will be supplied.
 
 \subsection{Client-side application}
 
@@ -190,40 +188,29 @@ See Figure~\ref{figure:Wonsole-Sprint1}.
 The web user interface is a standard HTML/CSS web site. Lists of objects and their information are generated through JavaScript, and UI elements are associated with JavaScript methods to perform changes to the underlying objects.
 
 \subsubsection{JavaScript Console}
-For the console part of the UI, we decided to build off of an existing implementation. We used JavaScript Shell 1.4, which is a command-line interface for JavaScript and DOM. The console will be rather heavily modified to suit the needs of our project. The console current supports a number of useful features, such as listing the variables and methods of an object, suggestions, and a command history. In later sprints, we intend to implement more useful autocompletion, easier navigation of lists of objects as well as better visualization of objects and better integration with the web UI.
-
-The JavaScript Shell is GPL/LGPL/MPL tri-licensed. 
+For the console part of the UI, we decided to build off of an existing implementation. We used JavaScript Shell 1.4, which is a command-line interface for JavaScript and DOM. The console will be rather heavily modified to suit the needs of our project. The console current supports a number of useful features, such as listing the variables and methods of an object, suggestions, and a command history. In later sprints, we intend to implement more useful autocompletion, easier navigation of lists of objects as well as better visualization of objects and better integration with the web UI. The JavaScript Shell is GPL/LGPL/MPL tri-licensed. 
 \footnote{\url{http://www.squarefree.com/shell/}}
 
 In the console, it is possible to execute arbitrary JavaScript code. The intended usage is to perform operations on the system's objects only. To implement this particular solution, it must be possible to access all the relevant data through JavaScript objects, and the objects should have appropriate methods to manipulate and store the data. Preferably, the it should also be possible to alter the contents of the web UI by altering the data in the JavaScript objects.
 
 \subsubsection{JavaScript Objects}
-We are providing a global object containing a list of books, called LIB, which is a monolith instance of the type Library. The full list of books is retrieved and kept updated from the server. For systems with large data sets, it would be possible to implement caching and more selective loading of server data, but this is not directly interesting to our project. 
-
-The aforementioned list contains objects of the type Book. These objects contain information about the book, as well as methods to manipulate their data. Using these methods will also lead to the database and web UI to be updated. Detailed documentation of these objects can be found in section \ref{wonsoleobjects} in the appendix.
+We are providing a global object containing a list of books, called LIB, which is a monolith instance of the type Library. The full list of books is retrieved and kept updated from the server. For systems with large data sets, it would be possible to implement caching and more selective loading of server data, but this is not directly interesting to our project. The aforementioned list contains objects of the type Book. These objects contain information about the book, as well as methods to manipulate their data. Using these methods will also lead to the database and web UI to be updated. Detailed documentation of these objects can be found in section \ref{wonsoleobjects} in the appendix.
 
 \subsubsection{Pubnub}
 Pubnub, previously described in the prestudy, was used to transmit a message to all connected clients when data has been changed. For the first sprint, the client dispatches the message to all other clients when it changes a piece of data, and any client must reload the data from the server when receiving such a message. We realize this is a less-than-optimal and not very tidy solution, so it is likely to be improved in later sprints if it proves to be helpful for the project goal.
 
 \subsubsection{Simulated synchronous behaviour}
-For the first sprint, we decided to block user input while the system is communicating with the server, as a quick and safe way to ensure consistency.
-
-jquery.blockUI is a Javascript library we used to achieve this. The intended usage is to simulate synchronous behaviour with AJAX(when necessary) without locking the browser, which is generally unwanted behaviour.
+For the first sprint, we decided to block user input while the system is communicating with the server, as a quick and safe way to ensure consistency. jquery.blockUI is a Javascript library we used to achieve this. The intended usage is to simulate synchronous behaviour with AJAX(when necessary) without locking the browser, which is generally unwanted behaviour.
 \footnote{\url{http://malsup.com/jquery/block/\#overview}}
 
 \subsubsection{Persistent command history}
-The console features a command history that is persistent across page changes, for convenience. PersistJS was used to achieve this.
-
-PersistJS is a JavaScript library which handles client-side storage. It attempts to use the most efficient solution available in the browser, and abstracts away the limitations of certain solutions(such as the size limit on cookies).
+The console features a command history that is persistent across page changes, for convenience. PersistJS was used to achieve this. PersistJS is a JavaScript library which handles client-side storage. It attempts to use the most efficient solution available in the browser, and abstracts away the limitations of certain solutions(such as the size limit on cookies).
 PersistJS is under a MIT license.
 \footnote{\url{http://pablotron.org/software/persist-js/}}
 
 \subsubsection{Splitpane}
-The splitpane is used to let the user customize how much of the window to use for the console and the Web UI. This has been made persistent across page changes.
-The splitpane was created by following a drag and drop tutorial by Luke Breuer.
+The splitpane is used to let the user customize how much of the window to use for the console and the Web UI. This has been made persistent across page changes. The splitpane was created by following a drag and drop tutorial by Luke Breuer.
 \footnote{\url{http://luke.breuer.com/tutorial/javascript-drag-and-drop-tutorial.aspx}}
-
-
 
 \section{Testing}
 This section will present the tests performed during the first sprint and their result.
@@ -318,11 +305,8 @@ All our tests passed on the first attempt, without any complications to speak of
 
 \section{Customer Feedback}
 This sections covers the feedback we got from the customer, both before and after the sprint.
-\newline
-\newline
-In the beginning of the sprint the customer did not have any objections to the user stories we had chosen to implement, and he liked the goal we had set for the sprint.
 
-After the Scrum demonstration the customer was generally impressed with the result we delivered after the first sprint and he liked the direction we were going in. He had however some feedback on how we presented the system to him. We should try to not think of him as a group member, but as an external person with no prior knowlegde about the specifics about the implementation. We should try to sell him the solutions in a better way.
+In the beginning of the sprint the customer did not have any objections to the user stories we had chosen to implement, and he liked the goal we had set for the sprint. After the Scrum demonstration the customer was generally impressed with the result we delivered after the first sprint and he liked the direction we were going in. He had however some feedback on how we presented the system to him. We should try to not think of him as a group member, but as an external person with no prior knowlegde about the specifics about the implementation. We should try to sell him the solutions in a better way.
 
 The customer had a lot of suggestions for the second sprint. He would like us to focus on the console, adding functionality that will be useful for the end user. The domain specific parts of the system is not very interesting to the customer, whats important is to make the console useable. The customer would also like us to split the user stories into smaller sub- tasks, and create a detailed Work Breakdown Structure for the next sprint. We should send this to the customer to get some feedback on the estimates. He also added that we could invite him to short demos during the sprint, to get feedback on specific solutions. On a final note he suggested that we should try to demonstrate the product to our peers, and get some feedback from them.
 
@@ -332,8 +316,7 @@ This section contains the evaluation of the first sprint, and what we plan to im
 
 \subsection{Review}
 All in all we were happy with our progress in the first sprint, and the fact that we were able to deliver a functioning basic version of the system. This was the goal we had set at the beginning of this sprint and we were able to finish all the user stories in the sprint backlog. We feel this was in large part due to the fact that we did a good job in dividing tasks among the team members. We were also happy with fact that the communication both within the group and with the customer was good throughout the sprint. The customer was satisfied with the product we were able to deliver, and liked the direction the project was taking. Also we recieved valuable feedback from the customer after the sprint demonstration, with many suggestions for improvements.
-\newline
-\newline
+
 Although we were happy with the end result, we felt there was a lot of areas in which we could improve. One of them was the execution of the Scrum process. None of the team members had any previous experince with doing Scrum in an actual project, although we were all familiar with the basic concepts. We failed to properly see the importance of the daily meetings and the organization of these meetings was not good enough. Some days they were not performed at all, and we feel that this was the main reason we ended up doing some double work. In addition none of the team members had any experience in writing user stories before. As a result some of the user stories were not concise enough and a lot of them were overlapping. This actually resulted in us completing a more user stories than we planned for, including \textbf{G2}, \textbf{G7} and \textbf{G8}, because some of the functionality we implemented was covered by multiple user stories. Although this was a positive surprise we felt we needed to put some effort into rewrite some of the user stories and do a better job on the new ones we created.
 
 We planned to do a lot of design up front before we started this sprint. However we did not succeed in doing this, most of the time was used on implementation. This is a project where the amount of documentation is expected to be extensive, and we were at the time still getting used to that. This also hurt us when it was time to document our work, as we didn't produce much written material during the implementation. As a result we ended up with a lot of unfinished work on the report that had to be done in the second sprint. Also our time tracking routines during the sprint was not good enough, and this led to a lot of extra work when we tried to document the time spent on the different user stories.

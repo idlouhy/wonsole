@@ -259,11 +259,9 @@ The scrum process contains 3 distinct roles, the Scrum master, the product owner
 
 \subsection{Key Elements}
 Following is a description of the most important elements of the Scrum process
-\newline
-\newline
+
 {\bf User stories} are a short simple descriptions of a desired feature. User stories are written by the different stakeholders of the project, with particular attention to the end user of the system. For the user stories we will follow a template developed by Mike Cohn, and its written in the form of: \begin{quote} "As a <type of user>, I want <some goal> so that <some reason>." \end{quote} The advantage of this form of user stories is that it provides a lot of information in one single sentence. It identifies who the end user is, what the end user wants, and the rationale behind it. 
-\newline
-\newline
+
 The {\bf product backlog} consists of all the user stories currently derived for the product, and these user stories will be ordered according to their prioritisation from the customer. We will in cooperation with the customer derive the initial user stories for the product, that captures the desired functionality of the system. As the project goes on, new requirements or desired functionality almost certainly will be discovered. New user stories should be created and added to the product backlog. Also the prioritisation of the user stories might change form the customer point of view, and this should be updated in the backlog as a result. The {\bf sprint backlog} contains all the user stories that were picked during the planning meeting. Any user stories remaining at the end of the sprint will carry over in the next one, or put back in the product backlog.
 
 \subsection{Process}
@@ -300,11 +298,8 @@ We have tried to identify potential risks early, and document these, by specifyi
 \end{itemize}
 Full tables describing our identified risks are listed in the appendices.
 
-
 \section{Tool Selection}
-After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
-
-LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
+After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
 
 For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
 
