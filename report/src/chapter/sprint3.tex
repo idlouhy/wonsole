@@ -181,8 +181,15 @@ The biggest change in sprint 3 is the change of underlying database system. In f
 New requirements would bring changes for the implemented Node.js server providing REST interface, so we decided to replace the database system and deprecate rest of the server part. We installed CouchDB, created few databases with test data. The REST interface is provided on default, since it is also used for the database management. Only disadvantage of this approach is that all of the application logic is transfered to client, we refer to this as thick client.
 
 
-\subsection{Cross site scripting}
-The database system providing the REST api usually runs on different server or different port. This 
+\subsection{Same origin policy}
+The database system providing the REST API, that is used to retrieve and upload
+data usually runs on different server or different port. When doing AJAX
+calls from client directly to database, it is considered as different origin
+\ref{w3-same-origin}.
+This problem can be fixed by using JSONP, but this would limit us to use of HTTP
+GET method. Another problem solution is to modify HTTP headers and set header
+alowing all origins. We solved this simply by setting up the web server that
+serves files to proxy the calls to database.
 
 
 \subsection{Persistence}
