@@ -1,0 +1,102 @@
+\section{Introduction}
+This document describes deployment and testing process of Wonsole application.
+All other information about this software are available in detailed project
+report.
+\section{Required software}
+Some software is required to run the Wonsole. 
+\subsection{Web Server}
+The client part is a web-application that is server by a web server. Any web
+server that can serve static files can fulfill this role. In our installation,
+we will use Apache web server.
+
+\subsection{Web Browser}
+The user needs a generic web browser to view the files and run the scripts. Any
+browser that supports javascript should work. For example refer to Mozilla
+Firefox \footnote{\url{http://www.mozilla.org/en-US/firefox}} or Google Chrome
+\footnote{\url{https://www.google.com/chrome}}. System has been tested with
+Mozilla Firefox $16.0$ and Google Chrome $23.0$. 
+
+\subsection{CouchDB}
+The backend server part is represented by CouchDB database system. No other
+server software is required, client connects directly to the database system.
+The system is tested to work with Apache CouchDB version $1.0.3$ and $1.2$. It
+should work with any version supporting the Bulk Documents API
+\footnote{\url{http://wiki.apache.org/couchdb/HTTP_Bulk_Document_API}}.
+
+
+
+
+
+\section{Installation and configuration}
+This chapter describes installation and configuration of the tools required to
+run this software. As long as you can install all the required software,
+choice of the system is up to you. The reference and only supported system by
+this manual is be Red Hat Enterprise Linux 6.3.
+
+\subsection{CouchDB}
+Easiest way to install Apache CouchDB is to enable the EPEL - Extra Packages for
+Enterprise Linux repository. For more information on how to do that please refer
+to the offictial guide available on \url{http://fedoraproject.org/wiki/EPEL}.
+After setup of the repository, couchdb package should be available for install.
+Install this package with all the dependencies.
+\begin{verbatim}
+yum install couchdb
+\end{verbatim}
+After installation, we should setup the CouchDB. The default setup file location
+is \url{file:///etc/couchdb/local.ini}. We will be using CouchDB directly as a
+backend, without a server middleware so we need to set it up to listen on
+publicly accesible interface and port. The interface bind address can set using
+variable $bind_address$, universal choice is to set it up as $0.0.0.0$ so that
+the database listens on all available interfaces. The other interesting option is
+the port, that can be set up using the port variable. CouchDB needs to be
+available from client side over the network, so choose an interface and port combination, that is allowed on your firewall.
+
+\begin{verbatim}
+port = 5984
+bind_address = 0.0.0.0
+\end{verbatim}
+
+After configuration, start the couchdb service with command
+\begin{verbatim}
+service couchdb start
+\end{verbatim}
+You can verify if the service is running using:
+\begin{verbatim}
+service couchdb status
+\end{verbatim}
+You should get the feedback similar to
+\begin{verbatim}
+couchdb (pid  29915) is running...
+\end{verbatim}
+\subsection{Web Server}
+As a reference web server for this installation, we will use Apache $2.2.15$. It
+can be installed using command
+\begin{verbatim}
+yum install httpd
+\end{verbatim}
+By default, the web server is configured to use the directory /var/www/html/ as
+a root for serving the necessary files. Copy all of the files from folder www from
+the installation package to folder /var/www/html on your web server.
+The web server service httpd can be started using command:
+\begin{verbatim}
+service httpd start
+\end{verbatim}
+
+% http://wiki.apache.org/couchdb/Installation
+
+% \subsection{Same Origin Policy}
+% http://stackoverflow.com/questions/3386679/connection-ajax-couchdb-and-javascript http://en.wikipedia.org/wiki/Same_origin_policy
+% http://www.w3.org/Security/wiki/Same_Origin_Policy
+% \section{Testing}
+
+\section{Appendices}
+\subsection{Installation Package Contents}
+\begin{verbatim}
+wonsole-2.0/
+  www/
+    css/
+    script/
+    wonsole.html
+  doc
+\end{verbatim}
+
