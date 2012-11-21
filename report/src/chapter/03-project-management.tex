@@ -12,8 +12,8 @@ We are a very small development team of just four team members. In a typical sof
 \begin{table}
 \centering
 \begin{tabular}{ l  l }
-  \hline
-  \textbf{Team member} & \textbf{Roles} \\
+  \textbf{Team member} & \textbf{Roles} \\ 
+  \hline \\ [-2.0ex]
   Ivo & Group leader, Customer and Advisor Contact, Scrum Master \\
   Oystein & Test Manager, QA Manager, Weekly Report Manager \\
   Oddvar & GUI Designer, Code Master, Meeting Secretary, Time Keeper \\
@@ -72,8 +72,29 @@ The course staff recommends us to work 25 person-hours per week and student. Thi
 The first 4,5 weeks of the project were used on project planning, pre- study on the domain of the problem, to deduce user stories for the product backlog and to create the overall architecture of the system. The project is a proof of concept type of project, so it was important that we used a considerable amount of time on studying the domain of the problem and to find technologies that would solve the task as best as possible. Our Scrum process consists of 4 sprints, each 2 weeks long. In each sprint we had 200 work hours available, but a part of this will be used on report writing, project management, lectures and meetings. The two first sprint had an estimate of 130 hours available for development tasks, while the two last had an estimate of 140 work hours available. The last week will be used to evaluate the project, finish the report and to prepare the final presentation. The timeline of the project is outlined in Figure~\ref{figure:gantt}, and the WBS of the project is given in Table~\ref{table:wbs}.
 
 \subsection{Activities}
+\subsubsection{Report}
+The subject demands an extensive report to be delivered at the end of the system. In this report all our work will be documented, including parts on our work process, implementations and a description of the final product. This report will require a substantial amount of resources throughout the project.
+
+\subsubsection{Project Management}
+Project management includes activities such as meetings, distributing work, customer contact and effort registration. It will include all activities needed to properly organize the project, and will demand resources throughout the project. 
+
+\subsubsection{Planning}
+Planning includes all the activities needed to construct a detailed plan of the project, such as making the WBS and timeline for the entire project. 
+
+\subsubsection{Pre- Study}
+The pre- study includes activities that research the problem, such as indentifying similar solutions and a decision on which technologies we should use to best solve the problem at hand. As this is a prototype project the pre- study will be quite extensive and time consuming.
+
+\subsubsection{Backlog/Architecture}
+Includes all activities needed to identify the requirements of the project and to create the product backlog. An overall architecture of the system will also be created.
+
 \subsubsection{Lectures}
 Lectures held by the course TDT4290 Customer Driven Project mainly aim to educate the students in the in the art of project management and the different tools used to handle this task in a better way. The lectures can give good insight into the workflow and how to avoid different issues, and should therefore be attended when the lecture involves tools used by the group or tools the group should consider using. After the lectures the group will reflect upon the presented material and if it is usable, or add value to our project, it will be integraded into the project.
+
+\subsubsection{Sprints}
+The sprints will include activities like sprint planning, design, implementation, testing and sprint evaluation. There will be a total of 4 sprints, each lasting for 2 weeks.
+
+\subsubsection{Evaluation}
+At the end of the project an extensive evaluation of the work we have done in this project will be done.
 
 \subsection {Milestones}
 These are the deliverables and deadlines, that we have to take into account.
@@ -126,10 +147,10 @@ Sprint Nr.		&Start		&End		\\
 \hline \\ [-2.0ex]
  The report     			&21/08/2012		&22/11/2012		&300		&320         	 \\
  Project Management	&21/08/2012		&22/11/2012		&180		&163		\\
- Project Planning		&21/08/2012		&05/09/2012		&100		&74		\\
+ Project Planning		&21/08/2012		&05/09/2012		&80			&64		\\
  Lectures				&21/08/2012		&05/09/2012		&40			&50		\\	
- Pre- Study			&06/09/2012		&18/09/2012		&80			&89		\\
- Backlog				&10/09/2012		&21/09/2012		&60			&47		\\
+ Pre- Study			&06/09/2012		&18/09/2012		&110		&103		\\
+ Backlog				&10/09/2012		&21/09/2012		&50			&43		\\
  Architecture			&17/09/2012		&21/09/2012		&40			&51		\\
 \hline \\ [-2.0ex]
  \bf{Sprint 1}			&\bf{24/09/2012}	&\bf{05/10/2012}	&\bf{130}		&\bf{128}	\\
@@ -160,6 +181,13 @@ Sprint Nr.		&Start		&End		\\
 \end{tabular}
 \label{table:wbs}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=5in]{image/workload.png}
+\caption{Activities Workload}
+\label{figure:workload}
+\end{figure}
 
 
 \section{Constraints}
@@ -231,11 +259,9 @@ The scrum process contains 3 distinct roles, the Scrum master, the product owner
 
 \subsection{Key Elements}
 Following is a description of the most important elements of the Scrum process
-\newline
-\newline
+
 {\bf User stories} are a short simple descriptions of a desired feature. User stories are written by the different stakeholders of the project, with particular attention to the end user of the system. For the user stories we will follow a template developed by Mike Cohn, and its written in the form of: \begin{quote} "As a <type of user>, I want <some goal> so that <some reason>." \end{quote} The advantage of this form of user stories is that it provides a lot of information in one single sentence. It identifies who the end user is, what the end user wants, and the rationale behind it. 
-\newline
-\newline
+
 The {\bf product backlog} consists of all the user stories currently derived for the product, and these user stories will be ordered according to their prioritisation from the customer. We will in cooperation with the customer derive the initial user stories for the product, that captures the desired functionality of the system. As the project goes on, new requirements or desired functionality almost certainly will be discovered. New user stories should be created and added to the product backlog. Also the prioritisation of the user stories might change form the customer point of view, and this should be updated in the backlog as a result. The {\bf sprint backlog} contains all the user stories that were picked during the planning meeting. Any user stories remaining at the end of the sprint will carry over in the next one, or put back in the product backlog.
 
 \subsection{Process}
@@ -272,11 +298,8 @@ We have tried to identify potential risks early, and document these, by specifyi
 \end{itemize}
 Full tables describing our identified risks are listed in the appendices.
 
-
 \section{Tool Selection}
-After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. 
-
-LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
+After detailed study of some tools, we decided to use tools and frameworks listed in table \ref{table-tools}. In communication and collaboration tools section, the main reason for choosing these tools were last experiences with these - most of us already used these tools in work or in other projects, so we do not have to learn to use something new. LaTeX software was used to write this report, although most of the team members did not use LaTeX before We decided to use it, because it has a lot of advantages. It is easy to colaborate on source code and use git to track the changes, the result pdf document looks better, than the one produced in other tools, there is automatic referencing of tables, figures and citations. Also the table of contents, tables and figures is automatically generated. Also, using LaTeX was recommended by the customer.
 
 For backend of the system, we wil be using MongoDB in combination with Node.js. Both are extremely effective, scalable and easy to learn. Also they share the same runtime, so the deployment process on the server is simplified. MongoDB and Node.js are newand up-to-date technologies, that are getting more and more used in web applications. NoSQL schemeless MongoDB allows to store any data frontend requires and also the data migration is easy. Node.js can communicate with MongoDB using JavaScrip libraries and offer the data through standard REST interface. Client can retrieve the data from server via HTTP protocol using Ajax with JavaScript and present it to the user. The user interface is written using HTML, CSS and JavaScript.
 
@@ -291,7 +314,7 @@ Code colaboration & Git + Github \\
 Time tracking and mamangement & Redmine \\
 Report & Latex \\
 Backend & Node.js \\
-Database & MongoDB \\
+Database & MongoDB/CouchDB \\
 Communication & PubNub \\
 Client & JavasScript + JQuery, HTML, CSS \\
 \hline
