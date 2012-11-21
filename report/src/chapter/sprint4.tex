@@ -81,6 +81,30 @@ The user stories included in the sprint backlog is presented in Table~\ref{table
 The user stories picked out for sprint four did not change much on the architecture from the previous sprint. Some rearanging was done, but nothing major.
 
 \section{Implementation}
+The base of Wonsole library was implemented in sprint 3, so in this sprint we
+could build on that.
+
+\subsection{Foreach}
+The implementation of foreach in the last sprint did not support structured
+objects - it was not able to iterate over inner objects. We changed the
+implementation, so that it uses command with. THis way user can write custom
+code and just skip dereference through object.
+
+\subsection{Add and remove}
+New required functionality was to add and remove documents. We implemented two
+commands, that modify the global variable that stores all documents in the
+system. When adding, user can define an object directly, or just create an empty
+one \verb|{}|. Object is added to docs array and can be commited or rollbacked.
+The deletion process works the same.
+
+\subsection{Script}
+New functionality this sprint is the script. User can easily define new array
+variables in JavaScript. Command script take this variable and evaluates the
+array items as Wonsole commands.  User can run the commands in a step mode. That
+saves the script contents to command queue and user can just confirm them
+pressing enter one by one.
+
+
 
 \section{Testing}
 \subsection{Test Results}
