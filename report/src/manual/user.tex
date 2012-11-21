@@ -1,17 +1,17 @@
 \section{Introduction}
 This document describes how to use the Wonsole application. It contains a user
-tutorial as well as command refence.
+tutorial as well as a command refence.
 
 \section{Basics}
-User interface for wonsole is minimal a simple, so that the funcionality gets
+The user interface for wonsole is minimal and simple, so that the functionality gets
 presented in a clear way. If you see the main screen in the
 picture \ref{wonsole2-00}, on the left hand side, there is a GUI - Graphical
-User Interface - this is where data get presented as graphics. On the right hand side, there is a console window. This is a place
-where user can input the commands and send the commands to the system by
+User Interface - this is where data get presented as graphics. On the right hand side, there is a console window. In this location,
+the user can input commands and send them to the system by
 pressing enter.
 
-By default the list of available databases is displayed in GUI and
-command prompt in console.
+By default, the list of available databases is displayed in the GUI and
+a command prompt in the console.
 
 
 \begin{figure}
@@ -29,12 +29,12 @@ has this format:
 \begin{verbatim}
 db DATABASE
 \end{verbatim}
-Where DATABASE is the name of the database to open. Databases are listed in GUI
-and they can be opened by clicking at the name too.
+Where DATABASE is the name of the database to open. Databases are listed in the GUI
+and they can be opened by clicking on the name as well.
 
-After issuing the command, the database contents are displayed in GUI, see
+After issuing the command, the database contents are displayed in the GUI, see
 picture \ref{wonsole2-02}.
-Wonsole uses document oriented database, so it is list of documents indexed by numbers.
+Wonsole uses a document oriented database, so it is list of documents indexed by numbers.
 From each document the title attribute is displayed as preview.
 
 
@@ -45,7 +45,7 @@ From each document the title attribute is displayed as preview.
 \label{wonsole2-02}
 \end{figure}
 
-Same command can be used to switch the database anywhere in the workflow as in
+The same command can be used to switch the database anywhere in the workflow as in
 picture \ref{wonsole2-04}.
 
 \textit{Note: All uncommited changes are lost when switching the database.}
@@ -58,12 +58,12 @@ picture \ref{wonsole2-04}.
 \end{figure}
 
 \subsection{Presentation: print and view}
-Command print is available to display data in plaintext instead of using GUI.
-It's syntax is very simple - it has one attribute: variable or data to print.
+The command print is available to display data in plaintext instead of using the GUI.
+Its syntax is very simple - it has one attribute: the variable, expression or data to print.
 \begin{verbatim}
 print DATA
 \end{verbatim}
-Command loads the data, converts it into text and prints in the console as ssen
+The command loads the data, converts it into text and prints in the console as ssen
 in picture \ref{wonsole2-10}.
 
 \begin{figure}
@@ -73,18 +73,18 @@ in picture \ref{wonsole2-10}.
 \label{wonsole2-10}
 \end{figure}
 
-Oposite of the print command there is view. It displays the complex variable in
+Opposite of the print command there is the command view. It displays a complex variable in
 the GUI.
 \begin{verbatim}
 view VARIABLE
 \end{verbatim}
 
 \subsection{JavaScript integration}
-Wonsole includes complete JavaScript language to the command set. If user issues
-acommand, that is not recognized as the Wonsole command, this input gets
+Wonsole includes the complete JavaScript language to the command set. If user issues
+a command, that is not recognized as a Wonsole command, this input gets
 evaluated as JavaScript. You can for example issue a helper command, that does
-some required functionality not supported by Wonsole and than continue using
-default Wonsole commands, JavaScript language is 100% integrated into Wonsole.
+some required functionality not supported by Wonsole and then continue using
+default Wonsole commands. The JavaScript language is 100% integrated into Wonsole.
 
 \begin{verbatim}
 var new = "New variable" //Javascript
@@ -92,11 +92,11 @@ print variable
 "New variable"
 \end{verbatim}
 
-This is an example of creating a new JavaScript variable and using it in simple
-Wonsole command, demonstration on picture \ref{wonsole2-15}.
+This is an example of creating a new JavaScript variable and using it in a simple
+Wonsole command, demonstration in picture \ref{wonsole2-15}.
 
-\textit{Note: This is advanced functionality. JavaScript language is very
-complex and it is the user full responsibility to use it in a safe, suitable
+\textit{Note: This is advanced functionality. The JavaScript language is very
+complex and it is the user's full responsibility to use it in a safe, suitable
 way.}
  
 
@@ -125,8 +125,8 @@ quiet
 \end{verbatim}
 
 You can toggle preview mode by using command quiet. When toggled off, all
-attributes of the object are displayed - but only the simple data types. If the
-atribute is complex, the Object keyword is displayed instead, see picture
+attributes of the object are displayed - but only the simple (primitive) data types. If the
+attribute is complex, the Object keyword is displayed instead, see picture
 \ref{wonsole2-20}.
 
 \begin{figure}
@@ -138,7 +138,7 @@ atribute is complex, the Object keyword is displayed instead, see picture
 
 
 \subsection{Documents: docs and doc}
-After opening the database, list of documents is loaded. Is is stored in
+After opening the database, the list of documents is loaded. Is is stored in the
 \verb|docs| variable for you to work with. This variable is an array, so you can
 index it and get a single document object as seen in picture \ref{wonsole2-26}.
 
@@ -169,9 +169,9 @@ variable as demonstrated in picture \ref{wonsole2-32}.
 \label{wonsole2-32}
 \end{figure}
 
-To change the document, use a simple assignment command. This way you can modify
-the object freely, you can also add a new attribute. Example is in the picture
-\ref{wonsole2-38}
+To change the document, issue an assignment statement like you would using plain JavaScript. This way you can modify
+the object freely, you can also add a new attributes if you wish. An example is given in the picture
+\ref{wonsole2-38}, where the document is given a stock of 4, and is assigned an attribute "available" which is set to true.
 
 
 \begin{figure}
@@ -185,17 +185,17 @@ the object freely, you can also add a new attribute. Example is in the picture
 
 \subsection{Transactions: Commit and Rollback}
 All changes you perform on objects are local, so at any point during the
-modification process, transaction, you have a option to save all the changes to
-database using command \verb|commit| or to throw away all local changes and load
+modification process, transaction, you have the option to save all the changes to the
+database using the command \verb|commit| or to throw away all local changes and load
 back the values from database with command \verb|rollback|. This functionality
-can be used as an undo command, it is up to you, how often you commit the
+can be used as an undo command. It is up to you how often you commit the
 changes.
 
 
 \subsection{Objects: Add and Remove}
-To add a new object, use an \verb|add| command. It has one parameter, object to
-add. If you are not sure, just create an empty object. Otherwise you can
-directly define specific object attributes as in picture \ref{wonsole2-48}. The
+To add a new object, use an \verb|add| command. It has one parameter, the object to
+add. If you are not sure, just create an empty JavaScript object using the empty curly braces. Otherwise you can
+directly define specific object attributes. Examples are given in picture \ref{wonsole2-48}. The
 new object will immediatelly appear in document list, so you can open
 it and continue working with it, for example add a new attribute as in picture
 \ref{wonsole2-48}.
