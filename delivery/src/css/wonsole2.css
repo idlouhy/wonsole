@@ -1,0 +1,118 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 80%;
+	font-family: Consolas, Courier New;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	line-height: 4.5ex;
+}
+
+ul li a {
+	line-height: normal;
+}
+
+#console {
+	float: none;
+	background-color: black;
+	color: gray;
+    height: 100%;
+    min-height: 100%;
+    width: 50%;    
+    
+	overflow: auto;
+	
+	display: block;
+	position: fixed;
+	left: 50%;
+	top: 0%;
+
+}
+
+#console * {
+	/*margin: 1em;*/
+	
+}
+
+#console-output div {
+	margin: 0;
+}
+
+#console-output {
+	margin-top: 1em;
+	margin-left: 1em;
+}
+
+#ui {
+	float: left;
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+	
+	overflow: scroll;
+	
+	display: block;
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	
+	padding: 1em;
+}
+
+#console-prompt {
+	margin-left: 1em;
+	color: #FFFFFF;
+}
+
+#console-input {
+    outline: none;
+    border: none;
+    resize: none;
+    background: black;
+    color: #CCCCCC;
+    width: 60%;
+    white-space: normal; 
+    word-wrap: break-word;
+    overflow:visible;
+    /*margin: 2.5%;*/
+}
+
+#log {
+	background-color: #EEEEEE;
+	margin-left: 1em;
+	position: fixed;
+	bottom: 1em;
+	left: 2.5%;
+	height: 16em;
+	width: 50%;
+	overflow: auto;
+	font-size: 80%;
+}
+
+
+#data input {
+	overflow: hidden;
+    outline: none;
+    border: none;
+    resize: none;
+    background: #EEEEEE;
+    font-family: Consolas, Courier New;
+    	
+}
+
+
+#commands {
+	position: fixed;
+	bottom: 1em;
+	left: 1em;
+}
+
+ul {
+	list-style: none;
+	list-style-type: none;
+}
