@@ -12,7 +12,7 @@ This chapter will outline the work we did in the third sprint. It explains in de
 This sprint started on October 22th and lasted for two weeks. A customer demo was held at the 1st of November to show of what we had achieved during the sprint and to ensure that the customer agreed with the solutions and the direction we were going in.
 
 \subsection{Sprint Goal}
-The goal for this sprint was to redesign the system to accomodate to the new wishes from the customer, and to present a working protoype incorperating new technologies and concepts suggested by the customer.
+The goal for this sprint was to redesign the system to accommodate to the new wishes from the customer, and to present a working prototype incorporating new technologies and concepts suggested by the customer.
 
 \subsection{Product Backlog}
 Since the end of Sprint 2, our customer representative had presented the system to other representatives of his company. From the current state of the prototype, they had derived a distinct, new set of new requirements that called for a paradigm shift for our project. Our customer emphasized a few features that our system should support:
@@ -22,7 +22,7 @@ Since the end of Sprint 2, our customer representative had presented the system 
 \item Schemaless design - Allow the user to insert objects into other objects even though they were not specifically designed with this in mind.
 \item Navigation of database as a folder structure - Make it possible to navigate the contents of the database as a folder structure, where any type of object can be represented.
 \end{itemize}
-Futhermore, the customer no longer wanted us to focus on improving usability features, and instead wanted us to simplify the web UI design. It was also no longer desired that objects were synchronized in real time.
+Furthermore, the customer no longer wanted us to focus on improving usability features, and instead wanted us to simplify the web UI design. It was also no longer desired that objects were synchronized in real time.
 
 Because real time synchronization was no longer an issue, we decided to no longer use PubNub. To ease the implementation of the folder structure navigation, we decided to adopt \textbf{CouchDB} instead of our previous node.js/MongoDB backend. Also, because of the requirement of schemaless objects, and the fact that the previous user interface design was too complex, we decided to do a complete rewrite of the system. For simplicity, the new prototype would not use the JavaScript Shell, jquery.blockUI or PersistJS.
 
@@ -46,7 +46,7 @@ The full product backlog for sprint 3 is listed in section \ref{sprint3pb} in th
 
 
 \subsection{Sprint Backlog}
-The user stories included in the sprint backlog is presented in Table~\ref{table:sp3backlog}. As we chose to accomodate the new wishes from the customer we were forced to use a considerable amount of time on reasearch on new technologies and on redesigning the system to utilize these technologies. As a result the amount of time available for implementation of user stories was reduced, and this time we only had 50 hours available for this purpose. From experiences from the previous sprints, we tried to make each user story concise and not too general. We feel this helped us a lot in estimating the user stories more accurately than in previous sprints.
+The user stories included in the sprint backlog is presented in Table~\ref{table:sp3backlog}. As we chose to accommodate the new wishes from the customer we were forced to use a considerable amount of time on research on new technologies and on redesigning the system to utilize these technologies. As a result the amount of time available for implementation of user stories was reduced, and this time we only had 50 hours available for this purpose. From experiences from the previous sprints, we tried to make each user story concise and not too general. We feel this helped us a lot in estimating the user stories more accurately than in previous sprints.
 
 \begin{table}
 \caption{Sprint 3 Backlog}
@@ -71,7 +71,7 @@ The user stories included in the sprint backlog is presented in Table~\ref{table
 		  &Documentation							&			&		\\
 
  \bf{G11}     &\bf{GUI represent current directory} 			&\bf{5}		&\bf{4}		     \\ 
-		  &Make viewsfor each directory in CouchDB		&			&		\\
+		  &Make views for each directory in CouchDB		&			&		\\
 		  &Call the correct view when changing directory	&			&		\\
 		  &Update the GUI							&			&		\\
 		  &Testing								&			&		\\
@@ -188,7 +188,7 @@ calls from client directly to database, it is considered as different origin
 \ref{w3-same-origin}.
 This problem can be fixed by using JSONP, but this would limit us to use of HTTP
 GET method. Another problem solution is to modify HTTP headers and set header
-alowing all origins. We solved this simply by setting up the web server that
+allowing all origins. We solved this simply by setting up the web server that
 serves files to proxy the calls to database.
 
 
@@ -209,7 +209,7 @@ system, binary files, whatever you want and add this option to a set.
 \subsection{Commands}
 Commands are also brand new in this sprint. We created another set of commands,
 another simple language on top of JavaScript. These commands allow the
-functionality of Wonsole to be more accessible - you dont have to implement
+functionality of Wonsole to be more accessible - you don't have to implement
 everything in JavaScript, you can just use the set of predefined commands. In
 fact, you don not have to use JavaScript at all. See the table
 \ref{sprint3:table:commands} for command reference.
@@ -220,8 +220,7 @@ The Wonsole library was divided into 4 main parts in different source files: ui
 representing functions and callbacks from user interface, persistence - data
 source (see Persistence subsection), console - implementing functionality of
 console and main script wonsole.js containing the commands and putting it all
-togethe
-r.
+together.
 
 \section{Testing}
 \subsection{Test Results}
@@ -297,11 +296,11 @@ In the middle of the sprint we did a technology preview for the customer. The pu
 This section contains the evaluation of the third sprint, and what we plan to improve for the fourth sprint. The evaluation was performed during an internal meeting with all group members present.
 
 \subsection{Review}
-Again we feel we were able to deliver a great product, and we were able to complete all the user stories in the sprint backlog. This sprint posed a different kind of challenge for us, as we decided to switch some of the technologies we were using and to redesign much of the system. This was obviously not according to plan, but we feel we rose to this challenge, adapted well and succeded in making the switch. We found time to research new technologies as well as incorporating these into the design of the system. The communication with the customer was good throughout this sprint, even better than in the previous sprints. The customer was more included in the planning of this sprint, and he was more specific in what he wanted to be implemented. This helped us a lot when we were creating new user stories. This time we were also able to schedule a meeting with the customer in the middle of the sprint, to allow him a chance to provide some feedback on the prelimanary solutions we had implemented so far. We feel this great communication was reflected by the fact that the customer was very happy with the end result, which exceeded his expectations.
+Again we feel we were able to deliver a great product, and we were able to complete all the user stories in the sprint backlog. This sprint posed a different kind of challenge for us, as we decided to switch some of the technologies we were using and to redesign much of the system. This was obviously not according to plan, but we feel we rose to this challenge, adapted well and succeeded in making the switch. We found time to research new technologies as well as incorporating these into the design of the system. The communication with the customer was good throughout this sprint, even better than in the previous sprints. The customer was more included in the planning of this sprint, and he was more specific in what he wanted to be implemented. This helped us a lot when we were creating new user stories. This time we were also able to schedule a meeting with the customer in the middle of the sprint, to allow him a chance to provide some feedback on the preliminary solutions we had implemented so far. We feel this great communication was reflected by the fact that the customer was very happy with the end result, which exceeded his expectations.
 
-In previous sprints, not enough focus was put on the report and general documentation. To address this issue we decided to put two team members full time on the report for the last week of this sprint, and it resulted in more work being done with the documentation. We were able to document our work on the research and implementation effectively during the sprint, and also found time to fix some parts of the report according to feedback we recieved from the advisor. All in all we feel this was a successful move.
+In previous sprints, not enough focus was put on the report and general documentation. To address this issue we decided to put two team members full time on the report for the last week of this sprint, and it resulted in more work being done with the documentation. We were able to document our work on the research and implementation effectively during the sprint, and also found time to fix some parts of the report according to feedback we received from the advisor. All in all we feel this was a successful move.
 
-Despite it beeing a successful sprint in many ways, there was still some aspects of it that was not so good. In this sprint we were too dependent on one person for the implementation. We planned to assign two team members to the implementation, but one of them ended up working on the report instead. Although the person responsible for the implementation did a fantastic job, and we ended up delivering a great product, we should have done a better job in distributing the workload of the implementation. If the one assigned to the implementation somehow would be unable to work the last couple of days, we would have been in big trouble. We should have at least two team members involved in the implementation, to avoid one single point of failure. We also fell back to our old habits with the time tracking. Our focus was disturbed by the change of direction in the project, and in the middle of it all we forgot to follow up on our routines on time tracking. We also failed to peform the test cases earlier, as we set out to do before the sprint. This may also be credited to the changes. We ended up being very pressed on time towards the end of the sprint and prioritised to complete the implementation instead.
+Despite it being a successful sprint in many ways, there was still some aspects of it that was not so good. In this sprint we were too dependent on one person for the implementation. We planned to assign two team members to the implementation, but one of them ended up working on the report instead. Although the person responsible for the implementation did a fantastic job, and we ended up delivering a great product, we should have done a better job in distributing the workload of the implementation. If the one assigned to the implementation somehow would be unable to work the last couple of days, we would have been in big trouble. We should have at least two team members involved in the implementation, to avoid one single point of failure. We also fell back to our old habits with the time tracking. Our focus was disturbed by the change of direction in the project, and in the middle of it all we forgot to follow up on our routines on time tracking. We also failed to perform the test cases earlier, as we set out to do before the sprint. This may also be credited to the changes. We ended up being very pressed on time towards the end of the sprint and prioritized to complete the implementation instead.
 
 \subsubsection{Positive}
 
@@ -325,7 +324,7 @@ Despite it beeing a successful sprint in many ways, there was still some aspects
 These are the actions we have planned for the final sprint to improve our work process.
 
 \subsubsection{Workload Distribution}
-Continue the success of putting two team members full time on the report, as this turned out to be a great measure to ensure the quality of the report. Although there is not a whole lot left to do on the implementation, we should assign two people to the tasks remaining. This to avoid a potensial single point of failure.
+Continue the success of putting two team members full time on the report, as this turned out to be a great measure to ensure the quality of the report. Although there is not a whole lot left to do on the implementation, we should assign two people to the tasks remaining. This to avoid a potential single point of failure.
 
 \subsubsection{Time Tracking}
 Return to our routines for time tracking, which we were able to do so well in the second sprint.
