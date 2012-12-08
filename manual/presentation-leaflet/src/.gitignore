@@ -1,0 +1,13 @@
+.project
+.texlipse
+*.*~
+*.synctex.gz
+*/*.aux
+*.aux
+*.lof
+*.log
+*.out
+*.toc
+*.ml*
+*.mt*
+*.maf

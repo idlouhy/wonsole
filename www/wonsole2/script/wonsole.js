@@ -98,8 +98,68 @@ var demo3 = [
 ]
 
 
+var pre = [
+'db books',
+'doc 0',
+'doc.title = "Romeo and Julius"',
+'commit',
+]
+var d1 = [
+'print "I. Grand Opening!"',
+'db authors',
+'db books',
+'doc 0',
+'doc.title = "Romeo and Juliet"',
+'commit',
+'docs',
+'add {"title" : "Writing for dummies"}',
+'rollback',
+]
+
+
+var d2 = [
+'print "II. Business is good"',
+'db books',
+'quiet',
+'db authors',
+'doc 4',
+'var auth = doc',
+'db books',
+'docs[0].author = auth',
+'docs[1].author = auth',
+'docs[2].author = auth',
+'docs[3].author = auth',
+'commit',
+]
+
+
+var d3 = [
+//increase/decrease the price of books
+'print "III. Crisis"',
+'db books',
+'filter docs title Harry',
+'quiet',
+'foreach docs price=price*1.2',
+'commit'
+
+]
+
+var d4 = [
+'print "IV. Bankruptcy"',
+'db books',
+'quiet',
+'filter docs title Harry',
+]
+
+var liquidate = ["seteach docs onsale true", "foreach docs price=price*0.5"];
+
+var remains = ['for (var item in docs) { if (docs[item].stock > 0) alert(docs[item].title+" has to be sold!"); }'];
+
+var avgprice = ["var sum=0", "foreach docs sum=sum+price", "print sum/docs.length"]
+
+
 var check_stock = [
-  'for (var item in docs) { if (docs[item].stock < 3) alert(docs[item].title+" is out of stock!"); }'
+  
 ]
 
 
@@ -107,7 +167,7 @@ var check_sale = [
   'foreach docs if (tags.indexOf("onsale") > -1) alert(title+" is on sale!");'
 ]
 
-var avgprice = ["var sum=0", "foreach docs sum=sum+price", "print sum/docs.length"]
+
 
 
 

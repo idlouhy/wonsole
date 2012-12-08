@@ -1,0 +1,132 @@
+\thispagestyle{empty}
+\section*{Wonsole Presentation}
+You are most welcome to try it yourself at \url{http://bit.ly/wonsole} and give
+us feedback!
+\subsection*{I. Grand Opening}
+\begin{verbatim}
+print "I. Grand Opening!"
+db authors
+db books
+doc 0
+doc.title = "Romeo and Juliet"
+commit
+docs
+add {"title" : "Writing for dummies"}
+rollback
+\end{verbatim}
+
+\subsection*{II. Business Is Good}
+\begin{verbatim}
+print "II. Business Is Good"
+db books
+quiet
+db authors
+doc 4
+var auth = doc
+db books
+docs[0].author = auth
+docs[1].author = auth
+docs[2].author = auth
+docs[3].author = auth
+\end{verbatim}
+
+\subsection*{III. Crisis}
+\begin{verbatim}
+print "III. Crisis"
+db books
+filter docs title Harry
+quiet
+foreach docs price=price*1.2
+\end{verbatim}
+
+\subsection*{IV. Bankruptcy}
+\textit{Note: This scenario may vary a little.}
+\begin{verbatim}
+print "IV. Bankruptcy"
+db books
+quiet
+filter docs title Harry
+print avgprice
+avgprice
+print liquidate
+liquidate
+print remains
+remains
+\end{verbatim}
+
+
+\clearpage
+\thispagestyle{empty}
+\section*{Cheatsheet}
+\centering
+\begin{tabularx}{\textwidth}{ | l | X | l | }
+\hline
+\textbf{Command} & \textbf{Description} & \textbf{Example usage} \\ \hline 
+\verb|db DATABASE| &
+opens database DATABASE &
+\verb|db books| \\ \hline
+
+\verb|docs| &
+switches view to documents &
+\verb|docs| \\ \hline
+
+\verb|doc INDEX| &
+opens document at INDEX &
+\verb|doc 0| \\ \hline
+
+\verb|commit| &
+commits the changes to database &
+\verb|commit| \\ \hline
+
+\verb|rollback| &
+rollbacks the changes &
+\verb|rollback| \\ \hline
+
+\verb|refresh| &
+refreshes the UI &
+\verb|refresh| \\ \hline
+
+\verb|clear| &
+clears the console &
+\verb|clear| \\ \hline
+
+\verb|print VARIABLE| &
+prints the variable VARIABLE &
+\verb|print docs| \\ \hline
+
+\verb|quiet| &
+toggles list verbosity, default: on &
+\verb|quiet| \\ \hline
+
+\verb|log| &
+toggles log visibility, default: off &
+\verb|log| \\ \hline
+
+\verb|remove INDEX|&
+removes object at index INDEX &
+\verb|remove 0| \\ \hline
+
+\verb|remove JSON| &
+removes object specified by JSON &
+\verb|remove| \{"id":1231232\} \\ \hline
+
+\verb|add JSON| &
+ adds object specified by JSON &
+\verb|add {"title" : "New book"}| \\ \hline
+ 
+\verb|seteach ARRAY ATTRIBUTE VALUE| &
+sets (creates if necessary) ATTRIBUTE in \verb|object in ARRAY to VALUE| &
+\verb|seteach docs author "Unknown"| \\ \hline
+
+\verb|foreach ARRAY CODE| &
+executes the CODE for each item of ARRAY &
+\verb|foreach docs price=price*10| \\ \hline
+
+\verb|filter ARRAY ATTRIBUTE VALUE| &
+filters the ARRAY with VALUE of ATTRIBUTE &
+\verb|filter docs  title Report| \\ \hline
+
+\verb|script ARRAY| &
+executes the ARRAY of commands specified by string &
+\verb|script ["clear", "db books"]| \\ \hline
+\end{tabularx}
